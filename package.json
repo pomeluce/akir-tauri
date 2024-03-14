@@ -1,0 +1,58 @@
+{
+  "name": "rapidify-react",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "license": "GPL-3.0",
+  "homepage": "https://github.com/pomeluce/rapidify-react",
+  "description": "基于 react, typescript, vite, naive-ui, tailwindcss 的前端开发脚手架",
+  "keywords": [
+    "rapidify",
+    "react",
+    "typescript",
+    "vite",
+    "naive-ui",
+    "postcss",
+    "tailwindcss",
+    "pomeluce"
+  ],
+  "scripts": {
+    "dev": "vite --mode dev",
+    "pro": "vite --mode pro",
+    "build:dev": "tsc && vite build --mode dev",
+    "build:pro": "tsc && vite build --mode pro",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@icon-park/react": "^1.4.2",
+    "@types/lodash-es": "^4.17.12",
+    "ahooks": "^3.7.10",
+    "antd": "^5.15.2",
+    "lodash-es": "^4.17.21",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3",
+    "sass": "^1.72.0",
+    "zustand": "^4.5.2"
+  },
+  "devDependencies": {
+    "@css-render/plugin-bem": "^0.15.12",
+    "@types/mockjs": "^1.0.10",
+    "@types/node": "^20.11.27",
+    "@types/react": "^18.2.65",
+    "@types/react-dom": "^18.2.22",
+    "@unocss/reset": "^0.58.5",
+    "@unocss/transformer-directives": "^0.58.5",
+    "@unocss/transformer-variant-group": "^0.58.5",
+    "@vitejs/plugin-react-swc": "^3.6.0",
+    "css-render": "^0.15.12",
+    "mockjs": "^1.1.0",
+    "prettier": "^3.2.5",
+    "seemly": "^0.3.8",
+    "typescript": "^5.4.2",
+    "unocss": "^0.58.5",
+    "unplugin-auto-import": "^0.17.5",
+    "vite": "^5.1.6",
+    "vite-plugin-mock": "^3.0.1"
+  }
+}

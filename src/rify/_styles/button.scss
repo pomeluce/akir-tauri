@@ -1,0 +1,428 @@
+$defaultColor: #2e3338;
+$defaultBorderColor: #e0e0e6;
+$defaultColorHover: $primaryColorHover;
+$defaultColorPressed: $primaryColorPressed;
+
+.rify-btn {
+  --uno: flex items-center gap-2 rounded border text-white relative flex-shrink-0 whitespace-nowrap;
+  outline: none;
+
+  & .rify-btn__loading {
+    --uno: animate-spin;
+  }
+
+  & .rify-btn__wave {
+    --uno: absolute pointer-events-none left-0 right-0 top-0 bottom-0 rounded-inherit;
+
+    animation-iteration-count: 1;
+    animation-duration: 0.6s;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1), cubic-bezier(0, 0, 0.2, 1);
+
+    &.rify-btn__wave-active {
+      z-index: 1;
+      animation-name: button-wave-spread, button-wave-opacity;
+    }
+  }
+}
+
+.rify-btn-size--tiny {
+  --uno: py-0 px-1.5 text-xs h-6 leading-1;
+}
+
+.rify-btn-size--small {
+  --uno: py-1 px-2 text-sm;
+}
+
+.rify-btn-size--medium {
+  --uno: py-2 px-3.5 text-sm;
+}
+
+.rify-btn-size--large {
+  --uno: py-3 px-5 text-base;
+}
+
+.rify-btn-round {
+  --uno: rounded-full;
+}
+
+.rify-btn-circle {
+  --uno: w-10 h-10 p-0 inline-flex justify-center items-center flex-nowrap whitespace-nowrap rounded-full;
+
+  &:is(.rify-btn-size--tiny) {
+    --uno: w-8 h-8;
+  }
+
+  &:is(.rify-btn-size--small) {
+    --uno: w-9 h-9;
+  }
+
+  &:is(.rify-btn-size--large) {
+    --uno: w-12 h-12;
+  }
+
+  & .rify-btn__content {
+    --uno: min-w-0;
+  }
+}
+
+.rify-btn-default {
+  --uno: bg-white;
+  color: $defaultColor;
+  border-color: $defaultBorderColor;
+
+  &:is(.rify-btn-secondary) {
+    color: $defaultColor;
+    background-color: #{$defaultColor}0d;
+
+    &:hover {
+      background-color: #{$defaultColor}17;
+    }
+
+    &:active {
+      background-color: #{$defaultColor}21;
+    }
+  }
+
+  &:is(.rify-btn-text) {
+    color: $defaultColor;
+  }
+
+  &:not(:disabled):not(.rify-btn-disabled, .rify-btn-secondary, .rify-btn-text):hover,
+  &:not(:disabled):not(.rify-btn-disabled, .rify-btn-secondary, .rify-btn-text):focus {
+    color: $defaultColorHover;
+    border-color: $defaultColorHover;
+  }
+
+  &:not(:disabled):not(.rify-btn-disabled, .rify-btn-secondary, .rify-btn-text):active {
+    color: $defaultColorPressed;
+    border-color: $defaultColorPressed;
+  }
+}
+
+.rify-btn-primary {
+  background-color: $primaryColor;
+  border-color: $primaryColor;
+
+  &:is(.rify-btn-secondary) {
+    color: $primaryColor;
+    background-color: #{$primaryColor}29;
+
+    &:hover {
+      background-color: #{$primaryColor}38;
+    }
+
+    &:active {
+      background-color: #{$primaryColor}47;
+    }
+  }
+
+  &:is(.rify-btn-ghost),
+  &:is(.rify-btn-text) {
+    color: $primaryColor;
+
+    &:hover {
+      color: $primaryColorHover;
+    }
+
+    &:active {
+      color: $primaryColorPressed;
+    }
+  }
+
+  &:not(:disabled):not(.rify-btn-disabled, .rify-btn-secondary, .rify-btn-text):hover {
+    background-color: $primaryColorHover;
+    border-color: $primaryColorHover;
+  }
+
+  &:not(:disabled):not(.rify-btn-disabled, .rify-btn-secondary, .rify-btn-text):active {
+    background-color: $primaryColorPressed;
+    border-color: $primaryColorPressed;
+  }
+}
+
+.rify-btn-success {
+  background-color: $successColor;
+  border-color: $successColor;
+
+  &:is(.rify-btn-secondary) {
+    color: $successColor;
+    background-color: #{$successColor}29;
+
+    &:hover {
+      background-color: #{$successColor}38;
+    }
+
+    &:active {
+      background-color: #{$successColor}47;
+    }
+  }
+
+  &:is(.rify-btn-ghost),
+  &:is(.rify-btn-text) {
+    color: $successColor;
+
+    &:hover {
+      color: $successColorHover;
+    }
+
+    &:active {
+      color: $successColorPressed;
+    }
+  }
+
+  &:not(:disabled):not(.rify-btn-disabled, .rify-btn-secondary, .rify-btn-text):hover {
+    background-color: $successColorHover;
+    border-color: $successColorHover;
+  }
+
+  &:not(:disabled):not(.rify-btn-disabled, .rify-btn-secondary, .rify-btn-text):active {
+    background-color: $successColorPressed;
+    border-color: $successColorPressed;
+  }
+}
+
+.rify-btn-warning {
+  background-color: $warningColor;
+  border-color: $warningColor;
+
+  &:is(.rify-btn-secondary) {
+    color: $warningColor;
+    background-color: #{$warningColor}29;
+
+    &:hover {
+      background-color: #{$warningColor}38;
+    }
+
+    &:active {
+      background-color: #{$warningColor}47;
+    }
+  }
+
+  &:is(.rify-btn-ghost),
+  &:is(.rify-btn-text) {
+    color: $warningColor;
+
+    &:hover {
+      color: $warningColorHover;
+    }
+
+    &:active {
+      color: $warningColorPressed;
+    }
+  }
+
+  &:not(:disabled):not(.rify-btn-disabled, .rify-btn-secondary, .rify-btn-text):hover {
+    background-color: $warningColorHover;
+    border-color: $warningColorHover;
+  }
+
+  &:not(:disabled):not(.rify-btn-disabled, .rify-btn-secondary, .rify-btn-text):active {
+    background-color: $warningColorPressed;
+    border-color: $warningColorPressed;
+  }
+}
+
+.rify-btn-danger {
+  background-color: $dangerColor;
+  border-color: $dangerColor;
+
+  &:is(.rify-btn-secondary) {
+    color: $dangerColor;
+    background-color: #{$dangerColor}29;
+
+    &:hover {
+      background-color: #{$dangerColor}38;
+    }
+
+    &:active {
+      background-color: #{$dangerColor}47;
+    }
+  }
+
+  &:is(.rify-btn-ghost),
+  &:is(.rify-btn-text) {
+    color: $dangerColor;
+
+    &:hover {
+      color: $dangerColorHover;
+    }
+
+    &:active {
+      color: $dangerColorPressed;
+    }
+  }
+
+  &:not(:disabled):not(.rify-btn-disabled, .rify-btn-secondary, .rify-btn-text):hover {
+    background-color: $dangerColorHover;
+    border-color: $dangerColorHover;
+  }
+
+  &:not(:disabled):not(.rify-btn-disabled, .rify-btn-secondary, .rify-btn-text):active {
+    background-color: $dangerColorPressed;
+    border-color: $dangerColorPressed;
+  }
+}
+
+.rify-btn-info {
+  background-color: $infoColor;
+  border-color: $infoColor;
+
+  &:is(.rify-btn-secondary) {
+    color: $infoColor;
+    background-color: #{$infoColor}29;
+
+    &:hover {
+      background-color: #{$infoColor}38;
+    }
+
+    &:active {
+      background-color: #{$infoColor}47;
+    }
+  }
+
+  &:is(.rify-btn-ghost),
+  &:is(.rify-btn-text) {
+    color: $infoColor;
+
+    &:hover {
+      color: $infoColorHover;
+    }
+
+    &:active {
+      color: $infoColorPressed;
+    }
+  }
+
+  &:not(:disabled):not(.rify-btn-disabled, .rify-btn-secondary, .rify-btn-text):hover {
+    background-color: $infoColorHover;
+    border-color: $infoColorHover;
+  }
+
+  &:not(:disabled):not(.rify-btn-disabled, .rify-btn-secondary, .rify-btn-text):active {
+    background-color: $infoColorPressed;
+    border-color: $infoColorPressed;
+  }
+}
+
+.rify-btn-color {
+  $color: var(--rify-btn-color);
+  $colorHover: var(--rify-btn-color-hover);
+  $colorPressed: var(--rify-btn-color-pressed);
+  $textColor: var(--rify-btn-text-color);
+  $colorSecondary: var(--rify-btn-secondary-color);
+  $colorSecondaryHover: var(--rify-btn-secondary-color-hover);
+  $colorSecondaryPressed: var(--rify-btn-secondary-color-pressed);
+
+  color: $textColor;
+  background-color: $color;
+  border-color: $color;
+
+  &:is(.rify-btn-secondary) {
+    color: $color;
+    background-color: $colorSecondary;
+
+    &:hover {
+      background-color: $colorSecondaryHover;
+    }
+
+    &:active {
+      background-color: $colorSecondaryPressed;
+    }
+  }
+
+  &:is(.rify-btn-ghost),
+  &:is(.rify-btn-text) {
+    color: $color !important;
+
+    &:hover {
+      color: $colorHover !important;
+    }
+
+    &:active {
+      color: $colorPressed !important;
+    }
+  }
+
+  &:not(:disabled):not(.rify-btn-disabled, .rify-btn-secondary, .rify-btn-text):hover {
+    color: $textColor;
+    background-color: $colorHover;
+    border-color: $colorHover;
+  }
+
+  &:not(:disabled):not(.rify-btn-disabled, .rify-btn-secondary, .rify-btn-text):active {
+    color: $textColor;
+    background-color: $colorPressed;
+    border-color: $colorPressed;
+  }
+}
+
+.rify-btn-disabled {
+  --uno: cursor-not-allowed opacity-50;
+}
+
+.rify-btn-secondary {
+  --uno: border-none border-transparent;
+
+  &:is(:disabled) {
+    background-color: #{$defaultColor}0d;
+
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: #{$defaultColor}0d;
+    }
+  }
+}
+
+.rify-btn-ghost {
+  --uno: bg-transparent;
+
+  &:hover,
+  &:active {
+    background-color: transparent !important;
+  }
+}
+
+.rify-btn-text {
+  --uno: bg-transparent border-none border-transparent;
+
+  &:is(:disabled),
+  &:is(:disabled):hover,
+  &:is(:disabled):active,
+  &:is(:disabled):focus {
+    color: $defaultColor;
+  }
+
+  // &:not(:disabled):hover,
+  // &:not(:disabled):focus {
+  //   background-color: #{$defaultColor}17;
+  // }
+  //
+  // &:not(:disabled):active {
+  //   background-color: #{$defaultColor}21;
+  // }
+}
+
+.rify-btn--loading {
+  &:hover {
+    --uno: cursor-wait;
+  }
+}
+
+@keyframes button-wave-spread {
+  from {
+    box-shadow: 0 0 0.5px 0 var(--rify-btn-animation-color);
+  }
+  to {
+    box-shadow: 0 0 0.5px 6.5px var(--rify-btn-animation-color);
+  }
+}
+
+@keyframes button-wave-opacity {
+  from {
+    opacity: 0.6;
+  }
+  to {
+    opacity: 0;
+  }
+}

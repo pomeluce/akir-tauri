@@ -1,0 +1,21 @@
+.rify-card {
+  &:is(.rify-card-default) {
+    --uno: border shadow-sm rounded-xl;
+  }
+
+  &:is(.rify-card--hover_shadow) {
+    --uno: hover: drop-shadow-xl;
+  }
+
+  .rify-card--title {
+    --uno: p-5 py-3 opacity-90 text-lg font-normal border-b;
+  }
+
+  .rify-card--content {
+    --uno: p-5 min-h-100px;
+  }
+
+  .rify-card--footer {
+    --uno: px-5 py-3 bg-gray-50 border-t;
+  }
+}
