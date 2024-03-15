@@ -1,4 +1,4 @@
-import { ConfigProviderProps } from './interface';
+import { ConfigProviderProps } from './config-provider';
 
 export default {
   theme: {

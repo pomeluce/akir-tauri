@@ -2,7 +2,8 @@ import { HTMLAttributes, MouseEvent, ReactNode } from 'react';
 import { ThemeCommonVars } from '../../_styles/common';
 import { useTheme, defaultClsPrefix } from '../../_mixins';
 import { createKey, warnOnce } from '../../_utils';
-import styled from './styles/index.cssr';
+import style from './styles/index.cssr';
+import { buttonLight } from '../styles';
 
 type ButtonAttributes = Omit<HTMLAttributes<HTMLButtonElement>, 'text'>;
 
@@ -40,7 +41,7 @@ const button: React.FC<ButtonProps> = (props: ButtonProps) => {
   const mergedFocusable = props.focusable && !props.disabled;
 
   // 挂载样式
-  const { theme, themeOverrides } = useTheme('-button', styled, defaultClsPrefix);
+  const { theme, themeOverrides } = useTheme('Button', '-button', style, buttonLight, defaultClsPrefix);
   const { common } = theme as { common: ThemeCommonVars };
   const { fontWeight, fontWeightStrong } = common;
 

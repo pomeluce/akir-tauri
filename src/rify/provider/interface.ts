@@ -1,23 +1,16 @@
 import { ReactNode } from 'react';
 import type { ThemeCommonVars } from './../_styles/common';
 import { GlobalThemeWithoutCommon } from './internal-interface';
+import { ExtractThemeOverrides } from '../_mixins/use-theme';
 
 export type { ThemeCommonVars };
 export interface CustomThemeCommonVars {}
 
-export interface ConfigProviderProps {
-  theme: GlobalTheme;
-  themeOverrides?: GlobalThemeOverrides;
-  children?: ReactNode;
-}
-
-export type GlobalTheme = {
+export interface GlobalTheme extends GlobalThemeWithoutCommon {
   name: 'light' | 'dark';
   common?: ThemeCommonVars;
-};
+}
 
-export type GlobalThemeOverrides = {
-  common?: Partial<ThemeCommonVars & CustomThemeCommonVars>;
-} & {
+export type GlobalThemeOverrides = { common?: Partial<ThemeCommonVars & CustomThemeCommonVars> } & {
   [key in keyof GlobalThemeWithoutCommon]?: ExtractThemeOverrides<GlobalThemeWithoutCommon[key]>;
 };
