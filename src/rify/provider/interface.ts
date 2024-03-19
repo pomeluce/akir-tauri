@@ -1,4 +1,3 @@
-import { ReactNode } from 'react';
 import type { ThemeCommonVars } from './../_styles/common';
 import { GlobalThemeWithoutCommon } from './internal-interface';
 import { ExtractThemeOverrides } from '../_mixins/use-theme';

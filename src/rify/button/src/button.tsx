@@ -41,8 +41,8 @@ const button: React.FC<ButtonProps> = (props: ButtonProps) => {
   const mergedFocusable = props.focusable && !props.disabled;
 
   // 挂载样式
-  const { theme, themeOverrides } = useTheme('Button', '-button', style, buttonLight, defaultClsPrefix);
-  const { common } = theme as { common: ThemeCommonVars };
+  const { common } = useTheme('Button', '-button', style, buttonLight, defaultClsPrefix);
+  // const { common } = theme as { common: ThemeCommonVars };
   const { fontWeight, fontWeightStrong } = common;
 
   const { type, text, textColor, color, strong } = props;
