@@ -1,9 +1,9 @@
 import { CNode } from 'css-render';
 import { cssrAnchorMetaName } from './common';
-import { ProviderContext } from '../provider/context';
-import { GlobalTheme } from '../provider/interface';
-import { ThemeCommonVars, commonDark, commonLight } from '../_styles/common';
-import { defaults, merge } from 'lodash-es';
+import { globalTheme, ProviderContext } from '../provider';
+import { GlobalTheme, GlobalThemeOverrides } from '../provider/interface';
+import { ThemeCommonVars } from '../_styles/common';
+import { merge } from 'lodash-es';
 
 export interface Theme<N, T = Record<string, unknown>, R = any> {
   name: N;
@@ -39,15 +39,20 @@ const useTheme = <N, T, R>(
     });
   }
 
-  const {
-    theme: { name },
-    themeOverrides: { common } = {} as ExtractThemeOverrides<Theme<N, T, R>>,
-  } = useContext(ProviderContext);
+  const { theme: { name } = {} as GlobalTheme, themeOverrides: { common: contextCommonOverrides, [resolveId]: contextSelfOverrides = {} } = {} as GlobalThemeOverrides } =
+    useContext(ProviderContext);
 
-  // const {common: rcommon} = [resolveId] = {}
+  const { common: globalCommon, [resolveId]: { common: globalSelfCommon = undefined, self: globalSelf = undefined } = {} } = globalTheme(name);
+
+  const { common: contextSelfCommonOverrides, ...contextSelf } = contextSelfOverrides;
+
+  console.log(contextSelfOverrides);
+
+  const mergedCommon = merge({}, globalCommon || globalSelfCommon || defaultTheme.common, contextCommonOverrides, contextSelfCommonOverrides);
 
   return {
-    common: merge(name === 'light' ? commonLight : commonLight, defaultTheme.common, common),
+    common: mergedCommon,
+    self: merge({}, (globalSelf || defaultTheme.self)?.(mergedCommon) as T, contextSelf),
   };
 };
 

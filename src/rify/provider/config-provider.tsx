@@ -3,8 +3,8 @@ import { ProviderContext } from './context';
 import { GlobalTheme, GlobalThemeOverrides } from './interface';
 
 export interface ConfigProviderProps {
-  clsPrefix: String;
-  theme: GlobalTheme;
+  clsPrefix?: String;
+  theme?: GlobalTheme;
   themeOverrides?: GlobalThemeOverrides;
   children?: ReactNode;
 }

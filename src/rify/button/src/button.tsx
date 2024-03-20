@@ -8,7 +8,7 @@ import { buttonLight } from '../styles';
 type ButtonAttributes = Omit<HTMLAttributes<HTMLButtonElement>, 'text'>;
 
 export interface ButtonProps extends ButtonAttributes {
-  type?: 'default' | 'primary' | 'success' | 'warning' | 'danger' | 'info';
+  type?: 'default' | 'primary' | 'success' | 'warning' | 'error' | 'info';
   size?: 'tiny' | 'small' | 'medium' | 'large';
   text?: boolean;
   textColor?: string;
@@ -41,11 +41,10 @@ const button: React.FC<ButtonProps> = (props: ButtonProps) => {
   const mergedFocusable = props.focusable && !props.disabled;
 
   // 挂载样式
-  const { common } = useTheme('Button', '-button', style, buttonLight, defaultClsPrefix);
-  // const { common } = theme as { common: ThemeCommonVars };
+  const { common, self } = useTheme('Button', '-button', style, buttonLight, defaultClsPrefix);
   const { fontWeight, fontWeightStrong } = common;
 
-  const { type, text, textColor, color, strong } = props;
+  const { type = 'default', text, textColor, color, strong } = props;
 
   // font
   const fontProps = {
@@ -71,7 +70,7 @@ const button: React.FC<ButtonProps> = (props: ButtonProps) => {
 
   if (text) {
     const propTextColor = textColor || color;
-    const mergedTextColor = propTextColor || common[createKey('textColorText', mergedType)];
+    const mergedTextColor = propTextColor || self[createKey('textColorText', mergedType)];
   }
 
   // const { type = 'default', size = 'medium', text, ghost, secondary, disabled, color, circle, round, loading, children, icon, className, style, onClick, ...attributes } = props;
