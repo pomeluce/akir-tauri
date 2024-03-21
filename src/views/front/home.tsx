@@ -25,7 +25,7 @@ const Home: React.FC<{}> = () => {
         <RifyButton color="#ff69b4">
           warning
         </RifyButton>
-        <RifyButton type="danger">danger</RifyButton>
+        <RifyButton type="error">danger</RifyButton>
         <RifyButton type="info">info</RifyButton>
       </span>
     </RifyCard>

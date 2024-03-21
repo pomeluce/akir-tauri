@@ -39,14 +39,12 @@ const useTheme = <N, T, R>(
     });
   }
 
-  const { theme: { name } = {} as GlobalTheme, themeOverrides: { common: contextCommonOverrides, [resolveId]: contextSelfOverrides = {} } = {} as GlobalThemeOverrides } =
+  const { theme: { name = 'light' } = {} as GlobalTheme, themeOverrides: { common: contextCommonOverrides, [resolveId]: contextSelfOverrides = {} } = {} as GlobalThemeOverrides } =
     useContext(ProviderContext);
 
   const { common: globalCommon, [resolveId]: { common: globalSelfCommon = undefined, self: globalSelf = undefined } = {} } = globalTheme(name);
 
   const { common: contextSelfCommonOverrides, ...contextSelf } = contextSelfOverrides;
-
-  console.log(contextSelfOverrides);
 
   const mergedCommon = merge({}, globalCommon || globalSelfCommon || defaultTheme.common, contextCommonOverrides, contextSelfCommonOverrides);
 

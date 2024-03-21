@@ -1,4 +1,7 @@
-import { c, cB, cE, cM } from '@/rify/_utils/cssr';
+import { fadeInWidthExpandTransition } from '@/rify/_styles/transitions/fade-in-width-expand.cssr';
+import { iconSwitchTransition } from '@/rify/_styles/transitions/icon-switch.cssr';
+import { isBrowser } from '@/rify/_utils';
+import { c, cB, cE, cM, cNotM } from '@/rify/_utils/cssr';
 
 // vars:
 // --rify-bezier
@@ -71,7 +74,228 @@ export default c([
         cE('border', {
           borderColor: 'var(--rify-border-color)',
         }),
+        cM('disabled', [
+          cE('border', {
+            borderColor: 'var(--rify-border-color-disabled)',
+          }),
+        ]),
+        cNotM('disabled', [
+          c('&:focus', [
+            cE('state-border', {
+              borderColor: 'var(--rify-border-color-focus)',
+            }),
+          ]),
+          c('&:hover', [
+            cE('state-border', {
+              borderColor: 'var(--rify-border-color-hover)',
+            }),
+          ]),
+          c('&:active', [
+            cE('state-border', {
+              borderColor: 'var(--rify-border-color-pressed)',
+            }),
+          ]),
+          cM('pressed', [
+            cE('state-border', {
+              borderColor: 'var(--rify-border-color-pressed)',
+            }),
+          ]),
+        ]),
       ]),
+      cM(
+        'disabled',
+        {
+          backgroundColor: 'var(--rify-color-disabled)',
+          color: 'var(--rify-text-color-disabled)',
+        },
+        [
+          cE('border', {
+            border: 'var(--rify-border-disabled)',
+          }),
+        ],
+      ),
+      cNotM('disabled', [
+        c(
+          '&:focus',
+          {
+            backgroundColor: 'var(--rify-color-focus)',
+            color: 'var(--rify-text-color-focus)',
+          },
+          [
+            cE('state-border', {
+              border: 'var(--rify-border-focus)',
+            }),
+          ],
+        ),
+        c(
+          '&:hover',
+          {
+            backgroundColor: 'var(--rify-color-hover)',
+            color: 'var(--rify-text-color-hover)',
+          },
+          [
+            cE('state-border', {
+              border: 'var(--rify-border-hover)',
+            }),
+          ],
+        ),
+        c(
+          '&:active',
+          {
+            backgroundColor: 'var(--rify-color-pressed)',
+            color: 'var(--rify-text-color-pressed)',
+          },
+          [
+            cE('state-border', {
+              border: 'var(--rify-border-pressed)',
+            }),
+          ],
+        ),
+        cM(
+          'pressed',
+          {
+            backgroundColor: 'var(--rify-color-pressed)',
+            color: 'var(--rify-text-color-pressed)',
+          },
+          [
+            cE('state-border', {
+              border: 'var(--rify-border-pressed)',
+            }),
+          ],
+        ),
+      ]),
+      cM('loading', 'cursor: wait;'),
+      cB(
+        'base-wave',
+        `
+          pointer-events: none;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          animation-iteration-count: 1;
+          animation-duration: var(--rify-ripple-duration);
+          animation-timing-function: var(--rify-bezier-ease-out), var(--rify-bezier-ease-out);
+        `,
+        [
+          cM('active', {
+            zIndex: 1,
+            animationName: 'button-wave-spread, button-wave-opacity',
+          }),
+        ],
+      ),
+      isBrowser && 'MozBoxSizing' in document.createElement('div').style
+        ? c('&::moz-focus-inner', {
+            border: 0,
+          })
+        : null,
+      cE(
+        'border, state-border',
+        `
+          position: absolute;
+          left: 0;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          border-radius: inherit;
+          transition: border-color .3s var(--rify-bezier);
+          pointer-events: none;
+        `,
+      ),
+      cE('border', {
+        border: 'var(--rify-border)',
+      }),
+      cE('state-border', {
+        border: 'var(--rify-border)',
+        borderColor: '#0000',
+        zIndex: 1,
+      }),
+      cE(
+        'icon',
+        `
+          margin: var(--rify-icon-margin);
+          margin-left: 0;
+          height: var(--rify-icon-size);
+          width: var(--rify-icon-size);
+          max-width: var(--rify-icon-size);
+          font-size: var(--rify-icon-size);
+          position: relative;
+          flex-shrink: 0;
+        `,
+        [
+          cB(
+            'icon-slot',
+            `
+              height: var(--rify-icon-size);
+              width: var(--rify-icon-size);
+              position: absolute;
+              left: 0;
+              top: 50%;
+              transform: translateY(-50%);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            `,
+            [
+              iconSwitchTransition({
+                top: '50%',
+                originalTransform: 'translateY(-50%)',
+              }),
+            ],
+          ),
+          fadeInWidthExpandTransition(),
+        ],
+      ),
+      cE(
+        'content',
+        `
+          display: flex;
+          align-items: center;
+          flex-wrap: nowrap;
+          min-width: 0;
+        `,
+        [
+          c('~', [
+            cE('icon', {
+              margin: 'var(--rify-icon-margin)',
+              marginRight: 0,
+            }),
+          ]),
+        ],
+      ),
+      cM(
+        'block',
+        `
+          display: flex;
+          width: 100%;
+        `,
+      ),
+      cM('dashed', [
+        cE('border, state-border', {
+          borderStyle: 'dashed !important',
+        }),
+      ]),
+      cM('disabled', {
+        cursor: 'not-allowed',
+        opacity: 'var(--rify-opacity-disabled)',
+      }),
     ],
   ),
+  c('@keyframes button-wave-spread', {
+    from: {
+      boxShadow: '0 0 0.5px 0 var(--rify-ripple-color)',
+    },
+    to: {
+      // don't use exact 5px since chrome will display the animation with glitches
+      boxShadow: '0 0 0.5px 4.5px var(--rify-ripple-color)',
+    },
+  }),
+  c('@keyframes button-wave-opacity', {
+    from: {
+      opacity: 'var(--rify-wave-opacity)',
+    },
+    to: {
+      opacity: 0,
+    },
+  }),
 ]);
