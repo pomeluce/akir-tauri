@@ -5,7 +5,7 @@ import { call, createKey, warnOnce } from '../../_utils';
 import style from './styles/index.cssr';
 import { buttonLight } from '../styles';
 import { changeColor } from 'seemly';
-import { RifyBaseWave } from '@/rify/_internal';
+import { BaseWaveRef, RifyBaseWave } from '@/rify/_internal';
 
 type ButtonAttributes = Omit<HTMLAttributes<HTMLButtonElement>, 'text'>;
 
@@ -42,18 +42,21 @@ const button: React.FC<ButtonProps> = (props: ButtonProps) => {
     }, [props]);
   }
 
+  const waveElRef = createRef<BaseWaveRef>();
+
   const showBorder = !props.quaternary && !props.tertiary && !props.secondary && !props.text && (!props.color || props.ghost) && props.bordered;
   const size = props.size ?? 'medium';
   const type = props.type ?? 'primary';
   const iconPlacement = props.iconPlacement ?? 'left';
   const focusable = props.focusable && !props.disabled;
 
+  // 单击事件
   const handleClick = (e: MouseEvent): void => {
     if (!props.disabled && !props.loading) {
       const { onClick } = props;
       if (onClick) call(onClick, e);
       if (!props.text) {
-        // waveElRef.current?.play();
+        waveElRef.current?.play();
       }
     }
   };
@@ -245,27 +248,6 @@ const button: React.FC<ButtonProps> = (props: ButtonProps) => {
       '--rify-border-color-disabled': color,
     };
   };
-  // const { type = 'default', size = 'medium', text, ghost, secondary, disabled, color, circle, round, loading, children, icon, className, style, onClick, ...attributes } = props;
-  //
-  // const ref = useRef<HTMLButtonElement>(null);
-  // const { compositor, hexToRgba, rgbToHex, textColor } = useColor();
-  //
-  // let cssProps = {
-  //   '--rify-btn-color': color,
-  //   '--rify-btn-color-hover': color ? rgbToHex(compositor(color, 'rgba(255, 255, 255, 0.16)')) : '',
-  //   '--rify-btn-color-pressed': color ? rgbToHex(compositor(color, 'rgba(0, 0, 0, 0.12)')) : '',
-  //   '--rify-btn-text-color': color ? textColor(color, '#fff', '') : '',
-  //   '--rify-btn-secondary-color': color ? hexToRgba(color, 0.16) : '',
-  //   '--rify-btn-secondary-color-hover': color ? hexToRgba(color, 0.22) : '',
-  //   '--rify-btn-secondary-color-pressed': color ? hexToRgba(color, 0.28) : '',
-  //   '--rify-btn-animation-color': '#0066ff',
-  //   ...style,
-  // } as CSSProperties;
-  //
-  // const classes = `rify-button rify-btn rify-btn-${type} rify-btn-size--${size}${text ? ' rify-btn-text' : ''}${ghost ? ' rify-btn-ghost' : ''}
-  //                 ${secondary ? ' rify-btn-secondary' : ''}${disabled ? ' rify-btn-disabled' : ''}${color ? ' rify-btn-color' : ''}
-  //                 ${circle ? ' rify-btn-circle' : ''}${round ? ' rify-btn-round' : ''}${loading ? ' rify-btn--loading' : ''}${className ?? ''}`.trimEnd();
-  //
 
   const classes = [
     `${mergedClsPrefix}-button`,
@@ -308,7 +290,7 @@ const button: React.FC<ButtonProps> = (props: ButtonProps) => {
         </span>
       )}
       {iconPlacement === 'left' && children()}
-      {!props.text ? <RifyBaseWave clsPrefix={mergedClsPrefix} /> : null}
+      {!props.text ? <RifyBaseWave ref={waveElRef} clsPrefix={mergedClsPrefix} /> : null}
       {showBorder ? <div aria-hidden className={`${mergedClsPrefix}-button__border`} style={customColorCssVars() as CSSProperties} /> : null}
       {showBorder ? <div aria-hidden className={`${mergedClsPrefix}-button__state-border`} style={customColorCssVars() as CSSProperties} /> : null}
     </button>
