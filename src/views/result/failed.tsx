@@ -8,10 +8,10 @@ const failed: React.FC<{}> = () => {
   const opreate: React.FC<{}> = () => {
     return (
       <section className="flex justify-center gap-3">
-        <RifyButton type="danger" onClick={() => navigator({ name: RouteName.HOME })}>
+        <RifyButton type="error" onClick={() => navigator({ name: RouteName.HOME })}>
           返回首页
         </RifyButton>
-        <RifyButton type="danger" ghost>
+        <RifyButton type="error" ghost>
           查看详情
         </RifyButton>
       </section>

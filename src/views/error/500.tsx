@@ -9,7 +9,7 @@ const INTERNAL_SERVER_ERROR: React.FC<{}> = () => {
         <main className="flex flex-col justify-center items-center gap-7 pb-48">
           <span className="text-base md:text-3xl font-bold ">啊哦, 网站出了点小意外</span>
           <span>
-            <RifyButton type="danger" onClick={() => navigator({ name: RouteName.HOME })}>
+            <RifyButton type="error" onClick={() => navigator({ name: RouteName.HOME })}>
               返回首页
             </RifyButton>
           </span>
