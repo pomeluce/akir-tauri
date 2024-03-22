@@ -1,10 +1,11 @@
 import { CSSProperties, HTMLAttributes, MouseEvent, ReactNode } from 'react';
 import { useTheme, useConfig } from '../../_mixins';
 import { createHoverColor, createPressedColor } from '../../_utils/color';
-import { createKey, warnOnce } from '../../_utils';
+import { call, createKey, warnOnce } from '../../_utils';
 import style from './styles/index.cssr';
 import { buttonLight } from '../styles';
 import { changeColor } from 'seemly';
+import { RifyBaseWave } from '@/rify/_internal';
 
 type ButtonAttributes = Omit<HTMLAttributes<HTMLButtonElement>, 'text'>;
 
@@ -46,6 +47,16 @@ const button: React.FC<ButtonProps> = (props: ButtonProps) => {
   const type = props.type ?? 'primary';
   const iconPlacement = props.iconPlacement ?? 'left';
   const focusable = props.focusable && !props.disabled;
+
+  const handleClick = (e: MouseEvent): void => {
+    if (!props.disabled && !props.loading) {
+      const { onClick } = props;
+      if (onClick) call(onClick, e);
+      if (!props.text) {
+        // waveElRef.current?.play();
+      }
+    }
+  };
 
   // 挂载样式
   const { mergedClsPrefix } = useConfig();
@@ -276,7 +287,7 @@ const button: React.FC<ButtonProps> = (props: ButtonProps) => {
 
   return (
     // <button ref={ref} className={classes} type="button" disabled={disabled} style={cssProps} onClick={event => !loading && onClick?.(event)} {...attributes}>
-    <button className={classes} style={cssVars() as CSSProperties} disabled={props.disabled}>
+    <button className={classes} style={cssVars() as CSSProperties} disabled={props.disabled} onClick={handleClick}>
       {/* {loading && ( */}
       {/*   <span className="rify-btn__loading"> */}
       {/*     <IconLoadingFour /> */}
@@ -297,6 +308,7 @@ const button: React.FC<ButtonProps> = (props: ButtonProps) => {
         </span>
       )}
       {iconPlacement === 'left' && children()}
+      {!props.text ? <RifyBaseWave clsPrefix={mergedClsPrefix} /> : null}
       {showBorder ? <div aria-hidden className={`${mergedClsPrefix}-button__border`} style={customColorCssVars() as CSSProperties} /> : null}
       {showBorder ? <div aria-hidden className={`${mergedClsPrefix}-button__state-border`} style={customColorCssVars() as CSSProperties} /> : null}
     </button>

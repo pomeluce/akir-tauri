@@ -175,12 +175,12 @@ export default c([
           left: 0;
           animation-iteration-count: 1;
           animation-duration: var(--rify-ripple-duration);
-          animation-timing-function: var(--rify-bezier-ease-out), var(--rify-bezier-ease-out);
+          animation-timing-function: var(--rify-bezier-ease-out);
         `,
         [
           cM('active', {
             zIndex: 1,
-            animationName: 'button-wave-spread, button-wave-opacity',
+            animationName: 'button-wave-ping',
           }),
         ],
       ),
@@ -281,21 +281,15 @@ export default c([
       }),
     ],
   ),
-  c('@keyframes button-wave-spread', {
+  c('@keyframes button-wave-ping', {
     from: {
+      opacity: 'var(--rify-wave-opacity)',
       boxShadow: '0 0 0.5px 0 var(--rify-ripple-color)',
     },
     to: {
       // don't use exact 5px since chrome will display the animation with glitches
-      boxShadow: '0 0 0.5px 4.5px var(--rify-ripple-color)',
-    },
-  }),
-  c('@keyframes button-wave-opacity', {
-    from: {
-      opacity: 'var(--rify-wave-opacity)',
-    },
-    to: {
       opacity: 0,
+      boxShadow: '0 0 0.5px 4.5px var(--rify-ripple-color)',
     },
   }),
 ]);
