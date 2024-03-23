@@ -1,4 +1,4 @@
-import useStyle from '../../../_mixins/use-style';
+import { useStyle } from '../../../_mixins';
 import style from './styles/index.cssr';
 import { ForwardedRef } from 'react';
 
@@ -42,5 +42,7 @@ const wave: React.ForwardRefRenderFunction<BaseWaveRef, { clsPrefix: string }> =
     />
   );
 };
+
+if (__DEV__) wave.displayName = 'rify-base-wave';
 
 export default forwardRef(wave);

@@ -12,11 +12,6 @@ export interface Theme<N, T = Record<string, unknown>, R = any> {
   self?: (vars: ThemeCommonVars) => T;
 }
 
-export interface ThemeProps<T> {
-  theme: T;
-  themeOverrides: ExtractThemeOverrides<T>;
-}
-
 export type ExtractThemeVars<T> = T extends Theme<unknown, infer U, unknown> ? (unknown extends U ? Record<string, unknown> : U) : Record<string, unknown>;
 
 export type ExtractThemeOverrides<T> = Partial<ExtractThemeVars<T>> & { common?: Partial<ThemeCommonVars> };

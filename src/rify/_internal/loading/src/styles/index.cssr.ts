@@ -2,44 +2,42 @@ import { c, cB, cE } from '../../../../_utils';
 import { iconSwitchTransition } from '../../../../_styles/transitions/icon-switch.cssr';
 
 export default c([
-  c(
-    '@keyframes rotator',
-    `
-    0% {
-      -webkit-transform: rotate(0deg);
-      transform: rotate(0deg);
-    }
-    100% {
-      -webkit-transform: rotate(360deg);
-      transform: rotate(360deg);
-    }`,
-  ),
+  c('@keyframes rotator', {
+    '0%': {
+      '-webkit-transform': 'rotate(0deg)',
+      transform: 'rotate(0deg)',
+    },
+    '100%': {
+      '-webkit-transform': 'rotate(360deg)',
+      transform: 'rotate(360deg)',
+    },
+  }),
   cB(
     'base-loading',
-    `
-      position: relative;
-      line-height: 0;
-      width: 1em;
-      height: 1em;
-    `,
+    {
+      position: 'relative',
+      lineHeight: 0,
+      width: '1em',
+      height: '1em',
+    },
     [
       cE(
         'transition-wrapper',
-        `
-          position: absolute;
-          width: 100%;
-          height: 100%;
-        `,
+        {
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+        },
         [iconSwitchTransition()],
       ),
       cE(
         'placeholder',
-        `
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          transform: translateX(-50%) translateY(-50%);
-        `,
+        {
+          position: 'absolute',
+          left: '50%',
+          top: '50%',
+          transform: 'translateX(-50%) translateY(-50%)',
+        },
         [
           iconSwitchTransition({
             left: '50%',
@@ -48,21 +46,7 @@ export default c([
           }),
         ],
       ),
-      cE(
-        'container',
-        `
-          animation: rotator 3s linear infinite both;
-        `,
-        [
-          cE(
-            'icon',
-            `
-            height: 1em;
-            width: 1em;
-          `,
-          ),
-        ],
-      ),
+      cE('container', { animation: 'rotator 3s linear infinite both' }, [cE('icon', { height: '1em', width: '1em' })]),
     ],
   ),
 ]);

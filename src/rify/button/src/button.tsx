@@ -26,7 +26,6 @@ export interface ButtonProps {
   strong?: boolean;
   focusable?: boolean;
   keyboard?: boolean;
-  tag?: keyof HTMLElementTagNameMap;
   type?: Type;
   dashed?: boolean;
   icon?: ReactNode;
@@ -340,17 +339,7 @@ const button: React.FC<ButtonProps> = (props: ButtonProps) => {
   );
 };
 
-button.defaultProps = {
-  focusable: true,
-  keyboard: true,
-  tag: 'button',
-  type: 'default',
-  iconPlacement: 'left',
-  attrType: 'button',
-  bordered: true,
-  nativeFocusBehavior: !isSafari,
-};
-
+button.defaultProps = { focusable: true, keyboard: true, type: 'default', iconPlacement: 'left', attrType: 'button', bordered: true, nativeFocusBehavior: !isSafari };
 if (__DEV__) button.displayName = 'rify-button';
 
 export default button;

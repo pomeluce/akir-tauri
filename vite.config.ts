@@ -21,9 +21,8 @@ export default defineConfig(({ command, mode }) => {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
       // 配置路径别名
       alias: {
-        '@': path.resolve(__dirname, 'src'),
-        '#': path.resolve(__dirname, 'types'),
-        rify: path.resolve(__dirname, 'src/rify'),
+        '@': path.resolve(__dirname, './src'),
+        '#': path.resolve(__dirname, './types'),
       },
     },
     define: {

@@ -166,16 +166,16 @@ export default c([
       cM('loading', 'cursor: wait;'),
       cB(
         'base-wave',
-        `
-          pointer-events: none;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          left: 0;
-          animation-iteration-count: 1;
-          animation-duration: var(--rify-ripple-duration);
-          animation-timing-function: var(--rify-bezier-ease-out);
-        `,
+        {
+          pointerEvents: 'none',
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          animationIterationCount: 1,
+          animationDuration: 'var(--rify-ripple-duration)',
+          animationTimingFunction: 'var(--rify-bezier-ease-out)',
+        },
         [
           cM('active', {
             zIndex: 1,
@@ -183,27 +183,18 @@ export default c([
           }),
         ],
       ),
-      isBrowser && 'MozBoxSizing' in document.createElement('div').style
-        ? c('&::moz-focus-inner', {
-            border: 0,
-          })
-        : null,
-      cE(
-        'border, state-border',
-        `
-          position: absolute;
-          left: 0;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          border-radius: inherit;
-          transition: border-color .3s var(--rify-bezier);
-          pointer-events: none;
-        `,
-      ),
-      cE('border', {
-        border: 'var(--rify-border)',
+      isBrowser && 'MozBoxSizing' in document.createElement('div').style ? c('&::moz-focus-inner', { border: 0 }) : null,
+      cE('border, state-border', {
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        right: 0,
+        bottom: 0,
+        borderRadius: 'inherit',
+        transition: `border-color .3s var(--rify-bezier)`,
+        pointerEvents: 'none',
       }),
+      cE('border', { border: 'var(--rify-border)' }),
       cE('state-border', {
         border: 'var(--rify-border)',
         borderColor: '#0000',
@@ -211,73 +202,48 @@ export default c([
       }),
       cE(
         'icon',
-        `
-          margin: var(--rify-icon-margin);
-          margin-left: 0;
-          height: var(--rify-icon-size);
-          width: var(--rify-icon-size);
-          max-width: var(--rify-icon-size);
-          font-size: var(--rify-icon-size);
-          position: relative;
-          flex-shrink: 0;
-        `,
+        {
+          margin: 'var(--rify-icon-margin)',
+          marginLeft: 0,
+          height: 'var(--rify-icon-size)',
+          width: 'var(--rify-icon-size)',
+          maxWidth: 'var(--rify-icon-size)',
+          fontSize: 'var(--rify-icon-size)',
+          position: 'relative',
+          flexShrink: 0,
+        },
         [
           cB(
             'icon-slot',
-            `
-              height: var(--rify-icon-size);
-              width: var(--rify-icon-size);
-              position: absolute;
-              left: 0;
-              top: 50%;
-              transform: translateY(-50%);
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            `,
-            [
-              iconSwitchTransition({
-                top: '50%',
-                originalTransform: 'translateY(-50%)',
-              }),
-            ],
+            {
+              height: 'var(--rify-icon-size)',
+              width: 'var(--rify-icon-size)',
+              position: 'absolute',
+              left: 0,
+              top: '50%',
+              transform: 'translateY(-50%)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            },
+            [iconSwitchTransition({ top: '50%', originalTransform: 'translateY(-50%)' })],
           ),
           fadeInWidthExpandTransition(),
         ],
       ),
       cE(
         'content',
-        `
-          display: flex;
-          align-items: center;
-          flex-wrap: nowrap;
-          min-width: 0;
-        `,
-        [
-          c('~', [
-            cE('icon', {
-              margin: 'var(--rify-icon-margin)',
-              marginRight: 0,
-            }),
-          ]),
-        ],
+        {
+          display: 'flex',
+          alignItems: 'center',
+          flexWrap: 'nowrap',
+          minWidth: 0,
+        },
+        [c('~', [cE('icon', { margin: 'var(--rify-icon-margin)', marginRight: 0 })])],
       ),
-      cM(
-        'block',
-        `
-          display: flex;
-          width: 100%;
-        `,
-      ),
-      cM('dashed', [
-        cE('border, state-border', {
-          borderStyle: 'dashed !important',
-        }),
-      ]),
-      cM('disabled', {
-        cursor: 'not-allowed',
-        opacity: 'var(--rify-opacity-disabled)',
-      }),
+      cM('block', { display: 'flex', width: '100%' }),
+      cM('dashed', [cE('border, state-border', { borderStyle: 'dashed !important' })]),
+      cM('disabled', { cursor: 'not-allowed', opacity: 'var(--rify-opacity-disabled)' }),
     ],
   ),
   c('@keyframes button-wave-ping', {

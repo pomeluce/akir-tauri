@@ -7,7 +7,7 @@ const Home: React.FC<{}> = () => {
     setTimeout(() => {
       setLoading(false);
       console.log('end');
-    }, 3000);
+    }, 1000);
   };
 
   return (

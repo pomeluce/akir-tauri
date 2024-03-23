@@ -1,5 +1,5 @@
 import { HTMLAttributes } from 'react';
-import useStyle from '../../../_mixins/use-style';
+import { useStyle } from '../../../_mixins';
 import style from './styles/index.cssr';
 
 const duration = '1.6s';
@@ -81,5 +81,7 @@ const loading: React.FC<BaseLoadingProps & BaseLoadingExposedProps> = props => {
 };
 
 loading.defaultProps = { show: true, scale: 1, radius: 100, strokeWidth: 28, stroke: undefined };
+
+if (__DEV__) loading.displayName = 'rify-base-loading';
 
 export default loading;

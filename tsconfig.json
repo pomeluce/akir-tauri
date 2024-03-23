@@ -25,9 +25,8 @@
     /* Other */
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"],
-      "#/*": ["types/*"],
-      "rify/*": ["src/rify/*"]
+      "@/*": ["./src/*"],
+      "#/*": ["./types/*"]
     },
     "types": ["lodash-es", "vite/client"]
   },
