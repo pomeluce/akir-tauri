@@ -1,4 +1,4 @@
-import useStyle from '@/rify/_mixins/use-style';
+import useStyle from '../../../_mixins/use-style';
 import style from './styles/index.cssr';
 import { ForwardedRef } from 'react';
 

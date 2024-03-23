@@ -23,7 +23,12 @@ export default defineConfig(({ command, mode }) => {
       alias: {
         '@': path.resolve(__dirname, 'src'),
         '#': path.resolve(__dirname, 'types'),
+        rify: path.resolve(__dirname, 'src/rify'),
       },
+    },
+    define: {
+      'process.env.NODE_ENV': `'${env.NODE_ENV}'`,
+      __DEV__: env.NODE_ENV !== 'production',
     },
     css: {
       // 开启 css 模块化

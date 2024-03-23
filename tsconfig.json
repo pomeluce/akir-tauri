@@ -26,7 +26,8 @@
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"],
-      "#/*": ["types/*"]
+      "#/*": ["types/*"],
+      "rify/*": ["src/rify/*"]
     },
     "types": ["lodash-es", "vite/client"]
   },

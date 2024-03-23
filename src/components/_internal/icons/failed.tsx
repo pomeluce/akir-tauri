@@ -1,4 +1,4 @@
-const failded: React.FC<{}> = () => {
+const failed: React.FC<{}> = () => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
       <path fill="#d4362a" d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z" />
@@ -8,4 +8,4 @@ const failded: React.FC<{}> = () => {
   );
 };
 
-export default failded;
+export default failed;

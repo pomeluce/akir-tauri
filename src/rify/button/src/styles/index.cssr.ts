@@ -1,7 +1,6 @@
-import { fadeInWidthExpandTransition } from '@/rify/_styles/transitions/fade-in-width-expand.cssr';
-import { iconSwitchTransition } from '@/rify/_styles/transitions/icon-switch.cssr';
-import { isBrowser } from '@/rify/_utils';
-import { c, cB, cE, cM, cNotM } from '@/rify/_utils/cssr';
+import { c, cB, cE, cM, cNotM, isBrowser } from '../../../_utils';
+import { fadeInWidthExpandTransition } from '../../../_styles/transitions/fade-in-width-expand.cssr';
+import { iconSwitchTransition } from '../../../_styles/transitions/icon-switch.cssr';
 
 // vars:
 // --rify-bezier

@@ -1,55 +1,70 @@
-import { CSSProperties, HTMLAttributes, MouseEvent, ReactNode } from 'react';
+import type { CSSProperties, KeyboardEvent, MouseEvent, ReactNode } from 'react';
+import type { MaybeArray } from '../../_utils';
+import type { BaseWaveRef } from '../../_internal';
+import type { Size, Type } from './interface';
 import { useTheme, useConfig } from '../../_mixins';
-import { createHoverColor, createPressedColor } from '../../_utils/color';
-import { call, createKey, warnOnce } from '../../_utils';
-import style from './styles/index.cssr';
+import { call, createKey, createHoverColor, createPressedColor, isSafari, warnOnce } from '../../_utils';
+import { RifyBaseLoading, RifyBaseWave } from '../../_internal';
 import { buttonLight } from '../styles';
 import { changeColor } from 'seemly';
-import { BaseWaveRef, RifyBaseWave } from '@/rify/_internal';
+import style from './styles/index.cssr';
 
-type ButtonAttributes = Omit<HTMLAttributes<HTMLButtonElement>, 'text'>;
-
-export interface ButtonProps extends ButtonAttributes {
-  type?: 'default' | 'primary' | 'success' | 'warning' | 'error' | 'info';
-  size?: 'tiny' | 'small' | 'medium' | 'large';
-  text?: boolean;
+export interface ButtonProps {
+  color?: string;
   textColor?: string;
+  text?: boolean;
+  block?: boolean;
+  loading?: boolean;
+  disabled?: boolean;
+  circle?: boolean;
+  size?: Size;
   ghost?: boolean;
+  round?: boolean;
   secondary?: boolean;
   tertiary?: boolean;
   quaternary?: boolean;
-  disabled?: boolean;
-  focusable?: boolean;
-  color?: string;
-  circle?: boolean;
-  round?: boolean;
-  loading?: boolean;
   strong?: boolean;
-  bordered?: boolean;
+  focusable?: boolean;
+  keyboard?: boolean;
+  tag?: keyof HTMLElementTagNameMap;
+  type?: Type;
+  dashed?: boolean;
   icon?: ReactNode;
   iconPlacement?: 'left' | 'right';
+  attrType?: 'button' | 'submit' | 'reset';
+  bordered?: boolean;
   children?: ReactNode;
-  onClick?: (event: MouseEvent) => void;
+  onClick?: MaybeArray<(event: MouseEvent) => void>;
+  nativeFocusBehavior?: boolean;
 }
 
 const button: React.FC<ButtonProps> = (props: ButtonProps) => {
-  if (import.meta.env.MODE === 'dev') {
+  if (__DEV__) {
     useEffect(() => {
-      const { text, ghost, secondary } = props;
-      if ((ghost || text) && secondary) {
-        warnOnce('button', "`ghost` and `text` props can't be used along with `secondary` props.");
+      const { dashed, text, ghost, secondary, tertiary, quaternary } = props;
+      if ((dashed || ghost || text) && (secondary || tertiary || quaternary)) {
+        warnOnce('button', "`dashed`,`ghost` and `text` props can't be used along with `secondary`, `tertiary` and `quaternary` props.");
       }
     }, [props]);
   }
-
+  const selfElRef = createRef<HTMLButtonElement>();
   const waveElRef = createRef<BaseWaveRef>();
+  const [enterPressed, setEnterPressed] = useState(false);
 
-  const showBorder = !props.quaternary && !props.tertiary && !props.secondary && !props.text && (!props.color || props.ghost) && props.bordered;
+  const showBorder = !props.quaternary && !props.tertiary && !props.secondary && !props.text && (!props.color || props.ghost || props.dashed) && props.bordered;
   const size = props.size ?? 'medium';
   const type = props.type ?? 'primary';
   const iconPlacement = props.iconPlacement ?? 'left';
   const focusable = props.focusable && !props.disabled;
 
+  // 鼠标按下事件
+  const handleMousedown = (e: MouseEvent): void => {
+    if (!focusable) e.preventDefault();
+    if (props.nativeFocusBehavior) return;
+    e.preventDefault();
+    if (props.disabled) return;
+    if (focusable) selfElRef.current?.focus({ preventScroll: true });
+  };
   // 单击事件
   const handleClick = (e: MouseEvent): void => {
     if (!props.disabled && !props.loading) {
@@ -59,6 +74,27 @@ const button: React.FC<ButtonProps> = (props: ButtonProps) => {
         waveElRef.current?.play();
       }
     }
+  };
+  const handleKeyup = (e: KeyboardEvent): void => {
+    switch (e.key) {
+      case 'Enter':
+        if (!props.keyboard) return;
+        setEnterPressed(false);
+    }
+  };
+  const handleKeydown = (e: KeyboardEvent): void => {
+    switch (e.key) {
+      case 'Enter':
+        if (!props.keyboard || props.loading) {
+          e.preventDefault();
+          return;
+        }
+        setEnterPressed(true);
+    }
+  };
+  // 失焦事件
+  const handleBlur = (): void => {
+    setEnterPressed(false);
   };
 
   // 挂载样式
@@ -72,7 +108,7 @@ const button: React.FC<ButtonProps> = (props: ButtonProps) => {
     } = theme;
     const { rippleDuration, opacityDisabled, fontWeight, fontWeightStrong } = self;
 
-    const { text, textColor, color, strong, ghost, secondary, tertiary, quaternary, circle, round } = props;
+    const { text, textColor, color, strong, ghost, secondary, tertiary, quaternary, circle, round, dashed } = props;
 
     // font
     const fontProps = {
@@ -110,7 +146,7 @@ const button: React.FC<ButtonProps> = (props: ButtonProps) => {
         '--rify-text-color-focus': propTextColor ? createHoverColor(propTextColor) : self[createKey('textColorTextHover', type)],
         '--rify-text-color-disabled': propTextColor || self[createKey('textColorTextDisabled', type)],
       };
-    } else if (ghost) {
+    } else if (ghost || dashed) {
       const mergedTextColor = textColor || color;
       colorProps = {
         '--rify-color': '#0000',
@@ -254,6 +290,9 @@ const button: React.FC<ButtonProps> = (props: ButtonProps) => {
     `${mergedClsPrefix}-button--${type}-type`,
     `${mergedClsPrefix}-button--${size}-type`,
     props.disabled && `${mergedClsPrefix}-button--disabled`,
+    props.block && `${mergedClsPrefix}-button--block`,
+    enterPressed && `${mergedClsPrefix}-button--pressed`,
+    !props.text && props.dashed && `${mergedClsPrefix}-button--dashed`,
     props.color && `${mergedClsPrefix}-button--color`,
     props.secondary && `${mergedClsPrefix}-button--secondary`,
     props.loading && `${mergedClsPrefix}-button--loading`,
@@ -268,20 +307,24 @@ const button: React.FC<ButtonProps> = (props: ButtonProps) => {
   };
 
   return (
-    // <button ref={ref} className={classes} type="button" disabled={disabled} style={cssProps} onClick={event => !loading && onClick?.(event)} {...attributes}>
-    <button className={classes} style={cssVars() as CSSProperties} disabled={props.disabled} onClick={handleClick}>
-      {/* {loading && ( */}
-      {/*   <span className="rify-btn__loading"> */}
-      {/*     <IconLoadingFour /> */}
-      {/*   </span> */}
-      {/* )} */}
-      {/* <span className="rify-btn__content">{children}</span> */}
-      {/* <div className="rify-btn__wave"></div> */}
+    <button
+      ref={selfElRef}
+      className={classes}
+      tabIndex={focusable ? 0 : -1}
+      type={props.attrType}
+      style={cssVars() as CSSProperties}
+      disabled={props.disabled}
+      onClick={handleClick}
+      onBlur={handleBlur}
+      onMouseDown={handleMousedown}
+      onKeyUp={handleKeyup}
+      onKeyDown={handleKeydown}
+    >
       {iconPlacement === 'right' && children()}
       {(props.icon || props.loading) && (
         <span className={`${mergedClsPrefix}-button__icon`}>
           {props.loading ? (
-            <div></div>
+            <RifyBaseLoading clsPrefix={mergedClsPrefix} key="loading" className={`${mergedClsPrefix}-icon-slot`} strokeWidth={20} />
           ) : (
             <div key="icon" className={`${mergedClsPrefix}-icon-slot`} role="none">
               {props.icon ?? props.icon}
@@ -297,8 +340,17 @@ const button: React.FC<ButtonProps> = (props: ButtonProps) => {
   );
 };
 
-button.defaultProps = { size: 'medium', type: 'default', iconPlacement: 'left', focusable: true, bordered: true };
+button.defaultProps = {
+  focusable: true,
+  keyboard: true,
+  tag: 'button',
+  type: 'default',
+  iconPlacement: 'left',
+  attrType: 'button',
+  bordered: true,
+  nativeFocusBehavior: !isSafari,
+};
 
-if (import.meta.env.MODE !== 'pro') button.displayName = 'rify-button';
+if (__DEV__) button.displayName = 'rify-button';
 
 export default button;

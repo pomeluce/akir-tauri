@@ -14,7 +14,7 @@ const syncRouter = (raws: RouteRecord[]): RouteObject[] => {
         </Suspense>
       ),
       children: raw.children && syncRouter(raw.children),
-      errorElement: <ErrorElement />,
+      errorElement: ErrorElement({}),
     });
   });
   return routes;

@@ -1,5 +1,5 @@
 # 生产环境
-VITE_ENV='production'
+NODE_ENV='production'
 
 # 是否启用 mock 模拟数据
 VITE_MOCK_ENABLE=false
