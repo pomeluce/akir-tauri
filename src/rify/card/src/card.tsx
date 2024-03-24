@@ -1,4 +1,4 @@
-import { useConfig, useTheme } from '../../_mixins';
+import { useConfig, useRtl, useTheme } from '../../_mixins';
 import { MaybeArray, call, createKey } from '../../_utils';
 import { CSSProperties, HTMLAttributes, ReactNode } from 'react';
 import { cardLight } from '../styles';
@@ -47,8 +47,9 @@ const card: React.FC<CardProps> = (props: CardProps) => {
     if (onClose) call(onClose);
   };
 
-  const { mergedClsPrefix } = useConfig();
+  const { mergedClsPrefix, mergedRtl } = useConfig();
   const theme = useTheme('Card', '-card', style, cardLight, mergedClsPrefix);
+  const rtlEnabled = useRtl('Card', mergedRtl, mergedClsPrefix);
 
   const cssVars = () => {
     const { size = 'medium' } = props;
@@ -124,6 +125,7 @@ const card: React.FC<CardProps> = (props: CardProps) => {
   const classes = [
     `${mergedClsPrefix}-card`,
     embedded && `${mergedClsPrefix}-card--embedded`,
+    rtlEnabled && `${mergedClsPrefix}-card--rtl`,
     (segmented === true || (segmented !== false && segmented.content)) &&
       `${mergedClsPrefix}-card--content${typeof segmented !== 'boolean' && segmented.content === 'soft' ? '-soft' : ''}-segmented`,
     (segmented === true || (segmented !== false && segmented.footer)) &&

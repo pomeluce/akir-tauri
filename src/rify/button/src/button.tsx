@@ -2,7 +2,7 @@ import type { CSSProperties, KeyboardEvent, MouseEvent, ReactNode } from 'react'
 import type { MaybeArray } from '../../_utils';
 import type { BaseWaveRef } from '../../_internal';
 import type { Size, Type } from './interface';
-import { useTheme, useConfig } from '../../_mixins';
+import { useTheme, useConfig, useRtl } from '../../_mixins';
 import { call, createKey, createHoverColor, createPressedColor, isSafari, warnOnce } from '../../_utils';
 import { RifyBaseLoading, RifyBaseWave } from '../../_internal';
 import { buttonLight } from '../styles';
@@ -11,6 +11,7 @@ import style from './styles/index.cssr';
 
 export interface ButtonProps {
   color?: string;
+  className?: string;
   textColor?: string;
   text?: boolean;
   block?: boolean;
@@ -97,8 +98,9 @@ const button: React.FC<ButtonProps> = (props: ButtonProps) => {
   };
 
   // 挂载样式
-  const { mergedClsPrefix } = useConfig();
+  const { mergedClsPrefix, mergedRtl } = useConfig();
   const theme = useTheme('Button', '-button', style, buttonLight, mergedClsPrefix);
+  const rtlEnabled = useRtl('Button', mergedRtl, mergedClsPrefix);
 
   const cssVars = () => {
     const {
@@ -288,6 +290,7 @@ const button: React.FC<ButtonProps> = (props: ButtonProps) => {
     `${mergedClsPrefix}-button`,
     `${mergedClsPrefix}-button--${type}-type`,
     `${mergedClsPrefix}-button--${size}-type`,
+    rtlEnabled && `${mergedClsPrefix}-button--rtl`,
     props.disabled && `${mergedClsPrefix}-button--disabled`,
     props.block && `${mergedClsPrefix}-button--block`,
     enterPressed && `${mergedClsPrefix}-button--pressed`,
@@ -296,6 +299,7 @@ const button: React.FC<ButtonProps> = (props: ButtonProps) => {
     props.secondary && `${mergedClsPrefix}-button--secondary`,
     props.loading && `${mergedClsPrefix}-button--loading`,
     props.ghost && `${mergedClsPrefix}-button--ghost`,
+    props.className || '',
   ]
     .filter(cls => cls)
     .join(' ')

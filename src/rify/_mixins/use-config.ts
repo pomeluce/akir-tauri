@@ -1,10 +1,9 @@
-import { ProviderContext } from '../provider';
+import { ProviderContext, defaultClsPrefix } from '../provider';
 
-export const defaultClsPrefix = 'rify';
-
-export default (): { mergedClsPrefix: string } => {
-  const { clsPrefix } = useContext(ProviderContext);
+export const useConfig = (): { mergedClsPrefix: string; mergedRtl: typeof direction } => {
+  const { clsPrefix, direction } = useContext(ProviderContext);
   return {
     mergedClsPrefix: clsPrefix || defaultClsPrefix,
+    mergedRtl: direction || 'ltr',
   };
 };

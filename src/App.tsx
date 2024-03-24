@@ -4,7 +4,7 @@ import router from '@/plugins/router';
 
 const App: React.FC = () => {
   return (
-    <RifyConfigProvider>
+    <RifyConfigProvider direction={'ltr'}>
       <AntConfigProvider direction="ltr">
         <RouterProvider router={router}></RouterProvider>
       </AntConfigProvider>

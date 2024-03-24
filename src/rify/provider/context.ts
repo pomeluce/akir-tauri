@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import config from './config';
+import { defaultProps } from './config';
 import { ConfigProviderProps } from './config-provider';
 
-export const ProviderContext = createContext<ConfigProviderProps>(config);
+export const ProviderContext = createContext<ConfigProviderProps>(defaultProps);
