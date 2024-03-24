@@ -1,3 +1,5 @@
+import Screen from '@/components/rify/screen';
+
 const topbar: React.FC<{}> = () => {
   const { switchExpand } = useMenuStore();
 
@@ -10,7 +12,7 @@ const topbar: React.FC<{}> = () => {
         {/* <rify-breadcrumb :options="topbar.breadcrumb" /> */}
       </section>
       <section className="flex items-center gap-2">
-        <RifyScreen />
+        <Screen />
         {/* <avatar-menu /> */}
       </section>
     </main>

@@ -1,5 +1,6 @@
 import style from './style/topbar.module.scss';
 import Logo from '/pomeluce.svg';
+import Screen from '@/components/rify/screen';
 
 const { topMenu } = config();
 
@@ -23,7 +24,7 @@ const topbar: React.FC<{}> = () => {
           </main>
         </section>
         <section className="flex items-center gap-2">
-          <RifyScreen />
+          <Screen />
           {/* <avatar-menu /> */}
         </section>
       </div>

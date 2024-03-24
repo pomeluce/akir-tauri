@@ -11,7 +11,7 @@ const screen: React.FC<{}> = () => {
   });
 
   return (
-    <div className={'rify-screen'} onClick={isScreen}>
+    <div className={'hidden xl-flex items-center cursor-pointer text-gray-700 hover-text-gray-500'} onClick={isScreen}>
       {!full ? <IconFullScreen theme={'outline'} size={20} /> : <IconOffScreen theme={'outline'} size={20} />}
     </div>
   );
