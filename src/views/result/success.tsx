@@ -21,7 +21,7 @@ const success: React.FC<{}> = () => {
   return (
     <RifyCard className="py-5">
       <RifyResult title="操作成功" message={message} icon={icon({})} footer={opreate({})}>
-        <div className="flex flex-col gap-3 px-10 py-5 rounded bg-gray-200">
+        <div className="flex flex-col gap-3 px-10 py-5 rounded bg-backdrop4">
           <span className="block text-center"> 已提交加班申请, 等待直属主管审核 </span>
         </div>
       </RifyResult>

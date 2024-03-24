@@ -52,7 +52,7 @@
     "typescript": "^5.4.3",
     "unocss": "^0.58.6",
     "unplugin-auto-import": "^0.17.5",
-    "vite": "^5.2.4",
+    "vite": "^5.2.6",
     "vite-plugin-mock": "^3.0.1"
   }
 }

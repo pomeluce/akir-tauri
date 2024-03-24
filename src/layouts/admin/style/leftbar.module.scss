@@ -1,18 +1,17 @@
-.leftbar-menu {
+.menu {
   & a:hover {
-    --uno: text-slate-900;
+    --uno: text-word11;
   }
 
-  & .leftbar-menu-option {
-    --uno: px-5 py-3 my-3 rounded text-#0066ff bg-#dbebfd opacity-80 cursor-pointer;
+  & .menu-option {
+    --uno: px-5 py-3 my-3 rounded text-primary11 bg-primary10 opacity-80 cursor-pointer;
 
-    &:hover,
-    &.active {
-      --uno: bg-rify-primary opacity-95 text-white;
+    &:hover {
+      --uno: bg-primary1 opacity-95 text-white;
     }
-  }
 
-  & .leftbar-menu-option-active {
-    --uno: px-5 py-3 my-3 rounded cursor-pointer bg-rify-primary opacity-95 text-white;
+    &.active {
+      --uno: px-5 py-3 my-3 rounded cursor-pointer bg-primary1 opacity-95 text-white;
+    }
   }
 }

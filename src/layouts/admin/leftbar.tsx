@@ -41,16 +41,16 @@ const leftbar: React.FC<{}> = () => {
   });
 
   return (
-    <div className="bg-gray-50 border-r shadow-lg lg:shadow-none absolute lg:relative h-full overflow-auto z-50">
-      <main className={`${style.leftbarMenu}${isExpand ? '' : ' hidden'}`}>
-        <nav className="text-slate-800">
+    <div className="bg-backdrop3 border-r border-rim8 shadow-lg lg:shadow-none absolute lg:relative h-full overflow-auto z-50">
+      <main className={`${style.menu}${isExpand ? '' : ' hidden'}`}>
+        <nav className="text-word12">
           <NavLink className="flex justify-center items-start px-7 py-4 gap-1 cursor-pointer" to={RoutePath.HOME}>
             <AntImage rootClassName="w-6 h-6" src={Logo} preview={false} />
             <span className="text-lg font-bold uppercase">rapidify-vue</span>
           </NavLink>
           <div ref={ref}>
             {routes.map((route: RouteRecord, index: number) => (
-              <section key={index} className="flex flex-col mx-7 py-5 text-sm font-medium border-b">
+              <section key={index} className="flex flex-col mx-7 py-5 text-sm font-medium border-b border-rim8">
                 <article className="flex justify-between items-center cursor-pointer" onClick={() => toggleMenuList(index)}>
                   <span className="flex items-center gap-2">
                     {route.meta?.menu?.icon && route.meta?.menu?.icon({ size: 16 })}
@@ -66,7 +66,7 @@ const leftbar: React.FC<{}> = () => {
                     <div
                       ref={item.name === router?.name ? active : undefined}
                       key={index}
-                      className={`${item.name === router?.name ? style.leftbarMenuOptionActive : style.leftbarMenuOption}`}
+                      className={`${style.menuOption}${item.name === router?.name ? ` ${style.active}` : ''}`}
                       onClick={() => goto(item)}
                     >
                       {item.meta?.menu?.label}

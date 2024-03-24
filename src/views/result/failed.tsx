@@ -21,7 +21,7 @@ const failed: React.FC<{}> = () => {
   return (
     <RifyCard className="py-5">
       <RifyResult title="操作失败" message={message} icon={icon({})} footer={opreate({})}>
-        <div className="flex flex-col gap-3 px-10 py-5 rounded bg-gray-200">
+        <div className="flex flex-col gap-3 px-10 py-5 rounded bg-backdrop4">
           <span> 你提交的内容有如下错误: </span>
           <section className="flex flex-col gap-2 px-3">
             <article className="flex items-center gap-2">

@@ -32,7 +32,7 @@ export default defineConfig(({ command, mode }) => {
     css: {
       // 开启 css 模块化
       modules: {
-        generateScopedName: '[local]-data-[hash:8]',
+        generateScopedName: '[local]-[hash:8]',
         hashPrefix: 'rify',
         localsConvention: 'camelCaseOnly',
       },
