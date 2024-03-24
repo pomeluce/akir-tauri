@@ -13,22 +13,22 @@ const Home: React.FC<{}> = () => {
   return (
     <RifyCard className="h-2000px" title="我是标题">
       <span className="flex gap-3 items-center">
-        <RifyButton loading={loading} strong ghost onClick={click} icon={IconPlus({})}>
+        <RifyButton loading={loading} strong onClick={click} icon={IconPlus({})}>
           默认按钮
         </RifyButton>
-        <RifyButton type="primary" strong ghost loading={loading} onClick={click}>
+        <RifyButton type="primary" strong loading={loading} onClick={click}>
           primary
         </RifyButton>
-        <RifyButton type="success" strong ghost onClick={click}>
+        <RifyButton type="success" strong onClick={click}>
           success
         </RifyButton>
-        <RifyButton strong ghost color="#ff69b4">
+        <RifyButton strong color="#ff69b4">
           warning
         </RifyButton>
-        <RifyButton type="error" strong ghost>
+        <RifyButton type="error" strong>
           danger
         </RifyButton>
-        <RifyButton type="info" strong ghost>
+        <RifyButton type="info" strong>
           info
         </RifyButton>
       </span>

@@ -7,6 +7,7 @@ export const self = (vars: ThemeCommonVars) => {
   const {
     primaryColor,
     borderRadius,
+    borderRadiusLarge,
     lineHeight,
     fontSize,
     cardColor,
@@ -50,7 +51,7 @@ export const self = (vars: ThemeCommonVars) => {
     fontSizeLarge: fontSize,
     fontSizeHuge: fontSize,
     boxShadow: boxShadow1,
-    borderRadius,
+    borderRadius: borderRadiusLarge,
   };
 };
 

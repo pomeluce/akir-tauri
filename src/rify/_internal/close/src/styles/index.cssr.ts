@@ -29,7 +29,7 @@ export default cB(
   [
     cM('absolute', { height: 'var(--rify-close-icon-size)', width: 'var(--rify-close-icon-size)' }),
     c('&::before', {
-      content: '',
+      content: '""',
       position: 'absolute',
       width: 'var(--rify-close-size)',
       height: 'var(--rify-close-size)',
