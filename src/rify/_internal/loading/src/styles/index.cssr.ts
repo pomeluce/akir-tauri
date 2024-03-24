@@ -1,5 +1,5 @@
 import { c, cB, cE } from '../../../../_utils';
-import { iconSwitchTransition } from '../../../../_styles/transitions/icon-switch.cssr';
+import { iconSwitchTransition } from '../../../../_styles';
 
 export default c([
   c('@keyframes rotator', {

@@ -20,7 +20,7 @@ const info: React.FC<{}> = () => {
 
   return (
     <RifyCard className="py-5">
-      <RifyResult title="提示信息" message={message} icon={<span className="w-24">{icon({})}</span>} opreate={opreate({})}>
+      <RifyResult title="提示信息" message={message} icon={icon({})} footer={opreate({})}>
         <div className="flex flex-col gap-3 px-10 py-5 rounded bg-gray-200">
           <span> 您提交的内容如下: </span>
           <section className="flex flex-col gap-2 px-3">
