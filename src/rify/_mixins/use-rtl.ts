@@ -1,5 +1,4 @@
-import { RtlEnabledStae } from '../provider/internal-interface';
-import { rtlEnabledState } from '../provider';
+import { rtlEnabledState, RtlEnabledStae } from '../provider';
 import { cssrAnchorMetaName } from './common';
 
 export const useRtl = (mountId: keyof RtlEnabledStae, rtlState: RtlEnabledStae | 'ltr' | 'rtl' | undefined, clsPrefix: string) => {

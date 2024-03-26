@@ -4,3 +4,4 @@ export type { ConfigProviderProps } from './config-provider';
 export * from './config';
 export * from './context';
 export * from './interface';
+export * from './internal-interface';
