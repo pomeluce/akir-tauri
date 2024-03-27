@@ -17,10 +17,10 @@
     "pomeluce"
   ],
   "scripts": {
-    "dev": "vite --mode dev",
-    "pro": "vite --mode pro",
-    "build:dev": "tsc && vite build --mode dev",
-    "build:pro": "tsc && vite build --mode pro",
+    "dev": "vite --mode devlopment",
+    "pro": "vite --mode production",
+    "build:dev": "tsc && vite build --mode devlopment",
+    "build:pro": "tsc && vite build --mode production",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -39,7 +39,7 @@
     "@css-render/plugin-bem": "^0.15.12",
     "@types/mockjs": "^1.0.10",
     "@types/node": "^20.11.30",
-    "@types/react": "^18.2.72",
+    "@types/react": "^18.2.73",
     "@types/react-dom": "^18.2.22",
     "@unocss/reset": "^0.58.7",
     "@unocss/transformer-directives": "^0.58.7",
