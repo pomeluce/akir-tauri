@@ -28,7 +28,7 @@ const leftbar: React.FC<{}> = () => {
     });
   };
 
-  useMounted(() => {
+  useEffect(() => {
     // 当前路由自动展开
     (active.current?.parentElement?.previousElementSibling as HTMLElement).click();
     // 加载时为移动端, 则关闭菜单
@@ -38,7 +38,7 @@ const leftbar: React.FC<{}> = () => {
     window.addEventListener('resize', () => {
       document.documentElement.clientWidth < 1024 && setExpand(false);
     });
-  });
+  }, []);
 
   return (
     <div className="bg-backdrop3 border-r border-rim8 shadow-lg lg:shadow-none absolute lg:relative h-full overflow-auto z-50">

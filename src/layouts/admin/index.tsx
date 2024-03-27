@@ -5,12 +5,12 @@ const admin: React.FC<{}> = () => {
   const ref = useRef<HTMLElement>(null);
   const { setExpand } = useMenuStore();
 
-  useMounted(() => {
+  useEffect(() => {
     // 移动端, 点击关闭菜单
     ref.current?.addEventListener('click', () => {
       document.documentElement.clientWidth < 1024 && setExpand(false);
     });
-  });
+  }, []);
 
   return (
     <main className="grid w-screen h-screen lg:grid-cols-[auto_1fr]">

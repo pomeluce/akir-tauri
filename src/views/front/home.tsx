@@ -1,37 +1,21 @@
 const Home: React.FC<{}> = () => {
-  const [loading, setLoading] = useState(false);
-
-  const click = () => {
-    console.log('start');
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      console.log('end');
-    }, 1000);
-  };
-
   return (
     <RifyCard className="h-2000px" title="我是标题">
-      <span className="flex gap-3 items-center">
-        <RifyButton loading={loading} strong onClick={click} icon={IconPlus({})}>
-          默认按钮
-        </RifyButton>
-        <RifyButton type="primary" strong loading={loading} onClick={click}>
-          primary
-        </RifyButton>
-        <RifyButton type="success" strong onClick={click}>
-          success
-        </RifyButton>
-        <RifyButton strong color="#ff69b4">
-          warning
-        </RifyButton>
-        <RifyButton type="error" strong>
-          danger
-        </RifyButton>
-        <RifyButton type="info" strong>
-          info
-        </RifyButton>
-      </span>
+      <main className="flex flex-col gap-5">
+        <div>
+          <RifyAlert
+            title="提示"
+            type="warning"
+            closable
+            onClose={() => console.log('我被 onClose 了') }
+            onAfterLeave={() => {
+              console.log('我被 onAfterLeave 了');
+            }}
+          >
+            信息填写错误
+          </RifyAlert>
+        </div>
+      </main>
     </RifyCard>
   );
 };

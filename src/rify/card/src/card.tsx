@@ -1,10 +1,10 @@
 import { useConfig, useRtl, useTheme } from '../../_mixins';
 import { MaybeArray, call, createKey } from '../../_utils';
 import { CSSProperties, HTMLAttributes, ReactNode } from 'react';
+import { RifyBaseClose } from '../../_internal';
+import { getPadding } from 'seemly';
 import { cardLight } from '../styles';
 import style from './styles/index.cssr';
-import { getPadding } from 'seemly';
-import { RifyBaseClose } from '@/rify/_internal';
 
 type CardAttributes = Omit<HTMLAttributes<HTMLElement>, 'title'>;
 

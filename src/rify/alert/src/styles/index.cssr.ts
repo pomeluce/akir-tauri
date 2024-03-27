@@ -49,24 +49,15 @@ export default cB(
       pointerEvents: 'none',
     }),
     cM('closable', [cB('alert-body', [cE('title', { paddingRight: '24px' })])]),
-    cE('icon', { color: 'var(--rify-icon-color)' }),
-    cB('alert-body', { padding: 'var(--rify-padding)' }, [cE('title', { color: 'var(--rify-title-text-color)' }), cE('content', { color: 'var(--rify-content-text-color)' })]),
+    cB('alert-body', { padding: 'var(--rify-padding)' }, [
+      cE('icon', { color: 'var(--rify-icon-color)' }),
+      cE('title', { color: 'var(--rify-title-text-color)' }),
+      cE('content', { color: 'var(--rify-content-text-color)' }),
+    ]),
     fadeInHeightExpandTransition({
       originalTransition: 'transform .3s var(--rify-bezier)',
       enterToProps: { transform: 'scale(1)' },
       leaveToProps: { transform: 'scale(0.9)' },
-    }),
-    cE('icon', {
-      position: 'absolute',
-      left: 0,
-      top: 0,
-      alignItems: 'center',
-      justifyContent: 'center',
-      display: 'flex',
-      width: 'var(--rify-icon-size)',
-      height: 'var(--rify-icon-size)',
-      fontSize: 'var(--rify-icon-size)',
-      margin: 'var(--rify-icon-margin)',
     }),
     cE('close', {
       transition: `color .3s var(--rify-bezier), background-color .3s var(--rify-bezier)`,
@@ -79,6 +70,17 @@ export default cB(
     // fix: https://github.com/tusen-ai/naive-ui/issues/4588
     cM('right-adjust', [cB('alert-body', { paddingRight: 'calc(var(--rify-close-size) + var(--rify-padding) + 2px)' })]),
     cB('alert-body', { borderRadius: 'var(--rify-border-radius)', transition: 'border-color .3s var(--rify-bezier)' }, [
+      cE('icon', {
+        position: 'absolute',
+        left: 0,
+        alignItems: 'center',
+        justifyContent: 'center',
+        display: 'flex',
+        width: 'var(--rify-icon-size)',
+        height: 'var(--rify-icon-size)',
+        fontSize: 'var(--rify-icon-size)',
+        margin: 'var(--rify-icon-margin)',
+      }),
       cE('title', { transition: 'color .3s var(--rify-bezier)', fontSize: '16px', lineHeight: '19px', fontWeight: 'var(--rify-title-font-weight)' }, [
         c('& +', [cE('content', { marginTop: '9px' })]),
       ]),

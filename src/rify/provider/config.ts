@@ -1,4 +1,5 @@
 import { commonDark, commonLight } from '../_styles/common';
+import { alertDark, alertLight } from '../alert/styles';
 import { buttonDark, buttonLight, buttonRtlState } from '../button/styles';
 import { cardDark, cardLight, cardRtlState } from '../card/styles';
 import { resultLight, resultRtlState } from '../result/styles';
@@ -10,6 +11,7 @@ export const defaultClsPrefix = 'rify';
 export const lightTheme: GlobalTheme = {
   name: 'light',
   common: commonLight,
+  Alert: alertLight,
   Button: buttonLight,
   Card: cardLight,
   Result: resultLight,
@@ -18,6 +20,7 @@ export const lightTheme: GlobalTheme = {
 export const darkTheme: GlobalTheme = {
   name: 'dark',
   common: commonDark,
+  Alert: alertDark,
   Button: buttonDark,
   Card: cardDark,
   Result: resultLight,
