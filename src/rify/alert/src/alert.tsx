@@ -23,7 +23,7 @@ export interface AlertProps {
 const alert: React.FC<AlertProps> = props => {
   const { mergedClsPrefix, mergedRtl } = useConfig();
   const theme = useTheme('Alert', '-alert', style, alertLight, mergedClsPrefix);
-  const rtlEnabled = useRtl('Card', mergedRtl, mergedClsPrefix);
+  const rtlEnabled = useRtl('Alert', mergedRtl, mergedClsPrefix);
 
   const cssVars = () => {
     const {
@@ -118,34 +118,34 @@ const alert: React.FC<AlertProps> = props => {
         <div className={classes} style={cssVars() as CSSProperties} role="alert">
           {props.closable && <RifyBaseClose clsPrefix={mergedClsPrefix} className={`${mergedClsPrefix}-alert__close`} onClick={handleCloseClick} />}
           {props.bordered && <div className={`${mergedClsPrefix}-alert__border`} />}
+          {props.showIcon && (
+            <div className={`${mergedClsPrefix}-alert__icon`} aria-hidden="true">
+              {props.icon || (
+                <RifyBaseIcon clsPrefix={mergedClsPrefix}>
+                  {(() => {
+                    switch (props.type) {
+                      case 'success':
+                        return SuccessIcon;
+                      case 'info':
+                        return InfoIcon;
+                      case 'warning':
+                        return WarningIcon;
+                      case 'error':
+                        return ErrorIcon;
+                      default:
+                        return null;
+                    }
+                  })()?.({})}
+                </RifyBaseIcon>
+              )}
+            </div>
+          )}
           <div
             className={[`${mergedClsPrefix}-alert-body`, props.bordered && `${mergedClsPrefix}-alert-body--bordered`]
               .filter(cls => cls)
               .join(' ')
               .trimEnd()}
           >
-            {props.showIcon && (
-              <div className={`${mergedClsPrefix}-alert-body__icon`} aria-hidden="true">
-                {props.icon || (
-                  <RifyBaseIcon clsPrefix={mergedClsPrefix}>
-                    {(() => {
-                      switch (props.type) {
-                        case 'success':
-                          return SuccessIcon;
-                        case 'info':
-                          return InfoIcon;
-                        case 'warning':
-                          return WarningIcon;
-                        case 'error':
-                          return ErrorIcon;
-                        default:
-                          return null;
-                      }
-                    })()?.({})}
-                  </RifyBaseIcon>
-                )}
-              </div>
-            )}
             {props.header || props.title ? <div className={`${mergedClsPrefix}-alert-body__title`}>{props.header || props.title}</div> : null}
             {props.children && <div className={`${mergedClsPrefix}-alert-body__content`}>{props.children}</div>}
           </div>

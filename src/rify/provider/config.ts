@@ -1,5 +1,5 @@
 import { commonDark, commonLight } from '../_styles/common';
-import { alertDark, alertLight } from '../alert/styles';
+import { alertDark, alertLight, alertRtlState } from '../alert/styles';
 import { buttonDark, buttonLight, buttonRtlState } from '../button/styles';
 import { cardDark, cardLight, cardRtlState } from '../card/styles';
 import { resultLight, resultRtlState } from '../result/styles';
@@ -27,6 +27,7 @@ export const darkTheme: GlobalTheme = {
 };
 
 export const rtlEnabledState: RtlEnabledStae = {
+  Alert: alertRtlState,
   Button: buttonRtlState,
   Card: cardRtlState,
   Result: resultRtlState,
