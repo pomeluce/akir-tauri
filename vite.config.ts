@@ -26,7 +26,7 @@ export default defineConfig(({ command, mode }) => {
       },
     },
     define: {
-      'process.env.NODE_ENV': `'${env.NODE_ENV}'`,
+      [process.env.NODE_ENV]: `${env.NODE_ENV}`,
       __DEV__: env.NODE_ENV !== 'production',
     },
     css: {

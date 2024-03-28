@@ -7,7 +7,7 @@ const Home: React.FC<{}> = () => {
             title="提示"
             type="warning"
             closable
-            onClose={() => console.log('我被 onClose 了') }
+            onClose={() => console.log('我被 onClose 了')}
             onAfterLeave={() => {
               console.log('我被 onAfterLeave 了');
             }}

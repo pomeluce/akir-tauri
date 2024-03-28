@@ -11,4 +11,4 @@ const unknown: RouteRecord = {
 
 export default [front, ...admin, error, unknown] as RouteRecord[];
 
-export { default as ErrorElement } from '@/views/error/500';
+export const ErrorElement = lazy(() => import('@/views/error/500'));
