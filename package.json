@@ -40,7 +40,7 @@
     "@types/mockjs": "^1.0.10",
     "@types/node": "^20.11.30",
     "@types/react": "^18.2.73",
-    "@types/react-dom": "^18.2.22",
+    "@types/react-dom": "^18.2.23",
     "@unocss/reset": "^0.58.8",
     "@unocss/transformer-directives": "^0.58.8",
     "@unocss/transformer-variant-group": "^0.58.8",
@@ -52,7 +52,7 @@
     "typescript": "^5.4.3",
     "unocss": "^0.58.8",
     "unplugin-auto-import": "^0.17.5",
-    "vite": "^5.2.6",
+    "vite": "^5.2.7",
     "vite-plugin-mock": "^3.0.1"
   }
 }

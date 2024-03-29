@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import { RouteObject, RouteRecord } from 'react-router-dom';
 import records, { ErrorElement } from '@/routes';
+import SuspenseFallback from './SuspenseFallback';
 
 const syncRouter = (raws: RouteRecord[]): RouteObject[] => {
   const routes: Array<RouteObject> = [];
@@ -9,13 +10,13 @@ const syncRouter = (raws: RouteRecord[]): RouteObject[] => {
       id: raw.name,
       path: raw.path,
       element: (
-        <Suspense fallback={<span>loading...</span>}>
+        <Suspense fallback={SuspenseFallback({})}>
           <raw.component />
         </Suspense>
       ),
       children: raw.children && syncRouter(raw.children),
       errorElement: (
-        <Suspense>
+        <Suspense fallback={SuspenseFallback({})}>
           <ErrorElement />
         </Suspense>
       ),

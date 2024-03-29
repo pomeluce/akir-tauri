@@ -1,6 +1,6 @@
 ## 简介
 
-[Rapidify-react](https://github.com/pomeluce/rapidify-react) 是一个开源的, 基于 [React18.0](https://github.com/facebook/react)、[Vite](https://github.com/vitejs/vite)、 [AntD UI](https://ant.design/)、[TypeScript](https://www.typescriptlang.org/) 的前后台快速开发脚手架，它使用了最新的前端技术栈，并提炼了典型的业务模型，页面，包括二次封装组件、动态菜单、权限校验、粒子化权限控制、流程管理等功能, 它可以帮助你快速搭建前台后台项目。
+[Rapidify-react](https://github.com/pomeluce/rapidify-react) 是一个开源的, 基于 [React18](https://github.com/facebook/react)、[Vite](https://github.com/vitejs/vite)、 [Ant Design UI](https://ant.design/)、[TypeScript](https://www.typescriptlang.org/) 的前后台快速开发脚手架，它使用了最新的前端技术栈，并提炼了典型的业务模型，页面，包括二次封装组件、动态菜单、权限校验、粒子化权限控制、流程管理等功能, 它可以帮助你快速搭建前台后台项目。
 
 ## 特性
 
@@ -20,11 +20,11 @@
 
 ## 准备
 
-- [node](http://nodejs.org/) 和 [git](https://git-scm.com/) -项目开发环境
+- [Node](http://nodejs.org/) 和 [git](https://git-scm.com/) -项目开发环境
 - [Vite](https://vitejs.dev/) - 熟悉 vite 特性
 - [React](https://github.com/facebook/react) - 熟悉 React 基础语法
 - [TypeScript](https://www.typescriptlang.org/) - 熟悉`TypeScript`基本语法
-- [Es6+](http://es6.ruanyifeng.com/) - 熟悉 es6 基本语法
+- [ES6+](http://es6.ruanyifeng.com/) - 熟悉 es6 基本语法
 - [Zustand](https://zustand-demo.pmnd.rs/) - 熟悉 zustand 基本使用
 - [Mock.js](https://github.com/nuysoft/Mock) - mockjs 基本语法
 
@@ -98,7 +98,7 @@ pnpm build
 
 ## Git 贡献提交规范
 
-- 参考 [vue](https://github.com/vuejs/vue/blob/dev/.github/COMMIT_CONVENTION.md) 规范 ([Angular](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular))
+- 参考 [规范文档](https://github.com/pomeluce/rapidify-react/COMMIT_CONVENTION.md) ([Angular](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular))
 
   - `feat` 增加新功能
   - `fix` 修复问题/BUG
