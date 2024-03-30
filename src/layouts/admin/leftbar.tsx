@@ -1,8 +1,7 @@
+import Logo from '/pomeluce.svg';
 import { RouteRecord } from 'react-router-dom';
 import { forEach } from 'lodash-es';
 import records from '@/routes';
-import Logo from '/pomeluce.svg';
-import style from './style/leftbar.module.scss';
 
 const leftbar: React.FC<{}> = () => {
   const { isExpand, setExpand } = useMenuStore();
@@ -28,23 +27,28 @@ const leftbar: React.FC<{}> = () => {
     });
   };
 
+  const closeMenu = () => document.documentElement.clientWidth < 1024 && setExpand(false);
+
   useEffect(() => {
     // 当前路由自动展开
     (active.current?.parentElement?.previousElementSibling as HTMLElement).click();
     // 加载时为移动端, 则关闭菜单
-    document.documentElement.clientWidth < 1024 && setExpand(false);
+    closeMenu();
 
     // 监听窗口变化, 调整菜单状态
-    window.addEventListener('resize', () => {
-      document.documentElement.clientWidth < 1024 && setExpand(false);
-    });
+    window.addEventListener('resize', closeMenu);
+
+    return () => {
+      // 组件卸载, 移除监听
+      window.removeEventListener('resize', closeMenu);
+    };
   }, []);
 
   return (
-    <div className="bg-backdrop3 border-r border-rim8 shadow-lg lg:shadow-none absolute lg:relative h-full overflow-auto z-50">
-      <main className={`${style.menu}${isExpand ? '' : ' hidden'}`}>
+    <div className="bg-backdrop3 border-r border-rim8 shadow-lg absolute h-full overflow-auto z-50 lg:(relative shadow-none)">
+      <main className={isExpand ? '' : ' hidden'}>
         <nav className="text-word12">
-          <NavLink className="flex justify-center items-start px-7 py-4 gap-1 cursor-pointer" to={RoutePath.HOME}>
+          <NavLink className="flex justify-center items-start px-7 py-4 gap-1 cursor-pointer hover:text-word11" to={RoutePath.HOME}>
             <AntImage rootClassName="w-6 h-6" src={Logo} preview={false} />
             <span className="text-lg font-bold uppercase">rapidify-vue</span>
           </NavLink>
@@ -66,7 +70,7 @@ const leftbar: React.FC<{}> = () => {
                     <div
                       ref={item.name === router?.name ? active : undefined}
                       key={index}
-                      className={`${style.menuOption}${item.name === router?.name ? ` ${style.active}` : ''}`}
+                      className={`px-5 py-3 my-3 rounded text-primary11 bg-primary10 opacity-80 cursor-pointer hover:text-white !hover:(bg-primary1 opacity-95)${item.name === router?.name ? ' !bg-primary1 opacity-95 text-white' : ''}`}
                       onClick={() => goto(item)}
                     >
                       {item.meta?.menu?.label}
