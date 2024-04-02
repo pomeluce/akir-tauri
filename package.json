@@ -49,6 +49,7 @@
     "mockjs": "^1.1.0",
     "prettier": "^3.2.5",
     "seemly": "^0.3.8",
+    "treemate": "^0.3.11",
     "typescript": "^5.4.3",
     "unocss": "^0.58.9",
     "unplugin-auto-import": "^0.17.5",
