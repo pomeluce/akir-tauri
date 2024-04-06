@@ -3,5 +3,6 @@ export { c, cB, cE, cM, cNotM, cCB, insideModal, insidePopover, asModal, prefix,
 export { isChrome, isFirefox, isSafari } from './env/browser';
 export { isBrowser } from './env/is-browser';
 export { warn, warnOnce, throwError } from './rify';
-export { call } from './react';
+export { call, isFragment, cloneElement, replaceElement } from './react';
 export type { MaybeArray } from './react';
+export type { AdjustOverflow, AnyObject, LiteralUnion, RenderFunction } from './rify';

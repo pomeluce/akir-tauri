@@ -98,7 +98,7 @@ pnpm build
 
 ## Git 贡献提交规范
 
-- 参考 [规范文档](https://github.com/pomeluce/rapidify-react/COMMIT_CONVENTION.md) ([Angular](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular))
+- 参考 [规范文档](https://github.com/pomeluce/rapidify-react/blob/main/COMMIT_CONVENTION.md) ([Angular](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular))
 
   - `feat` 增加新功能
   - `fix` 修复问题/BUG
