@@ -5,7 +5,9 @@ import type { placements as Placements } from 'rc-tooltip/lib/placements';
 import { cloneElement, isFragment, type AdjustOverflow, type RenderFunction } from '../../_utils';
 import classNames from 'classnames';
 import { useMergedState } from 'rc-util';
-import { useConfig, useRtl } from '../../_mixins';
+import { useConfig, useRtl, useTheme } from '../../_mixins';
+import { tooltipLight } from '../styles';
+import style from './styles/index.cssr';
 
 export interface TooltipRef {
   forceAlign: VoidFunction;
@@ -83,6 +85,7 @@ const tooltip: React.ForwardRefRenderFunction<TooltipRef, TooltipProps> = (props
 
   const { mergedClsPrefix, mergedRtl } = useConfig();
 
+  const theme = useTheme('Tooltip', '-tooltip', style, tooltipLight, mergedClsPrefix);
   const rtlEnabled = useRtl('Button', mergedRtl, mergedClsPrefix);
 
   const mergedShowArrow = !!arrow;
@@ -140,7 +143,7 @@ const tooltip: React.ForwardRefRenderFunction<TooltipRef, TooltipProps> = (props
     ...colorInfo.overlayStyle,
   };
 
-  const classes = classNames(overlayClassName, { [`${mergedClsPrefix}-tooltip--rtl`]: rtlEnabled }, className);
+  const classes = classNames(overlayClassName, { [`${mergedClsPrefix}-tooltip--hidden`]: !tempOpen, [`${mergedClsPrefix}-tooltip--rtl`]: rtlEnabled }, className);
 
   return (
     <RcTooltip

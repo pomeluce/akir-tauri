@@ -1,4 +1,4 @@
-import type { CSSProperties, KeyboardEvent, MouseEvent, ReactNode } from 'react';
+import type { CSSProperties, KeyboardEvent, MouseEvent, PropsWithoutRef, ReactNode, RefAttributes } from 'react';
 import type { MaybeArray } from '../../_utils';
 import type { BaseWaveRef } from '../../_internal';
 import type { Size, Type } from './interface';
@@ -38,7 +38,7 @@ export interface ButtonProps {
   nativeFocusBehavior?: boolean;
 }
 
-const button: React.FC<ButtonProps> = (props: ButtonProps) => {
+const button: React.ForwardRefExoticComponent<PropsWithoutRef<ButtonProps> & RefAttributes<HTMLButtonElement>> = forwardRef((props, ref) => {
   if (__DEV__) {
     useEffect(() => {
       const { dashed, text, ghost, secondary, tertiary, quaternary } = props;
@@ -47,7 +47,7 @@ const button: React.FC<ButtonProps> = (props: ButtonProps) => {
       }
     }, [props]);
   }
-  const selfElRef = createRef<HTMLButtonElement>();
+  const selfElRef = useRef<HTMLButtonElement>(null);
   const waveElRef = createRef<BaseWaveRef>();
   const [enterPressed, setEnterPressed] = useState(false);
 
@@ -56,6 +56,8 @@ const button: React.FC<ButtonProps> = (props: ButtonProps) => {
   const type = props.type ?? 'primary';
   const iconPlacement = props.iconPlacement ?? 'left';
   const focusable = props.focusable && !props.disabled;
+
+  useImperativeHandle(ref, () => selfElRef.current!);
 
   // 鼠标按下事件
   const handleMousedown = (e: MouseEvent): void => {
@@ -341,9 +343,10 @@ const button: React.FC<ButtonProps> = (props: ButtonProps) => {
       {showBorder ? <div aria-hidden className={`${mergedClsPrefix}-button__state-border`} style={customColorCssVars() as CSSProperties} /> : null}
     </button>
   );
-};
+});
 
 button.defaultProps = { focusable: true, keyboard: true, type: 'default', iconPlacement: 'left', attrType: 'button', bordered: true, nativeFocusBehavior: !isSafari };
+
 if (__DEV__) button.displayName = 'rify-button';
 
 export default button;
