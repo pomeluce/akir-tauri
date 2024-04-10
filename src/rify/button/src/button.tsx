@@ -1,13 +1,15 @@
-import type { CSSProperties, KeyboardEvent, MouseEvent, PropsWithoutRef, ReactNode, RefAttributes } from 'react';
+import type { CSSProperties, KeyboardEvent, MouseEvent, ReactNode, RefAttributes, RefObject } from 'react';
 import type { MaybeArray } from '../../_utils';
 import type { BaseWaveRef } from '../../_internal';
 import type { Size, Type } from './interface';
+import classNames from 'classnames';
 import { useTheme, useConfig, useRtl } from '../../_mixins';
 import { call, createKey, createHoverColor, createPressedColor, isSafari, warnOnce } from '../../_utils';
 import { RifyBaseLoading, RifyBaseWave } from '../../_internal';
 import { buttonLight } from '../styles';
 import { changeColor } from 'seemly';
 import style from './styles/index.cssr';
+import { composeRef } from 'rc-util/lib/ref';
 
 export interface ButtonProps {
   color?: string;
@@ -38,41 +40,68 @@ export interface ButtonProps {
   nativeFocusBehavior?: boolean;
 }
 
-const button: React.ForwardRefExoticComponent<PropsWithoutRef<ButtonProps> & RefAttributes<HTMLButtonElement>> = forwardRef((props, ref) => {
+const button: React.ForwardRefExoticComponent<ButtonProps & RefAttributes<HTMLButtonElement>> = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
+  const {
+    color,
+    className,
+    textColor,
+    text,
+    block,
+    loading,
+    disabled,
+    circle,
+    size: _size,
+    ghost,
+    round,
+    secondary,
+    tertiary,
+    quaternary,
+    strong,
+    focusable: _focusable,
+    keyboard,
+    type: _type,
+    dashed,
+    icon,
+    iconPlacement: _iconPlacement,
+    attrType,
+    bordered,
+    children: _children,
+    onClick,
+    nativeFocusBehavior,
+    ...attr
+  } = props;
+
   if (__DEV__) {
     useEffect(() => {
-      const { dashed, text, ghost, secondary, tertiary, quaternary } = props;
       if ((dashed || ghost || text) && (secondary || tertiary || quaternary)) {
         warnOnce('button', "`dashed`,`ghost` and `text` props can't be used along with `secondary`, `tertiary` and `quaternary` props.");
       }
     }, [props]);
   }
-  const selfElRef = useRef<HTMLButtonElement>(null);
+  const selfElRef = createRef<HTMLButtonElement>();
+  const buttonRef = composeRef(ref, selfElRef);
   const waveElRef = createRef<BaseWaveRef>();
   const [enterPressed, setEnterPressed] = useState(false);
 
-  const showBorder = !props.quaternary && !props.tertiary && !props.secondary && !props.text && (!props.color || props.ghost || props.dashed) && props.bordered;
+  const showBorder = !quaternary && !tertiary && !secondary && !text && (!color || ghost || dashed) && bordered;
   const size = props.size ?? 'medium';
   const type = props.type ?? 'primary';
   const iconPlacement = props.iconPlacement ?? 'left';
   const focusable = props.focusable && !props.disabled;
 
-  useImperativeHandle(ref, () => selfElRef.current!);
-
   // 鼠标按下事件
   const handleMousedown = (e: MouseEvent): void => {
     if (!focusable) e.preventDefault();
-    if (props.nativeFocusBehavior) return;
+    if (nativeFocusBehavior) return;
     e.preventDefault();
-    if (props.disabled) return;
-    if (focusable) selfElRef.current?.focus({ preventScroll: true });
+    if (disabled) return;
+    if (focusable) (buttonRef as RefObject<HTMLButtonElement>).current?.focus({ preventScroll: true });
   };
   // 单击事件
   const handleClick = (e: MouseEvent): void => {
-    if (!props.disabled && !props.loading) {
-      const { onClick } = props;
+    if (!disabled && !loading) {
       if (onClick) call(onClick, e);
-      if (!props.text) {
+      if (!text) {
         waveElRef.current?.play();
       }
     }
@@ -80,14 +109,14 @@ const button: React.ForwardRefExoticComponent<PropsWithoutRef<ButtonProps> & Ref
   const handleKeyup = (e: KeyboardEvent): void => {
     switch (e.key) {
       case 'Enter':
-        if (!props.keyboard) return;
+        if (!keyboard) return;
         setEnterPressed(false);
     }
   };
   const handleKeydown = (e: KeyboardEvent): void => {
     switch (e.key) {
       case 'Enter':
-        if (!props.keyboard || props.loading) {
+        if (!keyboard || loading) {
           e.preventDefault();
           return;
         }
@@ -110,8 +139,6 @@ const button: React.ForwardRefExoticComponent<PropsWithoutRef<ButtonProps> & Ref
       self,
     } = theme;
     const { rippleDuration, opacityDisabled, fontWeight, fontWeightStrong } = self;
-
-    const { text, textColor, color, strong, ghost, secondary, tertiary, quaternary, circle, round, dashed } = props;
 
     // font
     const fontProps = {
@@ -276,7 +303,6 @@ const button: React.ForwardRefExoticComponent<PropsWithoutRef<ButtonProps> & Ref
     };
   };
   const customColorCssVars = () => {
-    const { color } = props;
     if (!color) return null;
     const hoverColor = createHoverColor(color);
     return {
@@ -288,24 +314,23 @@ const button: React.ForwardRefExoticComponent<PropsWithoutRef<ButtonProps> & Ref
     };
   };
 
-  const classes = [
+  const classes = classNames(
     `${mergedClsPrefix}-button`,
     `${mergedClsPrefix}-button--${type}-type`,
     `${mergedClsPrefix}-button--${size}-type`,
-    rtlEnabled && `${mergedClsPrefix}-button--rtl`,
-    props.disabled && `${mergedClsPrefix}-button--disabled`,
-    props.block && `${mergedClsPrefix}-button--block`,
-    enterPressed && `${mergedClsPrefix}-button--pressed`,
-    !props.text && props.dashed && `${mergedClsPrefix}-button--dashed`,
-    props.color && `${mergedClsPrefix}-button--color`,
-    props.secondary && `${mergedClsPrefix}-button--secondary`,
-    props.loading && `${mergedClsPrefix}-button--loading`,
-    props.ghost && `${mergedClsPrefix}-button--ghost`,
-    props.className || '',
-  ]
-    .filter(cls => cls)
-    .join(' ')
-    .trimEnd();
+    {
+      [`${mergedClsPrefix}-button--rtl`]: rtlEnabled,
+      [`${mergedClsPrefix}-button--disabled`]: disabled,
+      [`${mergedClsPrefix}-button--block`]: block,
+      [`${mergedClsPrefix}-button--pressed`]: enterPressed,
+      [`${mergedClsPrefix}-button--dashed`]: !text && dashed,
+      [`${mergedClsPrefix}-button--color`]: color,
+      [`${mergedClsPrefix}-button--secondary`]: secondary,
+      [`${mergedClsPrefix}-button--loading`]: loading,
+      [`${mergedClsPrefix}-button--ghost`]: ghost,
+    },
+    className,
+  );
 
   const children = () => {
     return <span className={`${mergedClsPrefix}-button__content`}>{props.children}</span>;
@@ -313,32 +338,33 @@ const button: React.ForwardRefExoticComponent<PropsWithoutRef<ButtonProps> & Ref
 
   return (
     <button
-      ref={selfElRef}
+      ref={buttonRef}
       className={classes}
       tabIndex={focusable ? 0 : -1}
-      type={props.attrType}
+      type={attrType}
       style={cssVars() as CSSProperties}
-      disabled={props.disabled}
+      disabled={disabled}
       onClick={handleClick}
       onBlur={handleBlur}
       onMouseDown={handleMousedown}
       onKeyUp={handleKeyup}
       onKeyDown={handleKeydown}
+      {...attr}
     >
       {iconPlacement === 'right' && children()}
-      {(props.icon || props.loading) && (
+      {(icon || loading) && (
         <span className={`${mergedClsPrefix}-button__icon`}>
-          {props.loading ? (
+          {loading ? (
             <RifyBaseLoading clsPrefix={mergedClsPrefix} key="loading" className={`${mergedClsPrefix}-icon-slot`} strokeWidth={20} />
           ) : (
             <div key="icon" className={`${mergedClsPrefix}-icon-slot`} role="none">
-              {props.icon ?? props.icon}
+              {icon}
             </div>
           )}
         </span>
       )}
       {iconPlacement === 'left' && children()}
-      {!props.text ? <RifyBaseWave ref={waveElRef} clsPrefix={mergedClsPrefix} /> : null}
+      {!text ? <RifyBaseWave ref={waveElRef} clsPrefix={mergedClsPrefix} /> : null}
       {showBorder ? <div aria-hidden className={`${mergedClsPrefix}-button__border`} style={customColorCssVars() as CSSProperties} /> : null}
       {showBorder ? <div aria-hidden className={`${mergedClsPrefix}-button__state-border`} style={customColorCssVars() as CSSProperties} /> : null}
     </button>

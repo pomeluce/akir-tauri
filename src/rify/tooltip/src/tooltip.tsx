@@ -81,6 +81,7 @@ const tooltip: React.ForwardRefRenderFunction<TooltipRef, TooltipProps> = (props
     mouseLeaveDelay = 0.1,
     builtinPlacements,
     autoAdjustOverflow = true,
+    ...attr
   } = props;
 
   const { mergedClsPrefix, mergedRtl } = useConfig();
@@ -165,6 +166,7 @@ const tooltip: React.ForwardRefRenderFunction<TooltipRef, TooltipProps> = (props
       overlayInnerStyle={formattedOverlayInnerStyle}
       arrowContent={<span className={`${mergedClsPrefix}-arrow-content`} />}
       destroyTooltipOnHide={!!destroyTooltipOnHide}
+      {...attr}
     >
       {tempOpen ? cloneElement(child, { className: childCls }) : child}
     </RcTooltip>
