@@ -2,7 +2,8 @@ import { commonDark, commonLight } from '../_styles/common';
 import { alertDark, alertLight, alertRtlState } from '../alert/styles';
 import { buttonDark, buttonLight, buttonRtlState } from '../button/styles';
 import { cardDark, cardLight, cardRtlState } from '../card/styles';
-import { resultLight, resultRtlState } from '../result/styles';
+import { resultLight, resultDark, resultRtlState } from '../result/styles';
+import { tooltipLight, tooltipDark } from '../tooltip/styles';
 import { GlobalTheme } from './interface';
 import { RtlEnabledStae } from './internal-interface';
 
@@ -15,6 +16,7 @@ export const lightTheme: GlobalTheme = {
   Button: buttonLight,
   Card: cardLight,
   Result: resultLight,
+  Tooltip: tooltipLight,
 };
 
 export const darkTheme: GlobalTheme = {
@@ -23,7 +25,8 @@ export const darkTheme: GlobalTheme = {
   Alert: alertDark,
   Button: buttonDark,
   Card: cardDark,
-  Result: resultLight,
+  Result: resultDark,
+  Tooltip: tooltipDark,
 };
 
 export const rtlEnabledState: RtlEnabledStae = {
