@@ -37,15 +37,15 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3",
-    "sass": "^1.74.1",
+    "sass": "^1.75.0",
     "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@css-render/plugin-bem": "^0.15.12",
     "@types/mockjs": "^1.0.10",
     "@types/node": "^20.12.7",
-    "@types/react": "^18.2.75",
-    "@types/react-dom": "^18.2.24",
+    "@types/react": "^18.2.77",
+    "@types/react-dom": "^18.2.25",
     "@unocss/reset": "^0.58.9",
     "@unocss/transformer-directives": "^0.58.9",
     "@unocss/transformer-variant-group": "^0.58.9",

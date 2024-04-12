@@ -1,4 +1,4 @@
-import { c, cB, cE, cM } from '../../../_utils';
+import { c, cB, cNotB } from '../../../_utils';
 
 const placementTopLR = cB('tooltip-arrow', { bottom: 0, transform: 'translateY(100%) rotate(180deg)' });
 const placementBottomLR = cB('tooltip-arrow', { top: 0, transform: 'translateY(-100%)' });
@@ -10,6 +10,7 @@ const placementRightTB = cB('tooltip-arrow', { left: 0, transform: 'translateX(-
 // --rify-arrow-clip-path
 // --rify-arrow-shadow-width
 // --rify-background-color
+// --rify-bezier
 // --rify-box-shadow
 // --rify-bezier
 // --rify-border-radius
@@ -19,9 +20,6 @@ const placementRightTB = cB('tooltip-arrow', { left: 0, transform: 'translateX(-
 // --rify-padding-sm
 // --rify-padding-xs
 // --rify-text-color
-// --rify-title-font-size
-// --rify-title-font-weight
-// --rify-title-text-color
 // --rify-z-index-popup
 export default cB(
   'tooltip',
@@ -39,22 +37,22 @@ export default cB(
     maxWidth: '250px',
     visibility: 'visible',
     transformOrigin: 'var(--arrow-x,50%) var(--arrow-y,50%)',
-    transition: ' color .3s var(--rify-bezier)',
+    transition: 'color .3s var(--rify-bezier)',
   },
   [
-    cM('hidden', { display: 'none' }),
-    cM('placement-top', {}, [placementTopLR, cB('tooltip-arrow', { left: '50%', transform: 'translateX(-50%) translateY(100%) rotate(180deg)' })]),
-    cM('placement-topLeft', {}, [placementTopLR, cB('tooltip-arrow', { left: 'var(--rify-arrow-offset-horizontal)' })]),
-    cM('placement-topRight', {}, [placementTopLR, cB('tooltip-arrow', { right: 'var(--rify-arrow-offset-horizontal)' })]),
-    cM('placement-bottom', {}, [placementBottomLR, cB('tooltip-arrow', { left: '50%', transform: 'translateX(-50%) translateY(-100%)' })]),
-    cM('placement-bottomLeft', {}, [placementBottomLR, cB('tooltip-arrow', { left: 'var(--rify-arrow-offset-horizontal)' })]),
-    cM('placement-bottomRight', {}, [placementBottomLR, cB('tooltip-arrow', { right: 'var(--rify-arrow-offset-horizontal)' })]),
-    cM('placement-left', {}, [placementLeftTB, cB('tooltip-arrow', { top: '50%', transform: 'translateY(-50%) translateX(100%) rotate(90deg)' })]),
-    cM('placement-leftTop', {}, [placementLeftTB, cB('tooltip-arrow', { top: 'var(--rify-arrow-offset-vertical)' })]),
-    cM('placement-leftBottom', {}, [placementLeftTB, cB('tooltip-arrow', { bottom: 'var(--rify-arrow-offset-vertical)' })]),
-    cM('placement-right', {}, [placementRightTB, cB('tooltip-arrow', { top: '50%', transform: 'translateY(-50%) translateX(-100%) rotate(-90deg)' })]),
-    cM('placement-rightTop', {}, [placementRightTB, cB('tooltip-arrow', { top: 'var(--rify-arrow-offset-vertical)' })]),
-    cM('placement-rightBottom', {}, [placementRightTB, cB('tooltip-arrow', { bottom: 'var(--rify-arrow-offset-vertical)' })]),
+    cNotB('tooltip-hidden', { display: 'none' }),
+    cNotB('tooltip-placement-top', [placementTopLR, cB('tooltip-arrow', { left: '50%', transform: 'translateX(-50%) translateY(100%) rotate(180deg)' })]),
+    cNotB('tooltip-placement-topLeft', [placementTopLR, cB('tooltip-arrow', { left: 'var(--rify-arrow-offset-horizontal)' })]),
+    cNotB('tooltip-placement-topRight', [placementTopLR, cB('tooltip-arrow', { right: 'var(--rify-arrow-offset-horizontal)' })]),
+    cNotB('tooltip-placement-bottom', [placementBottomLR, cB('tooltip-arrow', { left: '50%', transform: 'translateX(-50%) translateY(-100%)' })]),
+    cNotB('tooltip-placement-bottomLeft', [placementBottomLR, cB('tooltip-arrow', { left: 'var(--rify-arrow-offset-horizontal)' })]),
+    cNotB('tooltip-placement-bottomRight', [placementBottomLR, cB('tooltip-arrow', { right: 'var(--rify-arrow-offset-horizontal)' })]),
+    cNotB('tooltip-placement-left', [placementLeftTB, cB('tooltip-arrow', { top: '50%', transform: 'translateY(-50%) translateX(100%) rotate(90deg)' })]),
+    cNotB('tooltip-placement-leftTop', [placementLeftTB, cB('tooltip-arrow', { top: 'var(--rify-arrow-offset-vertical)' })]),
+    cNotB('tooltip-placement-leftBottom', [placementLeftTB, cB('tooltip-arrow', { bottom: 'var(--rify-arrow-offset-vertical)' })]),
+    cNotB('tooltip-placement-right', [placementRightTB, cB('tooltip-arrow', { top: '50%', transform: 'translateY(-50%) translateX(-100%) rotate(-90deg)' })]),
+    cNotB('tooltip-placement-rightTop', [placementRightTB, cB('tooltip-arrow', { top: 'var(--rify-arrow-offset-vertical)' })]),
+    cNotB('tooltip-placement-rightBottom', [placementRightTB, cB('tooltip-arrow', { bottom: 'var(--rify-arrow-offset-vertical)' })]),
     cB(
       'tooltip-arrow',
       {
@@ -107,18 +105,6 @@ export default cB(
         boxShadow: 'var(--rify-box-shadow)',
         boxSizing: 'border-box',
       }),
-    ]),
-    cB('result-footer', { marginTop: '24px', textAlign: 'center' }),
-    cB('result-header', [
-      cE('title', {
-        marginTop: '16px',
-        fontWeight: 'var(--rify-title-font-weight)',
-        transition: 'color .3s var(--rify-bezier)',
-        textAlign: 'center',
-        color: 'var(--rify-title-text-color)',
-        fontSize: 'var(--rify-title-font-size)',
-      }),
-      cE('message', { marginTop: '4px', textAlign: 'center', fontSize: 'var(--rify-font-size)' }),
     ]),
   ],
 );

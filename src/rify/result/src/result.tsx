@@ -4,6 +4,7 @@ import { useConfig, useRtl, useTheme } from '../../_mixins';
 import { createKey } from '../../_utils';
 import { resultLight } from '../styles';
 import style from './styles/index.cssr';
+import classNames from 'classnames';
 
 export interface ResultProps {
   className?: string;
@@ -16,8 +17,6 @@ export interface ResultProps {
 }
 
 const result: React.FC<ResultProps> = (props: ResultProps) => {
-  // const { title, message, children, icon, footer, className, ...attributes } = props;
-
   const { mergedClsPrefix, mergedRtl } = useConfig();
   const theme = useTheme('Result', '-result', style, resultLight, mergedClsPrefix);
   const rtlEnabled = useRtl('Result', mergedRtl, mergedClsPrefix);
@@ -50,10 +49,13 @@ const result: React.FC<ResultProps> = (props: ResultProps) => {
 
   return (
     <div
-      className={[`${mergedClsPrefix}-result`, rtlEnabled && `${mergedClsPrefix}-result--rtl`, props.className || '']
-        .filter(cls => cls)
-        .join(' ')
-        .trimEnd()}
+      className={classNames(
+        `${mergedClsPrefix}-result`,
+        {
+          [`${mergedClsPrefix}-result--rtl`]: rtlEnabled,
+        },
+        props.className,
+      )}
       style={cssVars() as CSSProperties}
     >
       {props.icon && (

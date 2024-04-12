@@ -4,7 +4,7 @@ import type { ThemeCommonVars } from '../../_styles/common';
 import type { Theme } from '../../_mixins';
 
 export const self = (vars: ThemeCommonVars) => {
-  const { baseColor, textColor1, lineHeight, fontWeightStrong, borderRadiusSmall, boxShadow1 } = vars;
+  const { textColor1, lineHeight, fontWeightStrong, borderRadiusSmall, boxShadow1 } = vars;
   return {
     ...commonVariables,
     borderRadius: borderRadiusSmall,
@@ -13,7 +13,7 @@ export const self = (vars: ThemeCommonVars) => {
     lineHeight,
     titleFontWeight: fontWeightStrong,
     titleTextColor: textColor1,
-    textColor: baseColor,
+    textColor: '#fff',
   };
 };
 

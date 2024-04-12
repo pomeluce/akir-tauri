@@ -8,7 +8,6 @@ const tooltipDark: TooltipTheme = {
   self(vars) {
     const commonSelf = self(vars);
     commonSelf.color = '#424242';
-    commonSelf.textColor = '#FFF'
     return commonSelf;
   },
 };

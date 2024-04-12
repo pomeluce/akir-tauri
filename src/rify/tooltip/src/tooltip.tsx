@@ -1,4 +1,4 @@
-import { CSSProperties, ReactNode, RefAttributes, isValidElement } from 'react';
+import { ReactNode, RefAttributes, isValidElement } from 'react';
 import RcTooltip from 'rc-tooltip';
 import type { BuildInPlacements } from '@rc-component/trigger';
 import type { TooltipProps as RcTooltipProps, TooltipRef as RcTooltipRef } from 'rc-tooltip/lib/Tooltip';
@@ -80,7 +80,6 @@ const tooltip: React.ForwardRefExoticComponent<TooltipProps & RefAttributes<Tool
     openClassName,
     overlay,
     overlayClassName,
-    overlayInnerStyle,
     overlayStyle,
     placement = 'top',
     title,
@@ -133,19 +132,33 @@ const tooltip: React.ForwardRefExoticComponent<TooltipProps & RefAttributes<Tool
 
   const { mergedClsPrefix, mergedRtl } = useConfig();
   const theme = useTheme('Tooltip', '-tooltip', style, tooltipLight, mergedClsPrefix);
-  const rtlEnabled = useRtl('Button', mergedRtl, mergedClsPrefix);
+  const rtlEnabled = useRtl('Tooltip', mergedRtl, mergedClsPrefix);
 
   const cssVars = () => {
     const {
-      common,
-      self: { arrowPopupSize, arrowOffsetHorizontal, arrowOffsetVertical, arrowPath, arrowShadowWidth, borderRadius, boxShadow, color, height, paddingSM, paddingXS, textColor },
+      common: { cubicBezierEaseInOut },
+      self: {
+        arrowPopupSize,
+        arrowOffsetHorizontal,
+        arrowOffsetVertical,
+        arrowPath,
+        arrowShadowWidth,
+        borderRadius,
+        boxShadow,
+        color: backgroundColor,
+        height,
+        paddingSM,
+        paddingXS,
+        textColor,
+      },
     } = theme;
     return {
       '--rify-arrow-clip-path': arrowPath,
       '--rify-arrow-offset-horizontal': arrowOffsetHorizontal,
       '--rify-arrow-offset-vertical': arrowOffsetVertical,
       '--rify-arrow-shadow-width': arrowShadowWidth,
-      '--rify-background-color': color,
+      '--rify-background-color': color || backgroundColor,
+      '--rify-bezier': cubicBezierEaseInOut,
       '--rify-border-radius': borderRadius,
       '--rify-box-shadow': boxShadow,
       '--rify-height': height,
@@ -153,6 +166,7 @@ const tooltip: React.ForwardRefExoticComponent<TooltipProps & RefAttributes<Tool
       '--rify-padding-xs': paddingXS,
       '--rify-size-popup-arrow': arrowPopupSize,
       '--rify-text-color': textColor,
+      ...overlayStyle,
     };
   };
 
@@ -161,29 +175,12 @@ const tooltip: React.ForwardRefExoticComponent<TooltipProps & RefAttributes<Tool
   const childClassName =
     !childProps.className || typeof childProps.className === 'string' ? classNames(childProps.className, openClassName || `${mergedClsPrefix}-tooltip-open`) : childProps.className;
 
-  const colorInfo = {
-    overlayStyle: {
-      background: color,
-    } as CSSProperties,
-    arrowStyle: {
-      '--rify-tooltip-arrow-background-color': color,
-    } as CSSProperties,
-  };
-
   // Hide tooltip when there is no title
   const mergedVisible = !('open' in props) && noTitle ? false : visible;
-
-  const arrowContentStyle = colorInfo.arrowStyle;
-  const formattedOverlayInnerStyle: React.CSSProperties = {
-    ...overlayInnerStyle,
-    ...colorInfo.overlayStyle,
-  };
 
   const classes = classNames(
     overlayClassName,
     {
-      [`${mergedClsPrefix}-tooltip--hidden`]: !mergedVisible,
-      [`${mergedClsPrefix}-tooltip--placement-${placement}`]: placement,
       [`${mergedClsPrefix}-tooltip--rtl`]: rtlEnabled,
     },
     className,
@@ -202,8 +199,7 @@ const tooltip: React.ForwardRefExoticComponent<TooltipProps & RefAttributes<Tool
       onVisibleChange={handleVisibleChange}
       overlay={typeof memoOverlay === 'function' ? memoOverlay() : memoOverlay}
       overlayClassName={classes}
-      overlayInnerStyle={formattedOverlayInnerStyle}
-      overlayStyle={{ ...arrowContentStyle, ...overlayStyle, ...cssVars() }}
+      overlayStyle={cssVars()}
       placement={placement}
       prefixCls={`${mergedClsPrefix}-tooltip`}
       showArrow={mergedShowArrow}
