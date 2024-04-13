@@ -159,6 +159,7 @@ const derived = {
   popoverColor: base.neutralPopover,
   tableColor: base.neutralCard,
   cardColor: base.neutralCard,
+  menuColor: base.neutralCard,
   modalColor: base.neutralModal,
   bodyColor: base.neutralBody,
   tagColor: '#eee',
