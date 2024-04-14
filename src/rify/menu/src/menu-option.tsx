@@ -52,7 +52,7 @@ const menuOption: GenericComponent = props => {
   const childrenLength = toArray(children).length;
 
   return (
-    <Tooltip>
+    <Tooltip {...tooltipProps}>
       <Item
         {...omit(props, ['title', 'icon'])}
         className={classNames(

@@ -5,11 +5,12 @@ import RcMenu, { MenuRef as RcMenuRef, MenuProps as RcMenuProps } from 'rc-menu'
 import MenuContext, { MenuContextProps } from './menu-context';
 import { useConfig, useTheme } from '../../_mixins';
 import { initCollapseMotion } from '../../_utils';
+import { menuLight } from '../styles';
+import { changeColor } from 'seemly';
 import useOptions from '../hooks/useOptions';
 import classNames from 'classnames';
 import omit from 'rc-util/lib/omit';
 import style from './styles/index.cssr';
-import { menuLight } from '../styles';
 
 export interface MenuProps extends Omit<RcMenuProps, 'items'> {
   theme?: MenuTheme;
@@ -40,30 +41,81 @@ const menu: React.ForwardRefExoticComponent<MenuProps & { collapsedWidth?: strin
 
   const cssVars = () => {
     const {
-      common: { cubicBezierEaseInOut },
-      self: { borderColor, borderRadius, color, fontSize, lineType, menuActiveBarBorderWidth, motionDuration, textColor },
+      common: { primaryColor, cubicBezierEaseInOut, cubicBezierEaseOut },
+      self: {
+        borderColor,
+        borderRadius,
+        color,
+        fontSize,
+        fontSizeLarge,
+        groupTitleLineHeight,
+        groupTitleColor,
+        lineWidth,
+        lineType,
+        margin,
+        marginXS,
+        menuActiveBarBorderWidth,
+        menuActiveBarWidth,
+        menuCollapsedIconSize,
+        menuCollapsedWidth,
+        menuIconMarginInlineEnd,
+        menuBgColor,
+        menuItemHeight,
+        menuItemMarginBlock,
+        menuItemMarginInline,
+        menuItemWidth,
+        motionDuration,
+        motionDurationMid,
+        padding,
+        textColor,
+        // dark theme
+        darkColor,
+        darkBorderColor,
+        darkMenuBgColor,
+        darkSelectedColor,
+        darkTextColor,
+      },
     } = theme;
     return {
-      // '--rify-arrow-clip-path': arrowPath,
-      // '--rify-arrow-offset-horizontal': arrowOffsetHorizontal,
-      // '--rify-arrow-offset-vertical': arrowOffsetVertical,
-      // '--rify-arrow-shadow-width': arrowShadowWidth,
       '--rify-bezier': cubicBezierEaseInOut,
+      '--rify-bezier-x': cubicBezierEaseOut,
       '--rify-border-color': borderColor,
       '--rify-border-radius': borderRadius,
       '--rify-font-size': fontSize,
+      '--rify-font-size-lg': fontSizeLarge,
+      '--rify-group-line-height': groupTitleLineHeight,
+      '--rify-group-title-color': groupTitleColor,
+      '--rify-line-width': lineWidth,
       '--rify-line-type': lineType,
+      '--rify-margin': margin,
+      '--rify-margin-xs': marginXS,
       '--rify-menu-active-bar-border-width': menuActiveBarBorderWidth,
+      '--rify-menu-active-bar-width': menuActiveBarWidth,
+      '--rify-menu-collapsed-icon-size': menuCollapsedIconSize,
+      '--rify-menu-collapsed-width': menuCollapsedWidth,
+      '--rify-menu-icon-margin-inline-end': menuIconMarginInlineEnd,
+      '--rify-menu-item-bg': menuBgColor,
       '--rify-menu-item-color': textColor,
+      '--rify-menu-item-height': menuItemHeight,
+      '--rify-menu-item-margin-block': menuItemMarginBlock,
+      '--rify-menu-item-margin-inline': menuItemMarginInline,
+      '--rify-menu-item-selected-color': primaryColor,
+      '--rify-menu-item-selected-bg': changeColor(primaryColor, { alpha: 0.08 }),
+      '--rify-menu-item-width': menuItemWidth,
       '--rify-color': color,
       '--rify-motion-duration': motionDuration,
-      // '--rify-border-radius': borderRadius,
-      // '--rify-box-shadow': boxShadow,
-      // '--rify-height': height,
-      // '--rify-padding-sm': paddingSM,
-      // '--rify-padding-xs': paddingXS,
-      // '--rify-size-popup-arrow': arrowPopupSize,
+      '--rify-motion-duration-mid': motionDurationMid,
+      '--rify-padding': padding,
       '--rify-text-color': textColor,
+
+      // dark theme
+      '--rify-dark-border-color': darkBorderColor,
+      '--rify-dark-color': darkColor,
+      '--rify-dark-group-title-color': darkTextColor,
+      '--rify-menu-dark-item-bg': darkMenuBgColor,
+      '--rify-menu-dark-item-color': darkTextColor,
+      '--rify-menu-dark-item-selected-bg': primaryColor,
+      '--rify-menu-dark-item-selected-color': darkSelectedColor,
       ...overrideStyle,
     };
   };
