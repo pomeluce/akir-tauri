@@ -10,7 +10,7 @@ const getRealHeight: MotionEventHandler = node => {
 const getCurrentHeight: MotionEventHandler = node => ({ height: node ? node.offsetHeight : 0 });
 const skipOpacityTransition: MotionEndEventHandler = (_, event: MotionEvent) => event?.deadline === true || (event as TransitionEvent).propertyName === 'height';
 
-const initCollapseMotion = (rootCls: string = 'ant'): CSSMotionProps => ({
+const initCollapseMotion = (rootCls: string = 'rify'): CSSMotionProps => ({
   motionName: `${rootCls}-motion-collapse`,
   onAppearStart: getCollapsedHeight,
   onEnterStart: getCollapsedHeight,

@@ -4,6 +4,7 @@ import { MenuTheme } from './interface';
 export interface MenuContextProps {
   mergedClsPrefix: string;
   firstLevel: boolean;
+  direction?: 'ltr' | 'rtl' | undefined;
   inlineCollapsed: boolean;
   theme?: MenuTheme;
 }

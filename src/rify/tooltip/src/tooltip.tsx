@@ -178,10 +178,6 @@ const tooltip: React.ForwardRefExoticComponent<TooltipProps & RefAttributes<Tool
   // Hide tooltip when there is no title
   const mergedVisible = !('open' in props) && noTitle ? false : visible;
 
-  useEffect(() => {
-    console.log(mergedVisible);
-  }, [mergedVisible]);
-
   const classes = classNames(
     overlayClassName,
     {

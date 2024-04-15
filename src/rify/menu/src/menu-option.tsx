@@ -23,7 +23,7 @@ type GenericComponent = Omit<MenuOptionComponent, ''> & {
 const menuOption: GenericComponent = props => {
   const { className, children, icon, title, disabled } = props;
 
-  const { firstLevel, inlineCollapsed: isInlineCollapsed, mergedClsPrefix } = useContext<MenuContextProps>(MenuContext);
+  const { direction, firstLevel, inlineCollapsed: isInlineCollapsed, mergedClsPrefix } = useContext<MenuContextProps>(MenuContext);
 
   const renderItemChildren = (inlineCollapsed: boolean) => {
     const wrapNode = <span className={`${mergedClsPrefix}-title-content`}>{children}</span>;
@@ -52,7 +52,7 @@ const menuOption: GenericComponent = props => {
   const childrenLength = toArray(children).length;
 
   return (
-    <Tooltip {...tooltipProps}>
+    <Tooltip {...tooltipProps} placement={direction === 'rtl' ? 'left' : 'right'} overlayClassName={`${mergedClsPrefix}-inline-collapsed-tooltip`}>
       <Item
         {...omit(props, ['title', 'icon'])}
         className={classNames(

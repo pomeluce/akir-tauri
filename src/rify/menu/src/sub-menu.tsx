@@ -32,8 +32,6 @@ const subMenu: React.FC<SubMenuProps> = props => {
   const context = useContext(MenuContext);
   const { mergedClsPrefix, inlineCollapsed, theme: contextTheme } = context;
 
-  const contextValue = useMemo<MenuContextProps>(() => ({ ...context, firstLevel: false }), [context]);
-
   const parentPath = useFullPath();
 
   let titleNode: ReactNode;
@@ -57,6 +55,8 @@ const subMenu: React.FC<SubMenuProps> = props => {
       </>
     );
   }
+
+  const contextValue = useMemo<MenuContextProps>(() => ({ ...context, firstLevel: false }), [context]);
 
   return (
     <MenuContext.Provider value={contextValue}>

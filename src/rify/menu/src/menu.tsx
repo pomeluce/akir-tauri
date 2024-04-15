@@ -3,14 +3,15 @@ import { MenuTheme, OptionType } from './interface';
 import { EllipsisIcon } from '../../_internal';
 import RcMenu, { MenuRef as RcMenuRef, MenuProps as RcMenuProps } from 'rc-menu';
 import MenuContext, { MenuContextProps } from './menu-context';
-import { useConfig, useTheme } from '../../_mixins';
-import { initCollapseMotion } from '../../_utils';
+import { useConfig, useStyle, useTheme } from '../../_mixins';
+import { cB, initCollapseMotion } from '../../_utils';
 import { menuLight } from '../styles';
 import { changeColor } from 'seemly';
 import useOptions from '../hooks/useOptions';
 import classNames from 'classnames';
 import omit from 'rc-util/lib/omit';
 import style from './styles/index.cssr';
+import { CProperties, hash } from 'css-render';
 
 export interface MenuProps extends Omit<RcMenuProps, 'items'> {
   theme?: MenuTheme;
@@ -45,7 +46,11 @@ const menu: React.ForwardRefExoticComponent<MenuProps & { collapsedWidth?: strin
       self: {
         borderColor,
         borderRadius,
+        borderRadiusMedium,
+        boxShadow,
         color,
+        cubicBezierEaseOutCirc,
+        cubicBezierEaseInOutCirc,
         fontSize,
         fontSizeLarge,
         groupTitleLineHeight,
@@ -64,6 +69,7 @@ const menu: React.ForwardRefExoticComponent<MenuProps & { collapsedWidth?: strin
         menuItemMarginBlock,
         menuItemMarginInline,
         menuItemWidth,
+        menuZIndexPopup,
         motionDuration,
         motionDurationMid,
         padding,
@@ -81,6 +87,9 @@ const menu: React.ForwardRefExoticComponent<MenuProps & { collapsedWidth?: strin
       '--rify-bezier-x': cubicBezierEaseOut,
       '--rify-border-color': borderColor,
       '--rify-border-radius': borderRadius,
+      '--rify-border-radius-lg': borderRadiusMedium,
+      '--rify-box-shadow': boxShadow,
+      '--rify-color': color,
       '--rify-font-size': fontSize,
       '--rify-font-size-lg': fontSizeLarge,
       '--rify-group-line-height': groupTitleLineHeight,
@@ -102,9 +111,11 @@ const menu: React.ForwardRefExoticComponent<MenuProps & { collapsedWidth?: strin
       '--rify-menu-item-selected-color': primaryColor,
       '--rify-menu-item-selected-bg': changeColor(primaryColor, { alpha: 0.08 }),
       '--rify-menu-item-width': menuItemWidth,
-      '--rify-color': color,
+      '--rify-menu-z-index-popup': menuZIndexPopup,
       '--rify-motion-duration': motionDuration,
       '--rify-motion-duration-mid': motionDurationMid,
+      '--rify-motion-ease-out-circ': cubicBezierEaseOutCirc,
+      '--rify-motion-ease-in-out-circ': cubicBezierEaseInOutCirc,
       '--rify-padding': padding,
       '--rify-text-color': textColor,
 
@@ -119,6 +130,8 @@ const menu: React.ForwardRefExoticComponent<MenuProps & { collapsedWidth?: strin
       ...overrideStyle,
     };
   };
+  const hashId = hash(mergedClsPrefix);
+  useStyle(`-${hashId}`, cB(hashId, cssVars() as CProperties), mergedClsPrefix);
 
   // Inline Collapsed
   const mergedInlineCollapsed = useMemo(() => {
@@ -138,6 +151,7 @@ const menu: React.ForwardRefExoticComponent<MenuProps & { collapsedWidth?: strin
       mergedClsPrefix: `${mergedClsPrefix}-menu`,
       inlineCollapsed: mergedInlineCollapsed || false,
       firstLevel: true,
+      direction: typeof mergedRtl === 'object' ? 'ltr' : mergedRtl,
       theme: menuTheme,
       mode,
     }),
@@ -157,6 +171,7 @@ const menu: React.ForwardRefExoticComponent<MenuProps & { collapsedWidth?: strin
         overflowedIndicatorPopupClassName={classNames(mergedClsPrefix, `${mergedClsPrefix}-menu-${menuTheme}`, overflowedIndicatorPopupClassName)}
         prefixCls={`${mergedClsPrefix}-menu`}
         style={cssVars()}
+        rootClassName={`${mergedClsPrefix}-${hashId}`}
         {...passedProps}
       >
         {mergedChildren}

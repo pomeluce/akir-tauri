@@ -4,12 +4,14 @@ import type { ThemeCommonVars } from '../../_styles/common';
 import type { Theme } from '../../_mixins';
 
 export const self = (vars: ThemeCommonVars) => {
-  const { borderRadius, dividerColor, menuColor, textColor2, fontSize, fontSizeHuge } = vars;
+  const { borderRadius, borderRadiusMedium, boxShadow3, dividerColor, menuColor, textColor2, fontSize, fontSizeHuge } = vars;
   return {
     ...commonVariables,
     menuBgColor: 'rgba(0, 0, 0, 0.02)',
     groupTitleColor: 'rgba(0, 0, 0, 0.45)',
     borderRadius,
+    borderRadiusMedium,
+    boxShadow: boxShadow3,
     borderColor: dividerColor,
     color: menuColor,
     fontSize,

@@ -1,4 +1,6 @@
 export default {
+  cubicBezierEaseOutCirc: 'cubic-bezier(0.08, 0.82, 0.17, 1)',
+  cubicBezierEaseInOutCirc: 'cubic-bezier(0.78, 0.14, 0.15, 0.86)',
   lineWidth: '1px',
   lineType: 'solid',
   groupTitleLineHeight: '1.5714285714285714',
@@ -13,6 +15,7 @@ export default {
   menuItemHeight: '40px',
   menuItemMarginInline: '4px',
   menuItemMarginBlock: '4px',
+  menuZIndexPopup: '1050',
   motionDuration: '.3s',
   motionDurationMid: '.2s',
   padding: '16px',

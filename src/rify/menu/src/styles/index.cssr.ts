@@ -4,6 +4,8 @@ import { c, cB, cNotB } from '../../../_utils';
 // --rify-bezier-x
 // --rify-border-color
 // --rify-border-radius
+// --rify-border-radius-lg
+// --rify-box-shadow
 // --rify-font-size
 // --rify-font-size-lg
 // --rify-group-line-height
@@ -25,8 +27,11 @@ import { c, cB, cNotB } from '../../../_utils';
 // --rify-menu-item-selected-color
 // --rify-menu-item-selected-bg
 // --rify-menu-item-width
+// --rify-menu-z-index-popup
 // --rify-motion-duration
 // --rify-motion-duration-mid
+// --rify-motion-ease-out-circ
+// --rify-motion-ease-in-out-circ
 // --rify-padding
 // --rify-text-color
 
@@ -142,6 +147,9 @@ export default c([
       cB('menu-submenu-arrow', [
         c('&::before', {
           transform: 'rotate(45deg) translateY(calc(calc(calc(var(--rify-font-size)/7 * 5) * 0.25) * -1))',
+        }),
+        c('&::after', {
+          transform: 'rotate(-45deg) translateY(calc(calc(var(--rify-font-size)/7 * 5) * 0.25))',
         }),
         c('&::before, &::after', {
           content: '""',
@@ -369,6 +377,10 @@ export default c([
       background: 'var(--rify-dark-color)',
     },
     [
+      c(({ props: { bPrefix } }) => `> ${bPrefix}menu`, {
+        color: 'var(--rify-menu-dark-item-color)',
+        background: 'var(--rify-dark-color)',
+      }),
       cNotB('menu-root', [
         c(({ props: { bPrefix } }) => `&${bPrefix}menu-inline, &${bPrefix}menu-vertical`, {
           borderInlineEnd: '0 var(--rify-line-type) var(--rify-border-color)',
@@ -430,7 +442,7 @@ export default c([
   cB('menu-hidden', {
     display: 'none',
   }),
-  cB('submenu--hidden', {
+  cB('menu-submenu-hidden', {
     display: 'none',
   }),
   cB(
@@ -472,4 +484,142 @@ export default c([
       ]),
     ],
   ),
+  cB('menu-inline-collapsed-tooltip', {
+    pointerEvents: 'none',
+  }),
+  cB(
+    'menu-submenu-popup',
+    {
+      position: 'absolute',
+      zIndex: 'var(--rify-menu-z-index-popup)',
+      borderRadius: 'var(--rify-border-radius-lg)',
+      boxShadow: 'none',
+      transformOrigin: '0 0',
+    },
+    [
+      cNotB('menu-submenu', {
+        background: '0 0',
+      }),
+      c('&::before', {
+        content: '""',
+        position: 'absolute',
+        inset: 0,
+        zIndex: -1,
+        width: '100%',
+        height: '100%',
+        opacity: 0,
+      }),
+      c(({ props: { bPrefix } }) => `> ${bPrefix}menu`, { borderRadius: 'var(--rify-border-radius-lg)' }, [
+        cB(({ props: { bPrefix } }) => `menu-submenu-expand-icon, ${bPrefix}menu-submenu-arrow`, {
+          position: 'absolute',
+          top: '50%',
+          insetInlineEnd: 'var(--rify-margin)',
+          width: 'calc(var(--rify-font-size) / 7 * 5)',
+          color: 'currentcolor',
+          transform: 'translateY(-50%)',
+          transition: 'transform var(--rify-motion-duration) var(--rify-bezier),opacity var(--rify-motion-duration)',
+        }),
+        cB('menu-submenu-arrow', [
+          c('&::before', {
+            transform: 'rotate(45deg) translateY(calc(calc(calc(var(--rify-font-size)/7 * 5) * 0.25) * -1))',
+          }),
+          c('&::after', {
+            transform: 'rotate(-45deg) translateY(calc(calc(var(--rify-font-size)/7 * 5) * 0.25))',
+          }),
+          c('&::before, &::after', {
+            content: '""',
+            position: 'absolute',
+            width: 'calc(calc(var(--rify-font-size)/7 * 5) * 0.6)',
+            height: 'calc(calc(var(--rify-font-size)/7 * 5) * 0.15)',
+            backgroundColor: 'currentcolor',
+            borderRadius: 'var(--rify-border-radius)',
+            transition:
+              'background var(--rify-motion-duration) var(--rify-bezier),transform var(--rify-motion-duration) var(--rify-bezier),top var(--rify-motion-duration) var(--rify-bezier),color var(--rify-motion-duration) var(--rify-bezier)',
+          }),
+          cB(({ props: { bPrefix } }) => `menu-item, ${bPrefix}menu-submenu-title`, {
+            position: 'relative',
+            display: 'block',
+            margin: 0,
+            whiteSpace: 'nowrap',
+            cursor: 'pointer',
+            transition: 'border-color var(--rify-motion-duration),background var(--rify-motion-duration),padding var(--rify-motion-duration) var(--rify-bezier)',
+          }),
+        ]),
+      ]),
+      cB('menu-vertical', { boxShadow: 'var(--rify-box-shadow)' }),
+    ],
+  ),
+  cB(({ props: { bPrefix } }) => `menu-submenu-placement-leftTop, ${bPrefix}menu-submenu-placement-bottomRight, ${bPrefix}menu-submenu`, {
+    transformOrigin: '100% 0',
+  }),
+  cB(({ props: { bPrefix } }) => `menu-submenu-placement-leftBottom, ${bPrefix}menu-submenu-placement-topRight, ${bPrefix}menu-submenu`, {
+    transformOrigin: '100% 100%',
+  }),
+  cB(({ props: { bPrefix } }) => `menu-submenu-placement-rightBottom, ${bPrefix}menu-submenu-placement-topLeft, ${bPrefix}menu-submenu`, {
+    transformOrigin: '0 100%',
+  }),
+  cB(({ props: { bPrefix } }) => `menu-submenu-placement-bottomLeft, ${bPrefix}menu-submenu-placement-rightTop, ${bPrefix}menu-submenu`, {
+    transformOrigin: '0 0',
+  }),
+  cB(({ props: { bPrefix } }) => `menu-submenu-placement-leftTop, ${bPrefix}menu-submenu-placement-leftBottom`, {
+    paddingInlineEnd: 'calc(var(--rify-padding) / 2)',
+  }),
+  cB(({ props: { bPrefix } }) => `menu-submenu-placement-rightTop, ${bPrefix}menu-submenu-placement-rightBottom`, {
+    paddingInlineStart: 'calc(var(--rify-padding) / 2)',
+  }),
+  cB(({ props: { bPrefix } }) => `menu-submenu-placement-topRight, ${bPrefix}menu-submenu-placement-topLeft`, {
+    paddingBottom: 'calc(var(--rify-padding) / 2)',
+  }),
+  cB(({ props: { bPrefix } }) => `menu-submenu-placement-bottomRight, ${bPrefix}menu-submenu-placement-bottomLeft`, {
+    paddingTop: 'calc(var(--rify-padding) / 2)',
+  }),
+  cB(({ props: { bPrefix } }) => `zoom-big-enter, ${bPrefix}zoom-big-appear`, {
+    animationDuration: 'var(--rify-motion-duration-mid)',
+    animationFillMode: 'both',
+    animationPlayState: 'paused',
+  }),
+  cB('zoom-big-leave', {
+    animationDuration: 'var(--rify-motion-duration-mid)',
+    animationFillMode: 'both',
+    animationPlayState: 'paused',
+  }),
+  c(({ props: { bPrefix } }) => `${bPrefix}zoom-big-enter${bPrefix}zoom-big-enter-active, ${bPrefix}zoom-big-appear${bPrefix}zoom-big-appear-active`, {
+    animationName: 'rifyZoomBigIn',
+    animationPlayState: 'running',
+  }),
+  c(({ props: { bPrefix } }) => `${bPrefix}zoom-big-leave${bPrefix}zoom-big-leave-active`, {
+    animationName: 'rifyZoomBigOut',
+    animationPlayState: 'running',
+    pointerEvents: 'none',
+  }),
+  cB(({ props: { bPrefix } }) => `zoom-big-enter, ${bPrefix}zoom-big-appear`, {
+    transform: 'scale(0)',
+    opacity: 0,
+    animationTimingFunction: 'var(--rify-motion-ease-out-circ)',
+  }),
+  cB(({ props: { bPrefix } }) => `zoom-big-enter-prepare, ${bPrefix}zoom-big-appear-prepare`, {
+    transform: 'none',
+  }),
+  cB('zoom-big-leave', {
+    animationTimingFunction: 'var(--rify-motion-ease-in-out-circ)',
+  }),
+  c('@keyframes rifyZoomBigIn', {
+    '0%': {
+      transform: 'scale(.8)',
+      opacity: 0,
+    },
+    '100%': {
+      transform: 'scale(1)',
+      opacity: 1,
+    },
+  }),
+  c('@keyframes rifyZoomBigOut', {
+    '0%': {
+      transform: 'scale(1)',
+    },
+    '100%': {
+      transform: 'scale(.8)',
+      opacity: 0,
+    },
+  }),
 ]);
