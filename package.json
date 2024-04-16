@@ -45,7 +45,7 @@
     "@css-render/plugin-bem": "^0.15.12",
     "@types/mockjs": "^1.0.10",
     "@types/node": "^20.12.7",
-    "@types/react": "^18.2.78",
+    "@types/react": "^18.2.79",
     "@types/react-dom": "^18.2.25",
     "@unocss/reset": "^0.58.9",
     "@unocss/transformer-directives": "^0.58.9",

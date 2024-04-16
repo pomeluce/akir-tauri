@@ -16,8 +16,16 @@ import { c, cB, cNotB } from '../../../_utils';
 // --rify-margin-xs
 // --rify-menu-active-bar-border-width
 // --rify-menu-active-bar-width
+// --rify-menu-active-bar-height
 // --rify-menu-collapsed-icon-size
 // --rify-menu-collapsed-width
+// --rify-menu-disabled-color
+// --rify-menu-horizontal-border-radius
+// --rify-menu-horizontal-line-height
+// --rify-menu-horizontal-hover-bg
+// --rify-menu-hover-color
+// --rify-menu-hover-bg
+// --rify-menu-active-bg
 // --rify-menu-icon-margin-inline-end
 // --rify-menu-item-bg
 // --rify-menu-item-color
@@ -32,13 +40,19 @@ import { c, cB, cNotB } from '../../../_utils';
 // --rify-motion-duration-mid
 // --rify-motion-ease-out-circ
 // --rify-motion-ease-in-out-circ
+// --rify-motion-ease-in-quint
+// --rify-motion-ease-out-quint
 // --rify-padding
+// --rify-padding-inline
 // --rify-text-color
 
 // dark theme
 // --rify-dark-border-color
 // --rify-dark-color
 // --rify-dark-group-title-color
+// --rify-menu-dark-disabled-color
+// --rify-menu-dark-hover-color
+// --rify-menu-dark-hover-bg
 // --rify-menu-dark-item-bg
 // --rify-menu-dark-item-color
 // --rify-menu-dark-item-selected-bg
@@ -200,6 +214,21 @@ export default c([
         overflow: 'hidden',
         transition: 'height var(--rify-motion-duration-mid) var(--rify-bezier),opacity var(--rify-motion-duration-mid) var(--rify-bezier)!important',
       }),
+      cB(
+        ({ props: { bPrefix } }) => `menu-item-disabled, ${bPrefix}menu-submenu-disabled`,
+        {
+          background: '0 0!important',
+          cursor: 'not-allowed',
+        },
+        [
+          c('&::after', { borderColor: 'transparent!important' }),
+          c('& a', { color: 'inherit!important' }),
+          c(({ props: { bPrefix } }) => `> ${bPrefix}menu-submenu-title`, {
+            color: 'inherit!important',
+            cursor: 'not-allowed',
+          }),
+        ],
+      ),
     ],
   ),
   cB('menu-inline', { width: '100%' }, [
@@ -307,14 +336,96 @@ export default c([
     }),
   ]),
   cB(
+    'menu-horizontal',
+    {
+      lineHeight: 'var(--rify-menu-horizontal-line-height)',
+      border: 0,
+      borderBottom: 'var(--rify-line-width) var(--rify-line-type) var(--rify-border-color)',
+      boxShadow: 'none',
+    },
+    [
+      c('&::after', {
+        content: '"\\20"',
+        display: 'block',
+        clear: 'both',
+        height: 0,
+      }),
+      cB(({ props: { bPrefix } }) => `menu-item, ${bPrefix}menu-submenu`, {
+        position: 'relative',
+        display: 'inline-block',
+        verticalAlign: 'bottom',
+        paddingInline: 'var(--rify-padding-inline)',
+      }),
+      cB(({ props: { bPrefix } }) => `menu-item, ${bPrefix}menu-submenu-title`, {
+        transition: 'border-color var(--rify-motion-duration),background var(--rify-motion-duration)',
+      }),
+      cB('menu-submenu-arrow', { display: 'none' }),
+    ],
+  ),
+  cB('menu-overflow', { display: 'flex' }, [cB('menu-item', { flex: 'none' })]),
+  cB(
     'menu-light',
     {
       color: 'var(--rify-menu-item-color)',
       background: 'var(--rify-color)',
     },
     [
+      c(
+        ({ props: { bPrefix } }) => `> ${bPrefix}menu`,
+        {
+          color: 'var(--rify-menu-item-color)',
+          background: 'var(--rify-color)',
+        },
+        [
+          cNotB('menu-root', [
+            c(({ props: { bPrefix } }) => `${bPrefix}menu-inline, ${bPrefix}menu-vertical`, {
+              borderInlineEnd: 'var(--rify-menu-active-bar-border-width) var(--rify-line-type) var(--rify-border-color)',
+            }),
+          ]),
+          cNotB('menu-horizontal', [
+            c(
+              ({ props: { bPrefix } }) => `> ${bPrefix}menu-item, > ${bPrefix}menu-submenu`,
+              {
+                top: 'var(--rify-menu-active-bar-border-width)',
+                marginTop: 'calc(var(--rify-menu-active-bar-border-width) * -1)',
+                marginBottom: 0,
+                borderRadius: 'var(--rify-menu-horizontal-border-radius)',
+              },
+              [
+                c('&::after', {
+                  content: '""',
+                  position: 'absolute',
+                  insetInline: 'var(--rify-padding-inline)',
+                  bottom: 0,
+                  borderBottom: 'var(--rify-menu-active-bar-height) solid transparent',
+                  transition: 'border-color var(--rify-motion-duration) var(--rify-bezier)',
+                }),
+                c('&:hover', {
+                  background: 'var(--rify-menu-horizontal-hover-bg)',
+                }),
+              ],
+            ),
+            c(({ props: { bPrefix } }) => `> ${bPrefix}menu-item-active, > ${bPrefix}menu-submenu-active, > ${bPrefix}menu-item-open, > ${bPrefix}menu-submenu-open`, {
+              background: 'var(--rify-menu-horizontal-hover-bg)',
+            }),
+            c(
+              ({ props: { bPrefix } }) => `> ${bPrefix}menu-item-selected, > ${bPrefix}menu-submenu-selected`,
+              {
+                color: 'var(--rify-menu-item-selected-color)',
+                backgroundColor: 'var(--rify-menu-horizontal-hover-bg)',
+              },
+              [
+                c('&::after', {
+                  borderBottomWidth: 'var(--rify-menu-active-bar-height)',
+                  borderBottomColor: 'var(--rify-menu-item-selected-color)',
+                }),
+              ],
+            ),
+          ]),
+        ],
+      ),
       cNotB('menu-root', [
-        cNotB('menu-inline', {
+        c(({ props: { bPrefix } }) => `&${bPrefix}menu-inline, &${bPrefix}menu-vertical`, {
           borderInlineEnd: 'var(--rify-menu-active-bar-border-width) var(--rify-line-type) var(--rify-border-color)',
         }),
       ]),
@@ -368,6 +479,83 @@ export default c([
       cB('menu-item-group-title', {
         color: 'var(--rify-group-title-color)',
       }),
+      cNotB('menu-horizontal', [
+        c(
+          ({ props: { bPrefix } }) => `> ${bPrefix}menu-item, > ${bPrefix}menu-submenu`,
+          {
+            top: 'var(--rify-menu-active-bar-border-width)',
+            marginTop: 'calc(var(--rify-menu-active-bar-border-width) * -1)',
+            marginBottom: 0,
+            borderRadius: 'var(--rify-menu-horizontal-border-radius)',
+          },
+          [
+            c('&::after', {
+              content: '""',
+              position: 'absolute',
+              insetInline: 'var(--rify-padding-inline)',
+              bottom: 0,
+              borderBottom: 'var(--rify-menu-active-bar-height) solid transparent',
+              transition: 'border-color var(--rify-motion-duration) var(--rify-bezier)',
+            }),
+            c('&:hover', {
+              background: 'var(--rify-menu-horizontal-hover-bg)',
+            }),
+          ],
+        ),
+        c(({ props: { bPrefix } }) => `> ${bPrefix}menu-item-active, > ${bPrefix}menu-submenu-active, > ${bPrefix}menu-item-open, > ${bPrefix}menu-submenu-open`, {
+          background: 'var(--rify-menu-horizontal-hover-bg)',
+        }),
+        c(
+          ({ props: { bPrefix } }) => `> ${bPrefix}menu-item-selected, > ${bPrefix}menu-submenu-selected`,
+          {
+            color: 'var(--rify-menu-item-selected-color)',
+            backgroundColor: 'var(--rify-menu-horizontal-hover-bg)',
+          },
+          [
+            c('&::after', {
+              borderBottomWidth: 'var(--rify-menu-active-bar-height)',
+              borderBottomColor: 'var(--rify-menu-item-selected-color)',
+            }),
+          ],
+        ),
+      ]),
+      cB(({ props: { bPrefix } }) => `menu-item-disabled, ${bPrefix}menu-submenu-disabled`, {
+        color: 'var(--rify-menu-disabled-color)!important',
+      }),
+      cB('memu-item', [
+        c(
+          ({ props: { bPrefix } }) => `&:not(${bPrefix}menu-item-selected):not(${bPrefix}menu-submenu-selected)`,
+          [
+            c(({ props: { bPrefix } }) => `&:hover, &> ${bPrefix}menu-submenu-title:hover`, {
+              color: 'var(--rify-menu-hover-color)',
+            }),
+          ],
+        ),
+      ]),
+      c(
+        ({ props: { bPrefix } }) => `&:not(${bPrefix}menu-horizontal)`,
+        [
+          cB(
+            ({ props: { bPrefix } }) => `menu-item:not(${bPrefix}menu-item-selected)`,
+            [
+              c('&:hover', {
+                backgroundColor: 'var(--rify-menu-hover-bg)',
+              }),
+              c('&:active', {
+                backgroundColor: 'var(--rify-menu-active-bg)',
+              }),
+            ],
+          ),
+          cB('menu-submenu-title', [
+            c('&:hover', {
+              backgroundColor: 'var(--rify-menu-hover-bg)',
+            }),
+            c('&:active', {
+              backgroundColor: 'var(--rify-menu-active-bg)',
+            }),
+          ]),
+        ],
+      ),
     ],
   ),
   cB(
@@ -377,10 +565,31 @@ export default c([
       background: 'var(--rify-dark-color)',
     },
     [
-      c(({ props: { bPrefix } }) => `> ${bPrefix}menu`, {
-        color: 'var(--rify-menu-dark-item-color)',
-        background: 'var(--rify-dark-color)',
-      }),
+      c(
+        ({ props: { bPrefix } }) => `> ${bPrefix}menu`,
+        {
+          color: 'var(--rify-menu-dark-item-color)',
+          background: 'var(--rify-dark-color)',
+        },
+        [
+          cNotB('menu-root', [
+            c(({ props: { bPrefix } }) => `&${bPrefix}menu-inline, &${bPrefix}menu-vertical`, {
+              borderInlineEnd: '0 var(--rify-line-type) var(--rify-border-color)',
+            }),
+          ]),
+
+          cB('memu-item', [
+            c(
+              ({ props: { bPrefix } }) => `&:not(${bPrefix}menu-item-selected):not(${bPrefix}menu-submenu-selected)`,
+              [
+                c(({ props: { bPrefix } }) => `&:hover, &> ${bPrefix}menu-submenu-title:hover`, {
+                  color: 'var(--rify-menu-dark-hover-color)',
+                }),
+              ],
+            ),
+          ]),
+        ],
+      ),
       cNotB('menu-root', [
         c(({ props: { bPrefix } }) => `&${bPrefix}menu-inline, &${bPrefix}menu-vertical`, {
           borderInlineEnd: '0 var(--rify-line-type) var(--rify-border-color)',
@@ -437,6 +646,115 @@ export default c([
       cB('menu-item-group-title', {
         color: 'var(--rify-dark-group-title-color)',
       }),
+      cNotB(
+        'menu-horizontal',
+        {
+          borderBottom: 0,
+        },
+        [
+          c(({ props: { bPrefix } }) => `> ${bPrefix}menu-item, > ${bPrefix}menu-submenu-title`, {
+            color: 'var(--rify-menu-dark-item-color)',
+          }),
+          c(
+            ({ props: { bPrefix } }) => `> ${bPrefix}menu-item, > ${bPrefix}menu-submenu`,
+            {
+              top: 0,
+              marginTop: 'calc(0px * -1)',
+              marginBottom: 0,
+              borderRadius: 'var(--rify-menu-horizontal-border-radius)',
+            },
+            [
+              c('&::after', {
+                content: '""',
+                position: 'absolute',
+                insetInline: 'var(--rify-padding-inline)',
+                bottom: 0,
+                borderBottom: 'var(--rify-menu-active-bar-height) solid transparent',
+                transition: 'border-color var(--rify-motion-duration) var(--rify-bezier)',
+              }),
+              c(
+                '&:hover',
+                {
+                  background: 'var(--rify-menu-horizontal-hover-bg)',
+                },
+                [
+                  c('&:after', {
+                    borderBottomWidth: 0,
+                    borderBottomColor: 'var(--rify-menu-dark-item-selected-color)',
+                  }),
+                ],
+              ),
+            ],
+          ),
+          c(
+            ({ props: { bPrefix } }) => `> ${bPrefix}menu-item-active, > ${bPrefix}menu-submenu-active, > ${bPrefix}menu-item-open, > ${bPrefix}menu-submenu-open`,
+            {
+              background: 'var(--rify-menu-horizontal-hover-bg)',
+            },
+            [
+              c('&:after', {
+                borderBottomWidth: 0,
+                borderBottomColor: 'var(--rify-menu-dark-item-selected-color)',
+              }),
+            ],
+          ),
+          cB('menu-item-selected', {
+            color: 'var(--rify-menu-dark-item-selected-color)',
+            backgroundColor: 'var(--rify-menu-dark-item-selected-bg)',
+          }),
+          c(
+            ({ props: { bPrefix } }) => `> ${bPrefix}menu-item-selected, > ${bPrefix}menu-submenu-selected`,
+            {
+              color: 'var(--rify-menu-dark-item-selected-color)',
+              backgroundColor: 'var(--rify-menu-dark-item-selected-bg)',
+            },
+            [
+              c('&::after', {
+                borderBottomWidth: 0,
+                borderBottomColor: 'var(--rify-menu-dark-item-selected-color)',
+              }),
+              c('&:hover', { backgroundColor: 'var(--rify-menu-dark-item-selected-bg)' }),
+            ],
+          ),
+        ],
+      ),
+      cB(({ props: { bPrefix } }) => `menu-item-disabled, ${bPrefix}menu-submenu-disabled`, {
+        color: 'var(--rify-menu-dark-disabled-color)!important',
+      }),
+      cB('memu-item', [
+        c(
+          ({ props: { bPrefix } }) => `&:not(${bPrefix}menu-item-selected):not(${bPrefix}menu-submenu-selected)`,
+          [
+            c(({ props: { bPrefix } }) => `&:hover, &> ${bPrefix}menu-submenu-title:hover`, {
+              color: 'var(--rify-menu-dark-hover-color)',
+            }),
+          ],
+        ),
+      ]),
+      c(
+        ({ props: { bPrefix } }) => `&:not(${bPrefix}menu-horizontal)`,
+        [
+          cB(
+            ({ props: { bPrefix } }) => `menu-item:not(${bPrefix}menu-item-selected)`,
+            [
+              c('&:hover', {
+                backgroundColor: 'var(--rify-menu-dark-hover-bg)',
+              }),
+              c('&:active', {
+                backgroundColor: 'transparent',
+              }),
+            ],
+          ),
+          cB('menu-submenu-title', [
+            c('&:hover', {
+              backgroundColor: 'var(--rify-menu-dark-hover-bg)',
+            }),
+            c('&:active', {
+              backgroundColor: 'transparent',
+            }),
+          ]),
+        ],
+      ),
     ],
   ),
   cB('menu-hidden', {
@@ -602,6 +920,116 @@ export default c([
   }),
   cB('zoom-big-leave', {
     animationTimingFunction: 'var(--rify-motion-ease-in-out-circ)',
+  }),
+  cB(({ props: { bPrefix } }) => `slide-up-enter, ${bPrefix}slide-up-appear`, {
+    animationDuration: 'var(--rify-motion-duration-mid)',
+    animationFillMode: 'both',
+    animationPlayState: 'paused',
+  }),
+  cB('slide-up-leave', {
+    animationDuration: 'var(--rify-motion-duration-mid)',
+    animationFillMode: 'both',
+    animationPlayState: 'paused',
+  }),
+  c(({ props: { bPrefix } }) => `${bPrefix}slide-up-enter${bPrefix}slide-up-enter-active, ${bPrefix}slide-up-appear${bPrefix}slide-up-appear-active`, {
+    animationName: 'rifySlideUpIn',
+    animationPlayState: 'running',
+  }),
+  c(({ props: { bPrefix } }) => `${bPrefix}slide-up-leave${bPrefix}slide-up-leave-active`, {
+    animationName: 'rifySlideUpOut',
+    animationPlayState: 'running',
+    pointerEvents: 'none',
+  }),
+  cB(({ props: { bPrefix } }) => `slide-up-enter, ${bPrefix}slide-up-appear`, {
+    transform: 'scale(0)',
+    transformOrigin: '0% 0%',
+    opacity: 0,
+    animationTimingFunction: 'var(--rify-motion-ease-out-quint)',
+  }),
+  cB(({ props: { bPrefix } }) => `slide-up-enter-prepare, ${bPrefix}slide-up-appear-prepare`, {
+    transform: 'scale(1)',
+  }),
+  cB('slide-up-leave', {
+    animationTimingFunction: 'var(--rify-motion-ease-in-quint)',
+  }),
+  cB(({ props: { bPrefix } }) => `slide-down-enter, ${bPrefix}slide-down-appear`, {
+    animationDuration: 'var(--rify-motion-duration-mid)',
+    animationFillMode: 'both',
+    animationPlayState: 'paused',
+  }),
+  cB('slide-down-leave', {
+    animationDuration: 'var(--rify-motion-duration-mid)',
+    animationFillMode: 'both',
+    animationPlayState: 'paused',
+  }),
+  c(({ props: { bPrefix } }) => `${bPrefix}slide-down-enter${bPrefix}slide-down-enter-active, ${bPrefix}slide-down-appear${bPrefix}slide-down-appear-active`, {
+    animationName: 'rifySlideDownIn',
+    animationPlayState: 'running',
+  }),
+  c(({ props: { bPrefix } }) => `${bPrefix}slide-down-leave${bPrefix}slide-down-leave-active`, {
+    animationName: 'rifySlideDownOut',
+    animationPlayState: 'running',
+    pointerEvents: 'none',
+  }),
+  cB(({ props: { bPrefix } }) => `slide-down-enter, ${bPrefix}slide-down-appear`, {
+    transform: 'scale(0)',
+    transformOrigin: '0% 0%',
+    opacity: 0,
+    animationTimingFunction: 'var(--rify-motion-ease-out-quint)',
+  }),
+  cB(({ props: { bPrefix } }) => `slide-down-enter-prepare, ${bPrefix}slide-down-appear-prepare`, {
+    transform: 'scale(1)',
+  }),
+  cB('slide-down-leave', {
+    animationTimingFunction: 'var(--rify-motion-ease-in-quint)',
+  }),
+  c('@keyframes rifySlideUpIn', {
+    '0%': {
+      transform: 'scaleY(.8)',
+      transformOrigin: '0% 0%',
+      opacity: 0,
+    },
+    '100%': {
+      transform: 'scaleY(1)',
+      transformOrigin: '0% 0%',
+      opacity: 1,
+    },
+  }),
+  c('@keyframes rifySlideUpOut', {
+    '0%': {
+      transform: 'scaleY(1)',
+      transformOrigin: '0% 0%',
+      opacity: 1,
+    },
+    '100%': {
+      transform: 'scaleY(.8)',
+      transformOrigin: '0% 0%',
+      opacity: 0,
+    },
+  }),
+  c('@keyframes rifySlideDownIn', {
+    '0%': {
+      transform: 'scaleY(.8)',
+      transformOrigin: '0% 0%',
+      opacity: 0,
+    },
+    '100%': {
+      transform: 'scaleY(1)',
+      transformOrigin: '0% 0%',
+      opacity: 1,
+    },
+  }),
+  c('@keyframes rifySlideDownOut', {
+    '0%': {
+      transform: 'scaleY(1)',
+      transformOrigin: '0% 0%',
+      opacity: 1,
+    },
+    '100%': {
+      transform: 'scaleY(.8)',
+      transformOrigin: '0% 0%',
+      opacity: 0,
+    },
   }),
   c('@keyframes rifyZoomBigIn', {
     '0%': {
