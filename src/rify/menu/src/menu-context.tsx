@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import { CSSProperties, createContext } from 'react';
 import { MenuTheme } from './interface';
 
 export interface MenuContextProps {
@@ -7,6 +7,7 @@ export interface MenuContextProps {
   direction?: 'ltr' | 'rtl' | undefined;
   inlineCollapsed: boolean;
   theme?: MenuTheme;
+  cssVars?: CSSProperties;
 }
 
 const MenuContext = createContext<MenuContextProps>({

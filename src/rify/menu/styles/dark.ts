@@ -8,6 +8,7 @@ const menuDark: MenuTheme = {
   self(vars) {
     const commonSelf = self(vars);
     commonSelf.groupTitleColor = 'rgba(255, 255, 255, 0.55)';
+    commonSelf.disabledColor = 'rgba(255, 255, 255, 0.25)';
     return commonSelf;
   },
 };

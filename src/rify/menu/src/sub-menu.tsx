@@ -30,7 +30,7 @@ export interface SubMenuProps {
 const subMenu: React.FC<SubMenuProps> = props => {
   const { icon, popupClassName, title, theme: customTheme } = props;
   const context = useContext(MenuContext);
-  const { mergedClsPrefix, inlineCollapsed, theme: contextTheme } = context;
+  const { mergedClsPrefix, inlineCollapsed, theme: contextTheme, cssVars } = context;
 
   const parentPath = useFullPath();
 
@@ -60,7 +60,12 @@ const subMenu: React.FC<SubMenuProps> = props => {
 
   return (
     <MenuContext.Provider value={contextValue}>
-      <RcSubMenu {...omit(props, ['icon'])} title={titleNode} popupClassName={classNames(mergedClsPrefix, popupClassName, `${mergedClsPrefix}-${customTheme || contextTheme}`)} />
+      <RcSubMenu
+        {...omit(props, ['icon'])}
+        title={titleNode}
+        popupClassName={classNames(mergedClsPrefix, popupClassName, `${mergedClsPrefix}-${customTheme || contextTheme}`)}
+        popupStyle={cssVars}
+      />
     </MenuContext.Provider>
   );
 };

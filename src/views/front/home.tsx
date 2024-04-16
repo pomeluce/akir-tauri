@@ -1,7 +1,6 @@
-import Menu from '@/rify/menu/src/index';
-import { MenuProps } from '@/rify/menu/src/menu';
+import { MenuOptionType } from '@/rify';
 
-const items: MenuProps['options'] = [
+const items: MenuOptionType[] = [
   {
     label: 'Navigation One',
     key: 'mail',
@@ -61,7 +60,7 @@ const items: MenuProps['options'] = [
 const Home: React.FC<{}> = () => {
   return (
     <RifyCard className="h-2000px" title="我是标题">
-      <Menu defaultSelectedKeys={['1']} defaultOpenKeys={['sub1']} mode="horizontal" options={items} />
+      <RifyMenu defaultSelectedKeys={['1']} defaultOpenKeys={['sub1']} mode="horizontal" options={items} />
     </RifyCard>
   );
 };
