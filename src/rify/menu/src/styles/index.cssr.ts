@@ -502,6 +502,17 @@ export default c([
             }),
           ],
         ),
+
+        c(
+          ({ props: { bPrefix } }) =>
+            `>${bPrefix}menu-item:hover, >${bPrefix}menu-submenu:hover, >${bPrefix}menu-item-active, >${bPrefix}menu-submenu-active, >${bPrefix}menu-item-open, >${bPrefix}menu-submenu-open`,
+          [
+            c('&:after', {
+              borderBottomWidth: 'var(--rify-menu-active-bar-height)',
+              borderBottomColor: 'var(--rify-menu-item-selected-color)',
+            }),
+          ],
+        ),
         c(({ props: { bPrefix } }) => `> ${bPrefix}menu-item-active, > ${bPrefix}menu-submenu-active, > ${bPrefix}menu-item-open, > ${bPrefix}menu-submenu-open`, {
           background: 'var(--rify-menu-horizontal-hover-bg)',
         }),
@@ -576,17 +587,6 @@ export default c([
             c(({ props: { bPrefix } }) => `&${bPrefix}menu-inline, &${bPrefix}menu-vertical`, {
               borderInlineEnd: '0 var(--rify-line-type) var(--rify-border-color)',
             }),
-          ]),
-
-          cB('memu-item', [
-            c(
-              ({ props: { bPrefix } }) => `&:not(${bPrefix}menu-item-selected):not(${bPrefix}menu-submenu-selected)`,
-              [
-                c(({ props: { bPrefix } }) => `&:hover, &> ${bPrefix}menu-submenu-title:hover`, {
-                  color: 'var(--rify-menu-dark-hover-color)',
-                }),
-              ],
-            ),
           ]),
         ],
       ),
@@ -672,32 +672,19 @@ export default c([
                 borderBottom: 'var(--rify-menu-active-bar-height) solid transparent',
                 transition: 'border-color var(--rify-motion-duration) var(--rify-bezier)',
               }),
-              c(
-                '&:hover',
-                {
-                  background: 'var(--rify-menu-horizontal-hover-bg)',
-                },
-                [
-                  c('&:after', {
-                    borderBottomWidth: 0,
-                    borderBottomColor: 'var(--rify-menu-dark-item-selected-color)',
-                  }),
-                ],
-              ),
             ],
           ),
           c(
-            ({ props: { bPrefix } }) => `> ${bPrefix}menu-item-active, > ${bPrefix}menu-submenu-active, > ${bPrefix}menu-item-open, > ${bPrefix}menu-submenu-open`,
+            ({ props: { bPrefix } }) =>
+              `>${bPrefix}menu-item:hover, >${bPrefix}menu-submenu:hover, >${bPrefix}menu-item-active, >${bPrefix}menu-submenu-active, >${bPrefix}menu-item-open, >${bPrefix}menu-submenu-open`,
             {
+              color: 'var(--rify-menu-dark-hover-color)',
               background: 'var(--rify-menu-horizontal-hover-bg)',
             },
-            [
-              c('&:after', {
-                borderBottomWidth: 0,
-                borderBottomColor: 'var(--rify-menu-dark-item-selected-color)',
-              }),
-            ],
           ),
+          c(({ props: { bPrefix } }) => `> ${bPrefix}menu-item-active, > ${bPrefix}menu-submenu-active, > ${bPrefix}menu-item-open, > ${bPrefix}menu-submenu-open`, {
+            background: 'var(--rify-menu-horizontal-hover-bg)',
+          }),
           cB('menu-item-selected', {
             color: 'var(--rify-menu-dark-item-selected-color)',
             backgroundColor: 'var(--rify-menu-dark-item-selected-bg)',
@@ -708,29 +695,13 @@ export default c([
               color: 'var(--rify-menu-dark-item-selected-color)',
               backgroundColor: 'var(--rify-menu-dark-item-selected-bg)',
             },
-            [
-              c('&::after', {
-                borderBottomWidth: 0,
-                borderBottomColor: 'var(--rify-menu-dark-item-selected-color)',
-              }),
-              c('&:hover', { backgroundColor: 'var(--rify-menu-dark-item-selected-bg)' }),
-            ],
+            [c('&:hover', { backgroundColor: 'var(--rify-menu-dark-item-selected-bg)' })],
           ),
         ],
       ),
       cB(({ props: { bPrefix } }) => `menu-item-disabled, ${bPrefix}menu-submenu-disabled`, {
         color: 'var(--rify-menu-dark-disabled-color)!important',
       }),
-      cB('memu-item', [
-        c(
-          ({ props: { bPrefix } }) => `&:not(${bPrefix}menu-item-selected):not(${bPrefix}menu-submenu-selected)`,
-          [
-            c(({ props: { bPrefix } }) => `&:hover, &> ${bPrefix}menu-submenu-title:hover`, {
-              color: 'var(--rify-menu-dark-hover-color)',
-            }),
-          ],
-        ),
-      ]),
       c(
         ({ props: { bPrefix } }) => `&:not(${bPrefix}menu-horizontal)`,
         [
@@ -738,6 +709,7 @@ export default c([
             ({ props: { bPrefix } }) => `menu-item:not(${bPrefix}menu-item-selected)`,
             [
               c('&:hover', {
+                color: 'var(--rify-menu-dark-hover-color)',
                 backgroundColor: 'var(--rify-menu-dark-hover-bg)',
               }),
               c('&:active', {

@@ -2,7 +2,7 @@ import { commonDark, commonLight } from '../_styles/common';
 import { alertDark, alertLight, alertRtlState } from '../alert/styles';
 import { buttonDark, buttonLight, buttonRtlState } from '../button/styles';
 import { cardDark, cardLight, cardRtlState } from '../card/styles';
-import { menuDark, menuLight } from '../menu/styles';
+import { menuDark, menuLight, menuRtlState } from '../menu/styles';
 import { resultLight, resultDark, resultRtlState } from '../result/styles';
 import { tooltipLight, tooltipDark, tooltipRtlState } from '../tooltip/styles';
 import { GlobalTheme } from './interface';
@@ -36,6 +36,7 @@ export const rtlEnabledState: RtlEnabledStae = {
   Alert: alertRtlState,
   Button: buttonRtlState,
   Card: cardRtlState,
+  Menu: menuRtlState,
   Result: resultRtlState,
   Tooltip: tooltipRtlState,
 };

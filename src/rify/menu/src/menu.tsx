@@ -3,7 +3,7 @@ import { MenuTheme, OptionType } from './interface';
 import { EllipsisIcon } from '../../_internal';
 import RcMenu, { MenuRef as RcMenuRef, MenuProps as RcMenuProps } from 'rc-menu';
 import MenuContext, { MenuContextProps } from './menu-context';
-import { useConfig, useStyle, useTheme } from '../../_mixins';
+import { useConfig, useRtl, useStyle, useTheme } from '../../_mixins';
 import { cB, initCollapseMotion } from '../../_utils';
 import { menuLight } from '../styles';
 import { changeColor } from 'seemly';
@@ -39,6 +39,7 @@ const menu: React.ForwardRefExoticComponent<MenuProps & { collapsedWidth?: strin
   const mergedChildren = useOptions(options) || children;
   const { mergedClsPrefix, mergedRtl } = useConfig();
   const theme = useTheme('Menu', '-menu', style, menuLight, mergedClsPrefix);
+  const rtlEnabled = useRtl('Menu', mergedRtl, mergedClsPrefix);
 
   const cssVars = () => {
     const {
@@ -176,7 +177,7 @@ const menu: React.ForwardRefExoticComponent<MenuProps & { collapsedWidth?: strin
       mergedClsPrefix: `${mergedClsPrefix}-menu`,
       inlineCollapsed: mergedInlineCollapsed || false,
       firstLevel: true,
-      direction: typeof mergedRtl === 'object' ? 'ltr' : mergedRtl,
+      direction: !!rtlEnabled ? 'rtl' : 'ltr',
       theme: menuTheme,
       mode,
     }),
@@ -189,7 +190,7 @@ const menu: React.ForwardRefExoticComponent<MenuProps & { collapsedWidth?: strin
         ref={ref}
         className={menuClassName}
         defaultMotions={defaultMotions}
-        direction={typeof mergedRtl === 'object' ? 'ltr' : mergedRtl}
+        direction={!!rtlEnabled ? 'rtl' : 'ltr'}
         inlineCollapsed={mergedInlineCollapsed}
         mode={mode}
         overflowedIndicator={EllipsisIcon({})}
