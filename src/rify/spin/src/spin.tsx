@@ -29,7 +29,6 @@ export interface SpinProps {
   delay?: number;
   children?: ReactNode;
   icon?: ReactNode;
-  zIndex?: number;
 }
 
 const spin: React.FC<SpinProps> = props => {
@@ -47,7 +46,6 @@ const spin: React.FC<SpinProps> = props => {
     show = true,
     stroke,
     strokeWidth,
-    zIndex = 10,
   } = props;
 
   const { mergedClsPrefix, mergedRtl } = useConfig();
@@ -72,7 +70,6 @@ const spin: React.FC<SpinProps> = props => {
       '--rify-color': color,
       '--rify-text-color': textColor,
       '--rify-mask-color': mergedBgColor,
-      '--rify-z-index': zIndex,
     };
   };
 

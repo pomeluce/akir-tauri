@@ -9,7 +9,6 @@ import { fadeInTransition } from '../../../_styles';
 // --rify-text-color
 // --rify-font-size
 // --rify-mask-color
-// --rify-z-index
 export default c([
   c('@keyframes spin-rotate', {
     from: {
@@ -80,20 +79,6 @@ export default c([
           }),
         ],
       ),
-      cM('fullscreen', {
-        position: 'fixed',
-        width: '100vw',
-        height: '100vh',
-        zIndex: 'var(--rify-z-index)',
-        inset: 0,
-        display: 'flex',
-        alignItems: 'center',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        opacity: 0,
-        visibility: 'hidden',
-        transition: 'all var(--rify-bezier)',
-      }),
     ],
   ),
 ]);
