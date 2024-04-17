@@ -4,6 +4,7 @@ import { buttonDark, buttonLight, buttonRtlState } from '../button/styles';
 import { cardDark, cardLight, cardRtlState } from '../card/styles';
 import { menuDark, menuLight, menuRtlState } from '../menu/styles';
 import { resultLight, resultDark, resultRtlState } from '../result/styles';
+import { spinDark, spinLight, spinRtlState } from '../spin/styles';
 import { tooltipLight, tooltipDark, tooltipRtlState } from '../tooltip/styles';
 import { GlobalTheme } from './interface';
 import { RtlEnabledStae } from './internal-interface';
@@ -18,6 +19,7 @@ export const lightTheme: GlobalTheme = {
   Card: cardLight,
   Menu: menuLight,
   Result: resultLight,
+  Spin: spinLight,
   Tooltip: tooltipLight,
 };
 
@@ -29,6 +31,7 @@ export const darkTheme: GlobalTheme = {
   Card: cardDark,
   Menu: menuDark,
   Result: resultDark,
+  Spin: spinDark,
   Tooltip: tooltipDark,
 };
 
@@ -38,6 +41,7 @@ export const rtlEnabledState: RtlEnabledStae = {
   Card: cardRtlState,
   Menu: menuRtlState,
   Result: resultRtlState,
+  Spin: spinRtlState,
   Tooltip: tooltipRtlState,
 };
 

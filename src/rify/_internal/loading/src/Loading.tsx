@@ -1,6 +1,7 @@
 import { HTMLAttributes } from 'react';
 import { useStyle } from '../../../_mixins';
 import style from './styles/index.cssr';
+import classNames from 'classnames';
 
 const duration = '1.6s';
 
@@ -18,11 +19,11 @@ interface BaseLoadingProps extends HTMLAttributes<HTMLDivElement> {
 
 const loading: React.FC<BaseLoadingProps & BaseLoadingExposedProps> = props => {
   useStyle('-base-loading', style, props.clsPrefix);
-  const { clsPrefix, radius = 100, strokeWidth = 28, stroke, scale = 1 } = props;
+  const { className, clsPrefix, radius = 100, strokeWidth = 28, stroke, scale = 1 } = props;
   const scaledRadius = radius / scale;
 
   return (
-    <div className={`${clsPrefix}-base-loading`} role="img" aria-label="loading">
+    <div className={classNames(`${clsPrefix}-base-loading`, className)} role="img" aria-label="loading">
       {props.show ? (
         <div key="icon" className={`${clsPrefix}-base-loading__transition-wrapper`}>
           <div className={`${clsPrefix}-base-loading__container`}>

@@ -29,6 +29,7 @@
     "@types/lodash-es": "^4.17.12",
     "ahooks": "^3.7.11",
     "antd": "^5.16.2",
+    "axios": "^1.6.8",
     "classnames": "^2.5.1",
     "lodash-es": "^4.17.21",
     "rc-menu": "^9.13.0",
@@ -38,6 +39,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3",
+    "react-transition-group": "^4.4.5",
     "sass": "^1.75.0",
     "zustand": "^4.5.2"
   },
@@ -47,6 +49,7 @@
     "@types/node": "^20.12.7",
     "@types/react": "^18.2.79",
     "@types/react-dom": "^18.2.25",
+    "@types/react-transition-group": "^4.4.10",
     "@unocss/reset": "^0.58.9",
     "@unocss/transformer-directives": "^0.58.9",
     "@unocss/transformer-variant-group": "^0.58.9",

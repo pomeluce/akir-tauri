@@ -1,66 +1,24 @@
-import { MenuOptionType } from '@/rify';
-
-const items: MenuOptionType[] = [
-  {
-    label: 'Navigation One',
-    key: 'mail',
-    icon: <IconMail />,
-  },
-  {
-    label: 'Navigation Two',
-    key: 'app',
-    icon: <IconAllApplication />,
-    disabled: true,
-  },
-  {
-    label: 'Navigation Three - Submenu',
-    key: 'SubMenu',
-    icon: <IconSetting />,
-    children: [
-      {
-        type: 'group',
-        label: 'Item 1',
-        children: [
-          {
-            label: 'Option 1',
-            key: 'setting:1',
-          },
-          {
-            label: 'Option 2',
-            key: 'setting:2',
-          },
-        ],
-      },
-      {
-        type: 'group',
-        label: 'Item 2',
-        children: [
-          {
-            label: 'Option 3',
-            key: 'setting:3',
-          },
-          {
-            label: 'Option 4',
-            key: 'setting:4',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    label: (
-      <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
-        Navigation Four - Link
-      </a>
-    ),
-    key: 'alipay',
-  },
-];
+import { RifyLoading } from '@/rify';
 
 const Home: React.FC<{}> = () => {
+  // const [show, setShow] = useState(false);
+
+  const hanlderClick = () => {
+    const load = RifyLoading();
+    setTimeout(() => {
+      load.close();
+    }, 3000);
+  };
+
   return (
     <RifyCard className="h-2000px" title="我是标题">
-      <RifyMenu defaultSelectedKeys={['1']} defaultOpenKeys={['sub1']} mode="horizontal" options={items} />
+      {/* <RifySpin show={show} description="加载中..."> */}
+      {/*   <RifyAlert title="警告" type="warning"> */}
+      {/*     不要点击我 */}
+      {/*   </RifyAlert> */}
+      {/* </RifySpin> */}
+      {/* <RifyButton onClick={() => setShow(!show)}>转圈</RifyButton> */}
+      <RifyButton onClick={() => hanlderClick()}>转圈</RifyButton>
     </RifyCard>
   );
 };
