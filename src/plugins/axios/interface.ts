@@ -3,4 +3,8 @@ interface AxiosOptions {
   message?: boolean;
 }
 
-interface AxiosConfig {}
+interface AxiosConfig {
+  baseUrl: string;
+  useTokenAuthorization: boolean;
+  header: string;
+}

@@ -1,6 +1,10 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import { RifyLoading } from '@/rify';
 
 // 获取 storage 对象
+const storage = useStorage();
+const { navigator } = useRouter();
+
 export default class Axios {
   // axios 实例
   private instance: AxiosInstance;
@@ -58,16 +62,16 @@ export default class Axios {
       (config: InternalAxiosRequestConfig) => {
         // 如果 loading 对象不存在且开启了 loading, 则创建一个 loading 对象
         if (!this.loading && this.options.loading) {
-          // this.loading = RifyLoading({ bgColor: 'rgba(0,0,0,0.15)' });
+          this.loading = RifyLoading();
         }
         // 获取 token
-        // const token = storage.get(CacheKey.TOKEN_NAME);
+        const token = storage.get(CacheKey.TOKEN_NAME);
         // 开启 token 认证;
-        // this.axiosConf.useTokenAuthorization && token && (config.headers.Authorization = token);
+        this.config.useTokenAuthorization && token && (config.headers.Authorization = token);
         // 设置 accept
-        // config.headers.Accept = 'application/json';
+        config.headers.Accept = 'application/json';
         // 添加自定义头部
-        // config.headers['rapidify-header'] = this.axiosConf.rifyHeader;
+        config.headers['rify-header'] = this.config.header;
         return config;
       },
       (error: any) => Promise.reject(error),
@@ -86,7 +90,7 @@ export default class Axios {
           this.loading = undefined;
         }
         // 判断 response 是否携带有 refresh_token
-        // if (!!response.headers['refresh-token']) storage.set(CacheKey.TOKEN_NAME, response.headers['refresh-token']);
+        if (!!response.headers['refresh-token']) storage.set(CacheKey.TOKEN_NAME, response.headers['refresh-token']);
         // 判断是否展示提示消息
         if (response.data?.msg && this.options.message) {
           // RifyMessage({
@@ -104,12 +108,12 @@ export default class Axios {
         const { message } = data;
 
         // 判断 response 是否携带有 refresh_token
-        // if (!!headers['refresh-token']) storage.set(CacheKey.TOKEN_NAME, headers['refresh-token']);
+        if (!!headers['refresh-token']) storage.set(CacheKey.TOKEN_NAME, headers['refresh-token']);
 
         switch (status) {
           case HttpStatus.UNAUTHORIZED:
             // storage.remove(CacheKey.TOKEN_NAME);
-            // await router.push({ name: RouteName.LOGIN });
+            navigator({ name: RouteName.LOGIN });
             break;
           case HttpStatus.UNPROCESSABLE_ENTITY:
             // useErrorStore().setErrors(error.response.data.errors);
@@ -119,7 +123,7 @@ export default class Axios {
             break;
           case HttpStatus.NOT_FOUND:
             // RifyMessage({ type: 'error', content: message ?? '请求资源不存在' });
-            // await router.push({ name: RouteName.NOT_FOUND });
+            navigator({ name: RouteName.ERROR_404 });
             break;
           case HttpStatus.TOO_MANY_REQUESTS:
             // RifyMessage({ type: 'error', content: message ?? '请求过于频繁，请稍候再试' });
