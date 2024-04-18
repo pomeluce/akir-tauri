@@ -4,9 +4,12 @@ const Home: React.FC<{}> = () => {
   // const [show, setShow] = useState(false);
 
   const hanlderClick = () => {
-    const load = RifyLoading();
+    const load = RifyLoading({ isShow: false });
     setTimeout(() => {
-      load.close();
+      load.show();
+      setTimeout(() => {
+        load.remove();
+      }, 3000);
     }, 3000);
   };
 

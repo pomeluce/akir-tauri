@@ -1,4 +1,4 @@
-import { CSSProperties, createElement } from 'react';
+import { CSSProperties } from 'react';
 import { createRoot } from 'react-dom/client';
 import { hash } from 'css-render';
 import { LoadOptions } from './interface';

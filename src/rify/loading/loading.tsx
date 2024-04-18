@@ -8,6 +8,6 @@ const spin = (props: SpinProps) => (
   </Spin>
 );
 
-export default (config: LoadOptions = { bgColor: 'rgba(0, 0, 0, 0.45)', isShow: true, zIndex: 1000 }) => {
-  return new RifyLoad(config, document.createElement('div'), spin);
+export default (config: LoadOptions) => {
+  return new RifyLoad(Object.assign({ bgColor: 'rgba(0, 0, 0, 0.45)', isShow: true, zIndex: 1000 }, config), document.createElement('div'), spin);
 };
