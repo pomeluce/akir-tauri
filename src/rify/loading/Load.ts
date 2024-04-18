@@ -24,17 +24,19 @@ class RifyLoad {
   private init() {
     this.node.setAttribute('id', this.renderId);
     this.node.setAttribute('class', 'rify-loading');
+    this.node.style.display = this.instance.isShow ? '' : 'none';
     this.node.style.position = 'fixed';
     this.node.style.inset = '0';
     this.node.style.zIndex = this.instance.zIndex.toString();
+    this.node.style.transition = 'all .3s';
     document.body.appendChild(this.node);
   }
 
   private setSpin(spin: (props: SpinProps) => JSX.Element) {
-    const { bgColor = 'rgba(0, 0, 0, 0.45)', isShow: show = true, color: stroke, strokeWidth, message: description, size } = this.instance;
+    const { bgColor = 'rgba(0, 0, 0, 0.45)', color: stroke, strokeWidth, message: description, size } = this.instance;
     const props = {
       bgColor,
-      show,
+      show: true,
       contentStyle: { width: '100vw', height: '100vh' } as CSSProperties,
       fullscreen: true,
       stroke,
@@ -50,7 +52,7 @@ class RifyLoad {
    */
   public show() {
     // 设置组件显示
-    this.node.style.display = 'block';
+    this.node.style.display = '';
   }
 
   /**
