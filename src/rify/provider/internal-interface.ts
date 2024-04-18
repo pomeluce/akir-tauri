@@ -3,6 +3,7 @@ import type { ButtonTheme } from '../button/styles';
 import type { AlertTheme } from '../alert/styles';
 import type { CardTheme } from '../card/styles';
 import type { MenuTheme } from '../menu/styles';
+import type { MessageTheme } from '../message/styles';
 import type { ResultTheme } from '../result/styles';
 import type { SpinTheme } from '../spin/styles';
 import type { TooltipTheme } from '../tooltip/styles';
@@ -12,6 +13,7 @@ export interface GlobalThemeWithoutCommon {
   Button?: ButtonTheme;
   Card?: CardTheme;
   Menu?: MenuTheme;
+  Message?: MessageTheme;
   Result?: ResultTheme;
   Spin?: SpinTheme;
   Tooltip?: TooltipTheme;
