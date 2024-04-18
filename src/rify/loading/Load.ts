@@ -8,8 +8,6 @@ class RifyLoad {
   private instance: LoadOptions;
   private renderId: string;
   private node: HTMLElement;
-  private isShow: boolean = true;
-  private spin: JSX.Element = createElement('div');
 
   /**
    * 构造函数
@@ -36,6 +34,7 @@ class RifyLoad {
     const { bgColor = 'rgba(0, 0, 0, 0.45)', isShow: show = true, color: stroke, strokeWidth, message: description, size } = this.instance;
     const props = {
       bgColor,
+      show,
       contentStyle: { width: '100vw', height: '100vh' } as CSSProperties,
       fullscreen: true,
       stroke,
@@ -43,9 +42,7 @@ class RifyLoad {
       description,
       size,
     };
-    this.isShow = show;
-    this.spin = spin({ show: this.isShow, ...props });
-    createRoot(this.node).render(this.spin);
+    createRoot(this.node).render(spin({ ...props }));
   }
 
   /**
@@ -53,7 +50,7 @@ class RifyLoad {
    */
   public show() {
     // 设置组件显示
-    this.instance.isShow = true;
+    this.node.style.display = 'block';
   }
 
   /**
@@ -61,14 +58,14 @@ class RifyLoad {
    */
   public close() {
     // 设置组件隐藏
-    this.instance.isShow = false;
+    this.node.style.display = 'none';
   }
 
   /**
    * 组件销毁方法
    */
   public remove() {
-    document.querySelector(`#${this.renderId}`)?.remove();
+    this.node.remove();
   }
 }
 export { RifyLoad };
