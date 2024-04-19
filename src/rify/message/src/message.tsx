@@ -1,4 +1,4 @@
-import { CSSProperties, ReactNode } from 'react';
+import { CSSProperties, ForwardRefExoticComponent, ReactNode, RefAttributes } from 'react';
 import { MessageContext, MessageProviderSetupProps } from './message-context';
 import { MessageProps } from './message-props';
 import { MessageRenderMessage, MessageType } from './types';
@@ -17,7 +17,7 @@ const iconRenderMap = {
   default: () => null,
 };
 
-const message: React.FC<MessageProps & { render?: MessageRenderMessage }> = props => {
+const message: ForwardRefExoticComponent<MessageProps & { render?: MessageRenderMessage } & RefAttributes<HTMLDivElement>> = forwardRef((props, ref) => {
   const { closable, content, icon, onMouseenter, onMouseleave, render: renderMessage, showIcon, type = 'default' } = props;
 
   const { mergedClsPrefix, mergedRtl } = useConfig();
@@ -90,6 +90,7 @@ const message: React.FC<MessageProps & { render?: MessageRenderMessage }> = prop
   let iconNode: ReactNode;
   return (
     <div
+      ref={ref}
       className={classNames([`${mergedClsPrefix}-message-wrapper`])}
       onMouseEnter={onMouseenter}
       onMouseLeave={onMouseleave}
@@ -111,7 +112,8 @@ const message: React.FC<MessageProps & { render?: MessageRenderMessage }> = prop
       )}
     </div>
   );
-};
+});
+
 function createIconNode(icon: undefined | ReactNode, type: MessageType, clsPrefix: string): ReactNode {
   if (typeof icon === 'object') {
     return icon;

@@ -143,10 +143,10 @@ const MessageProvider: React.FC<MessageProviderProps> = props => {
         ref={ref}
         internalKey={message.key}
         onInternalAfterLeave={handleAfterLeave}
-        {...omit(message, ['destroy'], undefined)}
         duration={message.duration === undefined ? duration : message.duration}
         keepAliveOnHover={message.keepAliveOnHover === undefined ? keepAliveOnHover : message.keepAliveOnHover}
         closable={message.closable === undefined ? closable : message.closable}
+        {...omit(message, ['destroy'], undefined)}
       />
     );
   }

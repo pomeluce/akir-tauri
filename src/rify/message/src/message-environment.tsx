@@ -48,6 +48,8 @@ const messageEnvironment: React.ForwardRefExoticComponent<MessageEnvironmentProp
 
   function hide(): void {
     setShow(false);
+    console.log('show value is ', show);
+
     if (timerId) {
       window.clearTimeout(timerId);
       timerId = null;
@@ -67,7 +69,7 @@ const messageEnvironment: React.ForwardRefExoticComponent<MessageEnvironmentProp
 
   return (
     <>
-      <RifyFadeInExpandTransition appear onAfterLeave={handleAfterLeave} onLeave={() => onLeave?.()}>
+      <RifyFadeInExpandTransition in={show} onAfterLeave={handleAfterLeave} onLeave={() => onLeave?.()}>
         {show ? (
           <RifyMessage
             content={content}

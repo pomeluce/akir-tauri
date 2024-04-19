@@ -1,14 +1,12 @@
-import { CSSTransition } from 'react-transition-group';
-import './index.scss';
+import useMessage from '@/rify/message/hooks/useMessage';
 
 const Home: React.FC<{}> = () => {
-  const [inProp, setInProp] = useState(false);
+  const message = useMessage();
   return (
     <RifyCard className="h-2000px" title="我是标题">
-      <RifyButton onClick={() => setInProp(!inProp)}> 切换 </RifyButton>
-      <CSSTransition in={inProp} timeout={200} classNames={'my-node'} mountOnEnter unmountOnExit>
-        <div className="w-20 h-5 bg-primary2 text-white">{'test --------------- test'}</div>
-      </CSSTransition>
+      <RifyButton type="primary" onClick={() => message.success('成功')}>
+        成功
+      </RifyButton>
     </RifyCard>
   );
 };

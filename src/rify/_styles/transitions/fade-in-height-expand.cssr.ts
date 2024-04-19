@@ -25,11 +25,11 @@ export const fadeInHeightExpandTransition = ({
   leaveToProps = undefined,
   reverse = false,
 }: FadeInHeightExpandTransitionOption = {}): CNode[] => {
-  const enterClass = reverse ? 'leave' : 'enter';
-  const leaveClass = reverse ? 'enter' : 'leave';
+  const enterClass = reverse ? 'exit' : 'enter';
+  const leaveClass = reverse ? 'enter' : 'exit';
   return [
-    c(`&.fade-in-height-expand-transition-${leaveClass}-from, &.fade-in-height-expand-transition-${enterClass}-to`, { ...enterToProps, opacity: 1 }),
-    c(`&.fade-in-height-expand-transition-${leaveClass}-to, &.fade-in-height-expand-transition-${enterClass}-from`, {
+    c(`&.fade-in-height-expand-transition-${leaveClass}, &.fade-in-height-expand-transition-${enterClass}-done`, { ...enterToProps, opacity: 1 }),
+    c(`&.fade-in-height-expand-transition-${leaveClass}-done, &.fade-in-height-expand-transition-${enterClass}`, {
       ...leaveToProps,
       opacity: 0,
       marginTop: '0 !important',
