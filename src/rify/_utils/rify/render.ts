@@ -4,9 +4,9 @@ export const render = <T extends any[]>(r: string | number | undefined | null | 
   if (typeof r === 'function') {
     return r(...args);
   } else if (typeof r === 'string') {
-    return createElement(r);
+    return createElement('div', {}, r);
   } else if (typeof r === 'number') {
-    return createElement(String(r));
+    return createElement('div', {}, String(r));
   } else {
     return null;
   }

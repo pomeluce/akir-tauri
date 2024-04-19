@@ -1,8 +1,8 @@
-import { CSSTransition } from 'react-transition-group';
-import { MessageProps } from './message-props';
-import RifyMessage from './message';
-import { PrivateMessageRef } from './message-context';
 import { MouseEvent, RefAttributes } from 'react';
+import { MessageProps } from './message-props';
+import { RifyFadeInExpandTransition } from '../../_internal';
+import { PrivateMessageRef } from './message-context';
+import RifyMessage from './message';
 
 type MessageEnvironmentProps = MessageProps & {
   duration?: number;
@@ -66,20 +66,22 @@ const messageEnvironment: React.ForwardRefExoticComponent<MessageEnvironmentProp
   }
 
   return (
-    <CSSTransition appear in timeout={500} onExited={handleAfterLeave} onExit={() => onLeave?.()}>
-      {show ? (
-        <RifyMessage
-          content={content}
-          type={type}
-          icon={icon}
-          showIcon={showIcon}
-          closable={closable}
-          onClose={handleClose}
-          onMouseenter={keepAliveOnHover ? handleMouseenter : undefined}
-          onMouseleave={keepAliveOnHover ? handleMouseleave : undefined}
-        />
-      ) : null}
-    </CSSTransition>
+    <>
+      <RifyFadeInExpandTransition appear onAfterLeave={handleAfterLeave} onLeave={() => onLeave?.()}>
+        {show ? (
+          <RifyMessage
+            content={content}
+            type={type}
+            icon={icon}
+            showIcon={showIcon}
+            closable={closable}
+            onClose={handleClose}
+            onMouseenter={keepAliveOnHover ? handleMouseenter : undefined}
+            onMouseleave={keepAliveOnHover ? handleMouseleave : undefined}
+          />
+        ) : null}
+      </RifyFadeInExpandTransition>
+    </>
   );
 });
 

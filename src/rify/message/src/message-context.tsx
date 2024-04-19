@@ -67,7 +67,7 @@ export const MessageContext = createContext<MessageProviderSetupProps>({
 
 const MessageProvider: React.FC<MessageProviderProps> = props => {
   const { mergedClsPrefix } = useConfig();
-  const [messageList, _setMessageList] = useState<PrivateMessageReactive[]>([]);
+  const [messageList, setMessageList] = useState<PrivateMessageReactive[]>([]);
   const [messageRefs, _setMessageRefs] = useState<Record<string, PrivateMessageRef>>({});
 
   const { children, containerClass, containerStyle, placement = 'top', to } = props;
@@ -108,16 +108,14 @@ const MessageProvider: React.FC<MessageProviderProps> = props => {
     if (max && messageList.length >= max) {
       messageList.shift();
     }
-    messageList.push(messageState);
+    setMessageList([...messageList, messageState]);
     return messageState;
   }
 
   function handleAfterLeave(key: string): void {
-    messageList.splice(
-      messageList.findIndex(message => message.key === key),
-      1,
-    );
+    setMessageList([...messageList.filter(message => message.key === key)]);
     delete messageRefs[key];
+    console.log(messageList.length);
   }
 
   function destroyAll(): void {
@@ -133,6 +131,25 @@ const MessageProvider: React.FC<MessageProviderProps> = props => {
     }),
     [props],
   );
+
+  function messageEnv(message: PrivateMessageReactive, refs: Record<string, PrivateMessageRef>, handleAfterLeave: (key: string) => void, props: MessageProviderProps) {
+    const { closable, duration = 3000, keepAliveOnHover } = props;
+    const ref = createRef<PrivateMessageRef>();
+
+    if (ref.current) refs[message.key] = ref.current;
+
+    return (
+      <MessageEnvironment
+        ref={ref}
+        internalKey={message.key}
+        onInternalAfterLeave={handleAfterLeave}
+        {...omit(message, ['destroy'], undefined)}
+        duration={message.duration === undefined ? duration : message.duration}
+        keepAliveOnHover={message.keepAliveOnHover === undefined ? keepAliveOnHover : message.keepAliveOnHover}
+        closable={message.closable === undefined ? closable : message.closable}
+      />
+    );
+  }
 
   return (
     <MessageContext.Provider value={{ ...contextValue } as MessageProviderSetupProps}>
@@ -152,26 +169,4 @@ const MessageProvider: React.FC<MessageProviderProps> = props => {
     </MessageContext.Provider>
   );
 };
-
-function messageEnv(message: PrivateMessageReactive, refs: Record<string, PrivateMessageRef>, handleAfterLeave: (key: string) => void, props: MessageProviderProps) {
-  const { closable, duration = 3000, keepAliveOnHover } = props;
-  const ref = createRef<PrivateMessageRef>();
-
-  useEffect(() => {
-    if (ref.current) refs[message.key] = ref.current;
-  });
-
-  return (
-    <MessageEnvironment
-      ref={ref}
-      internalKey={message.key}
-      onInternalAfterLeave={handleAfterLeave}
-      {...omit(message, ['destroy'], undefined)}
-      duration={message.duration === undefined ? duration : message.duration}
-      keepAliveOnHover={message.keepAliveOnHover === undefined ? keepAliveOnHover : message.keepAliveOnHover}
-      closable={message.closable === undefined ? closable : message.closable}
-    />
-  );
-}
-
 export default MessageProvider;

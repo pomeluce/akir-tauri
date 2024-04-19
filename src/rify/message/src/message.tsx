@@ -8,7 +8,6 @@ import { messageLight } from '../styles';
 import { createKey, render } from '../../_utils';
 import style from './styles/index.cssr';
 import classNames from 'classnames';
-import { CSSTransition } from 'react-transition-group';
 
 const iconRenderMap = {
   info: () => <InfoIcon />,
@@ -104,11 +103,7 @@ const message: React.FC<MessageProps & { render?: MessageRenderMessage }> = prop
       ) : (
         <div className={classNames([`${mergedClsPrefix}-message ${mergedClsPrefix}-message--${type}-type`, rtlEnabled && `${mergedClsPrefix}-message--rtl`])}>
           {(iconNode = createIconNode(icon, type, mergedClsPrefix)) && showIcon ? (
-            <div className={`${mergedClsPrefix}-message__icon ${mergedClsPrefix}-message__icon--${type}-type`}>
-              <CSSTransition in timeout={500} classNames="icon-switch-transition">
-                {iconNode}
-              </CSSTransition>
-            </div>
+            <div className={`${mergedClsPrefix}-message__icon ${mergedClsPrefix}-message__icon--${type}-type`}>{iconNode}</div>
           ) : null}
           <div className={`${mergedClsPrefix}-message__content`}>{render(content)}</div>
           {closable ? <RifyBaseClose clsPrefix={mergedClsPrefix} className={`${mergedClsPrefix}-message__close`} onClick={() => props.onClose?.()} absolute /> : null}
