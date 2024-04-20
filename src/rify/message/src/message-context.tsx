@@ -68,7 +68,7 @@ export const MessageContext = createContext<MessageProviderSetupProps>({
 const MessageProvider: React.FC<MessageProviderProps> = props => {
   const { mergedClsPrefix } = useConfig();
   const [messageList, setMessageList] = useState<PrivateMessageReactive[]>([]);
-  const [messageRefs, _setMessageRefs] = useState<Record<string, PrivateMessageRef>>({});
+  const [messageRefs, setMessageRefs] = useState<Record<string, PrivateMessageRef>>({});
 
   const { children, containerClass, containerStyle, placement = 'top', to } = props;
 
@@ -104,18 +104,24 @@ const MessageProvider: React.FC<MessageProviderProps> = props => {
         messageRefs[key]?.hide();
       },
     };
-    const { max } = props;
-    if (max && messageList.length >= max) {
-      messageList.shift();
-    }
-    setMessageList([...messageList, messageState]);
+    setMessageList(prevList => {
+      const newList = [...prevList, messageState];
+      const { max } = props;
+      if (max && newList.length > max) {
+        newList.shift();
+      }
+      return newList;
+    });
     return messageState;
   }
 
   function handleAfterLeave(key: string): void {
-    setMessageList([...messageList.filter(message => message.key === key)]);
-    delete messageRefs[key];
-    console.log(messageList.length);
+    setMessageList(prevList => {
+      const newList = prevList.filter(message => message.key !== key);
+      delete messageRefs[key];
+      setMessageRefs({ ...messageRefs });
+      return newList;
+    });
   }
 
   function destroyAll(): void {
@@ -136,13 +142,16 @@ const MessageProvider: React.FC<MessageProviderProps> = props => {
     const { closable, duration = 3000, keepAliveOnHover } = props;
     const ref = createRef<PrivateMessageRef>();
 
-    if (ref.current) refs[message.key] = ref.current;
+    const onMounted = () => {
+      if (ref.current) refs[message.key] = ref.current;
+    };
 
     return (
       <MessageEnvironment
         ref={ref}
         internalKey={message.key}
         onInternalAfterLeave={handleAfterLeave}
+        onMounted={onMounted}
         duration={message.duration === undefined ? duration : message.duration}
         keepAliveOnHover={message.keepAliveOnHover === undefined ? keepAliveOnHover : message.keepAliveOnHover}
         closable={message.closable === undefined ? closable : message.closable}

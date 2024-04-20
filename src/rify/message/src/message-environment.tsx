@@ -11,17 +11,19 @@ type MessageEnvironmentProps = MessageProps & {
   internalKey: string;
   // private
   onInternalAfterLeave?: (key: string) => void;
+  onMounted?: () => void;
 };
 
 const messageEnvironment: React.ForwardRefExoticComponent<MessageEnvironmentProps & RefAttributes<PrivateMessageRef>> = forwardRef((props, ref) => {
-  const { closable, content, keepAliveOnHover, onLeave, type = 'info', icon, showIcon = true } = props;
+  const { closable, content, keepAliveOnHover, onLeave, type = 'info', icon, showIcon = true, onMounted } = props;
   const [show, setShow] = useState<boolean>(true);
 
   let timerId: number | null = null;
 
   useEffect(() => {
     setHideTimeout();
-  });
+    onMounted?.();
+  }, []);
 
   useImperativeHandle(ref, () => ({
     key: props.internalKey,
@@ -48,8 +50,6 @@ const messageEnvironment: React.ForwardRefExoticComponent<MessageEnvironmentProp
 
   function hide(): void {
     setShow(false);
-    console.log('show value is ', show);
-
     if (timerId) {
       window.clearTimeout(timerId);
       timerId = null;
@@ -70,18 +70,16 @@ const messageEnvironment: React.ForwardRefExoticComponent<MessageEnvironmentProp
   return (
     <>
       <RifyFadeInExpandTransition in={show} onAfterLeave={handleAfterLeave} onLeave={() => onLeave?.()}>
-        {show ? (
-          <RifyMessage
-            content={content}
-            type={type}
-            icon={icon}
-            showIcon={showIcon}
-            closable={closable}
-            onClose={handleClose}
-            onMouseenter={keepAliveOnHover ? handleMouseenter : undefined}
-            onMouseleave={keepAliveOnHover ? handleMouseleave : undefined}
-          />
-        ) : null}
+        <RifyMessage
+          content={content}
+          type={type}
+          icon={icon}
+          showIcon={showIcon}
+          closable={closable}
+          onClose={handleClose}
+          onMouseenter={keepAliveOnHover ? handleMouseenter : undefined}
+          onMouseleave={keepAliveOnHover ? handleMouseleave : undefined}
+        />
       </RifyFadeInExpandTransition>
     </>
   );
