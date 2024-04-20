@@ -105,7 +105,7 @@ const FadeInExpandTransition: React.FC<Props> = props => {
       nodeRef={ref}
       in={show}
       mode={mode}
-      timeout={{ enter: 0, exit: 0 }}
+      timeout={0}
       classNames={width ? 'fade-in-width-expand-transition' : 'fade-in-height-expand-transition'}
       appear={appear}
       onEnter={handleEnter}
@@ -113,6 +113,8 @@ const FadeInExpandTransition: React.FC<Props> = props => {
       onExit={handleLeave}
       onExiting={handleBeforeLeave}
       onExited={handleAfterLeave}
+      mountOnEnter
+      unmountOnExit
     >
       {cloneElement(children, { ref: ref })}
     </CSSTransition>

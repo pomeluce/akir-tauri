@@ -1,4 +1,4 @@
-import { MouseEvent, RefAttributes } from 'react';
+import { RefAttributes } from 'react';
 import { MessageProps } from './message-props';
 import { RifyFadeInExpandTransition } from '../../_internal';
 import { PrivateMessageRef } from './message-context';
@@ -23,6 +23,9 @@ const messageEnvironment: React.ForwardRefExoticComponent<MessageEnvironmentProp
   useEffect(() => {
     setHideTimeout();
     onMounted?.();
+    return () => {
+      if (timerId) clearTimeout(timerId);
+    };
   }, []);
 
   useImperativeHandle(ref, () => ({
@@ -33,25 +36,23 @@ const messageEnvironment: React.ForwardRefExoticComponent<MessageEnvironmentProp
   function setHideTimeout(): void {
     const { duration } = props;
     if (duration) {
-      timerId = window.setTimeout(hide, duration);
+      timerId = setTimeout(hide, duration);
     }
   }
-  function handleMouseenter(e: MouseEvent): void {
-    if (e.currentTarget !== e.target) return;
+  function handleMouseenter(): void {
     if (timerId !== null) {
-      window.clearTimeout(timerId);
+      clearTimeout(timerId);
       timerId = null;
     }
   }
-  function handleMouseleave(e: MouseEvent): void {
-    if (e.currentTarget !== e.target) return;
+  function handleMouseleave(): void {
     setHideTimeout();
   }
 
   function hide(): void {
     setShow(false);
     if (timerId) {
-      window.clearTimeout(timerId);
+      clearTimeout(timerId);
       timerId = null;
     }
   }

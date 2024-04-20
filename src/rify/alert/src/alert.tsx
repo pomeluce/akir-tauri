@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode } from 'react';
+import type { CSSProperties, ReactNode, RefAttributes } from 'react';
 import { ErrorIcon, InfoIcon, RifyBaseClose, RifyBaseIcon, SuccessIcon, WarningIcon } from '../../_internal';
 import { getMargin } from 'seemly';
 import { useConfig, useRtl, useTheme } from '../../_mixins';
@@ -20,7 +20,7 @@ export interface AlertProps {
   onAfterLeave?: Function;
 }
 
-const alert: React.FC<AlertProps> = props => {
+const alert: React.ForwardRefExoticComponent<AlertProps & RefAttributes<HTMLDivElement>> = forwardRef((props, ref) => {
   const { mergedClsPrefix, mergedRtl } = useConfig();
   const theme = useTheme('Alert', '-alert', style, alertLight, mergedClsPrefix);
   const rtlEnabled = useRtl('Alert', mergedRtl, mergedClsPrefix);
@@ -115,7 +115,7 @@ const alert: React.FC<AlertProps> = props => {
   return (
     <>
       {visible ? (
-        <div className={classes} style={cssVars() as CSSProperties} role="alert">
+        <div ref={ref} className={classes} style={cssVars() as CSSProperties} role="alert">
           {props.closable && <RifyBaseClose clsPrefix={mergedClsPrefix} className={`${mergedClsPrefix}-alert__close`} onClick={handleCloseClick} />}
           {props.bordered && <div className={`${mergedClsPrefix}-alert__border`} />}
           {props.showIcon && (
@@ -153,7 +153,7 @@ const alert: React.FC<AlertProps> = props => {
       ) : null}
     </>
   );
-};
+});
 
 alert.defaultProps = { showIcon: true, type: 'default', bordered: true };
 
