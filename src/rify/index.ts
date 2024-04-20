@@ -3,6 +3,7 @@ export * from './card';
 export * from './button';
 export * from './loading';
 export * from './menu';
+export * from './message';
 export * from './provider';
 export * from './result';
 export * from './spin';

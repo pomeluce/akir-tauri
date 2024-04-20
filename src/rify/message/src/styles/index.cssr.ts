@@ -31,12 +31,12 @@ import { iconSwitchTransition, fadeInHeightExpandTransition } from '../../../_st
 export default c([
   cB(
     'message-wrapper',
-    `
-    margin: var(--rify-margin);
-    z-index: 0;
-    transform-origin: top center;
-    display: flex;
-  `,
+    {
+      margin: 'var(--rify-margin)',
+      zIndex: 0,
+      transformOrigin: 'top center',
+      display: 'flex',
+    },
     [
       fadeInHeightExpandTransition({
         overflow: 'visible',
@@ -52,163 +52,115 @@ export default c([
   ),
   cB(
     'message',
-    `
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    transition:
-      color .3s var(--rify-bezier),
-      box-shadow .3s var(--rify-bezier),
-      background-color .3s var(--rify-bezier),
-      opacity .3s var(--rify-bezier),
-      transform .3s var(--rify-bezier),
-      margin-bottom .3s var(--rify-bezier);
-    padding: var(--rify-padding);
-    border-radius: var(--rify-border-radius);
-    flex-wrap: nowrap;
-    overflow: hidden;
-    max-width: var(--rify-max-width);
-    color: var(--rify-text-color);
-    background-color: var(--rify-color);
-    box-shadow: var(--rify-box-shadow);
-  `,
+    {
+      boxSizing: 'border-box',
+      display: 'flex',
+      alignItems: 'center',
+      transition:
+        'color .3s var(--rify-bezier), box-shadow .3s var(--rify-bezier), background-color .3s var(--rify-bezier), opacity .3s var(--rify-bezier), transform .3s var(--rify-bezier), margin-bottom .3s var(--rify-bezier)',
+      padding: 'var(--rify-padding)',
+      borderRadius: 'var(--rify-border-radius)',
+      flexWrap: 'nowrap',
+      overflow: 'hidden',
+      maxWidth: 'var(--rify-max-width)',
+      color: 'var(--rify-text-color)',
+      backgroundColor: 'var(--rify-color)',
+      boxShadow: 'var(--rify-box-shadow)',
+    },
     [
-      cE(
-        'content',
-        `
-      display: inline-block;
-      line-height: var(--rify-line-height);
-      font-size: var(--rify-font-size);
-    `,
-      ),
+      cE('content', {
+        display: 'inline-block',
+        lineHeight: 'var(--rify-line-height)',
+        fontSize: 'var(--rify-font-size)',
+      }),
       cE(
         'icon',
-        `
-      position: relative;
-      margin: var(--rify-icon-margin);
-      height: var(--rify-icon-size);
-      width: var(--rify-icon-size);
-      font-size: var(--rify-icon-size);
-      flex-shrink: 0;
-    `,
+        {
+          position: 'relative',
+          margin: 'var(--rify-icon-margin)',
+          height: 'var(--rify-icon-size)',
+          width: 'var(--rify-icon-size)',
+          fontSize: 'var(--rify-icon-size)',
+          flexShrink: 0,
+        },
         [
           ['default', 'info', 'success', 'warning', 'error', 'loading'].map(type =>
             cM(`${type}-type`, [
-              c(
-                '> *',
-                `
-            color: var(--rify-icon-color-${type});
-            transition: color .3s var(--rify-bezier);
-          `,
-              ),
+              c('> *', {
+                color: `var(--rify-icon-color-${type})`,
+                transition: 'color .3s var(--rify-bezier)',
+              }),
             ]),
           ),
           c(
             '> *',
-            `
-        position: absolute;
-        left: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
-      `,
+            {
+              position: 'absolute',
+              left: 0,
+              top: 0,
+              right: 0,
+              bottom: 0,
+            },
             [iconSwitchTransition()],
           ),
         ],
       ),
       cE(
         'close',
-        `
-      margin: var(--rify-close-margin);
-      transition:
-        background-color .3s var(--rify-bezier),
-        color .3s var(--rify-bezier);
-      flex-shrink: 0;
-    `,
-        [
-          c(
-            '&:hover',
-            `
-        color: var(--rify-close-icon-color-hover);
-      `,
-          ),
-          c(
-            '&:active',
-            `
-        color: var(--rify-close-icon-color-pressed);
-      `,
-          ),
-        ],
+        {
+          margin: 'var(--rify-close-margin)',
+          transition: 'background-color .3s var(--rify-bezier), color .3s var(--rify-bezier)',
+          flexShrink: 0,
+        },
+        [c('&:hover', { color: 'var(--rify-close-icon-color-hover)' }), c('&:active', { color: 'var(--rify-close-icon-color-pressed)' })],
       ),
     ],
   ),
   cB(
     'message-container',
-    `
-    z-index: 6000;
-    position: fixed;
-    height: 0;
-    overflow: visible;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  `,
+    {
+      zIndex: 6000,
+      position: 'fixed',
+      height: 0,
+      overflow: 'visible',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+    },
     [
-      cM(
-        'top',
-        `
-      top: 12px;
-      left: 0;
-      right: 0;
-    `,
-      ),
-      cM(
-        'top-left',
-        `
-      top: 12px;
-      left: 12px;
-      right: 0;
-      align-items: flex-start;
-    `,
-      ),
-      cM(
-        'top-right',
-        `
-      top: 12px;
-      left: 0;
-      right: 12px;
-      align-items: flex-end;
-    `,
-      ),
-      cM(
-        'bottom',
-        `
-      bottom: 4px;
-      left: 0;
-      right: 0;
-      justify-content: flex-end;
-    `,
-      ),
-      cM(
-        'bottom-left',
-        `
-      bottom: 4px;
-      left: 12px;
-      right: 0;
-      justify-content: flex-end;
-      align-items: flex-start;
-    `,
-      ),
-      cM(
-        'bottom-right',
-        `
-      bottom: 4px;
-      left: 0;
-      right: 12px;
-      justify-content: flex-end;
-      align-items: flex-end;
-    `,
-      ),
+      cM('top', { top: '12px', left: 0, right: 0 }),
+      cM('top-left', {
+        top: '12px',
+        left: '12px',
+        right: 0,
+        alignItems: 'flex-start',
+      }),
+      cM('top-right', {
+        top: '12px',
+        left: 0,
+        right: '12px',
+        alignItems: 'flex-end',
+      }),
+      cM('bottom', {
+        bottom: '4px',
+        left: 0,
+        right: 0,
+        justifyContent: 'flex-end',
+      }),
+      cM('bottom-left', {
+        bottom: '4px',
+        left: '12px',
+        right: 0,
+        justifyContent: 'flex-end',
+        alignItems: 'flex-start',
+      }),
+      cM('bottom-right', {
+        bottom: '4px',
+        left: 0,
+        right: '12px',
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end',
+      }),
     ],
   ),
 ]);

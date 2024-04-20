@@ -2,6 +2,7 @@ import { RefAttributes } from 'react';
 import { MessageProps } from './message-props';
 import { RifyFadeInExpandTransition } from '../../_internal';
 import { PrivateMessageRef } from './message-context';
+import { MessageRenderMessage } from './types';
 import RifyMessage from './message';
 
 type MessageEnvironmentProps = MessageProps & {
@@ -12,6 +13,7 @@ type MessageEnvironmentProps = MessageProps & {
   // private
   onInternalAfterLeave?: (key: string) => void;
   onMounted?: () => void;
+  render?: MessageRenderMessage;
 };
 
 const messageEnvironment: React.ForwardRefExoticComponent<MessageEnvironmentProps & RefAttributes<PrivateMessageRef>> = forwardRef((props, ref) => {
@@ -80,6 +82,7 @@ const messageEnvironment: React.ForwardRefExoticComponent<MessageEnvironmentProp
           onClose={handleClose}
           onMouseenter={keepAliveOnHover ? handleMouseenter : undefined}
           onMouseleave={keepAliveOnHover ? handleMouseleave : undefined}
+          render={props.render}
         />
       </RifyFadeInExpandTransition>
     </>

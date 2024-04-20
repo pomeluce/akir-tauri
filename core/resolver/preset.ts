@@ -74,4 +74,4 @@ export const antdComponents: Array<string> = [
 ];
 
 // rify 自定义组件
-export const rifyComponents: Array<string> = ['Alert', 'Button', 'Card', 'ConfigProvider', 'Menu', 'Result', 'Spin', 'Tooltip'];
+export const rifyComponents: Array<string> = ['Alert', 'Button', 'Card', 'ConfigProvider', 'Menu', 'Message', 'MessageProvider', 'Result', 'Spin', 'Tooltip'];

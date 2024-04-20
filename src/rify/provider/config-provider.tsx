@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
 import { ProviderContext } from './context';
 import { GlobalTheme, GlobalThemeOverrides } from './interface';
-import { defaultProps } from './config';
 import { RtlEnabledStae } from './internal-interface';
+import { defaultProps } from './config';
 
 export interface ConfigProviderProps {
   clsPrefix?: string;
