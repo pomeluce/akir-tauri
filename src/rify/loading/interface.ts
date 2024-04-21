@@ -1,4 +1,4 @@
-import { SpinProps } from "../spin";
+import { SpinProps } from '../spin';
 
 export interface LoadOptions {
   isShow?: boolean;
@@ -7,5 +7,5 @@ export interface LoadOptions {
   strokeWidth?: SpinProps['strokeWidth'];
   message?: SpinProps['description'];
   bgColor?: SpinProps['bgColor'];
-  zIndex?: SpinProps['zIndex'];
+  zIndex?: number;
 }

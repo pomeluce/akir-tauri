@@ -27,7 +27,7 @@ class RifyLoad {
     this.node.style.display = this.instance.isShow ? '' : 'none';
     this.node.style.position = 'fixed';
     this.node.style.inset = '0';
-    this.node.style.zIndex = this.instance.zIndex.toString();
+    this.node.style.zIndex = this.instance.zIndex?.toString() || '1000';
     this.node.style.transition = 'all .3s';
     document.body.appendChild(this.node);
   }
@@ -44,7 +44,10 @@ class RifyLoad {
       description,
       size,
     };
-    createRoot(this.node).render(spin({ ...props }));
+    const root = createRoot(this.node);
+    useEffect(() => {
+      root.render(spin({ ...props }));
+    });
   }
 
   /**

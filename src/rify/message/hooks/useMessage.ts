@@ -2,9 +2,9 @@ import { MessageApiInjection, MessageContext, MessageProviderSetupProps } from '
 import { throwError } from '../../_utils';
 
 export default (): MessageApiInjection => {
-  const { api } = useContext<MessageProviderSetupProps>(MessageContext);
-  if (!Object.keys(api).length) {
+  const { api: MessageApi } = useContext<MessageProviderSetupProps>(MessageContext);
+  if (!Object.keys(MessageApi).length) {
     throwError('useMessage', 'No outer <rify-message-provider /> founded.');
   }
-  return api;
+  return MessageApi;
 };
