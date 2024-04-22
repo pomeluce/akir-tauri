@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 import type { MessageSetupProps } from './message-props';
 
 export type MessageType = 'info' | 'success' | 'warning' | 'error' | 'loading' | 'default';
@@ -19,4 +19,17 @@ export interface MessageOptions {
   onClose?: () => void;
   onLeave?: () => void;
   onAfterLeave?: () => void;
+}
+
+export interface MessageConfig {
+  clsPrefix?: string;
+  to?: Element;
+  duration?: number;
+  keepAliveOnHover?: boolean;
+  max?: number;
+  placement?: 'top' | 'top-left' | 'top-right' | 'bottom' | 'bottom-left' | 'bottom-right';
+  closable?: boolean;
+  containerClass?: string;
+  containerStyle?: CSSProperties;
+  children?: ReactNode;
 }

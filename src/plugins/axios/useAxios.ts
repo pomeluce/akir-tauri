@@ -66,7 +66,7 @@ export default (defaults: AxiosRequestConfig, config: AxiosConfig) => {
       switch (status) {
         case HttpStatus.UNAUTHORIZED:
           storage.remove(CacheKey.TOKEN_NAME);
-          navigator({ name: RouteName.LOGIN });
+          navigator({ name: RouteName.ADMIN });
           break;
         case HttpStatus.UNPROCESSABLE_ENTITY:
           // useErrorStore().setErrors(error.response.data.errors);

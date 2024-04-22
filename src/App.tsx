@@ -7,11 +7,9 @@ const App: React.FC = () => {
 
   return (
     <RifyConfigProvider theme={rifyTheme} direction={'ltr'}>
-      <RifyMessageProvider>
-        <AntConfigProvider direction="ltr">
-          <RouterProvider router={router}></RouterProvider>
-        </AntConfigProvider>
-      </RifyMessageProvider>
+      <AntConfigProvider direction="ltr">
+        <RouterProvider router={router}></RouterProvider>
+      </AntConfigProvider>
     </RifyConfigProvider>
   );
 };

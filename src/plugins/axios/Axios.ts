@@ -1,9 +1,10 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { RifyLoading, useMessage } from '@/rify';
+import router from '../router';
 
 // 获取 storage 对象
 const storage = useStorage();
-const { navigator } = useRouter();
+const RifyMessage = useMessage();
 
 export default class Axios {
   // axios 实例
@@ -82,7 +83,7 @@ export default class Axios {
    * 响应拦截器
    */
   private interceptorsResponse() {
-    const RifyMessage = useMessage();
+    // const { message: RifyMessage } = holder();
     this.instance.interceptors.response.use(
       (response: AxiosResponse) => {
         // 如果 loading 对象存在, 则关闭 loading 对象
@@ -110,7 +111,7 @@ export default class Axios {
         switch (status) {
           case HttpStatus.UNAUTHORIZED:
             storage.remove(CacheKey.TOKEN_NAME);
-            navigator({ name: RouteName.LOGIN });
+            router.navigate(RoutePath.LOGIN);
             break;
           case HttpStatus.UNPROCESSABLE_ENTITY:
             // useErrorStore().setErrors(error.response.data.errors);
@@ -119,11 +120,10 @@ export default class Axios {
             RifyMessage.error(message ?? '没有操作权限');
             break;
           case HttpStatus.NOT_FOUND:
-            RifyMessage.error(message ?? '请求资源不存在');
-            navigator({ name: RouteName.ERROR_404 });
+            useMessage().error(message ?? '请求资源不存在');
             break;
           case HttpStatus.TOO_MANY_REQUESTS:
-            RifyMessage.warning(message ?? '请求过于频繁，请稍候再试');
+            RifyMessage.error(message ?? '请求过于频繁，请稍候再试');
             break;
           default:
             if (message) {

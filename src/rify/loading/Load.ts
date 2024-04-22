@@ -1,8 +1,8 @@
 import { CSSProperties } from 'react';
-import { createRoot } from 'react-dom/client';
 import { hash } from 'css-render';
 import { LoadOptions } from './interface';
 import { SpinProps } from '../spin';
+import { render } from 'rc-util/lib/React/render';
 
 class RifyLoad {
   private instance: LoadOptions;
@@ -44,10 +44,7 @@ class RifyLoad {
       description,
       size,
     };
-    const root = createRoot(this.node);
-    useEffect(() => {
-      root.render(spin({ ...props }));
-    });
+    render(spin({ ...props }), this.node);
   }
 
   /**

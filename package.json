@@ -28,7 +28,7 @@
     "@rc-component/trigger": "^2.1.1",
     "@types/lodash-es": "^4.17.12",
     "ahooks": "^3.7.11",
-    "antd": "^5.16.2",
+    "antd": "^5.16.4",
     "axios": "^1.6.8",
     "classnames": "^2.5.1",
     "lodash-es": "^4.17.21",

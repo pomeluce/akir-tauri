@@ -2,8 +2,8 @@ import { RefAttributes } from 'react';
 import { MessageProps } from './message-props';
 import { RifyFadeInExpandTransition } from '../../_internal';
 import { PrivateMessageRef } from './message-context';
-import { MessageRenderMessage } from './types';
-import RifyMessage from './message';
+import { MessageRenderMessage } from './interface';
+import Message from './message';
 
 type MessageEnvironmentProps = MessageProps & {
   duration?: number;
@@ -73,7 +73,7 @@ const messageEnvironment: React.ForwardRefExoticComponent<MessageEnvironmentProp
   return (
     <>
       <RifyFadeInExpandTransition in={show} onAfterLeave={handleAfterLeave} onLeave={() => onLeave?.()}>
-        <RifyMessage
+        <Message
           content={content}
           type={type}
           icon={icon}

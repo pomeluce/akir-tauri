@@ -1,5 +1,5 @@
 import { MouseEvent, ReactNode } from 'react';
-import type { MessageType } from './types';
+import type { MessageConfig, MessageType } from './types';
 
 export interface MessageProps {
   icon?: ReactNode;
@@ -11,5 +11,6 @@ export interface MessageProps {
   onClose?: VoidFunction;
   onMouseenter?: (e: MouseEvent) => void;
   onMouseleave?: (e: MouseEvent) => void;
+  placement?: 'top' | 'top-left' | 'top-right' | 'bottom' | 'bottom-left' | 'bottom-right';
 }
 export type MessageSetupProps = MessageProps;

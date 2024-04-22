@@ -18,7 +18,7 @@ const iconRenderMap = {
 };
 
 const message: ForwardRefExoticComponent<MessageProps & { render?: MessageRenderMessage } & RefAttributes<HTMLDivElement>> = forwardRef((props, ref) => {
-  const { closable, content, icon, onMouseenter, onMouseleave, render: renderMessage, showIcon, type = 'default' } = props;
+  const { closable, content, icon, onMouseenter, onMouseleave, placement = 'top', render: renderMessage, showIcon, type = 'default' } = props;
 
   const { mergedClsPrefix, mergedRtl } = useConfig();
   const theme = useTheme('Message', '-message', style, messageLight, mergedClsPrefix);
@@ -85,7 +85,7 @@ const message: ForwardRefExoticComponent<MessageProps & { render?: MessageRender
     };
   };
 
-  const { placement = 'top' } = useContext<MessageProviderSetupProps>(MessageContext);
+  // const { placement = 'top' } = useContext<MessageProviderSetupProps>(MessageContext);
 
   let iconNode: ReactNode;
   return (
