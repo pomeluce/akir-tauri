@@ -1,2 +1,2 @@
-export { default as RifyLoading } from './loading';
-export type { LoadOptions } from './interface';
+export { default as useLoading } from './src/useLoading';
+export type { LoadOptions } from './src/interface';

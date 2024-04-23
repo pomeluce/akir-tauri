@@ -1,7 +1,7 @@
 import { CSSProperties, ForwardRefExoticComponent, ReactNode, RefAttributes } from 'react';
-import { MessageContext, MessageProviderSetupProps } from './message-context';
+import {} from './message-context';
 import { MessageProps } from './message-props';
-import { MessageRenderMessage, MessageType } from './types';
+import { MessageRenderMessage, MessageType } from './interface';
 import { ErrorIcon, InfoIcon, RifyBaseClose, RifyBaseIcon, RifyBaseLoading, SuccessIcon, WarningIcon } from '../../_internal';
 import { useConfig, useRtl, useTheme } from '../../_mixins';
 import { messageLight } from '../styles';
@@ -84,8 +84,6 @@ const message: ForwardRefExoticComponent<MessageProps & { render?: MessageRender
       '--rify-border-radius': borderRadius,
     };
   };
-
-  // const { placement = 'top' } = useContext<MessageProviderSetupProps>(MessageContext);
 
   let iconNode: ReactNode;
   return (

@@ -1,4 +1,4 @@
-import { RifyLoading, useMessage } from '@/rify';
+import { useLoading as RifyLoading, useMessage } from '@/rify';
 import Axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
 export default (defaults: AxiosRequestConfig, config: AxiosConfig) => {

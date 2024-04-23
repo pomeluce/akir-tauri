@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
-import { RifyLoading, useMessage } from '@/rify';
+import { useLoading as RifyLoading, useMessage } from '@/rify';
 import router from '../router';
 
 // 获取 storage 对象

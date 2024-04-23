@@ -1,8 +1,8 @@
 import { CSSProperties } from 'react';
-import { hash } from 'css-render';
 import { LoadOptions } from './interface';
-import { SpinProps } from '../spin';
-import { render } from 'rc-util/lib/React/render';
+import { SpinProps } from '../../spin';
+import { render, unmount } from 'rc-util/lib/React/render';
+import { createId } from 'seemly';
 
 class RifyLoad {
   private instance: LoadOptions;
@@ -15,7 +15,7 @@ class RifyLoad {
    */
   constructor(options: LoadOptions, rNode: HTMLElement, spin: (props: SpinProps) => JSX.Element) {
     this.instance = options;
-    this.renderId = `rify-loading-${hash(Date.now().toString())}`;
+    this.renderId = `rify-loading-${createId()}`;
     this.node = rNode;
     this.init();
     this.setSpin(spin);
@@ -67,6 +67,7 @@ class RifyLoad {
    * 组件销毁方法
    */
   public remove() {
+    unmount(this.node);
     this.node.remove();
   }
 }

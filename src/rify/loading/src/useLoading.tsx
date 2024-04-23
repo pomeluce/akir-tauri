@@ -1,4 +1,4 @@
-import { Spin, SpinProps } from '../spin';
+import { Spin, SpinProps } from '../../spin';
 import { RifyLoad } from './Load';
 import { LoadOptions } from './interface';
 

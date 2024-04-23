@@ -1,5 +1,5 @@
 import http from '@/plugins/axios';
-import { useMessage } from '@/rify';
+import {  useMessage } from '@/rify';
 
 const Home: React.FC<{}> = () => {
   // const http = useAxios();
