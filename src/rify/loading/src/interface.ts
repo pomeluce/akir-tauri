@@ -1,4 +1,4 @@
-import { SpinProps } from '../spin';
+import { SpinProps } from '../../spin';
 
 export interface LoadOptions {
   isShow?: boolean;

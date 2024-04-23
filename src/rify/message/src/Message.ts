@@ -104,4 +104,8 @@ export class Message {
       messageInstRef.hide();
     });
   };
+
+  public config = (config: MessageConfig) => {
+    this.global = { ...this.global, ...config };
+  };
 }

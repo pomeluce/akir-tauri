@@ -1,6 +1,6 @@
 import { CNode } from 'css-render';
 import { cssrAnchorMetaName } from './common';
-import { globalTheme, ProviderContext } from '../provider';
+import { ConfigProviderProps, globalTheme, ProviderContext } from '../provider';
 import { GlobalTheme, GlobalThemeOverrides } from '../provider/interface';
 import { ThemeCommonVars } from '../_styles/common';
 import { merge } from 'lodash-es';
@@ -22,6 +22,7 @@ const useTheme = <N, T, R>(
   style: CNode | undefined,
   defaultTheme: Theme<N, T, R>,
   clsPrefix: string | undefined,
+  context?: ConfigProviderProps,
 ) => {
   if (style) {
     style.mount({
@@ -35,7 +36,7 @@ const useTheme = <N, T, R>(
   }
 
   const { theme: { name = 'light' } = {} as GlobalTheme, themeOverrides: { common: contextCommonOverrides, [resolveId]: contextSelfOverrides = {} } = {} as GlobalThemeOverrides } =
-    useContext(ProviderContext);
+    context || useContext(ProviderContext);
 
   const { common: globalCommon, [resolveId]: { common: globalSelfCommon = undefined, self: globalSelf = undefined } = {} } = globalTheme(name);
 

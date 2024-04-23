@@ -1,11 +1,11 @@
 import { CSSProperties, ForwardRefExoticComponent, ReactNode, RefAttributes } from 'react';
-import {} from './message-context';
+import { ConfigProviderProps } from '../../provider';
 import { MessageProps } from './message-props';
 import { MessageRenderMessage, MessageType } from './interface';
 import { ErrorIcon, InfoIcon, RifyBaseClose, RifyBaseIcon, RifyBaseLoading, SuccessIcon, WarningIcon } from '../../_internal';
 import { useConfig, useRtl, useTheme } from '../../_mixins';
 import { messageLight } from '../styles';
-import { createKey, render } from '../../_utils';
+import { EventBus, createKey, render } from '../../_utils';
 import style from './styles/index.cssr';
 import classNames from 'classnames';
 
@@ -20,8 +20,16 @@ const iconRenderMap = {
 const message: ForwardRefExoticComponent<MessageProps & { render?: MessageRenderMessage } & RefAttributes<HTMLDivElement>> = forwardRef((props, ref) => {
   const { closable, content, icon, onMouseenter, onMouseleave, placement = 'top', render: renderMessage, showIcon, type = 'default' } = props;
 
-  const { mergedClsPrefix, mergedRtl } = useConfig();
-  const theme = useTheme('Message', '-message', style, messageLight, mergedClsPrefix);
+  const [context, setContext] = useState<ConfigProviderProps>({});
+
+  useEffect(() => {
+    EventBus.subscribe<ConfigProviderProps>('RifyConfigProvider', detail => {
+      setContext(detail);
+    });
+  }, []);
+
+  const { mergedClsPrefix, mergedRtl } = useConfig(context);
+  const theme = useTheme('Message', '-message', style, messageLight, mergedClsPrefix, context);
   const rtlEnabled = useRtl('Message', mergedRtl, mergedClsPrefix);
 
   const cssVars = () => {

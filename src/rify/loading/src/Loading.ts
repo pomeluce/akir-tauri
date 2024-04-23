@@ -4,7 +4,7 @@ import { SpinProps } from '../../spin';
 import { render, unmount } from 'rc-util/lib/React/render';
 import { createId } from 'seemly';
 
-class RifyLoad {
+export class Loading {
   private instance: LoadOptions;
   private renderId: string;
   private node: HTMLElement;
@@ -71,4 +71,3 @@ class RifyLoad {
     this.node.remove();
   }
 }
-export { RifyLoad };
