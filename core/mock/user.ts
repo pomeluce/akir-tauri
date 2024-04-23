@@ -6,7 +6,6 @@ export default [
   {
     url: '/api/' + RequestURL.CURRENT_USER,
     method: 'get',
-    statusCode: 404,
     response: () => {
       return {
         code: 200,

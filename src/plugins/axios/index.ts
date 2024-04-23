@@ -2,7 +2,7 @@ import Axios from './Axios';
 
 const { axios } = config();
 // 创建 axios 实例
-const http = new Axios(
+export default new Axios(
   {
     // 请求前缀
     baseURL: axios.baseURL,
@@ -17,5 +17,3 @@ const http = new Axios(
   },
   axios,
 );
-
-export default http;

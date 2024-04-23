@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { MessageConfig, MessageOptions, MessageType } from './interface';
 import { InternalMessageProps, MessageReactive, PrivateMessageRef } from './message-context';
 import { createId } from 'seemly';
-import { render } from 'rc-util/lib/React/render';
+import { render, unmount } from 'rc-util/lib/React/render';
 import classNames from 'classnames';
 
 type ContentType = string | ReactNode;
@@ -10,16 +10,15 @@ type ContentType = string | ReactNode;
 export class Message {
   private global: MessageConfig;
   private message: (props: InternalMessageProps) => JSX.Element;
-  private count: number = 0;
   private messageRefs: Record<string, PrivateMessageRef> = {};
+  private rootList: Array<{ key: string; node: HTMLElement }> = [];
+  private renderMessage: HTMLElement;
   private isMount: boolean = false;
 
   constructor(config: MessageConfig, message: (props: InternalMessageProps) => JSX.Element) {
     this.global = config;
     this.message = message;
-    if (!config.to) {
-      this.global.to = this.rootNode();
-    }
+    this.renderMessage = this.rootNode();
   }
 
   private rootNode() {
@@ -29,11 +28,20 @@ export class Message {
     Object.assign(root.style, containerStyle);
     return root;
   }
+  private contextElement() {
+    const { clsPrefix } = this.global;
+    const contextEl = document.createElement('div');
+    contextEl.className = `${clsPrefix}-message-context`;
+    return contextEl;
+  }
 
   private create = (content: ContentType, options: MessageOptions & { type: MessageType }): MessageReactive => {
-    const root = this.global.to as HTMLElement;
+    const { to } = this.global;
+    const renderRoot = this.contextElement();
+    this.renderMessage.appendChild(renderRoot);
+
     if (!this.isMount) {
-      document.body.appendChild(root);
+      to ? to.appendChild(this.renderMessage) : document.body.appendChild(this.renderMessage);
       this.isMount = true;
     }
     const key = createId();
@@ -45,10 +53,31 @@ export class Message {
         this.messageRefs[key]?.hide();
       },
     };
-    // const { max } = this.global;
-    render(this.message({ config: this.global, message: messageState, refs: this.messageRefs, handleAfterLeave: this.handleAfterLeave }), root);
-    this.count++;
+    this.rootList.push({
+      key,
+      node: renderRoot,
+    });
+    const { max } = this.global;
+    if (max && this.rootList.length > max) {
+      const firstNode = this.rootList.shift();
+      unmount(firstNode!.node);
+    }
+    render(this.message({ config: { ...this.global, to: renderRoot }, message: messageState, refs: this.messageRefs, handleAfterLeave: this.handleAfterLeave }), renderRoot);
     return messageState;
+  };
+
+  private handleAfterLeave = (key: string): void => {
+    const index = this.rootList.findIndex(root => root.key === key);
+    this.renderMessage.removeChild(this.rootList[index].node);
+    unmount(this.rootList[index].node);
+    this.rootList.splice(index, 1);
+    delete this.messageRefs[key];
+
+    if (this.rootList.length === 0) {
+      const { to } = this.global;
+      to ? to.removeChild(this.renderMessage) : document.body.removeChild(this.renderMessage);
+      this.isMount = false;
+    }
   };
 
   public defualt = (content: ContentType, options?: MessageOptions) => {
@@ -74,13 +103,5 @@ export class Message {
     Object.values(this.messageRefs).forEach(messageInstRef => {
       messageInstRef.hide();
     });
-  };
-
-  private handleAfterLeave = (key: string): void => {
-    delete this.messageRefs[key];
-    if (--this.count === 0) {
-      document.body.removeChild(this.global.to as HTMLElement);
-      this.isMount = false;
-    }
   };
 }

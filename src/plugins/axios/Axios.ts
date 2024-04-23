@@ -1,10 +1,9 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
-import { useLoading as RifyLoading, useMessage } from '@/rify';
+import { useLoading, useMessage } from '@/rify';
 import router from '../router';
 
 // 获取 storage 对象
 const storage = useStorage();
-const RifyMessage = useMessage();
 
 export default class Axios {
   // axios 实例
@@ -62,9 +61,7 @@ export default class Axios {
     this.instance.interceptors.request.use(
       (config: InternalAxiosRequestConfig) => {
         // 如果 loading 对象不存在且开启了 loading, 则创建一个 loading 对象
-        if (!this.loading && this.options.loading) {
-          this.loading = RifyLoading();
-        }
+        if (!this.loading && this.options.loading) this.loading = useLoading();
         // 获取 token
         const token = storage.get(CacheKey.TOKEN_NAME);
         // 开启 token 认证;
@@ -83,7 +80,6 @@ export default class Axios {
    * 响应拦截器
    */
   private interceptorsResponse() {
-    // const { message: RifyMessage } = holder();
     this.instance.interceptors.response.use(
       (response: AxiosResponse) => {
         // 如果 loading 对象存在, 则关闭 loading 对象
@@ -94,8 +90,8 @@ export default class Axios {
         // 判断 response 是否携带有 refresh_token
         if (!!response.headers['refresh-token']) storage.set(CacheKey.TOKEN_NAME, response.headers['refresh-token']);
         // 判断是否展示提示消息
-        if (response.data?.msg && this.options.message) {
-          RifyMessage[response.data.code === 200 ? 'success' : 'error'](response.data.msg);
+        if (response.data?.message && this.options.message) {
+          useMessage()[response.data.code === 200 ? 'success' : 'error'](response.data.message);
         }
         return response;
       },
@@ -117,17 +113,17 @@ export default class Axios {
             // useErrorStore().setErrors(error.response.data.errors);
             break;
           case HttpStatus.FORBIDDEN:
-            RifyMessage.error(message ?? '没有操作权限');
+            useMessage().error(message ?? '没有操作权限');
             break;
           case HttpStatus.NOT_FOUND:
             useMessage().error(message ?? '请求资源不存在');
             break;
           case HttpStatus.TOO_MANY_REQUESTS:
-            RifyMessage.error(message ?? '请求过于频繁，请稍候再试');
+            useMessage().error(message ?? '请求过于频繁，请稍候再试');
             break;
           default:
             if (message) {
-              RifyMessage.error(message ?? '服务器错误');
+              useMessage().error(message ?? '服务器错误');
             }
         }
         return Promise.reject(error);
