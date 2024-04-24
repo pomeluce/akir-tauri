@@ -11,6 +11,7 @@ declare module 'react-router-dom' {
 
   interface RouteMeta {
     auth?: boolean;
+    guest?: boolean;
     label?: string;
     menu?: RouteMenu;
     prefix?: boolean;

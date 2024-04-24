@@ -1,2 +1,2 @@
 export { default as http } from './axios';
-export { default as router } from './router';
+export { default as router, beforeEach } from './router';

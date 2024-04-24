@@ -1,7 +1,7 @@
 {
   "name": "rapidify-react",
   "private": true,
-  "version": "0.3.1",
+  "version": "0.4.3",
   "type": "module",
   "license": "GPL-3.0",
   "homepage": "https://github.com/pomeluce/rapidify-react",
