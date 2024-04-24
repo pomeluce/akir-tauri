@@ -7,6 +7,7 @@ import { messageDark, messageLight, messageRtlState } from '../message/styles';
 import { resultLight, resultDark, resultRtlState } from '../result/styles';
 import { spinDark, spinLight, spinRtlState } from '../spin/styles';
 import { tooltipLight, tooltipDark, tooltipRtlState } from '../tooltip/styles';
+import { ConfigProviderProps } from './config-provider';
 import { GlobalTheme } from './interface';
 import { RtlEnabledStae } from './internal-interface';
 
@@ -51,4 +52,4 @@ export const rtlEnabledState: RtlEnabledStae = {
 
 export const globalTheme = (mode: 'light' | 'dark') => (mode === 'light' ? lightTheme : darkTheme);
 
-export const defaultProps = { clsPrefix: defaultClsPrefix, theme: lightTheme };
+export const defaultProps = { clsPrefix: defaultClsPrefix, theme: lightTheme } as ConfigProviderProps;

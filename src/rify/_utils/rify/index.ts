@@ -1,4 +1,3 @@
-export { default as EventBus } from './EventBus';
 export { default as initCollapseMotion } from './motion';
 export { omit } from './omit';
 export { default as getPlacements } from './placements';

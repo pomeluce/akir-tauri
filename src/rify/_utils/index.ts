@@ -3,6 +3,6 @@ export { c, cB, cE, cM, cNotM, cNotB, cCB, insideModal, insidePopover, asModal, 
 export { isChrome, isFirefox, isSafari } from './env/browser';
 export { isBrowser } from './env/is-browser';
 export { call, isFragment, cloneElement, replaceElement } from './react';
-export { EventBus, getPlacements, initCollapseMotion, omit, render, throwError, warn, warnOnce } from './rify';
+export { getPlacements, initCollapseMotion, omit, render, throwError, warn, warnOnce } from './rify';
 export type { MaybeArray } from './react';
 export type { AdjustOverflow, AnyObject, LiteralUnion, RenderFunction } from './rify';
