@@ -1,11 +1,12 @@
 import { RouteRecord } from 'react-router-dom';
-import front from '@/routes/front';
-import admin from '@/routes/admin';
-import error from '@/routes/error';
+import front from './front';
+import auth from './auth';
+import admin from './admin';
+import error from './error';
 
 const unknown: RouteRecord = {
   path: '*',
-  name: 'unknown',
+  name: RouteName.UNKNOWN,
   component: lazy(() => import('@/views/error/404')),
 };
 
@@ -21,6 +22,6 @@ const resolver = (route: RouteRecord) => {
   return route;
 };
 
-export default [front, ...admin, error, unknown].map(item => resolver(item)) as RouteRecord[];
+export default [front, auth, ...admin, error, unknown].map(item => resolver(item)) as RouteRecord[];
 
 export const ErrorElement = lazy(() => import('@/views/error/500'));
