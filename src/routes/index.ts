@@ -15,7 +15,8 @@ const resolver = (route: RouteRecord) => {
   const meta = route.meta;
 
   route.children.map(item => {
-    if (!item.meta || item.meta.auth === undefined) item.meta = { auth: meta.auth };
+    if (!item.meta) item.meta = { auth: meta.auth };
+    if (item.meta.auth === undefined) item.meta.auth = meta.auth;
     if (route.children) resolver(item);
   });
 
