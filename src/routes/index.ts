@@ -12,12 +12,13 @@ const unknown: RouteRecord = {
 
 const resolver = (route: RouteRecord) => {
   if (!route.meta || !route.children) return route;
-  const meta = route.meta;
+  const { auth, guest } = route.meta;
 
   route.children.map(item => {
-    if (!item.meta) item.meta = { auth: meta.auth };
-    if (item.meta.auth === undefined) item.meta.auth = meta.auth;
-    if (route.children) resolver(item);
+    if (!item.meta) item.meta = {};
+    if (auth !== undefined && item.meta.auth === undefined) item.meta.auth = auth;
+    if (guest !== undefined && item.meta.guest === undefined) item.meta.guest = guest;
+    resolver(item);
   });
 
   return route;
