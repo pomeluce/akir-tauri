@@ -1,6 +1,5 @@
 import { http } from '@/plugins';
 
-const { request } = useRequest();
 const storage = useStorage();
 
 export default () => {
