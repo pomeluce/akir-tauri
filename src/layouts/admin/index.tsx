@@ -1,5 +1,6 @@
 import Leftbar from '@/layouts/admin/leftbar';
 import Topbar from '@/layouts/admin/topbar';
+import { ProtectedRouter } from '@/plugins';
 
 const admin: React.FC<{}> = () => {
   const ref = useRef<HTMLElement>(null);
@@ -13,15 +14,17 @@ const admin: React.FC<{}> = () => {
   }, []);
 
   return (
-    <main className="grid w-screen h-screen lg:grid-cols-[auto_1fr]">
-      <Leftbar />
-      <section ref={ref} className="grid grid-rows-[auto_1fr] overflow-hidden">
-        <Topbar />
-        <div className="overflow-auto p-5">
-          <Outlet />
-        </div>
-      </section>
-    </main>
+    <ProtectedRouter>
+      <main className="grid w-screen h-screen lg:grid-cols-[auto_1fr]">
+        <Leftbar />
+        <section ref={ref} className="grid grid-rows-[auto_1fr] overflow-hidden">
+          <Topbar />
+          <div className="overflow-auto p-5">
+            <Outlet />
+          </div>
+        </section>
+      </main>
+    </ProtectedRouter>
   );
 };
 
