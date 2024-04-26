@@ -1,4 +1,4 @@
-import Screen from '@/components/rify/screen';
+import { Screen } from '@/components';
 
 const topbar: React.FC<{}> = () => {
   const { switchExpand } = useMenuStore();

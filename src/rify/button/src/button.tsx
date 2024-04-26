@@ -50,24 +50,24 @@ const button: React.ForwardRefExoticComponent<ButtonProps & RefAttributes<HTMLBu
     loading,
     disabled,
     circle,
-    size: _size,
+    size = 'medium',
     ghost,
     round,
     secondary,
     tertiary,
     quaternary,
     strong,
-    focusable: _focusable,
-    keyboard,
-    type: _type,
+    focusable: _focusable = true,
+    keyboard = true,
+    type = 'default',
     dashed,
     icon,
-    iconPlacement: _iconPlacement,
-    attrType,
-    bordered,
+    iconPlacement = 'left',
+    attrType = 'button',
+    bordered = true,
     children: _children,
     onClick,
-    nativeFocusBehavior,
+    nativeFocusBehavior = !isSafari,
     ...attr
   } = props;
 
@@ -84,10 +84,7 @@ const button: React.ForwardRefExoticComponent<ButtonProps & RefAttributes<HTMLBu
   const [enterPressed, setEnterPressed] = useState(false);
 
   const showBorder = !quaternary && !tertiary && !secondary && !text && (!color || ghost || dashed) && bordered;
-  const size = props.size ?? 'medium';
-  const type = props.type ?? 'primary';
-  const iconPlacement = props.iconPlacement ?? 'left';
-  const focusable = props.focusable && !props.disabled;
+  const focusable = _focusable && !props.disabled;
 
   // 鼠标按下事件
   const handleMousedown = (e: MouseEvent): void => {
@@ -370,8 +367,6 @@ const button: React.ForwardRefExoticComponent<ButtonProps & RefAttributes<HTMLBu
     </button>
   );
 });
-
-button.defaultProps = { focusable: true, keyboard: true, type: 'default', iconPlacement: 'left', attrType: 'button', bordered: true, nativeFocusBehavior: !isSafari };
 
 if (__DEV__) button.displayName = 'rify-button';
 

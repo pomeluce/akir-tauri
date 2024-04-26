@@ -42,7 +42,7 @@ const spin: React.FC<SpinProps> = props => {
     description,
     fullscreen,
     icon: _icon,
-    rotate: _rotate,
+    rotate: _rotate = true,
     show = true,
     stroke,
     strokeWidth,
@@ -153,8 +153,6 @@ const spin: React.FC<SpinProps> = props => {
     icon
   );
 };
-
-spin.defaultProps = { size: 'medium', show: true, rotate: true };
 
 if (__DEV__) spin.displayName = 'rify-spin';
 

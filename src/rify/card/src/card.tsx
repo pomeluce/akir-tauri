@@ -5,6 +5,7 @@ import { RifyBaseClose } from '../../_internal';
 import { getPadding } from 'seemly';
 import { cardLight } from '../styles';
 import style from './styles/index.cssr';
+import classNames from 'classnames';
 
 type CardAttributes = Omit<HTMLAttributes<HTMLElement>, 'title'>;
 
@@ -120,24 +121,23 @@ const card: React.FC<CardProps> = (props: CardProps) => {
     };
   };
 
-  const { className, embedded, segmented = false, bordered, hoverable } = props;
+  const { className, embedded, segmented = false, bordered = true, hoverable } = props;
 
-  const classes = [
+  const classes = classNames(
     `${mergedClsPrefix}-card`,
-    embedded && `${mergedClsPrefix}-card--embedded`,
-    rtlEnabled && `${mergedClsPrefix}-card--rtl`,
-    (segmented === true || (segmented !== false && segmented.content)) &&
-      `${mergedClsPrefix}-card--content${typeof segmented !== 'boolean' && segmented.content === 'soft' ? '-soft' : ''}-segmented`,
-    (segmented === true || (segmented !== false && segmented.footer)) &&
-      `${mergedClsPrefix}-card--footer${typeof segmented !== 'boolean' && segmented.footer === 'soft' ? '-soft' : ''}-segmented`,
-    (segmented === true || (segmented !== false && segmented.action)) && `${mergedClsPrefix}-card--action-segmented`,
-    bordered && `${mergedClsPrefix}-card--bordered`,
-    hoverable && `${mergedClsPrefix}-card--hoverable`,
-    className || '',
-  ]
-    .filter(cls => cls)
-    .join(' ')
-    .trimEnd();
+    {
+      [`${mergedClsPrefix}-card--embedded`]: embedded,
+      [`${mergedClsPrefix}-card--rtl`]: rtlEnabled,
+      [`${mergedClsPrefix}-card--content${typeof segmented !== 'boolean' && segmented.content === 'soft' ? '-soft' : ''}-segmented`]:
+        segmented === true || (segmented !== false && segmented.content),
+      [`${mergedClsPrefix}-card--footer${typeof segmented !== 'boolean' && segmented.footer === 'soft' ? '-soft' : ''}-segmented`]:
+        segmented === true || (segmented !== false && segmented.footer),
+      [`${mergedClsPrefix}-card--action-segmented`]: segmented === true || (segmented !== false && segmented.action),
+      [`${mergedClsPrefix}-card--bordered`]: bordered,
+      [`${mergedClsPrefix}-card--hoverable`]: hoverable,
+    },
+    className,
+  );
 
   return (
     <div className={classes} style={cssVars() as CSSProperties} role={props.role}>
@@ -177,8 +177,6 @@ const card: React.FC<CardProps> = (props: CardProps) => {
     </div>
   );
 };
-
-card.defaultProps = { segmented: false, size: 'medium', bordered: true };
 
 if (__DEV__) card.displayName = 'rify-card';
 

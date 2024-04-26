@@ -36,7 +36,7 @@ const messageEnvironment: React.ForwardRefExoticComponent<MessageEnvironmentProp
   }));
 
   function setHideTimeout(): void {
-    const { duration } = props;
+    const { duration = 3000 } = props;
     if (duration) {
       timerId = setTimeout(hide, duration);
     }
@@ -88,7 +88,5 @@ const messageEnvironment: React.ForwardRefExoticComponent<MessageEnvironmentProp
     </>
   );
 });
-
-messageEnvironment.defaultProps = { duration: 3000, type: 'info', showIcon: true };
 
 export default messageEnvironment;

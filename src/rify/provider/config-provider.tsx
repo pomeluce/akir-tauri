@@ -2,7 +2,6 @@ import { ReactNode } from 'react';
 import { ProviderContext } from './context';
 import { GlobalTheme, GlobalThemeOverrides } from './interface';
 import { RtlEnabledStae } from './internal-interface';
-import { defaultProps } from './config';
 import useProviderStore from './hooks/useProviderStore';
 
 export interface ConfigProviderProps {
@@ -20,7 +19,5 @@ const ConfigProvider: React.FC<ConfigProviderProps> = (props: ConfigProviderProp
   }, [props]);
   return <ProviderContext.Provider value={props}>{props.children}</ProviderContext.Provider>;
 };
-
-ConfigProvider.defaultProps = defaultProps;
 
 export default ConfigProvider;

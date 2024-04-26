@@ -27,7 +27,7 @@ export const RifyResolver = (): Resolver => {
     type: 'component',
     resolve: (name: string) => {
       if (name.startsWith('Rify') && rifyComponents.includes(name.slice(4))) {
-        return { from: '@/rify', name: name.slice(4), as: name };
+        return { from: `${process.cwd()}/src/rify`, name: name.slice(4), as: name };
       }
     },
   };

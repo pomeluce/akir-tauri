@@ -5,6 +5,7 @@ import { useConfig, useRtl, useTheme } from '../../_mixins';
 import { createKey } from '../../_utils';
 import { alertLight } from '../styles';
 import style from './styles/index.cssr';
+import classNames from 'classnames';
 
 export interface AlertProps {
   className?: string;
@@ -24,6 +25,7 @@ const alert: React.ForwardRefExoticComponent<AlertProps & RefAttributes<HTMLDivE
   const { mergedClsPrefix, mergedRtl } = useConfig();
   const theme = useTheme('Alert', '-alert', style, alertLight, mergedClsPrefix);
   const rtlEnabled = useRtl('Alert', mergedRtl, mergedClsPrefix);
+  const { bordered = true, className, closable, children, header, icon, showIcon = true, title, type = 'default' } = props;
 
   const cssVars = () => {
     const {
@@ -47,7 +49,6 @@ const alert: React.ForwardRefExoticComponent<AlertProps & RefAttributes<HTMLDivE
       padding,
     } = self;
 
-    const { type = 'default' } = props;
     const { left, right } = getMargin(iconMargin);
 
     return {
@@ -93,17 +94,16 @@ const alert: React.ForwardRefExoticComponent<AlertProps & RefAttributes<HTMLDivE
     props.onAfterLeave?.();
   };
 
-  const classes = [
+  const classes = classNames(
     `${mergedClsPrefix}-alert`,
-    props.closable && `${mergedClsPrefix}-alert--closable`,
-    props.showIcon && `${mergedClsPrefix}-alert--show-icon`,
-    !props.title && props.closable && `${mergedClsPrefix}-alert--right-adjust`,
-    rtlEnabled && `${mergedClsPrefix}-alert--rtl`,
-    props.className || '',
-  ]
-    .filter(cls => cls)
-    .join(' ')
-    .trimEnd();
+    {
+      [`${mergedClsPrefix}-alert--closable`]: closable,
+      [`${mergedClsPrefix}-alert--show-icon`]: showIcon,
+      [`${mergedClsPrefix}-alert--right-adjust`]: !title && closable,
+      [`${mergedClsPrefix}-alert--rtl`]: rtlEnabled,
+    },
+    className,
+  );
 
   // 组件注销执行
   useEffect(() => {
@@ -116,14 +116,14 @@ const alert: React.ForwardRefExoticComponent<AlertProps & RefAttributes<HTMLDivE
     <>
       {visible ? (
         <div ref={ref} className={classes} style={cssVars() as CSSProperties} role="alert">
-          {props.closable && <RifyBaseClose clsPrefix={mergedClsPrefix} className={`${mergedClsPrefix}-alert__close`} onClick={handleCloseClick} />}
-          {props.bordered && <div className={`${mergedClsPrefix}-alert__border`} />}
-          {props.showIcon && (
+          {closable && <RifyBaseClose clsPrefix={mergedClsPrefix} className={`${mergedClsPrefix}-alert__close`} onClick={handleCloseClick} />}
+          {bordered && <div className={`${mergedClsPrefix}-alert__border`} />}
+          {showIcon && (
             <div className={`${mergedClsPrefix}-alert__icon`} aria-hidden="true">
-              {props.icon || (
+              {icon || (
                 <RifyBaseIcon clsPrefix={mergedClsPrefix}>
                   {(() => {
-                    switch (props.type) {
+                    switch (type) {
                       case 'success':
                         return SuccessIcon;
                       case 'info':
@@ -140,22 +140,15 @@ const alert: React.ForwardRefExoticComponent<AlertProps & RefAttributes<HTMLDivE
               )}
             </div>
           )}
-          <div
-            className={[`${mergedClsPrefix}-alert-body`, props.bordered && `${mergedClsPrefix}-alert-body--bordered`]
-              .filter(cls => cls)
-              .join(' ')
-              .trimEnd()}
-          >
-            {props.header || props.title ? <div className={`${mergedClsPrefix}-alert-body__title`}>{props.header || props.title}</div> : null}
-            {props.children && <div className={`${mergedClsPrefix}-alert-body__content`}>{props.children}</div>}
+          <div className={classNames(`${mergedClsPrefix}-alert-body`, props.bordered && `${mergedClsPrefix}-alert-body--bordered`)}>
+            {header || title ? <div className={`${mergedClsPrefix}-alert-body__title`}>{header || title}</div> : null}
+            {children && <div className={`${mergedClsPrefix}-alert-body__content`}>{children}</div>}
           </div>
         </div>
       ) : null}
     </>
   );
 });
-
-alert.defaultProps = { showIcon: true, type: 'default', bordered: true };
 
 if (__DEV__) alert.displayName = 'rify-alert';
 

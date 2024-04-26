@@ -1,5 +1,5 @@
 import Logo from '/pomeluce.svg';
-import Screen from '@/components/rify/screen';
+import { Screen } from '@/components';
 
 const { topMenu } = config();
 

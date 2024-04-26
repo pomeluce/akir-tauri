@@ -1,17 +1,23 @@
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import UnoCSS from 'unocss/vite';
-import path from 'path';
+import { resolve } from 'path';
 import autoImport from './core/auto-import';
 import { parseEnv } from './core/utils';
 import mock from './core/mock';
+
+/** 当前执行 node 命令时文件夹的地址（工作目录） */
+const root: string = process.cwd();
+
+/** 路径拼接函数，简化代码 */
+const pathResolve = (path: string): string => resolve(root, path);
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
   // 获取当前环境模式
   const isBuild = command === 'build';
   // 设置第三个参数为 '' 来加载所有环境变量，而不管是否有 `VITE_` 前缀。
-  const env = parseEnv(loadEnv(mode, process.cwd()));
+  const env = parseEnv(loadEnv(mode, root));
   return {
     plugins: [...autoImport, react(), UnoCSS(), mock(isBuild, env)],
     // 本地开发服务器配置
@@ -20,10 +26,10 @@ export default defineConfig(({ command, mode }) => {
       // 导入组件忽略文件后缀
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
       // 配置路径别名
-      alias: {
-        '@': path.resolve(__dirname, './src'),
-        '#': path.resolve(__dirname, './types'),
-      },
+      alias: [
+        { find: '@', replacement: pathResolve('src') },
+        { find: '#', replacement: pathResolve('types') },
+      ],
     },
     define: {
       [process.env.NODE_ENV]: `${env.NODE_ENV}`,

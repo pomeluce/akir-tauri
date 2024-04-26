@@ -18,7 +18,7 @@ const iconRenderMap = {
 };
 
 const message: ForwardRefExoticComponent<MessageProps & { render?: MessageRenderMessage } & RefAttributes<HTMLDivElement>> = forwardRef((props, ref) => {
-  const { closable, content, icon, onMouseenter, onMouseleave, placement = 'top', render: renderMessage, showIcon, type = 'default' } = props;
+  const { closable, content, icon, onMouseenter, onMouseleave, placement = 'top', render: renderMessage, showIcon = true, type = 'info' } = props;
 
   const context = useProviderStore().getContext();
 
@@ -127,7 +127,5 @@ function createIconNode(icon: undefined | ReactNode, type: MessageType, clsPrefi
     );
   }
 }
-
-message.defaultProps = { showIcon: true, type: 'info' };
 
 export default message;

@@ -26,7 +26,7 @@ const menu: React.ForwardRefExoticComponent<MenuProps & { collapsedWidth?: strin
     className,
     expandIcon,
     inlineCollapsed,
-    mode,
+    mode = 'inline',
     theme: menuTheme = 'light',
     options,
     overflowedIndicatorPopupClassName,
@@ -204,7 +204,5 @@ const menu: React.ForwardRefExoticComponent<MenuProps & { collapsedWidth?: strin
 });
 
 if (__DEV__) menu.displayName = 'rify-menu';
-
-menu.defaultProps = { mode: 'inline' };
 
 export default menu;

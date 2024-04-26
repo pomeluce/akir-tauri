@@ -213,6 +213,4 @@ const tooltip: React.ForwardRefExoticComponent<TooltipProps & RefAttributes<Tool
 
 if (__DEV__) tooltip.displayName = 'rify-tooltip';
 
-tooltip.defaultProps = { arrow: true, autoAdjustOverflow: true };
-
 export default tooltip;
