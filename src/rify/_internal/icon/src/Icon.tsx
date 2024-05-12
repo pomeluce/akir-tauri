@@ -33,8 +33,6 @@ const icon: React.FC<BaseIconProps> = props => {
   );
 };
 
-icon.defaultProps = { ariaHidden: undefined, ariaDisabled: undefined };
-
 if (__DEV__) icon.displayName = 'rify-base-icon';
 
 export default icon;

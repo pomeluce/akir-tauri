@@ -19,12 +19,12 @@ interface BaseLoadingProps extends HTMLAttributes<HTMLDivElement> {
 
 const loading: React.FC<BaseLoadingProps & BaseLoadingExposedProps> = props => {
   useStyle('-base-loading', style, props.clsPrefix);
-  const { className, clsPrefix, radius = 100, strokeWidth = 28, stroke, scale = 1 } = props;
+  const { className, clsPrefix, radius = 100, strokeWidth = 28, stroke, show = true, scale = 1 } = props;
   const scaledRadius = radius / scale;
 
   return (
     <div className={classNames(`${clsPrefix}-base-loading`, className)} role="img" aria-label="loading">
-      {props.show ? (
+      {show ? (
         <div key="icon" className={`${clsPrefix}-base-loading__transition-wrapper`}>
           <div className={`${clsPrefix}-base-loading__container`}>
             <svg className={`${clsPrefix}-base-loading__icon`} viewBox={`0 0 ${2 * scaledRadius} ${2 * scaledRadius}`} xmlns="http://www.w3.org/2000/svg" style={{ color: stroke }}>
@@ -80,8 +80,6 @@ const loading: React.FC<BaseLoadingProps & BaseLoadingExposedProps> = props => {
     </div>
   );
 };
-
-loading.defaultProps = { show: true, scale: 1, radius: 100, strokeWidth: 28, stroke: undefined };
 
 if (__DEV__) loading.displayName = 'rify-base-loading';
 

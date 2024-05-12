@@ -48,6 +48,7 @@ const internalMessage: React.FC<InternalMessageProps> = props => {
       {createPortal(
         <MessageEnvironment
           ref={ref}
+          key={message.key}
           internalKey={message.key}
           onInternalAfterLeave={handleAfterLeave}
           onMounted={onMounted}
@@ -55,7 +56,7 @@ const internalMessage: React.FC<InternalMessageProps> = props => {
           keepAliveOnHover={message.keepAliveOnHover === undefined ? keepAliveOnHover : message.keepAliveOnHover}
           closable={message.closable === undefined ? closable : message.closable}
           placement={placement}
-          {...omit(message, ['destroy'], undefined)}
+          {...omit(message, ['key', 'destroy'], undefined)}
         />,
         to ?? document.body,
       )}

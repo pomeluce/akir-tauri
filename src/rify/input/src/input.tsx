@@ -43,7 +43,6 @@ export interface InputProps {
   onClear: MaybeArray<(e: MouseEvent) => void>;
   countGraphemes: (value: string) => number;
   status: FormValidationStatus;
-  'onUpdate:value': MaybeArray<OnUpdateValue>;
   onUpdateValue: MaybeArray<OnUpdateValue>;
   /** private */
   textDecoration: string | [string, string];

@@ -52,8 +52,6 @@ const close: React.FC<BaseCloseProps> = props => {
   );
 };
 
-close.defaultProps = { isButtonTag: true, disabled: undefined, focusable: true };
-
 if (__DEV__) close.displayName = 'rify-base-close';
 
 export default close;
