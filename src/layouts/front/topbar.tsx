@@ -9,7 +9,7 @@ const topbar: React.FC<{}> = () => {
 
   return (
     <main className={`flex items-center h-[65px] bg-backdrop1 shadow-sm border-b border-rim8 sticky top-0 z-50`}>
-      <div className="flex justify-between items-center px-3 w-full 2xl:(w-page m-auto)">
+      <div className="flex justify-between items-center px-3 w-full 2xl:w-page 2xl:m-auto">
         <section className="flex items-center xl:items-stretch md:mr-6 text-word4">
           <div className="flex justify-center items-center">
             <Link to="/" className="flex justify-between items-center gap-1 font-bold mr-5 text-primary1 hover:text-link1">

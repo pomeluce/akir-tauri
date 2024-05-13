@@ -1,20 +1,20 @@
 body {
-  --uno: bg-backdrop2 text-word4 font-sans text-base;
+  @apply bg-backdrop2 text-word4 font-sans text-base;
 
   & a:hover {
-    --uno: duration-300 text-link2;
+    @apply duration-300 text-link2;
   }
 }
 
 /* 修改浏览器默认滚动条样式 */
 ::-webkit-scrollbar {
-  --uno: w-9px h-9px;
+  @apply w-[9px] h-[9px];
 }
 
 ::-webkit-scrollbar-thumb {
-  --uno: rounded-3xl bg-gray-500 bg-clip-padding border-transparent border-dashed border-2;
+  @apply rounded-3xl bg-gray-500 bg-clip-padding border-transparent border-dashed border-2;
 
   &:hover {
-    --uno: bg-#374151;
+    @apply bg-[#374151];
   }
 }
