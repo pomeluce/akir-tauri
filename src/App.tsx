@@ -7,9 +7,9 @@ const App: React.FC = () => {
 
   return (
     <RifyConfigProvider theme={rifyTheme} direction={'ltr'}>
-      <AntConfigProvider direction="ltr">
+      <ArcoConfigProvider>
         <RouterProvider router={router}></RouterProvider>
-      </AntConfigProvider>
+      </ArcoConfigProvider>
     </RifyConfigProvider>
   );
 };

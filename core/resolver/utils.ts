@@ -1,7 +1,7 @@
-import { antdComponents } from './preset';
+import { arcoComponents } from './preset';
 
-export const antdComponentMap = (prefix?: string): Map<string, string> => {
-  return antdComponents.reduce((map: Map<string, string>, name: string) => map.set(`${prefix ?? ''}${convertName(name)}`, name), new Map());
+export const arcoComponentMap = (prefix?: string): Map<string, string> => {
+  return arcoComponents.reduce((map: Map<string, string>, name: string) => map.set(`${prefix ?? ''}${convertName(name)}`, name), new Map());
 };
 
 const convertName = (name: string) => {

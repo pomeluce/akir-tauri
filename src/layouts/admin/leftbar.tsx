@@ -49,7 +49,7 @@ const leftbar: React.FC<{}> = () => {
       <main className={isExpand ? '' : ' hidden'}>
         <nav className="text-word12">
           <NavLink className="flex justify-center items-start px-7 py-4 gap-1 cursor-pointer hover:text-word11" to={RoutePath.HOME}>
-            <AntImage rootClassName="w-6 h-6" src={Logo} preview={false} />
+            <ArcoImage className="w-6 h-6" src={Logo} preview={false} />
             <span className="text-lg font-bold uppercase">rapidify-react</span>
           </NavLink>
           <div ref={ref}>

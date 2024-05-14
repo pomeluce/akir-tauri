@@ -1,9 +1,8 @@
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import { resolve } from 'path';
-import autoImport from './core/auto-import';
+import { autoImport, arco, mock } from './core/plugins';
 import { parseEnv } from './core/utils';
-import mock from './core/mock';
 
 /** 当前执行 node 命令时文件夹的地址（工作目录） */
 const root: string = process.cwd();
@@ -18,7 +17,7 @@ export default defineConfig(({ command, mode }) => {
   // 设置第三个参数为 '' 来加载所有环境变量，而不管是否有 `VITE_` 前缀。
   const env = parseEnv(loadEnv(mode, root));
   return {
-    plugins: [...autoImport, react(), mock(isBuild, env)],
+    plugins: [...autoImport, react(), arco(), mock(isBuild, env)],
     // 本地开发服务器配置
     // 配置路径别名
     resolve: {

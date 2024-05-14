@@ -1,21 +1,20 @@
 import { Resolver } from 'unplugin-auto-import/types';
 import { ResolverOptions } from './types';
-import { antdComponents, rifyComponents } from './preset';
-import { antdComponentMap } from './utils';
+import { arcoComponents, rifyComponents } from './preset';
+import { arcoComponentMap } from './utils';
 
-// antd 组件自动按需导入
-export const AntdResolver = (options: ResolverOptions = {}): Resolver => {
+// arco 组件自动导入
+export const ArcoResolver = (options: ResolverOptions = {}): Resolver => {
   const { prefix } = options;
-  const componentMap = antdComponentMap(prefix);
+  const componentMap = arcoComponentMap(prefix);
   return {
     type: 'component',
     resolve: (originName: string) => {
-      // 如果有前缀则重命名引入
       if (!!prefix) {
         const name = componentMap.get(originName);
-        if (!!name) return { from: 'antd', name, as: originName };
+        if (!!name) return { from: '@arco-design/web-react', name, as: originName };
       } else {
-        if (antdComponents.includes(originName)) return { from: 'antd', name: originName };
+        if (arcoComponents.includes(originName)) return { from: '@arco-design/web-react', name: originName };
       }
     },
   };

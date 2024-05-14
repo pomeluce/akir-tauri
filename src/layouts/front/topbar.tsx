@@ -13,7 +13,7 @@ const topbar: React.FC<{}> = () => {
         <section className="flex items-center xl:items-stretch md:mr-6 text-word4">
           <div className="flex justify-center items-center">
             <Link to="/" className="flex justify-between items-center gap-1 font-bold mr-5 text-primary1 hover:text-link1">
-              <AntImage rootClassName="w-6 h-6" src={Logo} preview={false} />
+              <ArcoImage className="w-6 h-6" src={Logo} preview={false} />
               <span className="font-bold text-xl uppercase">rapidify-react</span>
             </Link>
           </div>
@@ -28,7 +28,7 @@ const topbar: React.FC<{}> = () => {
         <section className="flex items-center gap-2">
           <Screen />
           {/* <avatar-menu /> */}
-          <AntSwitch onChange={change} />
+          <ArcoSwitch onChange={change} />
         </section>
       </div>
     </main>

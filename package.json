@@ -5,13 +5,13 @@
   "type": "module",
   "license": "GPL-3.0",
   "homepage": "https://github.com/pomeluce/rapidify-react",
-  "description": "基于 react, typescript, vite, antd, unocss 的前端开发脚手架",
+  "description": "基于 react, typescript, vite, arco, unocss 的前端开发脚手架",
   "keywords": [
     "rapidify",
     "react",
     "typescript",
     "vite",
-    "antd",
+    "arco",
     "zustand",
     "unocss",
     "pomeluce"
@@ -24,11 +24,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@arco-design/web-react": "^2.62.0",
     "@icon-park/react": "^1.4.2",
     "@rc-component/trigger": "^2.1.1",
     "@types/lodash-es": "^4.17.12",
     "ahooks": "^3.7.11",
-    "antd": "^5.17.0",
     "axios": "^1.6.8",
     "classnames": "^2.5.1",
     "lodash-es": "^4.17.21",
@@ -44,6 +44,7 @@
     "zustand": "^4.5.2"
   },
   "devDependencies": {
+    "@arco-plugins/vite-react": "^1.3.3",
     "@css-render/plugin-bem": "^0.15.14",
     "@faker-js/faker": "^8.4.1",
     "@types/mockjs": "^1.0.10",
