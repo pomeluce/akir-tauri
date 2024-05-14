@@ -1,6 +1,6 @@
-const success: React.FC<{}> = () => {
+const success: React.FC<{ className?: string }> = props => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0,0,256,256">
+    <svg className={props.className} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0,0,256,256">
       <g
         fill="none"
         fillRule="nonzero"

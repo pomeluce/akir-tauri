@@ -1,5 +1,5 @@
 const Home: React.FC<{}> = () => {
-  return <RifyCard className="h-[2000px]" title="首页"></RifyCard>;
+  return <ArcoCard className="h-[1000px] p-3" title="首页"></ArcoCard>;
 };
 
 export default Home;

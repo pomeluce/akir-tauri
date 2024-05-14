@@ -1,5 +1,4 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
-import { useLoading, useMessage } from '@/rify';
 import router from '../router';
 
 // 获取 storage 对象
@@ -61,7 +60,7 @@ export default class Axios {
     this.instance.interceptors.request.use(
       (config: InternalAxiosRequestConfig) => {
         // 如果 loading 对象不存在且开启了 loading, 则创建一个 loading 对象
-        if (!this.loading && this.options.loading) this.loading = useLoading();
+        // if (!this.loading && this.options.loading) this.loading = useLoading();
         // 获取 token
         const token = storage.get(CacheKey.TOKEN_NAME);
         // 开启 token 认证;
@@ -91,7 +90,7 @@ export default class Axios {
         if (!!response.headers['refresh-token']) storage.set(CacheKey.TOKEN_NAME, response.headers['refresh-token']);
         // 判断是否展示提示消息
         if (response.data?.message && this.options.message) {
-          useMessage()[response.data.code === 200 ? 'success' : 'error'](response.data.message);
+          ArcoMessage[response.data.code === 200 ? 'success' : 'error']({ content: response.data.message });
         }
         return response;
       },
@@ -113,17 +112,17 @@ export default class Axios {
             // useErrorStore().setErrors(error.response.data.errors);
             break;
           case HttpStatus.FORBIDDEN:
-            useMessage().error(message ?? '没有操作权限');
+            ArcoMessage.error({ content: message ?? '没有操作权限' });
             break;
           case HttpStatus.NOT_FOUND:
-            useMessage().error(message ?? '请求资源不存在');
+            ArcoMessage.error({ content: message ?? '请求资源不存在' });
             break;
           case HttpStatus.TOO_MANY_REQUESTS:
-            useMessage().error(message ?? '请求过于频繁，请稍候再试');
+            ArcoMessage.error({ content: message ?? '请求过于频繁，请稍候再试' });
             break;
           default:
             if (message) {
-              useMessage().error(message ?? '服务器错误');
+              ArcoMessage.error({ content: message ?? '服务器错误' });
             }
         }
         return Promise.reject(error);

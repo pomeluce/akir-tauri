@@ -72,6 +72,3 @@ export const arcoComponents: Array<string> = [
   'VerificationCode',
   'Watermark',
 ];
-
-// rify 自定义组件
-export const rifyComponents: Array<string> = ['Alert', 'Button', 'Card', 'ConfigProvider', 'Menu', 'Result', 'Spin', 'Tooltip'];

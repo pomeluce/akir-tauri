@@ -45,7 +45,7 @@ const leftbar: React.FC<{}> = () => {
   }, []);
 
   return (
-    <div className="bg-backdrop3 border-r border-rim8 shadow-lg absolute h-full overflow-auto z-50 lg:(relative shadow-none)">
+    <div className="bg-backdrop3 border-r border-rim8 absolute h-full overflow-auto z-50 lg:relative">
       <main className={isExpand ? '' : ' hidden'}>
         <nav className="text-word12">
           <NavLink className="flex justify-center items-start px-7 py-4 gap-1 cursor-pointer hover:text-word11" to={RoutePath.HOME}>
@@ -70,7 +70,7 @@ const leftbar: React.FC<{}> = () => {
                     <div
                       ref={item.name === router?.name ? active : undefined}
                       key={index}
-                      className={`px-5 py-3 my-3 rounded text-primary11 bg-primary10 opacity-80 cursor-pointer hover:text-white !hover:(bg-primary1 opacity-95)${item.name === router?.name ? ' !bg-primary1 opacity-95 text-white' : ''}`}
+                      className={`px-5 py-3 my-3 rounded text-primary11 bg-primary10 opacity-80 cursor-pointer hover:text-white hover:bg-primary1 hover:opacity-95${item.name === router?.name ? ' !bg-primary1 opacity-95 text-white' : ''}`}
                       onClick={() => goto(item)}
                     >
                       {item.meta?.menu?.label}

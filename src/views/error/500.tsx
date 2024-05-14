@@ -1,20 +1,20 @@
-import icon from '@/components/_internal/icons/500';
+import I500 from '@/components/_internal/icons/500';
 
 const INTERNAL_SERVER_ERROR: React.FC<{}> = () => {
   const { navigator } = useRouter();
 
   return (
     <main className="h-screen flex flex-col justify-center items-center">
-      <RifyResult className="w-full" icon={<span className="w-74">{icon({})}</span>}>
+      <ArcoResult className="w-full" status={null} icon={<I500 className="w-56" />}>
         <main className="flex flex-col justify-center items-center gap-7 pb-48">
           <span className="text-base md:text-3xl font-bold ">啊哦, 网站出了点小意外</span>
           <span>
-            <RifyButton type="error" onClick={() => navigator({ name: RouteName.HOME })}>
+            <ArcoButton type="primary" status="danger" onClick={() => navigator({ name: RouteName.HOME })}>
               返回首页
-            </RifyButton>
+            </ArcoButton>
           </span>
         </main>
-      </RifyResult>
+      </ArcoResult>
     </main>
   );
 };

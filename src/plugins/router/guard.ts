@@ -1,5 +1,4 @@
 import { RouteRecord } from 'react-router-dom';
-import { useMessage } from '@/rify';
 import router from '.';
 
 // 初始化变量
@@ -26,7 +25,7 @@ export default async (to: RouteRecord | undefined) => {
   // 访问需要登录的资源进行登录验证
   if (to?.meta?.auth && !isLogin()) {
     storage.set(CacheKey.REDIRECT_ROUTE_NAME, to.name);
-    useMessage().info('当前未登录或登录已过期');
+    ArcoMessage.info({ content: '当前未登录或登录已过期' });
     router.navigate(RoutePath.LOGIN);
   }
 

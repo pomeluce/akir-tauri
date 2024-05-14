@@ -1,6 +1,6 @@
-const i500: React.FC<{}> = () => {
+const i500: React.FC<{ className?: string }> = props => {
   return (
-    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1119.60911 699" xmlnsXlink="http://www.w3.org/1999/xlink">
+    <svg className={props.className} data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1119.60911 699" xmlnsXlink="http://www.w3.org/1999/xlink">
       <title>server down</title>
       <circle cx="292.60911" cy="213" r="213" fill="#f2f2f2" />
       <path d="M31.39089,151.64237c0,77.49789,48.6181,140.20819,108.70073,140.20819" transform="translate(-31.39089 -100.5)" fill="#2f2e41" />

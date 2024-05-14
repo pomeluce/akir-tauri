@@ -9,7 +9,7 @@ const login: React.FC<{}> = () => {
               <input className="rify-input" type="text" />
               <input type="text" />
             </div>
-            <RifyButton type="primary">登录</RifyButton>
+            <ArcoButton type="primary">登录</ArcoButton>
           </div>
         </div>
         <div className=""></div>

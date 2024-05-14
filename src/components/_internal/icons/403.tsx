@@ -1,6 +1,6 @@
-const i403: React.FC<{}> = () => {
+const i403: React.FC<{ className?: string }> = props => {
   return (
-    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 807.45276 499.98424" xmlnsXlink="http://www.w3.org/1999/xlink">
+    <svg className={props.className} data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 807.45276 499.98424" xmlnsXlink="http://www.w3.org/1999/xlink">
       <path
         id="ad903c08-5677-4dbe-a9c7-05a0eb46801f-457"
         data-name="Path 461"
