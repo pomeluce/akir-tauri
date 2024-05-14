@@ -5,7 +5,7 @@ import admin from './admin';
 import error from './error';
 
 const unknown: RouteRecord = {
-  path: '*',
+  path: RoutePath.UNKNOWN,
   name: RouteName.UNKNOWN,
   component: lazy(() => import('@/views/error/404')),
 };
