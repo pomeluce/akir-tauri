@@ -1,10 +1,10 @@
 const fallback: React.FC<{}> = () => {
   return (
     <div className="w-screen h-screen fixed top-0 left-0 flex justify-center items-center text-4xl text-primary1 bg-backdrop1 opacity-85 z-100">
-      <div className="relative leading-0 w-1em h-1em" role="img" aria-label="loading">
+      <div className="relative leading-0 w-[1em] h-[1em]" role="img" aria-label="loading">
         <div className="absolute w-full h-full">
-          <div className="animate-spin animate-duration-3000">
-            <svg className="w-1em h-1em" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <div className="animate-spin [animate-duration:3s]">
+            <svg className="w-[1em] h-[1em]" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
               <g>
                 <animateTransform
                   attributeName="transform"
@@ -16,7 +16,7 @@ const fallback: React.FC<{}> = () => {
                   repeatCount="indefinite"
                 ></animateTransform>
                 <circle
-                  className="w-1em h-1em"
+                  className="w-[1em] h-[1em]"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="28"

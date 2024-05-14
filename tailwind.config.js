@@ -1,3 +1,5 @@
+import plugin from 'tailwindcss';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
@@ -5,6 +7,22 @@ export default {
     extend: {
       width: {
         page: '1450px',
+      },
+
+      lineHeight: {
+        0: '0',
+      },
+
+      zIndex: {
+        60: '60',
+        70: '70',
+        80: '80',
+        90: '90',
+        100: '100',
+      },
+
+      fontFamily: {
+        founder: ['founder-youhei', 'sans-serif'],
       },
 
       colors: {
@@ -59,10 +77,6 @@ export default {
         rim8: 'var(--r-hue-b8)',
         rim9: 'var(--r-hue-b9)',
         rim10: 'var(--r-hue-b10)',
-      },
-
-      fontFamily: {
-        founder: ['founder-youhei', 'sans-serif'],
       },
     },
   },
