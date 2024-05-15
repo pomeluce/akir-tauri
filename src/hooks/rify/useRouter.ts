@@ -1,5 +1,6 @@
 import { RouteLocation, RouteLocationRaw, RouteRecord, matchRoutes } from 'react-router-dom';
 import { routes } from '@/layouts';
+import { beforeEach } from '@/plugins';
 import records from '@/routes';
 
 const getFullPath = (raws: RouteRecord[], name: string, path: string = ''): string => {
@@ -37,6 +38,22 @@ export default () => {
     return undefined;
   };
 
+  /**
+   * 根据路由路径获取路由对象
+   *
+   * @param path - 路由路径
+   * @param routes - 路由对象集合
+   * @returns 返回一个 (name: string | undefined, routes?: RouteRecord[]) => RouteRecord | undefined 函数对象
+   */
+  const matchRoutePath = (path: string | undefined, routes: RouteRecord[] = records): RouteRecord | undefined => {
+    let route = routes.find((route: RouteRecord) => resolve(route).fullPath === path);
+    if (route) return route;
+    for (const { children } of routes) {
+      if (children && (route = matchRoutePath(path, children))) return route;
+    }
+    return undefined;
+  };
+
   /* 当前路由对象 */
   const context = matchRoute(id);
 
@@ -47,7 +64,7 @@ export default () => {
    * @returns 返回一个 (route: RouteRecord) => RouteLocation 函数对象
    */
   const resolve = (route: RouteRecord): RouteLocation => {
-    return { fullPath: getFullPath(records, route.name ?? RouteName.UNKNOWN) };
+    return { fullPath: getFullPath(records, route?.name ?? RouteName.UNKNOWN) };
   };
 
   /* 当前路由地址 */
@@ -70,9 +87,17 @@ export default () => {
    * @param to - 路由跳转信息
    */
   const navigator = (to: RouteLocationRaw) => {
-    if (typeof to === 'string') navigate(to);
-    else navigate(resolve(matchRoute(to.name)!).fullPath);
+    if (typeof to === 'string') {
+      beforeEach(matchRoutePath(to)).then(auth => {
+        auth && navigate(to);
+      });
+    } else {
+      const route = matchRoute(to.name);
+      beforeEach(route).then(auth => {
+        auth && navigate(resolve(route!).fullPath);
+      });
+    }
   };
 
-  return { context, fullPath, matchRoute, open, navigator, resolve };
+  return { context, fullPath, matchRoute, matchRoutePath, open, navigator, resolve };
 };

@@ -16,7 +16,7 @@ const init = async () => {
   // }
 };
 
-export default async (to: RouteRecord | undefined) => {
+export default async (to: RouteRecord | undefined): Promise<boolean> => {
   // 初始化应用
   // await init();
   const storage = useStorage();
@@ -27,11 +27,17 @@ export default async (to: RouteRecord | undefined) => {
     storage.set(CacheKey.REDIRECT_ROUTE_NAME, to.name);
     ArcoMessage.info({ content: '当前未登录或登录已过期' });
     router.navigate(RoutePath.LOGIN);
+    return false;
   }
 
   // 如果是登录页面, 判断是否登录, 如果已经登录则跳转到首页
-  if (to?.meta?.guest && isLogin()) router.navigate(RoutePath.HOME);
+  if (to?.meta?.guest && isLogin()) {
+    router.navigate(RoutePath.HOME);
+    return false;
+  }
 
   // 如果是登出, 则重置消息提示
   if (to?.name === RouteName.LOGIN) isInit = false;
+
+  return true;
 };
