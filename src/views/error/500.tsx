@@ -1,4 +1,4 @@
-import I500 from '@/components/_internal/icons/500';
+import { I500 } from '@/components/icons';
 
 const INTERNAL_SERVER_ERROR: React.FC<{}> = () => {
   const { navigator } = useRouter();

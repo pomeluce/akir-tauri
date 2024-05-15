@@ -1,4 +1,4 @@
-import Failed from '@/components/_internal/icons/failed';
+import { Failed } from '@/components/icons';
 
 const failed: React.FC<{}> = () => {
   const message: string = '请检查下面的信息是否填写正确, 并进行相应的修改';

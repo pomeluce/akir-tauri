@@ -1,4 +1,4 @@
-import I403 from '@/components/_internal/icons/403';
+import { I403 } from '@/components/icons';
 
 const FORBIDDEN: React.FC<{}> = () => {
   const { navigator } = useRouter();

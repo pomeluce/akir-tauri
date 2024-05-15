@@ -1,4 +1,4 @@
-import Info from '@/components/_internal/icons/info';
+import { Info } from '@/components/icons';
 
 const info: React.FC<{}> = () => {
   const message: string = '本次提交，将在24小时候内自动转入对方账户，如操作失误，请及时撤回';

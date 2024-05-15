@@ -1,7 +1,7 @@
 const login: React.FC<{}> = () => {
   return (
     <form className="flex-1 flex justify-center">
-      <div className="grid grid-cols-2 rounded-md shadow-md overflow-hidden bg-backdrop1">
+      <div className="grid grid-cols-2 rounded-md shadow-md overflow-hidden bg-backdrop2">
         <div className="flex flex-col justify-between box-border p-5">
           <div>
             <h2 className="text-center text-lg uppercase">rapidify-react</h2>

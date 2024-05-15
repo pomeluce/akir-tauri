@@ -1,4 +1,4 @@
-import Success from '@/components/_internal/icons/success';
+import { Success } from '@/components/icons';
 
 const success: React.FC<{}> = () => {
   const message: string = '提交结果页面用来反馈一系列操作及任务的处理结果, 灰色区域可用来进行一些信息补充';

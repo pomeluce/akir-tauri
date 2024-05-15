@@ -6,19 +6,23 @@ export interface ThemeState {
   toggleTheme: () => void;
 }
 
+const storage = useStorage();
+
 export default create<ThemeState>()((set, get) => ({
-  theme: 'light',
+  theme: storage.get(CacheKey.THEME_MODE, 'light'),
 
   setTheme: value => {
     document.documentElement.dataset.theme = value;
     document.body.setAttribute('arco-theme', value);
     set({ theme: value });
+    storage.set(CacheKey.THEME_MODE, value);
   },
 
   toggleTheme: () => {
+    set({ theme: get().theme === 'light' ? 'dark' : 'light' });
     const current = get().theme;
-    set({ theme: current === 'light' ? 'dark' : 'light' });
-    document.documentElement.dataset.theme = get().theme;
-    document.body.setAttribute('arco-theme', get().theme);
+    document.documentElement.dataset.theme = current;
+    document.body.setAttribute('arco-theme', current);
+    storage.set(CacheKey.THEME_MODE, current);
   },
 }));

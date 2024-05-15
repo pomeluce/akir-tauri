@@ -11,7 +11,7 @@ const screen: React.FC<{}> = () => {
   });
 
   return (
-    <div className={'hidden items-center cursor-pointer text-word4 hover:text-word6 xl:flex'} onClick={isScreen}>
+    <div className={'hidden items-center cursor-pointer xl:flex'} onClick={isScreen}>
       {!full ? <IconFullScreen theme={'outline'} size={20} /> : <IconOffScreen theme={'outline'} size={20} />}
     </div>
   );

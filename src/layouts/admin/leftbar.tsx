@@ -45,16 +45,16 @@ const leftbar: React.FC<{}> = () => {
   }, []);
 
   return (
-    <div className="bg-backdrop3 border-r border-rim8 absolute h-full overflow-auto z-50 lg:relative">
+    <div className="bg-backdrop2 border-r border-rim2 absolute h-full overflow-auto z-50 lg:relative">
       <main className={isExpand ? '' : ' hidden'}>
-        <nav className="text-word12">
-          <NavLink className="flex justify-center items-start px-7 py-4 gap-1 cursor-pointer hover:text-word11" to={RoutePath.HOME}>
+        <nav className="text-word1">
+          <NavLink className="flex justify-center items-start px-7 py-4 gap-1 cursor-pointer hover:text-word2" to={RoutePath.HOME}>
             <ArcoImage className="w-6 h-6" src={Logo} preview={false} />
             <span className="text-lg font-bold uppercase">rapidify-react</span>
           </NavLink>
           <div ref={ref}>
             {routes.map((route: RouteRecord, index: number) => (
-              <section key={index} className="flex flex-col mx-7 py-5 text-sm font-medium border-b border-rim8">
+              <section key={index} className="flex flex-col mx-7 py-5 text-sm font-medium border-b border-rim3">
                 <article className="flex justify-between items-center cursor-pointer" onClick={() => toggleMenuList(index)}>
                   <span className="flex items-center gap-2">
                     {route.meta?.menu?.icon && route.meta?.menu?.icon({ size: 16 })}
@@ -70,7 +70,7 @@ const leftbar: React.FC<{}> = () => {
                     <div
                       ref={item.name === router?.name ? active : undefined}
                       key={index}
-                      className={`px-5 py-3 my-3 rounded text-primary11 bg-primary10 opacity-80 cursor-pointer hover:text-white hover:bg-primary1 hover:opacity-95${item.name === router?.name ? ' !bg-primary1 opacity-95 text-white' : ''}`}
+                      className={`px-5 py-3 my-3 rounded text-primary6 bg-primary2 cursor-pointer hover:text-white hover:bg-primary6 hover:opacity-95${item.name === router?.name ? ' !bg-primary6 opacity-95 !text-white' : ''}`}
                       onClick={() => goto(item)}
                     >
                       {item.meta?.menu?.label}

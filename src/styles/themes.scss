@@ -1,93 +1,67 @@
 :root {
-  // primary
-  --r-primary1: #2979ff;
-  --r-primary2: #478bff;
-  --r-primary3: #5c98ff;
-  --r-primary4: #70a5ff;
-  --r-primary5: #85b1ff;
-  --r-primary6: #99beff;
-  --r-primary7: #adcbff;
-  --r-primary8: #c2d8ff;
-  --r-primary9: #d6e5ff;
-  --r-primary10: #dbebfd;
+  /* primary */
+  --hue-primary-1: #e8f3ff; // 浅色
+  --hue-primary-2: #bedaff; // 文字禁用
+  --hue-primary-3: #94bfff; // 一般禁用
+  --hue-primary-4: #6aa1ff; // 特殊场景
+  --hue-primary-5: #4080ff; // 悬浮
+  --hue-primary-6: #165dff; // 常规
+  --hue-primary-7: #0e42d2; // 点击
 
-  --r-primary11: #0066ff;
-
-  // link
+  /* link */
   --r-link1: #4f46e5; // theme('colors.indigo.600');
   --r-link2: #057748;
 
-  // background
-  --r-hue-a1: #ffffff;
-  --r-hue-a2: #f5f4f8;
-  --r-hue-a3: #f8fafc; // theme('colors.slate.50');
-  --r-hue-a4: #e5e7eb; // theme('colors.gray.200');
+  /* background */
+  --hue-bg-1: #f5f4f8; // 整体背景色
+  --hue-bg-2: #ffffff; // 一级容器背景
+  --hue-bg-3: #f8fafc; // 二级容器背景
+  --hue-bg-4: #e5e7eb; // 三级容器背景
+  --hue-bg-white: #ffffff;
 
-  // font, border
-  --r-hue-b1: #030712; // theme('colors.gray.950');
-  --r-hue-b2: #111827; // theme('colors.gray.900');
-  --r-hue-b3: #1f2937; // theme('colors.gray.800');
-  --r-hue-b4: #374151; // theme('colors.gray.700');
-  --r-hue-b5: #4b5563; // theme('colors.gray.600');
-  --r-hue-b6: #6b7280; // theme('colors.gray.500');
-  --r-hue-b7: #9ca3af; // theme('colors.gray.400');
-  --r-hue-b8: #d1d5db; // theme('colors.gray.300');
-  --r-hue-b9: #e5e7eb; // theme('colors.gray.200');
-
-  --r-hue-b10: #020617; // theme('colors.slate.950');
-  --r-hue-b11: #0f172a; // theme('colors.slate.900');
-  --r-hue-b12: #1e293b; // theme('colors.slate.800');
-  --r-hue-b13: #334155; // theme('colors.slate.700');
-  --r-hue-b14: #475569; // theme('colors.slate.600');
-  --r-hue-b15: #64748b; // theme('colors.slate.500');
-  --r-hue-b16: #94a3b8; // theme('colors.slate.400');
-  --r-hue-b17: #cbd5e1; // theme('colors.slate.300');
-  --r-hue-b18: #e2e8f0; // theme('colors.slate.200');
+  /* font, border */
+  --hue-grey-1: #f7f8fa; // 填充(浅)
+  --hue-grey-2: #f2f3f5; // 边框(浅), 填充(常规)
+  --hue-grey-3: #e5e6eb; // 边框(一般), 填充(深)
+  --hue-grey-4: #c9cdd4; // 边框(深), 填充(重), 文字(置灰信息)
+  --hue-grey-5: #a9aeb8;
+  --hue-grey-6: #86909c; // 边框(重), 文字(次要信息)
+  --hue-grey-7: #6b7785;
+  --hue-grey-8: #4e5969; // 文字(次强调/正文标题)
+  --hue-grey-9: #272e3b;
+  --hue-grey-10: #1d2129; // 文字(强调/正文标题)
 }
 
 html[data-theme='dark'] {
-  // primary
-  --r-primary1: #2869f6;
-  --r-primary2: #156bf4;
-  --r-primary3: #166bf5;
-  --r-primary4: #2977f5;
-  --r-primary5: #3c83f6;
-  --r-primary6: #5090f7;
-  --r-primary7: #639cf8;
-  --r-primary8: #77a8f9;
-  --r-primary9: #8ab5f9;
-  --r-primary10: #9ec1fa;
+  /* primary */
+  --hue-primary-1: #000d4d;
+  --hue-primary-2: #041b79;
+  --hue-primary-3: #0e32a6;
+  --hue-primary-4: #1d4dd2;
+  --hue-primary-5: #306fff;
+  --hue-primary-6: #3c7eff;
+  --hue-primary-7: #689fff;
 
-  --r-primary11: #0a68ff;
-
-  // link
+  /* link */
   --r-link1: #7c7ef4; // theme('colors.indigo.600');
   --r-link2: #10b981;
 
-  // background
-  --r-hue-a1: #18181c;
-  --r-hue-a2: #262626;
-  --r-hue-a3: #1c181b; // theme('colors.slate.50');
-  --r-hue-a4: #3c3f44; // theme('colors.gray.200');
+  /* background */
+  --hue-bg-1: #17171a; // 整体背景色
+  --hue-bg-2: #232324; // 一级容器背景
+  --hue-bg-3: #2a2a2b; // 二级容器背景
+  --hue-bg-4: #313132; // 三级容器背景
+  --hue-bg-white: #f6f6f6;
 
-  // font, border
-  --r-hue-b1: #f4f5f5; // theme('colors.gray.950');
-  --r-hue-b2: #e9eaec; // theme('colors.gray.900');
-  --r-hue-b3: #d4d6d9; // theme('colors.gray.800');
-  --r-hue-b4: #bec1c5; // theme('colors.gray.700');
-  --r-hue-b5: #a9acb2; // theme('colors.gray.600');
-  --r-hue-b6: #7d838c; // theme('colors.gray.500');
-  --r-hue-b7: #696e77; // theme('colors.gray.400');
-  --r-hue-b8: #4d5056; // theme('colors.gray.300');
-  --r-hue-b9: #3c3f44; // theme('colors.gray.200');
-
-  --r-hue-b10: #e9e9ec; // theme('colors.slate.950');
-  --r-hue-b11: #dfdfe2; // theme('colors.slate.900');
-  --r-hue-b12: #c9c9cf; // theme('colors.slate.800');
-  --r-hue-b13: #a9a9b2; // theme('colors.slate.700');
-  --r-hue-b14: #93939f; // theme('colors.slate.600');
-  --r-hue-b15: #7d7d8c; // theme('colors.slate.500');
-  --r-hue-b16: #4d4d56; // theme('colors.slate.400');
-  --r-hue-b17: #3a3a41; // theme('colors.slate.300');
-  --r-hue-b18: #18181b; // theme('colors.slate.200');
+  /* font, border */
+  --hue-grey-1: #17171a; // 填充(浅)
+  --hue-grey-2: #2e2e30; // 边框(浅), 填充(常规)
+  --hue-grey-3: #484849; // 边框(一般), 填充(深)
+  --hue-grey-4: #5f5f60; // 边框(深), 填充(重), 文字(置灰信息)
+  --hue-grey-5: #78787a;
+  --hue-grey-6: #929293; // 边框(重), 文字(次要信息)
+  --hue-grey-7: #6b7785;
+  --hue-grey-8: #c5c5c5; // 文字(次强调/正文标题)
+  --hue-grey-9: #dfdfdf;
+  --hue-grey-10: #f6f6f6; // 文字(强调/正文标题)
 }
