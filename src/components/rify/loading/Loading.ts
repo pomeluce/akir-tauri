@@ -1,29 +1,32 @@
 import { Root, createRoot } from 'react-dom/client';
-import SuspenseFallback from '@/layouts/SuspenseFallback';
+import loading, { LoadingProps } from './loading';
 
-class Loading {
+export class Loading {
   app: HTMLElement;
   isExist: boolean;
+  config: LoadingProps;
   timer: number | null = null;
   root: Root | null = null;
 
-  constructor() {
+  constructor(config = {}) {
     this.app = document.createElement('div');
     this.isExist = false;
+    this.config = config;
   }
 
   private render() {
     document.body.appendChild(this.app);
     this.app.setAttribute('id', 'rify-loading');
     this.root = createRoot(this.app);
-    this.root.render(SuspenseFallback({}));
+    this.root.render(loading(this.config));
   }
 
-  show(isDelay = true, delay = 300) {
-    this.timer && clearTimeout(this.timer);
-    if (!isDelay) this.render();
-    // 防闪烁
-    else this.timer = setTimeout(() => this.render(), delay);
+  show() {
+    let clicked = false;
+    if (!clicked) {
+      clicked = true;
+      this.render();
+    }
   }
 
   close() {
@@ -33,5 +36,3 @@ class Loading {
     if (document.body.contains(this.app)) document.body.removeChild(this.app);
   }
 }
-
-export default new Loading();

@@ -1,4 +1,5 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import { Loading, RifyLoading } from '@/components';
 import router from '../router';
 
 // 获取 storage 对象
@@ -8,7 +9,7 @@ export default class Axios {
   // axios 实例
   private instance: AxiosInstance;
   // loading 对象
-  private loading: any;
+  private loading: Loading | undefined = undefined;
   // 参数对象
   private options: AxiosOptions = { loading: true, message: true };
   // axios 参数配置
@@ -60,7 +61,10 @@ export default class Axios {
     this.instance.interceptors.request.use(
       (config: InternalAxiosRequestConfig) => {
         // 如果 loading 对象不存在且开启了 loading, 则创建一个 loading 对象
-        // if (!this.loading && this.options.loading) this.loading = useLoading();
+        if (!this.loading && this.options.loading) {
+          this.loading = RifyLoading();
+          this.loading.show();
+        }
         // 获取 token
         const token = storage.get(CacheKey.TOKEN_NAME);
         // 开启 token 认证;
@@ -95,7 +99,10 @@ export default class Axios {
         return response;
       },
       async (error: AxiosError) => {
-        if (this.loading) this.loading.close() && (this.loading = undefined);
+        if (this.loading) {
+          this.loading.close();
+          this.loading = undefined;
+        }
         this.options = { loading: true, message: true };
         const { response: { status, data, headers } = {} as AxiosResponse } = error;
         const { message } = data;
