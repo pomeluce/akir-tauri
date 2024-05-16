@@ -1,3 +1,10 @@
 @tailwind base;
+@layer base {
+  input {
+    &:focus-visible {
+      outline: unset;
+    }
+  }
+}
 @tailwind components;
 @tailwind utilities;

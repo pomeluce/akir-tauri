@@ -42,10 +42,9 @@ export default {
         backdrop4: 'var(--hue-bg-4)',
         'backdrop-white': 'var(--hue-bg-white)',
 
-        /* menu link */
-        link1: 'var(--r-link1)',
-        /* '<a/>' link */
-        link2: 'var(--r-link2)',
+        /* link */
+        link1: 'var(--hue-link-1)',
+        link2: 'var(--hue-link-2)',
 
         /* 文字颜色 */
         word1: 'var(--hue-grey-10)',

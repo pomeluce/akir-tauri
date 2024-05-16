@@ -543,8 +543,8 @@ packages:
   '@types/lodash-es@4.17.12':
     resolution: {integrity: sha512-0NgftHUcV4v34VhXm8QBSftKVXtbkBG3ViCjs6+eJ5a6y6Mi/jiFGPc1sC7QK+9BFhWrURE3EOggmWaSxL9OzQ==}
 
-  '@types/lodash@4.17.1':
-    resolution: {integrity: sha512-X+2qazGS3jxLAIz5JDXDzglAF3KpijdhFxlf/V1+hEsOUc+HnWi81L/uv/EvGuV90WY+7mPGFCUDGfQC3Gj95Q==}
+  '@types/lodash@4.17.3':
+    resolution: {integrity: sha512-zmNrEJaBvNskZXQWaUQq6bktF4IDGVfDS78M+YEk5aCn9M/b94/mB/6WCyfH2/MjwBdc6QuOor95CIlKWYRL3A==}
 
   '@types/mockjs@1.0.10':
     resolution: {integrity: sha512-SXgrhajHG7boLv6oU93CcmdDm0HYRiceuz6b+7z+/2lCJPTWDv0V5YiwFHT2ejE4bQqgSXQiVPQYPWv7LGsK1g==}
@@ -1885,9 +1885,9 @@ snapshots:
 
   '@types/lodash-es@4.17.12':
     dependencies:
-      '@types/lodash': 4.17.1
+      '@types/lodash': 4.17.3
 
-  '@types/lodash@4.17.1': {}
+  '@types/lodash@4.17.3': {}
 
   '@types/mockjs@1.0.10': {}
 
