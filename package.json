@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@arco-design/web-react": "^2.62.0",
+    "@hookform/resolvers": "^3.4.0",
     "@icon-park/react": "^1.4.2",
     "@types/lodash-es": "^4.17.12",
     "ahooks": "^3.7.11",
@@ -34,8 +35,10 @@
     "lodash-es": "^4.17.21",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-hook-form": "^7.51.4",
     "react-router-dom": "^6.23.1",
-    "sass": "^1.77.1",
+    "sass": "^1.77.2",
+    "yup": "^1.4.0",
     "zustand": "^4.5.2"
   },
   "devDependencies": {

@@ -1,11 +1,4 @@
-/* 请求结果模型 */
-interface ResultModel<T> {
-  code: number;
-  message: string;
-  data: T;
-  body: any;
-}
-
+/* user 对象模型 */
 interface UserModel {
   id: number;
   name: string;
