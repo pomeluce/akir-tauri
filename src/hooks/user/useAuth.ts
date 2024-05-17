@@ -8,7 +8,7 @@ export default () => {
    *
    * @return {boolean} 返回一个 Boolean 类型的判断结果
    */
-  const isLogin = (): Boolean => {
+  const isLogin = (): boolean => {
     return !!storage.get(CacheKey.TOKEN_NAME);
   };
 
@@ -40,28 +40,12 @@ export default () => {
   // });
 
   /**
-   * 获取滑块验证码位置信息
+   * 获取验证码
    *
-   * @param {number} width - 滑块背景宽度
-   * @param {number} height - 滑块背景高度
-   * @param {number} length - 滑块背景长度
    * @return {Promise<ResultModel<T>>} 返回一个 Promise 类型的请求结果
-   * @example
-   *  const { captcha } = useAuth();
-   *  const { data } = await captcha();
-   *  console.log(data);
    */
-  const captcha = <T,>(width: number, height: number, length: number): Promise<ResultModel<T>> => {
-    return http.request<ResultModel<T>>(
-      {
-        method: 'POST',
-        url: RequestURL.CAPTCHA,
-        data: { width, height, length },
-      },
-      {
-        loading: false,
-      },
-    );
+  const captcha = <T,>(): Promise<ResultModel<T>> => {
+    return http.request<ResultModel<T>>({ url: RequestURL.CAPTCHA }, { loading: false, message: false });
   };
 
   return { isLogin, /* login, */ captcha };

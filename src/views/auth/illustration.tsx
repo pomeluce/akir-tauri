@@ -3,7 +3,7 @@ import triangle from '@/assets/images/triangle.svg';
 
 const illustration: React.FC<{ src?: string }> = props => {
   return (
-    <div className="w-40 h-40 relative flex justify-center items-center rounded-full bg-backdrop-white border border-rim3">
+    <div className="w-40 h-40 relative flex justify-center items-center rounded-full bg-fill2 dark:bg-fill4">
       <span className="absolute top-0 left-0 w-4 h-4">
         <img src={cricle} alt="" />
       </span>

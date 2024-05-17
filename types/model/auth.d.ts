@@ -9,3 +9,9 @@ interface LoginFormModel {
 interface RegisterFormModel extends LoginFormModel {
   confirm: string;
 }
+
+/* 验证码模型 */
+interface CaptchaModel {
+  uid: string;
+  image: string;
+}
