@@ -1,5 +1,8 @@
 import { RouteRecord } from 'react-router-dom';
+import { AxiosError } from 'axios';
 import router from '.';
+
+const { throwAxiosError } = useUtils();
 
 // 初始化变量
 let isInit = false;
@@ -8,17 +11,16 @@ let isInit = false;
 const init = async () => {
   if (isInit) return;
   isInit = true;
-  // const { getCurrentUser } = useUserStore();
-  // try {
-  //   await Promise.all([getCurrentUser()]);
-  // } catch (e) {
-  //   resolveErr(e as AxiosError);
-  // }
+  try {
+    await Promise.all([useUserStore.getState().getCurrentUser()]);
+  } catch (e) {
+    throwAxiosError(e as AxiosError);
+  }
 };
 
 export default async (to: RouteRecord | undefined): Promise<boolean> => {
   // 初始化应用
-  // await init();
+  await init();
   const storage = useStorage();
   const { isLogin } = useAuth();
 

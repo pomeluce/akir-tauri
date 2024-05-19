@@ -22,6 +22,7 @@ export default () => {
     if (code === 200) {
       storage.set(CacheKey.TOKEN_NAME, token);
       useRouter().navigator({ name: storage.get(CacheKey.REDIRECT_ROUTE_NAME) || RouteName.HOME });
+      storage.remove(CacheKey.REDIRECT_ROUTE_NAME);
     } else {
       ArcoMessage.error({ content: message || '登录失败,请稍后重试!' });
     }

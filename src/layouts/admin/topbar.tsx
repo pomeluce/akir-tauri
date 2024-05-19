@@ -1,4 +1,4 @@
-import { Screen } from '@/components';
+import { TopbarMenu } from '@/components';
 
 const topbar: React.FC<{}> = () => {
   const { switchExpand } = useMenuStore();
@@ -11,10 +11,7 @@ const topbar: React.FC<{}> = () => {
         </span>
         {/* <rify-breadcrumb :options="topbar.breadcrumb" /> */}
       </section>
-      <section className="flex items-center gap-2">
-        <Screen />
-        {/* <avatar-menu /> */}
-      </section>
+      <TopbarMenu />
     </main>
   );
 };

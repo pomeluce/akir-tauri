@@ -1,10 +1,11 @@
-import { ReactNode, RefAttributes } from 'react';
+import { ReactNode } from 'react';
 import {
   MenuProps as ArcoMenuProps,
   MenuItemGroupProps as ArcoMenuItemGroupProps,
   MenuItemProps as ArcoMenuItemProps,
   MenuSubMenuProps as ArcoMenuSubMenuProps,
 } from '@arco-design/web-react';
+import classNames from 'classnames';
 
 export interface MenuItemType extends Omit<ArcoMenuItemProps, 'children'> {
   icon?: ReactNode;
@@ -36,13 +37,13 @@ const toNodes = (list: OptionType[]) => {
   return (list || [])
     .map((opt, index) => {
       if (opt && typeof opt === 'object') {
-        const { children, key, label, type, icon, ...props } = opt as any;
+        const { children, className, key, label, type, icon, ...props } = opt as any;
         const mergedKey = key ?? `temp-${index}`;
 
         if (children || type === 'group') {
           if (type === 'group') {
             return (
-              <ArcoMenu.ItemGroup key={mergedKey} {...props} title={label}>
+              <ArcoMenu.ItemGroup key={mergedKey} className={className} title={label} {...props}>
                 {toNodes(children)}
               </ArcoMenu.ItemGroup>
             );
@@ -53,12 +54,12 @@ const toNodes = (list: OptionType[]) => {
               key={mergedKey}
               title={
                 icon ? (
-                  <div className="flex items-center gap-2">
+                  <div className={classNames('flex items-center gap-2', className)}>
                     {icon}
                     <span>{label}</span>
                   </div>
                 ) : (
-                  label
+                  <span>{label}</span>
                 )
               }
               {...props}
@@ -70,12 +71,12 @@ const toNodes = (list: OptionType[]) => {
         return (
           <ArcoMenu.Item key={mergedKey} {...props}>
             {icon ? (
-              <div className="flex items-center gap-2">
+              <div className={classNames('flex items-center gap-2', className)}>
                 {icon}
                 <span>{label}</span>
               </div>
             ) : (
-              label
+              <span>{label}</span>
             )}
           </ArcoMenu.Item>
         );

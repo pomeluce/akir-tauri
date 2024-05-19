@@ -1,11 +1,9 @@
 import Logo from '/pomeluce.svg';
-import { Screen, Sun, Moon, AvatarMenu } from '@/components';
+import { TopbarMenu } from '@/components';
 
 const { topMenu } = config();
 
 const topbar: React.FC<{}> = () => {
-  const { theme, toggleTheme } = useThemeStore();
-
   return (
     <main className="flex items-center h-[65px] bg-backdrop2 border-b border-rim2 sticky top-0 z-50">
       <div className="flex justify-between items-center px-3 w-full 2xl:w-page 2xl:m-auto">
@@ -24,13 +22,7 @@ const topbar: React.FC<{}> = () => {
             ))}
           </main>
         </section>
-        <section className="flex items-center gap-2">
-          <Screen />
-          <button className="flex items-center" onClick={() => toggleTheme()}>
-            {theme === 'light' ? <Sun className="w-5" /> : <Moon className="w-5" />}
-          </button>
-          <AvatarMenu />
-        </section>
+        <TopbarMenu />
       </div>
     </main>
   );

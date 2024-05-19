@@ -1,7 +1,7 @@
 /* 请求结果模型 */
-interface ResultModel<T> {
+interface ResultModel<T, P = {}> {
   code: number;
   message: string;
   data: T;
-  body: any;
+  body: P;
 }

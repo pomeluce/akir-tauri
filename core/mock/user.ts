@@ -12,7 +12,7 @@ export default [
         message: 'success',
         data: {
           id: 1001,
-          name: 'Rapidify',
+          name: 'Meow',
           email: 'rapidify@gmail.com',
           gender: 1,
           avatar: '/images/avatar.png',
