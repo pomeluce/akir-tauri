@@ -4,13 +4,24 @@ import Illustration from './illustration';
 import { Controller } from 'react-hook-form';
 
 const register: React.FC<{}> = () => {
+  const { captcha } = useAuth();
   const { registerValidate } = useValidate();
+
+  const [image, setImage] = useState<string>('');
+
+  const getCaptcha = async () => {
+    const result = await captcha<CaptchaModel>();
+    setImage('data:image/png;base64,' + result.data.image);
+  };
+
+  useAsyncEffect(getCaptcha, []);
+
   const { control, handleSubmit, errors } = registerValidate();
   const submit = (data: RegisterFormModel) => {
     console.log(data);
   };
   return (
-    <form className="flex-1 flex justify-center" onSubmit={handleSubmit(submit)}>
+    <form className="min-w-xs max-w-2/3 md:max-w-none flex-1 flex justify-center" onSubmit={handleSubmit(submit)}>
       <div className="md:w-[720px] md:grid grid-cols-2 rounded-xl shadow-md overflow-hidden bg-backdrop2 p-5">
         <div className="hidden md:block py-5">
           <main className="h-full flex justify-center items-center border-r border-rim2">
@@ -42,7 +53,16 @@ const register: React.FC<{}> = () => {
               <Controller
                 control={control}
                 name="captcha"
-                render={({ field }) => <ArcoInput type="text" placeholder="请输入验证码" size="large" prefix={IconKeyhole({})} {...field} />}
+                render={({ field }) => (
+                  <ArcoInput
+                    type="text"
+                    placeholder="请输入验证码"
+                    size="large"
+                    prefix={IconKeyhole({})}
+                    addAfter={<ArcoImage className="w-20" preview={false} src={image} onClick={() => getCaptcha()} />}
+                    {...field}
+                  />
+                )}
               />
               {errors.captcha && <ArcoAlert className="py-0.5" title={<span className="text-sm">{errors.captcha.message}</span>} type="error" />}
             </div>

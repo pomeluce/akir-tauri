@@ -1,4 +1,4 @@
-import { I404 } from '@/components/icons';
+import { I404 } from '@/components';
 
 const NOT_FOUND: React.FC<{}> = () => {
   const { navigator } = useRouter();

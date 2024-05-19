@@ -1,6 +1,5 @@
-import { RouteLocation, RouteLocationRaw, RouteRecord, matchRoutes } from 'react-router-dom';
-import { routes } from '@/layouts';
-import { beforeEach } from '@/plugins';
+import { RouteLocation, RouteLocationRaw, RouteRecord } from 'react-router-dom';
+import { beforeEach, router } from '@/plugins';
 import records from '@/routes';
 
 const getFullPath = (raws: RouteRecord[], name: string, path: string = ''): string => {
@@ -15,11 +14,23 @@ const getFullPath = (raws: RouteRecord[], name: string, path: string = ''): stri
   return RoutePath.UNKNOWN;
 };
 
+const toRegex = (path: string): RegExp => {
+  const regex = path.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&').replace(/:[^\s/]+/g, '[^/]+');
+  return new RegExp(`^${regex}$`);
+};
+
 export default () => {
-  const { id } = matchRoutes(routes, useLocation())?.find(({ route }) => !!route.id)?.route!;
   const url = window.location.protocol + '//' + window.location.host;
 
-  const navigate = useNavigate();
+  /**
+   * 根据路由获取 RouteLocation 对象
+   *
+   * @param route - 路由对象
+   * @returns 返回一个 (route: RouteRecord) => RouteLocation 函数对象
+   */
+  const resolve = (route: RouteRecord): RouteLocation => {
+    return { fullPath: getFullPath(records, route?.name ?? RouteName.UNKNOWN) };
+  };
 
   /**
    * 根据路由名称获取路由对象
@@ -28,12 +39,12 @@ export default () => {
    * @param routes - 路由对象集合
    * @returns 返回一个 (name: string | undefined, routes?: RouteRecord[]) => RouteRecord | undefined 函数对象
    */
-  const matchRoute = (name: string | undefined, routes: RouteRecord[] = records): RouteRecord | undefined => {
+  const matchName = (name: string | undefined, routes: RouteRecord[] = records): RouteRecord | undefined => {
     let route = routes.find((route: RouteRecord) => route.name === name);
     if (route) return route;
 
     for (const { children } of routes) {
-      if (children && (route = matchRoute(name, children))) return route;
+      if (children && (route = matchName(name, children))) return route;
     }
     return undefined;
   };
@@ -45,27 +56,17 @@ export default () => {
    * @param routes - 路由对象集合
    * @returns 返回一个 (name: string | undefined, routes?: RouteRecord[]) => RouteRecord | undefined 函数对象
    */
-  const matchRoutePath = (path: string | undefined, routes: RouteRecord[] = records): RouteRecord | undefined => {
-    let route = routes.find((route: RouteRecord) => resolve(route).fullPath === path);
+  const matchPath = (path: string | undefined, routes: RouteRecord[] = records): RouteRecord | undefined => {
+    let route = routes.find((route: RouteRecord) => toRegex(resolve(route).fullPath).test(path || ''));
     if (route) return route;
     for (const { children } of routes) {
-      if (children && (route = matchRoutePath(path, children))) return route;
+      if (children && (route = matchPath(path, children))) return route;
     }
     return undefined;
   };
 
   /* 当前路由对象 */
-  const context = matchRoute(id);
-
-  /**
-   * 根据路由获取 RouteLocation 对象
-   *
-   * @param route - 路由对象
-   * @returns 返回一个 (route: RouteRecord) => RouteLocation 函数对象
-   */
-  const resolve = (route: RouteRecord): RouteLocation => {
-    return { fullPath: getFullPath(records, route?.name ?? RouteName.UNKNOWN) };
-  };
+  const context = matchPath(location.pathname);
 
   /* 当前路由地址 */
   const fullPath = url + resolve(context!).fullPath;
@@ -88,16 +89,16 @@ export default () => {
    */
   const navigator = (to: RouteLocationRaw) => {
     if (typeof to === 'string') {
-      beforeEach(matchRoutePath(to)).then(auth => {
-        auth && navigate(to);
+      beforeEach(matchPath(to)).then(auth => {
+        auth && router.navigate(to);
       });
     } else {
-      const route = matchRoute(to.name);
+      const route = matchName(to.name);
       beforeEach(route).then(auth => {
-        auth && navigate(resolve(route!).fullPath);
+        auth && router.navigate(resolve(route!).fullPath);
       });
     }
   };
 
-  return { context, fullPath, matchRoute, matchRoutePath, open, navigator, resolve };
+  return { context, fullPath, matchName, matchPath, open, navigator, resolve };
 };

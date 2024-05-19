@@ -3,6 +3,7 @@ interface LoginFormModel {
   username: string;
   password: string;
   captcha: string;
+  uid?: string;
 }
 
 /* 注册表单模型 */

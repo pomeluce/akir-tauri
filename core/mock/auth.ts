@@ -3,12 +3,24 @@ import { RequestURL } from '../../src/enum/RequestURL';
 
 export default [
   {
+    url: '/api/' + RequestURL.LOGIN,
+    method: 'post',
+    timeout: 3000,
+    response: () => {
+      return {
+        code: 200,
+        message: '登录成功',
+        data: 'token',
+      };
+    },
+  },
+  {
     url: '/api/' + RequestURL.CAPTCHA,
     method: 'get',
     response: () => {
       return {
         code: 200,
-        message: 'success',
+        message: '获取验证码成功',
         data: {
           uid: Date.now().toString(),
           image:

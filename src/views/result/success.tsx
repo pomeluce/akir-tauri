@@ -1,9 +1,7 @@
-import { Success } from '@/components/icons';
+import { Success } from '@/components';
 
 const success: React.FC<{}> = () => {
   const message: string = '提交结果页面用来反馈一系列操作及任务的处理结果, 灰色区域可用来进行一些信息补充';
-
-  const { navigator } = useRouter();
 
   return (
     <ArcoCard className="py-5">
@@ -12,7 +10,7 @@ const success: React.FC<{}> = () => {
           <span className="block text-center"> 已提交加班申请, 等待直属主管审核 </span>
         </div>
         <section className="flex justify-center gap-3 mt-5">
-          <ArcoButton type="primary" status="success" onClick={() => navigator({ name: RouteName.HOME })}>
+          <ArcoButton type="primary" status="success" onClick={() => useRouter().navigator({ name: RouteName.HOME })}>
             返回首页
           </ArcoButton>
           <ArcoButton type="outline" status="success">

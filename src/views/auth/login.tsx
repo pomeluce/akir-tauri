@@ -4,25 +4,28 @@ import Illustration from './illustration';
 import { Controller } from 'react-hook-form';
 
 const login: React.FC<{}> = () => {
-  const { captcha } = useAuth();
+  const { captcha, login } = useAuth();
   const { loginValidate } = useValidate();
 
   const [image, setImage] = useState<string>('');
+  const [uid, setUid] = useState<string>('');
 
   const getCaptcha = async () => {
-    const result = await captcha<CaptchaModel>();
-    setImage('data:image/png;base64,' + result.data.image);
+    const { data } = await captcha<CaptchaModel>();
+    setImage('data:image/png;base64,' + data.image);
+    setUid(data.uid);
   };
 
   useAsyncEffect(getCaptcha, []);
 
   const { control, handleSubmit, errors } = loginValidate();
   const submit = (data: LoginFormModel) => {
-    console.log(data);
+    data.uid = uid;
+    login(data);
   };
 
   return (
-    <form className="flex-1 flex justify-center" onSubmit={handleSubmit(submit)}>
+    <form className="min-w-xs max-w-2/3 md:max-w-none flex-1 flex justify-center" onSubmit={handleSubmit(submit)}>
       <div className="md:w-[720px] md:grid grid-cols-2 rounded-xl shadow-md overflow-hidden bg-backdrop2 p-5">
         <div className="hidden md:block py-5">
           <main className="h-full flex justify-center items-center border-r border-rim2">

@@ -1,9 +1,7 @@
-import { Failed } from '@/components/icons';
+import { Failed } from '@/components';
 
 const failed: React.FC<{}> = () => {
   const message: string = '请检查下面的信息是否填写正确, 并进行相应的修改';
-
-  const { navigator } = useRouter();
 
   return (
     <ArcoCard className="py-5">
@@ -22,7 +20,7 @@ const failed: React.FC<{}> = () => {
           </section>
         </div>
         <section className="flex justify-center gap-3 mt-10">
-          <ArcoButton type="primary" status="danger" onClick={() => navigator({ name: RouteName.HOME })}>
+          <ArcoButton type="primary" status="danger" onClick={() => useRouter().navigator({ name: RouteName.HOME })}>
             返回首页
           </ArcoButton>
           <ArcoButton type="outline" status="danger">

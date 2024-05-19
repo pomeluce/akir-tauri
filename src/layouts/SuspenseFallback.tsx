@@ -1,4 +1,4 @@
-import { Load } from '@/components/icons';
+import { Load } from '@/components';
 
 const fallback: React.FC<{}> = () => {
   return (

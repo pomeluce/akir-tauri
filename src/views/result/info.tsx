@@ -1,9 +1,7 @@
-import { Info } from '@/components/icons';
+import { Info } from '@/components';
 
 const info: React.FC<{}> = () => {
   const message: string = '本次提交，将在24小时候内自动转入对方账户，如操作失误，请及时撤回';
-
-  const { navigator } = useRouter();
 
   return (
     <ArcoCard className="py-5">
@@ -28,7 +26,7 @@ const info: React.FC<{}> = () => {
           </section>
         </div>
         <section className="flex justify-center gap-3 mt-5">
-          <ArcoButton type="primary" onClick={() => navigator({ name: RouteName.HOME })}>
+          <ArcoButton type="primary" onClick={() => useRouter().navigator({ name: RouteName.HOME })}>
             返回首页
           </ArcoButton>
           <ArcoButton type="outline">查看详情</ArcoButton>
