@@ -7,13 +7,11 @@ const topbarMenu: React.FC<{}> = () => {
 
   return (
     <section className="hidden md:flex items-center gap-5">
-      <ArcoButton className="flex justify-center" size="large" shape="circle">
+      <ArcoButton className="flex justify-center items-center" size="large" shape="circle">
         <Screen />
       </ArcoButton>
-      <ArcoButton className="flex justify-center" size="large" shape="circle">
-        <button className="flex items-center" onClick={() => toggleTheme()}>
-          {theme === 'light' ? <Sun className="w-5" /> : <Moon className="w-5" />}
-        </button>
+      <ArcoButton className="flex justify-center items-center" size="large" shape="circle" onClick={() => toggleTheme()}>
+        {theme === 'light' ? <Sun className="w-5" /> : <Moon className="w-5" />}
       </ArcoButton>
       {isLogin() ? (
         <AvatarMenu />

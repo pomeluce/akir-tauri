@@ -45,7 +45,7 @@ const leftbar: React.FC<{}> = () => {
   }, []);
 
   return (
-    <div className="bg-backdrop2 border-r border-rim2 absolute h-full overflow-auto z-50 lg:relative">
+    <div className="bg-backdrop2 border-r border-rim2 absolute h-full overflow-auto z-50 lg:relative shadow-md lg:shadow-none">
       <main className={isExpand ? '' : ' hidden'}>
         <nav className="text-word1">
           <NavLink className="flex justify-center items-start px-7 py-4 gap-1 cursor-pointer hover:text-word2" to={RoutePath.HOME}>

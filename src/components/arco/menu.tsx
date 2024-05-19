@@ -54,7 +54,7 @@ const toNodes = (list: OptionType[]) => {
               key={mergedKey}
               title={
                 icon ? (
-                  <div className={classNames('flex items-center gap-2', className)}>
+                  <div className={classNames('flex items-center gap-4', className)}>
                     {icon}
                     <span>{label}</span>
                   </div>
@@ -71,7 +71,7 @@ const toNodes = (list: OptionType[]) => {
         return (
           <ArcoMenu.Item key={mergedKey} {...props}>
             {icon ? (
-              <div className={classNames('flex items-center gap-2', className)}>
+              <div className={classNames('flex items-center gap-4', className)}>
                 {icon}
                 <span>{label}</span>
               </div>
