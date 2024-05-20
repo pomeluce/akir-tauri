@@ -3,7 +3,7 @@ import { ResolverOptions } from './types';
 import { arcoComponents } from './preset';
 import { arcoComponentMap } from './utils';
 
-// arco 组件自动导入
+/* arco 组件自动导入 */
 export const ArcoResolver = (options: ResolverOptions = {}): Resolver => {
   const { prefix } = options;
   const componentMap = arcoComponentMap(prefix);
@@ -20,13 +20,13 @@ export const ArcoResolver = (options: ResolverOptions = {}): Resolver => {
   };
 };
 
-// icon-park 图标库自动按需导入
-export const IconpackResolver = (): Resolver => {
+/* remixicon 图标库自动按需导入 */
+export const RemixiconResolver = (): Resolver => {
   return {
     type: 'component',
     resolve: (name: string) => {
       if (name.startsWith('Icon')) {
-        return { from: '@icon-park/react', name: name.slice(4), as: name };
+        return { from: '@remixicon/react', name: `Ri${name.slice(4)}`, as: name };
       }
     },
   };

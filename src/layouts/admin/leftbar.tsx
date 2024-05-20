@@ -61,8 +61,8 @@ const leftbar: React.FC<{}> = () => {
                     <span className="select-none">{route.meta?.menu?.label}</span>
                   </span>
                   <span className="menu-item__suffix">
-                    <IconDown className="hidden" size="16" />
-                    <IconRight size="16" />
+                    <IconArrowDownSLine className="hidden" size="16" />
+                    <IconArrowRightSLine size="16" />
                   </span>
                 </article>
                 <article className="menu-item__list hidden">

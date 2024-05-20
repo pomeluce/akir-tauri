@@ -39,13 +39,13 @@ const login: React.FC<{}> = () => {
               <Controller
                 name="username"
                 control={control}
-                render={({ field }) => <ArcoInput placeholder="请输入用户名、邮箱或手机号" size="large" prefix={IconUser({})} {...field} />}
+                render={({ field }) => <ArcoInput placeholder="请输入用户名、邮箱或手机号" size="large" prefix={<IconAccountBoxFill size={18} />} {...field} />}
               />
               {errors.username && <ArcoAlert className="py-0.5" title={<span className="text-sm">{errors.username.message}</span>} type="error" />}
               <Controller
                 name="password"
                 control={control}
-                render={({ field }) => <ArcoInput.Password placeholder="请输入登录密码" size="large" prefix={IconLock({})} {...field} />}
+                render={({ field }) => <ArcoInput.Password placeholder="请输入登录密码" size="large" prefix={<IconLockFill size={18} />} {...field} />}
               />
               {errors.password && <ArcoAlert className="py-0.5" title={<span className="text-sm">{errors.password.message}</span>} type="error" />}
               <Controller
@@ -56,7 +56,7 @@ const login: React.FC<{}> = () => {
                     type="text"
                     placeholder="请输入验证码"
                     size="large"
-                    prefix={IconKeyhole({})}
+                    prefix={<IconKeyFill size={18} />}
                     addAfter={<ArcoImage className="w-20" preview={false} src={image} onClick={() => getCaptcha()} />}
                     {...field}
                   />

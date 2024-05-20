@@ -1,1 +1,1 @@
-export { ArcoResolver, IconpackResolver } from './resolver';
+export { ArcoResolver, RemixiconResolver } from './resolver';

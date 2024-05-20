@@ -10,11 +10,11 @@ const failed: React.FC<{}> = () => {
           <span> 你提交的内容有如下错误: </span>
           <section className="flex flex-col gap-2 px-3">
             <article className="flex items-center gap-2">
-              <IconAttention theme="outline" size="20" fill="#f0a020" strokeLinecap="butt" />
+              <IconErrorWarningLine size="20" color="#f0a020" strokeLinecap="butt" />
               <span>你的账户已被冻结 </span>
             </article>
             <article className="flex items-center gap-2">
-              <IconAttention theme="outline" size="20" fill="#f0a020" strokeLinecap="butt" />
+              <IconErrorWarningLine size="20" color="#f0a020" strokeLinecap="butt" />
               <span>你的账户还不具备申请资格 </span>
             </article>
           </section>
