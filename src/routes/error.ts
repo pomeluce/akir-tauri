@@ -1,10 +1,10 @@
 import { RouteRecord } from 'react-router-dom';
-import { Error } from '@icon-park/react';
+import { RiFileWarningFill } from '@remixicon/react';
 
 export default {
   path: '/error',
   component: lazy(() => import('@/layouts/error')),
-  meta: { auth: false, menu: { label: '异常页面', icon: Error, order: 4 } },
+  meta: { auth: false, menu: { label: '异常页面', icon: RiFileWarningFill, order: 4 } },
   children: [
     {
       path: '403',

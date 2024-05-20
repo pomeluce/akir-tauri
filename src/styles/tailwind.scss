@@ -1,9 +1,7 @@
 @tailwind base;
 @layer base {
-  input {
-    &:focus-visible {
-      outline: unset;
-    }
+  :-moz-focusring {
+    outline: unset;
   }
 }
 @tailwind components;

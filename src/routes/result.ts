@@ -1,11 +1,11 @@
 import { RouteRecord } from 'react-router-dom';
-import { Success } from '@icon-park/react';
+import { RiCheckboxCircleFill } from '@remixicon/react';
 
 export default [
   {
     path: '/admin/result',
     component: lazy(() => import('@/layouts/admin')),
-    meta: { auth: false, menu: { label: '结果页面', icon: Success, order: 3 } },
+    meta: { auth: false, menu: { label: '结果页面', icon: RiCheckboxCircleFill, order: 3 } },
     children: [
       {
         path: 'info',

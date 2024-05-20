@@ -75,7 +75,8 @@ export default {
       },
 
       fontFamily: {
-        founder: ['founder-youhei', 'sans-serif'],
+        founder: ['founder', 'sans-serif'],
+        cascadia: ['CascadiaMono'],
       },
 
       colors: {

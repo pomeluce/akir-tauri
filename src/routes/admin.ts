@@ -1,12 +1,12 @@
-import { DashboardOne } from '@icon-park/react';
 import { RouteRecord } from 'react-router-dom';
+import { RiDashboardFill } from '@remixicon/react';
 import result from './result';
 
 export default [
   {
     path: '/admin',
     component: lazy(() => import('@/layouts/admin')),
-    meta: { auth: true, menu: { label: 'Dashboard', icon: DashboardOne, order: 1 } },
+    meta: { auth: true, menu: { label: 'Dashboard', icon: RiDashboardFill, order: 1 } },
     children: [
       {
         path: '',

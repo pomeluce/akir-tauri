@@ -10,9 +10,11 @@ const EditorBarItem: React.FC<EditorBarItemProps> = props => {
   const { icon, title, action, isActive } = props;
 
   return (
-    <button className={`menu-item${isActive && isActive() ? ' is-active' : ''}`} onClick={action} title={title}>
-      {icon}
-    </button>
+    <ArcoTooltip position="bottom" content={title}>
+      <button className={`menu-item${isActive && isActive() ? ' is-active' : ''}`} onClick={action}>
+        {icon}
+      </button>
+    </ArcoTooltip>
   );
 };
 
