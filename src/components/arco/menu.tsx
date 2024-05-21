@@ -11,6 +11,7 @@ export interface MenuItemType extends Omit<ArcoMenuItemProps, 'children'> {
   icon?: ReactNode;
   label?: string;
   type?: 'item';
+  contentClassName?: string;
 }
 
 export interface SubMenuType<T extends MenuItemType = MenuItemType> extends Omit<ArcoMenuSubMenuProps, 'children'> {
@@ -18,6 +19,7 @@ export interface SubMenuType<T extends MenuItemType = MenuItemType> extends Omit
   label?: string;
   children: OptionType<T>[];
   type: 'submenu';
+  contentClassName?: string;
 }
 
 export interface MenuItemGroupType<T extends ArcoMenuItemProps = ArcoMenuItemProps> extends Omit<ArcoMenuItemGroupProps, 'children'> {
@@ -37,13 +39,13 @@ const toNodes = (list: OptionType[]) => {
   return (list || [])
     .map((opt, index) => {
       if (opt && typeof opt === 'object') {
-        const { children, className, key, label, type, icon, ...props } = opt as any;
+        const { children, contentClassName, key, label, type, icon, ...props } = opt as any;
         const mergedKey = key ?? `temp-${index}`;
 
         if (children || type === 'group') {
           if (type === 'group') {
             return (
-              <ArcoMenu.ItemGroup key={mergedKey} className={className} title={label} {...props}>
+              <ArcoMenu.ItemGroup key={mergedKey} title={label} {...props}>
                 {toNodes(children)}
               </ArcoMenu.ItemGroup>
             );
@@ -54,7 +56,7 @@ const toNodes = (list: OptionType[]) => {
               key={mergedKey}
               title={
                 icon ? (
-                  <div className={classNames('flex items-center gap-4', className)}>
+                  <div className={classNames('flex items-center gap-4', contentClassName)}>
                     {icon}
                     <span>{label}</span>
                   </div>
@@ -71,7 +73,7 @@ const toNodes = (list: OptionType[]) => {
         return (
           <ArcoMenu.Item key={mergedKey} {...props}>
             {icon ? (
-              <div className={classNames('flex items-center gap-4', className)}>
+              <div className={classNames('flex items-center gap-4', contentClassName)}>
                 {icon}
                 <span>{label}</span>
               </div>

@@ -212,3 +212,14 @@
     }
   }
 }
+.editor-drop-menu {
+  .menu-item {
+    background-color: transparent;
+    border-radius: 0.25rem;
+
+    &:hover,
+    &.is-active {
+      background-color: theme('colors.fill3');
+    }
+  }
+}
