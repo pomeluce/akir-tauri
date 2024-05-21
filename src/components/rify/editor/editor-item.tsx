@@ -1,7 +1,9 @@
 import { Menu, OptionType } from '@/components';
 
 export interface EditorBarItemType {
+  className?: string;
   icon?: React.ReactNode;
+  style?: React.CSSProperties;
   title?: string;
   type?: string;
   action?: () => boolean;
@@ -12,16 +14,18 @@ const EditorBarItem: React.FC<{ item: EditorBarItemType | EditorBarItemType[] }>
   if (Array.isArray(item)) {
     const list: OptionType[] = item.map((value, index) => ({
       key: index.toString(),
+      style: value.style,
       icon: value.icon,
       label: value.title,
       onClick: value.action,
-      className: `${value.isActive && value.isActive() ? 'menu-item is-active' : ''}`,
+      className: `${value.isActive && value.isActive() ? `menu-item is-active ${value.className}` : `${value.className}`}`,
     }));
 
     return (
       <ArcoDropdown trigger="hover" droplist={Menu({ className: 'editor-drop-menu', options: list })} position="bottom">
-        <button className="menu-item">
-          <IconMoreLine />
+        <button className="menu-item w-10 flex">
+          <IconMoreFill />
+          <IconArrowDownSFill />
         </button>
       </ArcoDropdown>
     );

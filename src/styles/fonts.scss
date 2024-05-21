@@ -1,6 +1,17 @@
 @font-face {
-  font-family: 'founder';
-  src: url('@/assets/fonts/Founder-Youhei-Simplified.ttf');
+  font-family: 'STYouHei';
+  src: url('@/assets/fonts/Founder/founder-youhei.ttf');
+}
+
+@font-face {
+  font-family: 'STKaiTi';
+  src: url('@/assets/fonts/Founder/founder-kaiti.ttf');
+}
+
+@font-face {
+  font-family: 'PingFang';
+  src: url('@/assets/fonts/PingFang/PingFangSC-Ultralight.woff2') format('woff2');
+  font-weight: 100;
 }
 
 @font-face {

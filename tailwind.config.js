@@ -75,8 +75,12 @@ export default {
       },
 
       fontFamily: {
-        founder: ['founder', 'sans-serif'],
+        Arial: 'Arial',
         cascadia: ['CascadiaMono'],
+        Inter: 'Inter',
+        STKaiTi: ['STKaiTi', 'sans-serif'],
+        STYouHei: ['STYouHei', 'sans-serif'],
+        TimesNewRoman: 'Times New Roman',
       },
 
       colors: {

@@ -3,11 +3,11 @@ import { Editor } from '@tiptap/react';
 import { RemixRender } from '@/components/remix';
 import EditorMenuItem, { EditorBarItemType } from './editor-item';
 import EditorColor from './editor-color';
-import EditorTitle from './editor-title';
+import EditorDropmenu from './editor-dropmenu';
 
 const EditorBar: React.FC<{ editor: Editor }> = ({ editor }) => {
   const items: Array<EditorBarItemType | EditorBarItemType[] | ReactNode> = [
-    EditorTitle({
+    EditorDropmenu({
       icon: RemixRender({ name: IconParagraph }),
       title: '正文',
       item: [
@@ -110,6 +110,96 @@ const EditorBar: React.FC<{ editor: Editor }> = ({ editor }) => {
     {
       type: 'divider',
     },
+    EditorDropmenu({
+      icon: '默认字号',
+      title: '字号',
+      item: [
+        {
+          icon: '默认字号',
+          action: () => editor.chain().focus().unsetFontSize().run(),
+          isActive: () => editor.isActive('textStyle', { fontSize: '' }),
+        },
+
+        ...['12px', '13px', '14px', '15px', '16px', '17px', '18px', '19px', '22px', '24px', '29px', '32px', '40px', '48px'].map(
+          size =>
+            ({
+              icon: size,
+              action: () => editor.chain().focus().setFontSize(size).run(),
+              isActive: () => editor.isActive('textStyle', { fontSize: size }),
+            }) as EditorBarItemType,
+        ),
+      ],
+    }),
+    EditorDropmenu({
+      icon: '默认字体',
+      title: '字体',
+      item: [
+        {
+          icon: '默认字体',
+          action: () => editor.chain().focus().unsetFontFamily().run(),
+          isActive: () => editor.isActive('textStyle', { fontFamily: '' }),
+        },
+        {
+          icon: '方正楷体',
+          className: 'font-STKaiTi',
+          action: () => editor.chain().focus().setFontFamily('STKaiTi').run(),
+          isActive: () => editor.isActive('textStyle', { fontFamily: 'STKaiTi' }),
+        },
+        {
+          icon: '方正悠黑简',
+          className: 'font-STYouHei',
+          action: () => editor.chain().focus().setFontFamily('STYouHei').run(),
+          isActive: () => editor.isActive('textStyle', { fontFamily: 'STYouHei' }),
+        },
+        {
+          icon: 'Arial',
+          className: 'font-Arial',
+          action: () => editor.chain().focus().setFontFamily('Arial').run(),
+          isActive: () => editor.isActive('textStyle', { fontFamily: 'Arial' }),
+        },
+        {
+          icon: 'CascadiaMono',
+          className: 'font-cascadia',
+          action: () => editor.chain().focus().setFontFamily('CascadiaMono').run(),
+          isActive: () => editor.isActive('textStyle', { fontFamily: 'CascadiaMono' }),
+        },
+        {
+          icon: 'Inter',
+          className: 'font-Inter',
+          action: () => editor.chain().focus().setFontFamily('Inter').run(),
+          isActive: () => editor.isActive('textStyle', { fontFamily: 'Inter' }),
+        },
+        {
+          icon: 'Times New Roman',
+          className: 'font-TimesNewRoman',
+          action: () => editor.chain().focus().setFontFamily('Times New Roman').run(),
+          isActive: () => editor.isActive('textStyle', { fontFamily: 'Times New Roman' }),
+        },
+      ],
+    }),
+    EditorDropmenu({
+      icon: '默认行高',
+      title: '行高',
+      item: [
+        {
+          icon: '默认行高',
+          action: () => editor.chain().focus().unsetLineHeight().run(),
+          isActive: () => editor.isActive('paragraph', { lineHeight: '' }),
+        },
+
+        ...['1', '1.15', '1.5', '2', '2.5', '3'].map(
+          height =>
+            ({
+              icon: height,
+              action: () => editor.chain().focus().setLineHeight(height).run(),
+              isActive: () => editor.isActive('paragraph', { lineHeight: height }),
+            }) as EditorBarItemType,
+        ),
+      ],
+    }),
+    {
+      type: 'divider',
+    },
     {
       icon: RemixRender({ name: IconListUnordered }),
       title: '无序列表',
@@ -129,26 +219,23 @@ const EditorBar: React.FC<{ editor: Editor }> = ({ editor }) => {
       isActive: () => editor.isActive('taskList'),
     },
     {
+      icon: RemixRender({ name: IconTextWrap }),
+      title: '换行',
+      action: () => editor.chain().focus().setHardBreak().run(),
+    },
+    {
+      type: 'divider',
+    },
+    {
       icon: RemixRender({ name: IconCodeBoxLine }),
       title: '代码块',
       action: () => editor.chain().focus().toggleCodeBlock().run(),
       isActive: () => editor.isActive('codeBlock'),
     },
     {
-      type: 'divider',
-    },
-    {
       icon: RemixRender({ name: IconSeparator }),
       title: '分割线',
       action: () => editor.chain().focus().setHorizontalRule().run(),
-    },
-    {
-      type: 'divider',
-    },
-    {
-      icon: RemixRender({ name: IconTextWrap }),
-      title: '换行',
-      action: () => editor.chain().focus().setHardBreak().run(),
     },
     {
       type: 'divider',

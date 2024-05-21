@@ -1,7 +1,10 @@
 import EditorMenu from './editor-menu';
 import CharacterCount from '@tiptap/extension-character-count';
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
+import FontFamily from '@tiptap/extension-font-family';
+import FontSize from './extension/extension-font-size';
 import Highlight from '@tiptap/extension-highlight';
+import LineHeight from './extension/extension-line-height';
 import TaskItem from '@tiptap/extension-task-item';
 import TaskList from '@tiptap/extension-task-list';
 import TextStyle from '@tiptap/extension-text-style';
@@ -29,9 +32,12 @@ const Editor: React.FC<{}> = () => {
       }).configure({
         lowlight,
       }),
+      FontFamily,
+      FontSize,
       Highlight.configure({
         multicolor: true,
       }),
+      LineHeight,
       TaskList,
       TaskItem,
       TextStyle,
