@@ -3,10 +3,13 @@ import CharacterCount from '@tiptap/extension-character-count';
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
 import FontFamily from '@tiptap/extension-font-family';
 import FontSize from './extension/extension-font-size';
-import Highlight from '@tiptap/extension-highlight';
+import Highlight from './extension/extension-highlight';
+import Indent from './extension/extension-indent';
 import LineHeight from './extension/extension-line-height';
+import Link from '@tiptap/extension-link';
 import TaskItem from '@tiptap/extension-task-item';
 import TaskList from '@tiptap/extension-task-list';
+import TextAlign from '@tiptap/extension-text-align';
 import TextStyle from '@tiptap/extension-text-style';
 import StarterKit from '@tiptap/starter-kit';
 import { EditorContent, ReactNodeViewRenderer, useEditor } from '@tiptap/react';
@@ -34,12 +37,18 @@ const Editor: React.FC<{}> = () => {
       }),
       FontFamily,
       FontSize,
-      Highlight.configure({
-        multicolor: true,
-      }),
+      Highlight,
+      Indent,
       LineHeight,
+      Link.configure({
+        openOnClick: 'whenNotEditable',
+        autolink: false,
+      }),
       TaskList,
       TaskItem,
+      TextAlign.configure({
+        types: ['heading', 'paragraph'],
+      }),
       TextStyle,
       StarterKit.configure({
         codeBlock: false,

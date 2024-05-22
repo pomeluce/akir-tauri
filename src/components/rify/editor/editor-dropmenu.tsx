@@ -5,7 +5,7 @@ import { EditorBarItemType } from './editor-item';
 export interface EditorDropmenuProps {
   icon: ReactNode;
   title: string;
-  item: EditorBarItemType[];
+  item: (EditorBarItemType & { disabled?: boolean })[];
   showIcon?: boolean;
 }
 
@@ -20,6 +20,7 @@ const EditorDropmenu: React.FC<EditorDropmenuProps> = ({ icon, title, item, show
       value.title && setTitle(value.title);
       value.action?.();
     },
+    disabled: value.disabled,
     className: `${value.isActive && value.isActive() ? `menu-item is-active ${value.className}` : `${value.className}`}`,
   }));
 

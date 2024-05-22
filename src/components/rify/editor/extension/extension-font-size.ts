@@ -1,5 +1,4 @@
 import { Extension } from '@tiptap/react';
-import '@tiptap/extension-text-style';
 
 declare module '@tiptap/react' {
   interface Commands<ReturnType> {
@@ -42,11 +41,7 @@ export default Extension.create<FontSizeOptions>({
             default: null,
             parseHTML: element => element.style.fontSize.replace(/['"]+/g, ''),
             renderHTML: attributes => {
-              return !attributes.fontSize
-                ? {}
-                : {
-                    style: this.options.getStyle(attributes.fontSize),
-                  };
+              return !attributes.fontSize ? {} : { style: this.options.getStyle(attributes.fontSize) };
             },
           },
         },

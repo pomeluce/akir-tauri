@@ -101,11 +101,15 @@ const EditorBar: React.FC<{ editor: Editor }> = ({ editor }) => {
         action: () => editor.chain().focus().clearNodes().unsetAllMarks().run(),
       },
     ],
-    EditorColor({ icon: RemixRender({ name: IconFontColor }), defaultColor: 'var(--hue-grey-10)', onChange: color => editor.chain().focus().setColor(color).run() }),
+    EditorColor({
+      icon: RemixRender({ name: IconFontColor }),
+      defaultColor: '',
+      onChange: color => (color ? editor.chain().focus().setColor(color) : editor.chain().focus().unsetColor()).run(),
+    }),
     EditorColor({
       icon: RemixRender({ name: IconCharacterRecognitionFill }),
-      defaultColor: 'var(--hue-bg-2)',
-      onChange: color => editor.chain().focus().toggleHighlight({ color }).run(),
+      defaultColor: '',
+      onChange: color => (color ? editor.chain().focus().setHighlight(color) : editor.chain().focus().unsetHighlight()).run(),
     }),
     {
       type: 'divider',
@@ -184,7 +188,7 @@ const EditorBar: React.FC<{ editor: Editor }> = ({ editor }) => {
         {
           icon: '默认行高',
           action: () => editor.chain().focus().unsetLineHeight().run(),
-          isActive: () => editor.isActive('paragraph', { lineHeight: '' }),
+          isActive: () => editor.isActive('paragraph', { lineHeight: null }),
         },
 
         ...['1', '1.15', '1.5', '2', '2.5', '3'].map(
@@ -218,6 +222,56 @@ const EditorBar: React.FC<{ editor: Editor }> = ({ editor }) => {
       action: () => editor.chain().focus().toggleTaskList().run(),
       isActive: () => editor.isActive('taskList'),
     },
+    EditorDropmenu({
+      icon: RemixRender({ name: IconAlignLeft }),
+      title: '对齐',
+      item: [
+        {
+          icon: RemixRender({ name: IconAlignLeft, props: { size: 18 } }),
+          title: '左对齐',
+          action: () => editor.chain().focus().setTextAlign('left').run(),
+          isActive: () => editor.isActive({ textAlign: 'left' }),
+        },
+        {
+          icon: RemixRender({ name: IconAlignRight, props: { size: 18 } }),
+          title: '右对齐',
+          action: () => editor.chain().focus().setTextAlign('right').run(),
+          isActive: () => editor.isActive({ textAlign: 'right' }),
+        },
+        {
+          icon: RemixRender({ name: IconAlignCenter, props: { size: 18 } }),
+          title: '居中对齐',
+          action: () => editor.chain().focus().setTextAlign('center').run(),
+          isActive: () => editor.isActive({ textAlign: 'center' }),
+        },
+        {
+          icon: RemixRender({ name: IconAlignJustify, props: { size: 18 } }),
+          title: '两端对齐',
+          action: () => editor.chain().focus().setTextAlign('justify').run(),
+          isActive: () => editor.isActive({ textAlign: 'justify' }),
+        },
+      ],
+    }),
+    EditorDropmenu({
+      icon: RemixRender({ name: IconIndentIncrease, props: { size: 18 } }),
+      title: '缩进',
+      item: [
+        {
+          icon: RemixRender({ name: IconIndentIncrease, props: { size: 18 } }),
+          title: '增加缩进',
+          action: () => editor.chain().focus().indent().run(),
+          isActive: () => false,
+          disabled: editor.isActive('paragraph', { indent: '2em' }),
+        },
+        {
+          icon: RemixRender({ name: IconIndentDecrease, props: { size: 18 } }),
+          title: '减少缩进',
+          action: () => editor.chain().focus().outdent().run(),
+          isActive: () => false,
+          disabled: editor.isActive('paragraph', { indent: null }),
+        },
+      ],
+    }),
     {
       icon: RemixRender({ name: IconTextWrap }),
       title: '换行',
@@ -227,7 +281,21 @@ const EditorBar: React.FC<{ editor: Editor }> = ({ editor }) => {
       type: 'divider',
     },
     {
-      icon: RemixRender({ name: IconCodeBoxLine }),
+      icon: RemixRender({ name: IconLink }),
+      title: '链接',
+      action: useCallback(() => {
+        const { from, to } = editor.state.selection;
+        console.log(editor.state.doc.textBetween(from, to, ''));
+        const previousUrl = editor.getAttributes('link').href;
+        const url = window.prompt('URL', previousUrl);
+        if (url === null) return false;
+        if (url === '') return editor.chain().focus().extendMarkRange('link').unsetLink().run();
+        return editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
+      }, [editor]),
+      isActive: () => editor.isActive('link'),
+    },
+    {
+      icon: RemixRender({ name: IconCodeSSlashLine }),
       title: '代码块',
       action: () => editor.chain().focus().toggleCodeBlock().run(),
       isActive: () => editor.isActive('codeBlock'),

@@ -25,6 +25,10 @@
     font-family: 'CascadiaMono', 'STYouHei', monospace;
   }
 
+  a {
+    color: theme('colors.link1');
+  }
+
   pre {
     background-color: theme('colors.gray.700');
     color: #fff;
@@ -94,7 +98,6 @@
 
   mark {
     background-color: #faf594;
-    display: inline-block;
   }
 
   img {
