@@ -3,10 +3,12 @@ import CharacterCount from '@tiptap/extension-character-count';
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
 import FontFamily from '@tiptap/extension-font-family';
 import FontSize from './extension/extension-font-size';
+import Heading from './extension/extension-heading';
 import Highlight from './extension/extension-highlight';
 import Indent from './extension/extension-indent';
 import LineHeight from './extension/extension-line-height';
 import Link from '@tiptap/extension-link';
+import Paragraph from './extension/extension-paragrah';
 import TaskItem from '@tiptap/extension-task-item';
 import TaskList from '@tiptap/extension-task-list';
 import TextAlign from '@tiptap/extension-text-align';
@@ -24,35 +26,22 @@ const Editor: React.FC<{}> = () => {
   const editor = useEditor({
     extensions: [
       Color,
-      CharacterCount.configure({
-        limit: 10000,
-      }),
+      CharacterCount.configure({ limit: 10000 }),
       // 代码高亮
-      CodeBlockLowlight.extend({
-        addNodeView() {
-          return ReactNodeViewRenderer(CodeBlock);
-        },
-      }).configure({
-        lowlight,
-      }),
+      CodeBlockLowlight.extend({ addNodeView: () => ReactNodeViewRenderer(CodeBlock) }).configure({ lowlight }),
       FontFamily,
       FontSize,
+      Heading,
       Highlight,
       Indent,
       LineHeight,
-      Link.configure({
-        openOnClick: 'whenNotEditable',
-        autolink: false,
-      }),
+      Link.configure({ openOnClick: 'whenNotEditable', autolink: false }),
+      Paragraph,
       TaskList,
       TaskItem,
-      TextAlign.configure({
-        types: ['heading', 'paragraph'],
-      }),
+      TextAlign.configure({ types: ['heading', 'paragraph'] }),
       TextStyle,
-      StarterKit.configure({
-        codeBlock: false,
-      }),
+      StarterKit.configure({ codeBlock: false, heading: false, paragraph: false }),
     ],
   });
 

@@ -285,6 +285,8 @@ const EditorBar: React.FC<{ editor: Editor }> = ({ editor }) => {
       title: '链接',
       action: useCallback(() => {
         const { from, to } = editor.state.selection;
+        console.log(from, to);
+
         console.log(editor.state.doc.textBetween(from, to, ''));
         const previousUrl = editor.getAttributes('link').href;
         const url = window.prompt('URL', previousUrl);
