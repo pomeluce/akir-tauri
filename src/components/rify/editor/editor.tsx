@@ -17,6 +17,7 @@ import StarterKit from '@tiptap/starter-kit';
 import { EditorContent, ReactNodeViewRenderer, useEditor } from '@tiptap/react';
 import { Color } from '@tiptap/extension-color';
 import CodeBlock from './code-block';
+import { createPortal } from 'react-dom';
 import { createLowlight, common } from 'lowlight';
 import './styles/editor.scss';
 
@@ -45,10 +46,27 @@ const Editor: React.FC<{}> = () => {
     ],
   });
 
+  const ref = useRef<HTMLDivElement>(null);
+  const [show, setShow] = useState<boolean>(false);
+
+  useEffect(() => {
+    const current = ref.current?.getBoundingClientRect();
+    console.log(current?.left, current?.top);
+
+    (document.querySelector('#tiptap') as HTMLDivElement).addEventListener('click', event => {
+      console.log(event.clientX, event.clientY);
+    });
+    setShow(true);
+    return () => {
+      setShow(false);
+    };
+  }, []);
+
   return (
-    <div className="editor">
+    <div className="tiptap-editor">
       {editor && <EditorMenu editor={editor} />}
-      <EditorContent spellCheck={false} className="editor__content" editor={editor} />
+      <EditorContent ref={ref} id="tiptap" spellCheck={false} className="tiptap-editor__content" editor={editor} />
+      {show && createPortal(<div className="absolute">测试</div>, ref.current!)}
     </div>
   );
 };

@@ -143,7 +143,7 @@
   }
 }
 
-.editor {
+.tiptap-editor {
   display: flex;
   flex-direction: column;
   background-color: theme('colors.backdrop2');
@@ -200,6 +200,7 @@
     padding: 1.25rem 1rem;
     -webkit-overflow-scrolling: touch;
     line-height: 1.5;
+    position: relative;
 
     .code-block {
       position: relative;
@@ -218,7 +219,7 @@
     }
   }
 }
-.editor-drop-menu {
+.tiptap-editor-dropmenu {
   .menu-item {
     background-color: transparent;
     border-radius: 0.25rem;

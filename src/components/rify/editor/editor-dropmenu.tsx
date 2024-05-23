@@ -25,7 +25,7 @@ const EditorDropmenu: React.FC<EditorDropmenuProps> = ({ icon, title, item, show
   }));
 
   return (
-    <ArcoDropdown trigger="click" droplist={Menu({ className: 'editor-drop-menu', options: list })} position="bottom">
+    <ArcoDropdown trigger="click" droplist={Menu({ className: 'tiptap-editor-dropmenu', options: list })} position="bottom">
       <ArcoTooltip mini position="bottom" content={tooltipTitle}>
         <button className="flex items-center rounded p-1 hover:bg-fill3">
           {item.filter(value => value.isActive?.())?.[0]?.[showIcon ? 'icon' : 'title'] || (showIcon ? icon : title)}

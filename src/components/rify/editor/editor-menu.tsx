@@ -284,10 +284,10 @@ const EditorBar: React.FC<{ editor: Editor }> = ({ editor }) => {
       icon: RemixRender({ name: IconLink }),
       title: '链接',
       action: useCallback(() => {
-        const { from, to } = editor.state.selection;
-        console.log(from, to);
-
-        console.log(editor.state.doc.textBetween(from, to, ''));
+        // const { from, to } = editor.state.selection;
+        // console.log(editor.view.state.selection.$anchor.pos);
+        // console.log(from, to);
+        // console.log(editor.state.doc.textBetween(from, to, ''));
         const previousUrl = editor.getAttributes('link').href;
         const url = window.prompt('URL', previousUrl);
         if (url === null) return false;
@@ -322,7 +322,7 @@ const EditorBar: React.FC<{ editor: Editor }> = ({ editor }) => {
     },
   ];
   return (
-    <div className="editor__header">
+    <div className="tiptap-editor__header">
       {items.map((item, index) => (
         <Fragment key={index}>
           {isValidElement(item) ? (

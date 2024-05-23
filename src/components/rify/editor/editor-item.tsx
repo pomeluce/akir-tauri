@@ -22,7 +22,7 @@ const EditorBarItem: React.FC<{ item: EditorBarItemType | EditorBarItemType[] }>
     }));
 
     return (
-      <ArcoDropdown trigger="hover" droplist={Menu({ className: 'editor-drop-menu', options: list })} position="bottom">
+      <ArcoDropdown trigger="hover" droplist={Menu({ className: 'tiptap-editor-dropmenu', options: list })} position="bottom">
         <button className="menu-item w-10 flex">
           <IconMoreFill />
           <IconArrowDownSFill />
