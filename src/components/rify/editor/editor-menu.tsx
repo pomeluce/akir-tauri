@@ -4,8 +4,11 @@ import { RemixRender } from '@/components/remix';
 import EditorMenuItem, { EditorBarItemType } from './editor-item';
 import EditorColor from './editor-color';
 import EditorDropmenu from './editor-dropmenu';
+import { createPortal } from 'react-dom';
 
 const EditorBar: React.FC<{ editor: Editor }> = ({ editor }) => {
+  const [show, setShow] = useState<boolean>(false);
+
   const items: Array<EditorBarItemType | EditorBarItemType[] | ReactNode> = [
     EditorDropmenu({
       icon: RemixRender({ name: IconParagraph }),
@@ -284,10 +287,7 @@ const EditorBar: React.FC<{ editor: Editor }> = ({ editor }) => {
       icon: RemixRender({ name: IconLink }),
       title: '链接',
       action: useCallback(() => {
-        // const { from, to } = editor.state.selection;
-        // console.log(editor.view.state.selection.$anchor.pos);
-        // console.log(from, to);
-        // console.log(editor.state.doc.textBetween(from, to, ''));
+        createPortal(<div className="w-10 h-10 bg-red-700 absolute">测试</div>, document.body);
         const previousUrl = editor.getAttributes('link').href;
         const url = window.prompt('URL', previousUrl);
         if (url === null) return false;
@@ -334,6 +334,14 @@ const EditorBar: React.FC<{ editor: Editor }> = ({ editor }) => {
           )}
         </Fragment>
       ))}
+
+      {/* {show && */}
+      {/*   createPortal( */}
+      {/*     <div className="w-10 h-10 bg-red-700 absolute" style={{ ...pos }}> */}
+      {/*       测试 */}
+      {/*     </div>, */}
+      {/*     ref.current!, */}
+      {/*   )} */}
     </div>
   );
 };
