@@ -17,57 +17,9 @@ importers:
       '@remixicon/react':
         specifier: ^4.2.0
         version: 4.2.0(react@18.3.1)
-      '@tiptap/extension-character-count':
-        specifier: ^2.4.0
-        version: 2.4.0(@tiptap/core@2.4.0(@tiptap/pm@2.4.0))(@tiptap/pm@2.4.0)
-      '@tiptap/extension-code-block-lowlight':
-        specifier: ^2.4.0
-        version: 2.4.0(@tiptap/core@2.4.0(@tiptap/pm@2.4.0))(@tiptap/extension-code-block@2.4.0(@tiptap/core@2.4.0(@tiptap/pm@2.4.0))(@tiptap/pm@2.4.0))(@tiptap/pm@2.4.0)
-      '@tiptap/extension-collaboration':
-        specifier: ^2.4.0
-        version: 2.4.0(@tiptap/core@2.4.0(@tiptap/pm@2.4.0))(@tiptap/pm@2.4.0)(y-prosemirror@1.2.5(prosemirror-model@1.21.0)(prosemirror-state@1.4.3)(prosemirror-view@1.33.6)(y-protocols@1.0.6(yjs@13.6.15))(yjs@13.6.15))
-      '@tiptap/extension-collaboration-cursor':
-        specifier: ^2.4.0
-        version: 2.4.0(@tiptap/core@2.4.0(@tiptap/pm@2.4.0))(y-prosemirror@1.2.5(prosemirror-model@1.21.0)(prosemirror-state@1.4.3)(prosemirror-view@1.33.6)(y-protocols@1.0.6(yjs@13.6.15))(yjs@13.6.15))
-      '@tiptap/extension-color':
-        specifier: ^2.4.0
-        version: 2.4.0(@tiptap/core@2.4.0(@tiptap/pm@2.4.0))(@tiptap/extension-text-style@2.4.0(@tiptap/core@2.4.0(@tiptap/pm@2.4.0)))
-      '@tiptap/extension-font-family':
-        specifier: ^2.4.0
-        version: 2.4.0(@tiptap/core@2.4.0(@tiptap/pm@2.4.0))(@tiptap/extension-text-style@2.4.0(@tiptap/core@2.4.0(@tiptap/pm@2.4.0)))
-      '@tiptap/extension-link':
-        specifier: ^2.4.0
-        version: 2.4.0(@tiptap/core@2.4.0(@tiptap/pm@2.4.0))(@tiptap/pm@2.4.0)
-      '@tiptap/extension-task-item':
-        specifier: ^2.4.0
-        version: 2.4.0(@tiptap/core@2.4.0(@tiptap/pm@2.4.0))(@tiptap/pm@2.4.0)
-      '@tiptap/extension-task-list':
-        specifier: ^2.4.0
-        version: 2.4.0(@tiptap/core@2.4.0(@tiptap/pm@2.4.0))
-      '@tiptap/extension-text-align':
-        specifier: ^2.4.0
-        version: 2.4.0(@tiptap/core@2.4.0(@tiptap/pm@2.4.0))
-      '@tiptap/extension-text-style':
-        specifier: ^2.4.0
-        version: 2.4.0(@tiptap/core@2.4.0(@tiptap/pm@2.4.0))
-      '@tiptap/extension-underline':
-        specifier: ^2.4.0
-        version: 2.4.0(@tiptap/core@2.4.0(@tiptap/pm@2.4.0))
-      '@tiptap/pm':
-        specifier: ^2.4.0
-        version: 2.4.0
-      '@tiptap/react':
-        specifier: ^2.4.0
-        version: 2.4.0(@tiptap/core@2.4.0(@tiptap/pm@2.4.0))(@tiptap/pm@2.4.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@tiptap/starter-kit':
-        specifier: ^2.4.0
-        version: 2.4.0(@tiptap/pm@2.4.0)
       '@types/lodash-es':
         specifier: ^4.17.12
         version: 4.17.12
-      '@uiw/react-color':
-        specifier: ^2.3.0
-        version: 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       ahooks:
         specifier: ^3.8.0
         version: 3.8.0(react@18.3.1)
@@ -86,9 +38,6 @@ importers:
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
-      lowlight:
-        specifier: ^3.1.0
-        version: 3.1.0
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -102,8 +51,8 @@ importers:
         specifier: ^6.23.1
         version: 6.23.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       sass:
-        specifier: ^1.77.3
-        version: 1.77.3
+        specifier: ^1.77.4
+        version: 1.77.4
       yup:
         specifier: ^1.4.0
         version: 1.4.0
@@ -131,7 +80,7 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react-swc':
         specifier: ^3.7.0
-        version: 3.7.0(vite@5.2.12(@types/node@20.12.13)(less@4.2.0)(sass@1.77.3))
+        version: 3.7.0(vite@5.2.12(@types/node@20.12.13)(less@4.2.0)(sass@1.77.4))
       autoprefixer:
         specifier: ^10.4.19
         version: 10.4.19(postcss@8.4.38)
@@ -158,10 +107,10 @@ importers:
         version: 0.17.6(rollup@4.18.0)
       vite:
         specifier: ^5.2.12
-        version: 5.2.12(@types/node@20.12.13)(less@4.2.0)(sass@1.77.3)
+        version: 5.2.12(@types/node@20.12.13)(less@4.2.0)(sass@1.77.4)
       vite-plugin-mock:
         specifier: ^3.0.2
-        version: 3.0.2(esbuild@0.20.2)(mockjs@1.1.0)(vite@5.2.12(@types/node@20.12.13)(less@4.2.0)(sass@1.77.3))
+        version: 3.0.2(esbuild@0.20.2)(mockjs@1.1.0)(vite@5.2.12(@types/node@20.12.13)(less@4.2.0)(sass@1.77.4))
 
 packages:
 
@@ -659,19 +608,6 @@ packages:
     peerDependencies:
       '@tiptap/core': ^2.0.0
 
-  '@tiptap/extension-collaboration-cursor@2.4.0':
-    resolution: {integrity: sha512-BTVy9FCTGdHxYieJ4lteVLrRY5qAPQyfunhMwakVf1NT3iU9quE6CaeaIwt6wEDJPMPPKzOHg1/ltSz9nIDe4A==}
-    peerDependencies:
-      '@tiptap/core': ^2.0.0
-      y-prosemirror: ^1.2.5
-
-  '@tiptap/extension-collaboration@2.4.0':
-    resolution: {integrity: sha512-achU+GU9tqxn3zsU61CbwWrCausf0U23MJIpo8vnywOIx6E955by6okHEHoUazLIGVFXVc5DBzBP7bf+Snzk0Q==}
-    peerDependencies:
-      '@tiptap/core': ^2.0.0
-      '@tiptap/pm': ^2.0.0
-      y-prosemirror: ^1.2.5
-
   '@tiptap/extension-color@2.4.0':
     resolution: {integrity: sha512-aVuqGtzTIZO93niADdu+Hx8g03X0pS7wjrJcCcYkkDEbC/siC03zlxKZIYBW1Jiabe99Z7/s2KdtLoK6DW2A2g==}
     peerDependencies:
@@ -685,12 +621,6 @@ packages:
 
   '@tiptap/extension-dropcursor@2.4.0':
     resolution: {integrity: sha512-c46HoG2PEEpSZv5rmS5UX/lJ6/kP1iVO0Ax+6JrNfLEIiDULUoi20NqdjolEa38La2VhWvs+o20OviiTOKEE9g==}
-    peerDependencies:
-      '@tiptap/core': ^2.0.0
-      '@tiptap/pm': ^2.0.0
-
-  '@tiptap/extension-floating-menu@2.4.0':
-    resolution: {integrity: sha512-vLb9v+htbHhXyty0oaXjT3VC8St4xuGSHWUB9GuAJAQ+NajIO6rBPbLUmm9qM0Eh2zico5mpSD1Qtn5FM6xYzg==}
     peerDependencies:
       '@tiptap/core': ^2.0.0
       '@tiptap/pm': ^2.0.0
@@ -848,14 +778,6 @@ packages:
   '@tiptap/pm@2.4.0':
     resolution: {integrity: sha512-B1HMEqGS4MzIVXnpgRZDLm30mxDWj51LkBT/if1XD+hj5gm8B9Q0c84bhvODX6KIs+c6z+zsY9VkVu8w9Yfgxg==}
 
-  '@tiptap/react@2.4.0':
-    resolution: {integrity: sha512-baxnIr6Dy+5iGagOEIKFeHzdl1ZRa6Cg+SJ3GDL/BVLpO6KiCM3Mm5ymB726UKP1w7icrBiQD2fGY3Bx8KaiSA==}
-    peerDependencies:
-      '@tiptap/core': ^2.0.0
-      '@tiptap/pm': ^2.0.0
-      react: ^17.0.0 || ^18.0.0
-      react-dom: ^17.0.0 || ^18.0.0
-
   '@tiptap/starter-kit@2.4.0':
     resolution: {integrity: sha512-DYYzMZdTEnRn9oZhKOeRCcB+TjhNz5icLlvJKoHoOGL9kCbuUyEf8WRR2OSPckI0+KUIPJL3oHRqO4SqSdTjfg==}
 
@@ -906,156 +828,6 @@ packages:
 
   '@types/unist@3.0.2':
     resolution: {integrity: sha512-dqId9J8K/vGi5Zr7oo212BGii5m3q5Hxlkwy3WpYuKPklmBEvsbMYYyLxAQpSffdLl/gdW0XUpKWFvYmyoWCoQ==}
-
-  '@uiw/color-convert@2.3.0':
-    resolution: {integrity: sha512-cBkJ6L2vgHlrAnM6XkeLAusOXxl2b+5HsX1URhCSmBzJSshM50hW096kY7ItS5B3CffabZr7Y2+NbJiCWfdaSw==}
-    peerDependencies:
-      '@babel/runtime': '>=7.19.0'
-
-  '@uiw/react-color-alpha@2.3.0':
-    resolution: {integrity: sha512-Ya4GLGNT62VACRlUStMEsv9QiAUQpCej6eu9N6CCGbYhtT+CLYQQ6+PI86doygXK8vp8PykfRFiSO+oGOCbz9w==}
-    peerDependencies:
-      '@babel/runtime': '>=7.19.0'
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
-
-  '@uiw/react-color-block@2.3.0':
-    resolution: {integrity: sha512-VkokhD/K81j/7qPs1n+zwDW8fw5wzlRyHRbtTpgblpjWkejSl6+XrAkTEk74m+Km51Fr0P7fsZzLFWjg16atoA==}
-    peerDependencies:
-      '@babel/runtime': '>=7.19.0'
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
-
-  '@uiw/react-color-chrome@2.3.0':
-    resolution: {integrity: sha512-bDtLRlnk2ilu9xWKtLPVmc3twzkB3GDK6Y5zCpjlbsusT7dls/9VagDma1tbwbozjU81lLGpxBKvdqwpXkqe8w==}
-    peerDependencies:
-      '@babel/runtime': '>=7.19.0'
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
-
-  '@uiw/react-color-circle@2.3.0':
-    resolution: {integrity: sha512-eTA9ZoXKQ55SC91I71dG50pBqyjhSD98H3CEB8NFhpB7k9AQSBvf54gvBIIlmO+JRbYxjccD1jjbsLHoP/740w==}
-    peerDependencies:
-      '@babel/runtime': '>=7.19.0'
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
-
-  '@uiw/react-color-colorful@2.3.0':
-    resolution: {integrity: sha512-/N5Zh6C4NutXTYTMtbgDraORwZoI3WbzQ2eYYmgYZdaSuip8iVfp+vBkMa7rCcY4wwrzrorCUF6UPDf/4y7XeQ==}
-    peerDependencies:
-      '@babel/runtime': '>=7.19.0'
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
-
-  '@uiw/react-color-compact@2.3.0':
-    resolution: {integrity: sha512-WKV5Oe7SoRgrTH9qY6pKO4DS7m2GlLFm87gE7izKLio1JcxRLcbGN3ZM+ZPg2ATKS4a5yZwsPD5KWjiOR0bBSA==}
-    peerDependencies:
-      '@babel/runtime': '>=7.19.0'
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
-
-  '@uiw/react-color-editable-input-hsla@2.3.0':
-    resolution: {integrity: sha512-PLikdZDgGM+aj4kNnNlO90CTJQ5G4/Nd8DniTGcrnYOCJdSs3MXjc0aMVwynDgqjZfWzFmRpHz0FHlnWXSrkjQ==}
-    peerDependencies:
-      '@babel/runtime': '>=7.19.0'
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
-
-  '@uiw/react-color-editable-input-rgba@2.3.0':
-    resolution: {integrity: sha512-Du2Zvgua81zgPUtJFLbogG1LlcCvLrUejCGiT26GrsRPJ9ho7RzRVcrt0l6tKo22q/lJNerPk10PCHyf81o0yA==}
-    peerDependencies:
-      '@babel/runtime': '>=7.19.0'
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
-
-  '@uiw/react-color-editable-input@2.3.0':
-    resolution: {integrity: sha512-3wUPOBKlI7RQYFyxqDkfcj5mjLLVFi3D0uP1dPppDvuhP3k7/DIPtomq4GM693ZZK+Gr+u3SblM+zP4gglNclQ==}
-    peerDependencies:
-      '@babel/runtime': '>=7.19.0'
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
-
-  '@uiw/react-color-github@2.3.0':
-    resolution: {integrity: sha512-7oh9Tff3eWjwitOjq6Fy3EAG6Fuj7xN1hF+rNipyi4kIp9d9ubN2YtlR1GS23+iyBS5gbBcu1vKUO4hPCUvhXQ==}
-    peerDependencies:
-      '@babel/runtime': '>=7.19.0'
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
-
-  '@uiw/react-color-hue@2.3.0':
-    resolution: {integrity: sha512-laaPBKxY035OqJuCDxXCrfQ4arsfcl8oFz/RXMJGAOZxPsTsSMdENRDVpW6s8pYRqtBY/jD1UDr51SVj7o2I3w==}
-    peerDependencies:
-      '@babel/runtime': '>=7.19.0'
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
-
-  '@uiw/react-color-material@2.3.0':
-    resolution: {integrity: sha512-DzTlamAM59LNp/Qg6s1S+fw6/MTK2o6oNyZC0PYKgdqxPHFC0YdtPlX9G03GtTBrVyE1w3DhWVkxePP8K1ROcQ==}
-    peerDependencies:
-      '@babel/runtime': '>=7.19.0'
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
-
-  '@uiw/react-color-name@2.3.0':
-    resolution: {integrity: sha512-NVUKdzIknm2zGg70srN9u9bM4fT3K6sDgeQ98NFuKWxu+C6CGNYNjMWTdRwqH9nApQWtICAnhAji491Eh317ow==}
-    peerDependencies:
-      '@babel/runtime': '>=7.19.0'
-
-  '@uiw/react-color-saturation@2.3.0':
-    resolution: {integrity: sha512-sdRGZFf8IVqM39ttlYm3Ew3aLu4+mzhJWCltMvDbteJmK24MBaPUt634HNYW5WiJMqrIOT2c5CJdgTS40xKQng==}
-    peerDependencies:
-      '@babel/runtime': '>=7.19.0'
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
-
-  '@uiw/react-color-shade-slider@2.3.0':
-    resolution: {integrity: sha512-Vffup0PSgSnF83vQJCQTdsXEfW27WTtSqtQwu+Ke0TP4PE8OD5Zsgu2CVVExPHMLdSnMoVJPjL8lgm5FR861TQ==}
-    peerDependencies:
-      '@babel/runtime': '>=7.19.0'
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
-
-  '@uiw/react-color-sketch@2.3.0':
-    resolution: {integrity: sha512-lIr2RNRIGt/vHvv2dG5vFy/KpEISKT+hY3nGbaMyNhh4qhMjNuKH7zbaJXnVjjD76NY5RNr2Igrz9bTkvx5cdg==}
-    peerDependencies:
-      '@babel/runtime': '>=7.19.0'
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
-
-  '@uiw/react-color-slider@2.3.0':
-    resolution: {integrity: sha512-CC/ApztMY18QPMjdaNFmXGDoBnjd0KwTIDgUPcAZzQnRlRn7mm10qCK6S7+oHJaxqja4AMePVprfgDg/0qUx0w==}
-    peerDependencies:
-      '@babel/runtime': '>=7.19.0'
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
-
-  '@uiw/react-color-swatch@2.3.0':
-    resolution: {integrity: sha512-Z9EgQ2hKmNlbiMb5nYnLw2d08FZF8LetfTe60jFbSsTwUsdoDeVf2JvKSlmodBMMlFC0fK4h+2RfVR1Z1HeO+Q==}
-    peerDependencies:
-      '@babel/runtime': '>=7.19.0'
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
-
-  '@uiw/react-color-wheel@2.3.0':
-    resolution: {integrity: sha512-tj3n2993zXKXrwDpaQcxbWO1taqQ0eIaHFdPOKi21APlwbVOq3EizqSjvZa+LIZRS/pWsuSNLTcnLi3fpvI3UA==}
-    peerDependencies:
-      '@babel/runtime': '>=7.19.0'
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
-
-  '@uiw/react-color@2.3.0':
-    resolution: {integrity: sha512-ZVPVZlfpb1CmD9/sxcHBpKWel2olRgBiW6Ro2DqRmRFHpSRZRP3/u8S3cg5cc7drrRxcaPgoHQIbY33KGpUSKA==}
-    peerDependencies:
-      '@babel/runtime': '>=7.19.0'
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
-
-  '@uiw/react-drag-event-interactive@2.3.0':
-    resolution: {integrity: sha512-Sk41LadFaUs05172N7Bh3QZgp7T1DWTC7LrtLn6qnnhZjDiPQy8vWX+5JuOkcgMffRf2j79d/ZNii8U9dyLThw==}
-    peerDependencies:
-      '@babel/runtime': '>=7.19.0'
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
 
   '@vitejs/plugin-react-swc@3.7.0':
     resolution: {integrity: sha512-yrknSb3Dci6svCd/qhHqhFPDSw0QtjumcqdKMoNNzmOl5lMXTTiqzjWtG4Qask2HdvvzaNgSunbQGet8/GrKdA==}
@@ -1193,14 +965,6 @@ packages:
   color@3.2.1:
     resolution: {integrity: sha512-aBl7dZI9ENN6fUGC7mWpMTPNHmWUSNan9tuWN6ahh5ZLNk9baLJOnSMlrQkHcrfFgz2/RigjUVAjdx36VcemKA==}
 
-  colors-named-hex@1.0.2:
-    resolution: {integrity: sha512-k6kq1e1pUCQvSVwIaGFq2l0LrkAPQZWyeuZn1Z8nOiYSEZiKoFj4qx690h2Kd34DFl9Me0gKS6MUwAMBJj8nuA==}
-    engines: {node: '>=14.16'}
-
-  colors-named@1.0.2:
-    resolution: {integrity: sha512-2ANq2r393PV9njYUD66UdfBcxR1slMqRA3QRTWgCx49JoCJ+kOhyfbQYxKJbPZQIhZUcNjVOs5AlyY1WwXec3w==}
-    engines: {node: '>=14.16'}
-
   combined-stream@1.0.8:
     resolution: {integrity: sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==}
     engines: {node: '>= 0.8'}
@@ -1316,8 +1080,8 @@ packages:
   ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
 
-  electron-to-chromium@1.4.786:
-    resolution: {integrity: sha512-i/A2UB0sxYViMN0M2zIotQFRIOt1jLuVXudACHBDiJ5gGuAUzf/crZxwlBTdA0O52Hy4CNtTzS7AKRAacs/08Q==}
+  electron-to-chromium@1.4.787:
+    resolution: {integrity: sha512-d0EFmtLPjctczO3LogReyM2pbBiiZbnsKnGF+cdZhsYzHm/A0GV7W94kqzLD8SN4O3f3iHlgLUChqghgyznvCQ==}
 
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -1504,9 +1268,6 @@ packages:
   isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
 
-  isomorphic.js@0.2.5:
-    resolution: {integrity: sha512-PIeMbHqMt4DnUP3MA/Flc0HElYjMXArsw1qwJZcm9sqR8mq3l8NYizFMty0pWwE/tzIGH3EKK5+jes5mAr85yw==}
-
   jackspeak@3.1.2:
     resolution: {integrity: sha512-kWmLKn2tRtfYMF/BakihVVRzBKOxz4gJMiL2Rj91WnAB5TPZumSH99R/Yf1qE1u4uRimvCSJfm6hnxohXeEXjQ==}
     engines: {node: '>=14'}
@@ -1532,11 +1293,6 @@ packages:
   less@4.2.0:
     resolution: {integrity: sha512-P3b3HJDBtSzsXUl0im2L7gTO5Ubg8mEN6G8qoTS77iXxXX4Hvu4Qj540PZDvQ8V6DmX6iXo98k7Md0Cm1PrLaA==}
     engines: {node: '>=6'}
-    hasBin: true
-
-  lib0@0.2.94:
-    resolution: {integrity: sha512-hZ3p54jL4Wpu7IOg26uC7dnEWiMyNlUrb9KoG7+xYs45WkQwpVvKFndVq2+pqLYKe1u8Fp3+zAfZHVvTK34PvQ==}
-    engines: {node: '>=16'}
     hasBin: true
 
   lilconfig@2.1.0:
@@ -1963,8 +1719,8 @@ packages:
   safer-buffer@2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
 
-  sass@1.77.3:
-    resolution: {integrity: sha512-WJHo+jmFp0dwRuymPmIovuxHaBntcCyja5hCB0yYY9wWrViEp4kF5Cdai98P72v6FzroPuABqu+ddLMbQWmwzA==}
+  sass@1.77.4:
+    resolution: {integrity: sha512-vcF3Ckow6g939GMA4PeU7b2K/9FALXk2KF9J87txdHzXbUF9XRQRwSxcAs/fGaTnJeBFd7UoV22j3lzMLdM0Pw==}
     engines: {node: '>=14.0.0'}
     hasBin: true
 
@@ -2234,30 +1990,10 @@ packages:
     resolution: {integrity: sha512-si7QWI6zUMq56bESFvagtmzMdGOtoxfR+Sez11Mobfc7tm+VkUckk9bW2UeffTGVUbOksxmSw0AA2gs8g71NCQ==}
     engines: {node: '>=12'}
 
-  y-prosemirror@1.2.5:
-    resolution: {integrity: sha512-T/JATxC8P2Dbvq/dAiaiztD1a8KEwRP8oLRlT8YlaZdNlLGE1Ea0IJ8If25UlDYmk+4+uqLbqT/S+dzUmwwgbA==}
-    engines: {node: '>=16.0.0', npm: '>=8.0.0'}
-    peerDependencies:
-      prosemirror-model: ^1.7.1
-      prosemirror-state: ^1.2.3
-      prosemirror-view: ^1.9.10
-      y-protocols: ^1.0.1
-      yjs: ^13.5.38
-
-  y-protocols@1.0.6:
-    resolution: {integrity: sha512-vHRF2L6iT3rwj1jub/K5tYcTT/mEYDUppgNPXwp8fmLpui9f7Yeq3OEtTLVF012j39QnV+KEQpNqoN7CWU7Y9Q==}
-    engines: {node: '>=16.0.0', npm: '>=8.0.0'}
-    peerDependencies:
-      yjs: ^13.0.0
-
   yaml@2.4.2:
     resolution: {integrity: sha512-B3VqDZ+JAg1nZpaEmWtTXUlBneoGx6CPM9b0TENK6aoSu5t73dItudwdgmi6tHlIZZId4dZ9skcAQ2UbcyAeVA==}
     engines: {node: '>= 14'}
     hasBin: true
-
-  yjs@13.6.15:
-    resolution: {integrity: sha512-moFv4uNYhp8BFxIk3AkpoAnnjts7gwdpiG8RtyFiKbMtxKCS0zVZ5wPaaGpwC3V2N/K8TK8MwtSI3+WO9CHWjQ==}
-    engines: {node: '>=16.0.0', npm: '>=8.0.0'}
 
   yup@1.4.0:
     resolution: {integrity: sha512-wPbgkJRCqIf+OHyiTBQoJiP5PFuAXaWiJK6AmYkzQAh5/c2K9hzSApBZG5wV9KoKSePF7sAxmNSvh/13YHkFDg==}
@@ -2672,17 +2408,6 @@ snapshots:
     dependencies:
       '@tiptap/core': 2.4.0(@tiptap/pm@2.4.0)
 
-  '@tiptap/extension-collaboration-cursor@2.4.0(@tiptap/core@2.4.0(@tiptap/pm@2.4.0))(y-prosemirror@1.2.5(prosemirror-model@1.21.0)(prosemirror-state@1.4.3)(prosemirror-view@1.33.6)(y-protocols@1.0.6(yjs@13.6.15))(yjs@13.6.15))':
-    dependencies:
-      '@tiptap/core': 2.4.0(@tiptap/pm@2.4.0)
-      y-prosemirror: 1.2.5(prosemirror-model@1.21.0)(prosemirror-state@1.4.3)(prosemirror-view@1.33.6)(y-protocols@1.0.6(yjs@13.6.15))(yjs@13.6.15)
-
-  '@tiptap/extension-collaboration@2.4.0(@tiptap/core@2.4.0(@tiptap/pm@2.4.0))(@tiptap/pm@2.4.0)(y-prosemirror@1.2.5(prosemirror-model@1.21.0)(prosemirror-state@1.4.3)(prosemirror-view@1.33.6)(y-protocols@1.0.6(yjs@13.6.15))(yjs@13.6.15))':
-    dependencies:
-      '@tiptap/core': 2.4.0(@tiptap/pm@2.4.0)
-      '@tiptap/pm': 2.4.0
-      y-prosemirror: 1.2.5(prosemirror-model@1.21.0)(prosemirror-state@1.4.3)(prosemirror-view@1.33.6)(y-protocols@1.0.6(yjs@13.6.15))(yjs@13.6.15)
-
   '@tiptap/extension-color@2.4.0(@tiptap/core@2.4.0(@tiptap/pm@2.4.0))(@tiptap/extension-text-style@2.4.0(@tiptap/core@2.4.0(@tiptap/pm@2.4.0)))':
     dependencies:
       '@tiptap/core': 2.4.0(@tiptap/pm@2.4.0)
@@ -2696,12 +2421,6 @@ snapshots:
     dependencies:
       '@tiptap/core': 2.4.0(@tiptap/pm@2.4.0)
       '@tiptap/pm': 2.4.0
-
-  '@tiptap/extension-floating-menu@2.4.0(@tiptap/core@2.4.0(@tiptap/pm@2.4.0))(@tiptap/pm@2.4.0)':
-    dependencies:
-      '@tiptap/core': 2.4.0(@tiptap/pm@2.4.0)
-      '@tiptap/pm': 2.4.0
-      tippy.js: 6.3.7
 
   '@tiptap/extension-font-family@2.4.0(@tiptap/core@2.4.0(@tiptap/pm@2.4.0))(@tiptap/extension-text-style@2.4.0(@tiptap/core@2.4.0(@tiptap/pm@2.4.0)))':
     dependencies:
@@ -2847,15 +2566,6 @@ snapshots:
       prosemirror-transform: 1.9.0
       prosemirror-view: 1.33.6
 
-  '@tiptap/react@2.4.0(@tiptap/core@2.4.0(@tiptap/pm@2.4.0))(@tiptap/pm@2.4.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@tiptap/core': 2.4.0(@tiptap/pm@2.4.0)
-      '@tiptap/extension-bubble-menu': 2.4.0(@tiptap/core@2.4.0(@tiptap/pm@2.4.0))(@tiptap/pm@2.4.0)
-      '@tiptap/extension-floating-menu': 2.4.0(@tiptap/core@2.4.0(@tiptap/pm@2.4.0))(@tiptap/pm@2.4.0)
-      '@tiptap/pm': 2.4.0
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
   '@tiptap/starter-kit@2.4.0(@tiptap/pm@2.4.0)':
     dependencies:
       '@tiptap/core': 2.4.0(@tiptap/pm@2.4.0)
@@ -2927,210 +2637,10 @@ snapshots:
 
   '@types/unist@3.0.2': {}
 
-  '@uiw/color-convert@2.3.0(@babel/runtime@7.24.6)':
-    dependencies:
-      '@babel/runtime': 7.24.6
-
-  '@uiw/react-color-alpha@2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@babel/runtime': 7.24.6
-      '@uiw/color-convert': 2.3.0(@babel/runtime@7.24.6)
-      '@uiw/react-drag-event-interactive': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
-  '@uiw/react-color-block@2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@babel/runtime': 7.24.6
-      '@uiw/color-convert': 2.3.0(@babel/runtime@7.24.6)
-      '@uiw/react-color-editable-input': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-swatch': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
-  '@uiw/react-color-chrome@2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@babel/runtime': 7.24.6
-      '@uiw/color-convert': 2.3.0(@babel/runtime@7.24.6)
-      '@uiw/react-color-alpha': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-editable-input': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-editable-input-hsla': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-editable-input-rgba': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-github': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-hue': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-saturation': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
-  '@uiw/react-color-circle@2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@babel/runtime': 7.24.6
-      '@uiw/color-convert': 2.3.0(@babel/runtime@7.24.6)
-      '@uiw/react-color-swatch': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
-  '@uiw/react-color-colorful@2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@babel/runtime': 7.24.6
-      '@uiw/color-convert': 2.3.0(@babel/runtime@7.24.6)
-      '@uiw/react-color-alpha': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-hue': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-saturation': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
-  '@uiw/react-color-compact@2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@babel/runtime': 7.24.6
-      '@uiw/color-convert': 2.3.0(@babel/runtime@7.24.6)
-      '@uiw/react-color-editable-input': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-editable-input-rgba': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-swatch': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
-  '@uiw/react-color-editable-input-hsla@2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@babel/runtime': 7.24.6
-      '@uiw/color-convert': 2.3.0(@babel/runtime@7.24.6)
-      '@uiw/react-color-editable-input-rgba': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
-  '@uiw/react-color-editable-input-rgba@2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@babel/runtime': 7.24.6
-      '@uiw/color-convert': 2.3.0(@babel/runtime@7.24.6)
-      '@uiw/react-color-editable-input': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
-  '@uiw/react-color-editable-input@2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@babel/runtime': 7.24.6
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
-  '@uiw/react-color-github@2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@babel/runtime': 7.24.6
-      '@uiw/color-convert': 2.3.0(@babel/runtime@7.24.6)
-      '@uiw/react-color-swatch': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
-  '@uiw/react-color-hue@2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@babel/runtime': 7.24.6
-      '@uiw/color-convert': 2.3.0(@babel/runtime@7.24.6)
-      '@uiw/react-color-alpha': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
-  '@uiw/react-color-material@2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@babel/runtime': 7.24.6
-      '@uiw/color-convert': 2.3.0(@babel/runtime@7.24.6)
-      '@uiw/react-color-editable-input': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-editable-input-rgba': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
-  '@uiw/react-color-name@2.3.0(@babel/runtime@7.24.6)':
-    dependencies:
-      '@babel/runtime': 7.24.6
-      colors-named: 1.0.2
-      colors-named-hex: 1.0.2
-
-  '@uiw/react-color-saturation@2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@babel/runtime': 7.24.6
-      '@uiw/color-convert': 2.3.0(@babel/runtime@7.24.6)
-      '@uiw/react-drag-event-interactive': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
-  '@uiw/react-color-shade-slider@2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@babel/runtime': 7.24.6
-      '@uiw/color-convert': 2.3.0(@babel/runtime@7.24.6)
-      '@uiw/react-color-alpha': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
-  '@uiw/react-color-sketch@2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@babel/runtime': 7.24.6
-      '@uiw/color-convert': 2.3.0(@babel/runtime@7.24.6)
-      '@uiw/react-color-alpha': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-editable-input': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-editable-input-rgba': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-hue': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-saturation': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-swatch': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
-  '@uiw/react-color-slider@2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@babel/runtime': 7.24.6
-      '@uiw/color-convert': 2.3.0(@babel/runtime@7.24.6)
-      '@uiw/react-color-alpha': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
-  '@uiw/react-color-swatch@2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@babel/runtime': 7.24.6
-      '@uiw/color-convert': 2.3.0(@babel/runtime@7.24.6)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
-  '@uiw/react-color-wheel@2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@babel/runtime': 7.24.6
-      '@uiw/color-convert': 2.3.0(@babel/runtime@7.24.6)
-      '@uiw/react-drag-event-interactive': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
-  '@uiw/react-color@2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@babel/runtime': 7.24.6
-      '@uiw/color-convert': 2.3.0(@babel/runtime@7.24.6)
-      '@uiw/react-color-alpha': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-block': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-chrome': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-circle': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-colorful': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-compact': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-editable-input': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-editable-input-hsla': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-editable-input-rgba': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-github': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-hue': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-material': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-name': 2.3.0(@babel/runtime@7.24.6)
-      '@uiw/react-color-saturation': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-shade-slider': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-sketch': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-slider': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-swatch': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@uiw/react-color-wheel': 2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
-  '@uiw/react-drag-event-interactive@2.3.0(@babel/runtime@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@babel/runtime': 7.24.6
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
-  '@vitejs/plugin-react-swc@3.7.0(vite@5.2.12(@types/node@20.12.13)(less@4.2.0)(sass@1.77.3))':
+  '@vitejs/plugin-react-swc@3.7.0(vite@5.2.12(@types/node@20.12.13)(less@4.2.0)(sass@1.77.4))':
     dependencies:
       '@swc/core': 1.5.24
-      vite: 5.2.12(@types/node@20.12.13)(less@4.2.0)(sass@1.77.3)
+      vite: 5.2.12(@types/node@20.12.13)(less@4.2.0)(sass@1.77.4)
     transitivePeerDependencies:
       - '@swc/helpers'
 
@@ -3254,7 +2764,7 @@ snapshots:
   browserslist@4.23.0:
     dependencies:
       caniuse-lite: 1.0.30001625
-      electron-to-chromium: 1.4.786
+      electron-to-chromium: 1.4.787
       node-releases: 2.0.14
       update-browserslist-db: 1.0.16(browserslist@4.23.0)
 
@@ -3308,10 +2818,6 @@ snapshots:
     dependencies:
       color-convert: 1.9.3
       color-string: 1.9.1
-
-  colors-named-hex@1.0.2: {}
-
-  colors-named@1.0.2: {}
 
   combined-stream@1.0.8:
     dependencies:
@@ -3415,7 +2921,7 @@ snapshots:
 
   ee-first@1.1.1: {}
 
-  electron-to-chromium@1.4.786: {}
+  electron-to-chromium@1.4.787: {}
 
   emoji-regex@8.0.0: {}
 
@@ -3597,8 +3103,6 @@ snapshots:
 
   isexe@2.0.0: {}
 
-  isomorphic.js@0.2.5: {}
-
   jackspeak@3.1.2:
     dependencies:
       '@isaacs/cliui': 8.0.2
@@ -3628,10 +3132,6 @@ snapshots:
       mime: 1.6.0
       needle: 3.3.1
       source-map: 0.6.1
-
-  lib0@0.2.94:
-    dependencies:
-      isomorphic.js: 0.2.5
 
   lilconfig@2.1.0: {}
 
@@ -4086,7 +3586,7 @@ snapshots:
   safer-buffer@2.1.2:
     optional: true
 
-  sass@1.77.3:
+  sass@1.77.4:
     dependencies:
       chokidar: 3.6.0
       immutable: 4.3.6
@@ -4315,7 +3815,7 @@ snapshots:
 
   utils-merge@1.0.1: {}
 
-  vite-plugin-mock@3.0.2(esbuild@0.20.2)(mockjs@1.1.0)(vite@5.2.12(@types/node@20.12.13)(less@4.2.0)(sass@1.77.3)):
+  vite-plugin-mock@3.0.2(esbuild@0.20.2)(mockjs@1.1.0)(vite@5.2.12(@types/node@20.12.13)(less@4.2.0)(sass@1.77.4)):
     dependencies:
       bundle-require: 4.1.0(esbuild@0.20.2)
       chokidar: 3.6.0
@@ -4326,11 +3826,11 @@ snapshots:
       mockjs: 1.1.0
       path-to-regexp: 6.2.2
       picocolors: 1.0.1
-      vite: 5.2.12(@types/node@20.12.13)(less@4.2.0)(sass@1.77.3)
+      vite: 5.2.12(@types/node@20.12.13)(less@4.2.0)(sass@1.77.4)
     transitivePeerDependencies:
       - supports-color
 
-  vite@5.2.12(@types/node@20.12.13)(less@4.2.0)(sass@1.77.3):
+  vite@5.2.12(@types/node@20.12.13)(less@4.2.0)(sass@1.77.4):
     dependencies:
       esbuild: 0.20.2
       postcss: 8.4.38
@@ -4339,7 +3839,7 @@ snapshots:
       '@types/node': 20.12.13
       fsevents: 2.3.3
       less: 4.2.0
-      sass: 1.77.3
+      sass: 1.77.4
 
   w3c-keyname@2.2.8: {}
 
@@ -4363,25 +3863,7 @@ snapshots:
       string-width: 5.1.2
       strip-ansi: 7.1.0
 
-  y-prosemirror@1.2.5(prosemirror-model@1.21.0)(prosemirror-state@1.4.3)(prosemirror-view@1.33.6)(y-protocols@1.0.6(yjs@13.6.15))(yjs@13.6.15):
-    dependencies:
-      lib0: 0.2.94
-      prosemirror-model: 1.21.0
-      prosemirror-state: 1.4.3
-      prosemirror-view: 1.33.6
-      y-protocols: 1.0.6(yjs@13.6.15)
-      yjs: 13.6.15
-
-  y-protocols@1.0.6(yjs@13.6.15):
-    dependencies:
-      lib0: 0.2.94
-      yjs: 13.6.15
-
   yaml@2.4.2: {}
-
-  yjs@13.6.15:
-    dependencies:
-      lib0: 0.2.94
 
   yup@1.4.0:
     dependencies:
