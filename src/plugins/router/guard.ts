@@ -12,7 +12,7 @@ const init = async () => {
   if (isInit) return;
   isInit = true;
   try {
-    await Promise.all([useUserStore.getState().getCurrentUser()]);
+    await Promise.all([useUserStore.getState().getCurrentUser(), useMenuStore.getState().getMenuList()]);
   } catch (e) {
     throwAxiosError(e as AxiosError);
   }

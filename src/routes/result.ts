@@ -1,11 +1,11 @@
 import { RouteRecord } from 'react-router-dom';
-import { RiCheckboxCircleFill } from '@remixicon/react';
+import { RiCompassDiscoverLine } from '@remixicon/react';
 
 export default [
   {
     path: '/admin/result',
     component: lazy(() => import('@/layouts/admin')),
-    meta: { auth: false, menu: { label: '结果页面', icon: RiCheckboxCircleFill, order: 3 } },
+    meta: { auth: false, menu: { label: '结果页面', icon: RiCompassDiscoverLine, order: 4 } },
     children: [
       {
         path: 'info',
