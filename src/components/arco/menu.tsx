@@ -56,7 +56,7 @@ const toNodes = (list: OptionType[]) => {
               key={mergedKey}
               title={
                 icon ? (
-                  <div className={classNames('flex items-center gap-4', contentClassName)}>
+                  <div className={classNames('inline-flex items-center gap-4', contentClassName)}>
                     {icon}
                     <span>{label}</span>
                   </div>

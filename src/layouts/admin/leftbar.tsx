@@ -28,10 +28,10 @@ const leftbar: React.FC<{}> = () => {
         <nav className="text-word1">
           <NavLink className="flex justify-center items-start px-7 py-4 gap-1 cursor-pointer hover:text-word2" to={RoutePath.HOME}>
             <ArcoImage className="w-6 h-6" src={Logo} preview={false} />
-            <span className="text-lg font-bold uppercase">rapidify-react</span>
+            {isExpand && <span className="text-lg font-bold uppercase">rapidify-react</span>}
           </NavLink>
-          <div className="mx-1.5" style={{ '--color-text-2': 'var(--hue-grey-10)' } as CSSProperties}>
-            <Menu collapse={isExpand} options={menus.backend} defaultSelectedKeys={[router?.name || RouteName.ADMIN]} />
+          <div className="flex justify-center mx-1.5" style={{ '--color-text-2': 'var(--hue-grey-10)' } as CSSProperties}>
+            <Menu collapse={!isExpand} options={menus.backend} defaultSelectedKeys={[router?.name || RouteName.ADMIN]} />
           </div>
         </nav>
       </main>
