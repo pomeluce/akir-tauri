@@ -10,5 +10,10 @@ export default {
       name: RouteName.HOME,
       component: lazy(() => import('@/views/front/home')),
     },
+    {
+      path: 'components',
+      name: RouteName.COMPONENTS,
+      component: lazy(() => import('@/views/front/components')),
+    },
   ],
 } as RouteRecord;

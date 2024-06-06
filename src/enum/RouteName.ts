@@ -1,6 +1,7 @@
 export enum RouteName {
   /* front */
   HOME = 'home',
+  COMPONENTS = 'components',
 
   /* auth */
   LOGIN = 'login',

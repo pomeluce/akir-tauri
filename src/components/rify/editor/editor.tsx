@@ -3,7 +3,9 @@ import classNames from 'classnames';
 import './editor.scss';
 import { merge } from 'lodash-es';
 
-export interface EditorProps extends Omit<AiEditorOptions, 'element' | 'theme'> {}
+export interface EditorProps extends Omit<AiEditorOptions, 'element' | 'theme'> {
+  className?: string;
+}
 
 const Editor: React.FC<EditorProps> = props => {
   const ref = useRef<HTMLDivElement>(null);
@@ -55,6 +57,7 @@ const Editor: React.FC<EditorProps> = props => {
   const { theme } = useThemeStore();
   const {
     ai,
+    className,
     contentRetention = true,
     contentRetentionKey = 'rify-editor-content',
     onChange,
@@ -89,7 +92,7 @@ const Editor: React.FC<EditorProps> = props => {
   }, []);
 
   return (
-    <div ref={ref} className={classNames('rify-editor', `aie-theme-${theme}`)}>
+    <div ref={ref} className={classNames('rify-editor', `aie-theme-${theme}`, className)}>
       <div className="aie-container">
         <div className="aie-container-header"></div>
         <div className="aie-container-main h-full overflow-scroll"></div>

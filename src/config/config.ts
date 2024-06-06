@@ -4,6 +4,7 @@ export default () => {
       { label: '首页', key: RoutePath.HOME },
       { label: '登录页', key: RoutePath.LOGIN },
       { label: '注册页', key: RoutePath.REGISTER },
+      { label: '组件列表', key: RoutePath.COMPONENTS },
       { label: '系统后台', key: RoutePath.ADMIN },
     ],
   };
