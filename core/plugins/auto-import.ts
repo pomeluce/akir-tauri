@@ -1,5 +1,5 @@
 import AutoImport from 'unplugin-auto-import/vite';
-import { ArcoResolver, RemixiconResolver } from '../resolver';
+import { ArcoResolver, IconpackResolver } from '../resolver';
 
 /* 自动导入 */
 export default [
@@ -11,7 +11,7 @@ export default [
     // 自动导入 react 相关函数
     imports: ['react', 'react-router-dom', 'react-i18next', 'ahooks'],
     // 自定义解析函数: 自动导入组件
-    resolvers: [ArcoResolver({ prefix: 'Arco' }), RemixiconResolver()],
+    resolvers: [ArcoResolver({ prefix: 'Arco' }), IconpackResolver()],
     // 自定义函数导入
     dirs: ['src/store/**/*', 'src/enum/**/*', 'src/hooks/**/*', 'src/config/**/*', 'src/request/**/*'],
     // 声明生成的位置

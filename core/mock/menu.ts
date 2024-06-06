@@ -14,7 +14,7 @@ export default [
           front: [],
           backend: [
             {
-              iconName: 'RiDashboard3Line',
+              iconName: 'DashboardOne',
               label: 'Dashboard',
               type: 'submenu',
               order: 1,
@@ -32,7 +32,7 @@ export default [
               ],
             },
             {
-              iconName: 'RiSettings5Line',
+              iconName: 'Config',
               label: '系统管理',
               type: 'submenu',
               order: 2,
@@ -60,7 +60,7 @@ export default [
               ],
             },
             {
-              iconName: 'RiFlowChart',
+              iconName: 'Bydesign',
               label: '流程管理',
               type: 'submenu',
               order: 3,
@@ -78,7 +78,7 @@ export default [
               ],
             },
             {
-              iconName: 'RiCompassDiscoverLine',
+              iconName: 'Success',
               label: '结果页面',
               type: 'submenu',
               order: 4,
@@ -101,7 +101,7 @@ export default [
               ],
             },
             {
-              iconName: 'RiFileWarningLine',
+              iconName: 'Error',
               label: '异常页面',
               type: 'submenu',
               order: 5,

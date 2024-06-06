@@ -24,17 +24,17 @@ const avatarMenu: React.FC<{}> = () => {
         options: [
           {
             key: '1',
-            icon: <IconUser3Line size={18} />,
+            icon: <IconPeople size={18} />,
             label: '个人中心',
           },
           {
             key: '2',
-            icon: <IconSettingsLine size={18} />,
+            icon: <IconSetting size={18} />,
             label: '用户设置',
           },
           {
             key: '3',
-            icon: <IconLogoutCircleRLine size={18} />,
+            icon: <IconLogout size={18} />,
             label: '退出登录',
           },
         ],

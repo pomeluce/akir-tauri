@@ -20,13 +20,13 @@ export const ArcoResolver = (options: ResolverOptions = {}): Resolver => {
   };
 };
 
-/* remixicon 图标库自动按需导入 */
-export const RemixiconResolver = (): Resolver => {
+/* icon 图标库自动按需导入 */
+export const IconpackResolver = (): Resolver => {
   return {
     type: 'component',
     resolve: (name: string) => {
       if (name.startsWith('Icon')) {
-        return { from: '@remixicon/react', name: `Ri${name.slice(4)}`, as: name };
+        return { from: '@icon-park/react', name: name.slice(4), as: name };
       }
     },
   };

@@ -2,18 +2,10 @@ import { ReactElement } from 'react';
 import { IIconProps } from '@icon-park/react/lib/runtime';
 
 declare module 'react-router-dom' {
-  interface RouteMenu {
-    label?: string;
-    icon?: (props: IIconProps) => ReactElement;
-    blank?: string;
-    order?: number;
-  }
-
   interface RouteMeta {
     auth?: boolean;
     guest?: boolean;
     label?: string;
-    menu?: RouteMenu;
     prefix?: boolean;
   }
 

@@ -10,14 +10,14 @@ const info: React.FC<{}> = () => {
           <span> 您提交的内容如下: </span>
           <section className="flex flex-col gap-2 px-3">
             <article className="flex items-center gap-2">
-              <IconCheckboxCircleLine size="20" color="#337ffe" strokeLinecap="butt" />
+              <IconCheckOne size="20" fill="#337ffe" strokeLinecap="butt" />
               <span>中国建设银行一卡通 (****5426) 转出 2370.00 元, 当前账户余额：￥1980元</span>
               <ArcoButton type="text" size="small">
                 立刻撤回
               </ArcoButton>
             </article>
             <article className="flex items-center gap-2">
-              <IconCheckboxCircleLine size="20" color="#337ffe" strokeLinecap="butt" />
+              <IconCheckOne size="20" fill="#337ffe" strokeLinecap="butt" />
               <span>中国招商银行一卡通 (****8945) 转出 17790.45 元, 当前账户余额：￥80元</span>
               <ArcoButton type="text" size="small">
                 立刻撤回

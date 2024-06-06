@@ -12,7 +12,7 @@ const screen: React.FC<{}> = () => {
 
   return (
     <div className="flex items-center cursor-pointer" onClick={isScreen}>
-      {!full ? <IconFullscreenLine size={20} /> : <IconFullscreenExitLine size={20} />}
+      {!full ? <IconFullScreen size={20} /> : <IconOffScreen size={20} />}
     </div>
   );
 };
