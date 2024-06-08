@@ -67,6 +67,18 @@ export default defineConfig(({ command, mode }) => {
               return id.split('/node_modules/').pop()?.split('/')[0];
             }
           },
+          entryFileNames: 'js/[name]-[hash].js', // 主入口文件
+          chunkFileNames: 'js/[name]-[hash].js', // 异步块文件
+          assetFileNames(assetInfo) {
+            const extType = assetInfo.name.split('.').pop();
+            // css 文件
+            if ('css' === extType) return 'css/[name]-[hash].[ext]';
+            // 图片文件
+            else if (['avif', 'apng', 'bmp', 'gif', 'ico', 'jfif', 'jpg', 'jpeg', 'pjp', 'pjpeg', 'png', 'webp', 'svg'].includes(extType)) return 'images/[name]-[hash].[ext]';
+            // 字体文件
+            else if (['ttf', 'woff', 'woff2', 'eot', 'otf', 'wof2']) return 'fonts/[name]-[hash].[ext]';
+            else return 'assets/[name]-[hash].[ext]';
+          },
         },
       },
     },

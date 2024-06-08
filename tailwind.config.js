@@ -1,6 +1,8 @@
+import Typography from '@tailwindcss/typography';
+
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}', './node_modules/@milkdown/**/*.ts'],
   darkMode: ['selector', '[data-theme="dark"]'],
   theme: {
     extend: {
@@ -119,5 +121,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [Typography],
 };
