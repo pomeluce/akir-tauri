@@ -2,7 +2,7 @@ import Typography from '@tailwindcss/typography';
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}', './node_modules/@milkdown/**/*.ts'],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}', './node_modules/@milkdown/prose/**/*.ts', './node_modules/@milkdown/theme-nord/**/*.ts'],
   darkMode: ['selector', '[data-theme="dark"]'],
   theme: {
     extend: {

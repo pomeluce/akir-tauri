@@ -1,1 +1,1 @@
-export { default as MarkEditor } from './mark-editor';
+export { default as MarkEditor } from './milkdown-editor';

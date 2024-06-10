@@ -3,7 +3,7 @@ import { Editor, MarkEditor } from '@/components';
 const components: React.FC<{}> = () => {
   return (
     <ArcoCard className="p-3" title="组件列表">
-      <ArcoTabs defaultActiveTab="1" type="rounded">
+      <ArcoTabs defaultActiveTab="2" type="rounded">
         <ArcoTabs.TabPane key="1" title="富文本编辑器">
           <Editor />
         </ArcoTabs.TabPane>
