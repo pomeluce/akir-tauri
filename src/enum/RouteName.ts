@@ -1,4 +1,11 @@
 export enum RouteName {
+  /* module */
+  MODULE_ADMIN = 'module.admin',
+  MODULE_SYSTEM = 'module.system',
+  MODULE_WORKFLOW = 'module.workflow',
+  MODULE_RESULT = 'module.result',
+  MODULE_ERROR = 'module.error',
+
   /* front */
   HOME = 'home',
   COMPONENTS = 'components',

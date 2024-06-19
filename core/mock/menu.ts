@@ -14,7 +14,7 @@ export default [
           front: [],
           backend: [
             {
-              iconName: 'DashboardOne',
+              key: RouteName.MODULE_ADMIN,
               label: 'Dashboard',
               type: 'submenu',
               order: 1,
@@ -32,7 +32,7 @@ export default [
               ],
             },
             {
-              iconName: 'Config',
+              key: RouteName.MODULE_SYSTEM,
               label: '系统管理',
               type: 'submenu',
               order: 2,
@@ -60,7 +60,7 @@ export default [
               ],
             },
             {
-              iconName: 'Bydesign',
+              key: RouteName.MODULE_WORKFLOW,
               label: '流程管理',
               type: 'submenu',
               order: 3,
@@ -78,7 +78,7 @@ export default [
               ],
             },
             {
-              iconName: 'Success',
+              key: RouteName.MODULE_RESULT,
               label: '结果页面',
               type: 'submenu',
               order: 4,
@@ -101,7 +101,7 @@ export default [
               ],
             },
             {
-              iconName: 'Error',
+              key: RouteName.MODULE_ERROR,
               label: '异常页面',
               type: 'submenu',
               order: 5,

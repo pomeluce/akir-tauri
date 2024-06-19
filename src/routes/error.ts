@@ -1,9 +1,11 @@
+import { RiToolsFill } from 'react-icons/ri';
 import { RouteRecord } from 'react-router-dom';
 
 export default {
   path: '/error',
+  name: RouteName.MODULE_ERROR,
   component: lazy(() => import('@/layouts/error')),
-  meta: { auth: false },
+  meta: { auth: false, icon: RiToolsFill },
   children: [
     {
       path: '403',

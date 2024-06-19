@@ -1,11 +1,13 @@
 import { RouteRecord } from 'react-router-dom';
+import { RiDashboard3Line, RiFlowChart, RiSettings2Line } from 'react-icons/ri';
 import result from './result';
 
 export default [
   {
     path: '/admin',
+    name: RouteName.MODULE_ADMIN,
     component: lazy(() => import('@/layouts/admin')),
-    meta: { auth: true },
+    meta: { auth: true, icon: RiDashboard3Line },
     children: [
       {
         path: '',
@@ -21,8 +23,9 @@ export default [
   },
   {
     path: '/admin/system',
+    name: RouteName.MODULE_SYSTEM,
     component: lazy(() => import('@/layouts/admin')),
-    meta: { auth: true },
+    meta: { auth: true, icon: RiSettings2Line },
     children: [
       {
         path: 'user',
@@ -49,8 +52,9 @@ export default [
   },
   {
     path: '/admin/workflow',
+    name: RouteName.MODULE_WORKFLOW,
     component: lazy(() => import('@/layouts/admin')),
-    meta: { auth: true },
+    meta: { auth: true, icon: RiFlowChart },
     children: [
       {
         path: 'define',

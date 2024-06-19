@@ -1,10 +1,13 @@
+import { RouteName } from '@/enum/RouteName';
+import { RiDiscountPercentLine } from 'react-icons/ri';
 import { RouteRecord } from 'react-router-dom';
 
 export default [
   {
     path: '/admin/result',
+    name: RouteName.MODULE_RESULT,
     component: lazy(() => import('@/layouts/admin')),
-    meta: { auth: false },
+    meta: { auth: false, icon: RiDiscountPercentLine },
     children: [
       {
         path: 'info',

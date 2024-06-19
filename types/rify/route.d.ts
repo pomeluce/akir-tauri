@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { IIconProps } from '@icon-park/react/lib/runtime';
+import { IconType } from 'react-icons/lib';
 
 declare module 'react-router-dom' {
   interface RouteMeta {
@@ -7,6 +7,7 @@ declare module 'react-router-dom' {
     guest?: boolean;
     label?: string;
     prefix?: boolean;
+    icon?: IconType;
   }
 
   interface RouteRecord {

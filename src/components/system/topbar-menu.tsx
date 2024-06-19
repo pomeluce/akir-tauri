@@ -1,4 +1,4 @@
-import { Screen, Sun, Moon, AvatarMenu } from '@/components';
+import { Screen, AvatarMenu } from '@/components';
 
 const topbarMenu: React.FC<{}> = () => {
   const { theme, toggleTheme } = useThemeStore();
@@ -11,7 +11,7 @@ const topbarMenu: React.FC<{}> = () => {
         <Screen />
       </ArcoButton>
       <ArcoButton className="flex justify-center items-center" size="large" shape="circle" onClick={() => toggleTheme()}>
-        {theme === 'light' ? <Sun className="w-5" /> : <Moon className="w-5" />}
+        {theme === 'light' ? <IconRiSunFill size={20} /> : <IconRiMoonClearFill size={20} />}
       </ArcoButton>
       {isLogin() ? (
         <AvatarMenu />

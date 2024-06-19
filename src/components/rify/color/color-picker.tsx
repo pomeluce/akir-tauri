@@ -88,7 +88,7 @@ const colorPicker: React.FC<ColorPickerProps> = ({ defaultColor, onChange }) => 
           className="flex justify-start items-center gap-1 px-0.5 w-full text-word1 cursor-pointer rounded border border-transparent hover:border-rim4"
           onClick={() => onChange?.(defaultColor)}
         >
-          <IconReduce size={18} />
+          <IconRiCheckboxIndeterminateLine size={18} />
           <span>默认颜色</span>
         </li>
         {colors.map((color, index) => (

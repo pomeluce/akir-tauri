@@ -11,8 +11,8 @@ const avatarMenu: React.FC<{}> = () => {
   );
 
   const dropList = (
-    <main className="flex flex-col bg-backdrop2 p-2 border shadow-xl rounded cursor-pointer">
-      <div className="flex items-center gap-5 p-3 border-b">
+    <main className="flex flex-col bg-backdrop2 p-2 border border-rim2 shadow-xl rounded cursor-pointer">
+      <div className="flex items-center gap-5 p-3 border-b border-rim2">
         {avatar('w-10 h-10')}
         <div className="flex flex-col gap-2 text-sm">
           <span>{user.name}</span>
@@ -24,17 +24,17 @@ const avatarMenu: React.FC<{}> = () => {
         options: [
           {
             key: '1',
-            icon: <IconPeople size={18} />,
+            icon: IconRiUser3Line({ size: 18 }),
             label: '个人中心',
           },
           {
             key: '2',
-            icon: <IconSetting size={18} />,
+            icon: IconRiSettingsLine({ size: 18 }),
             label: '用户设置',
           },
           {
             key: '3',
-            icon: <IconLogout size={18} />,
+            icon: IconRiLogoutCircleRLine({ size: 18 }),
             label: '退出登录',
           },
         ],

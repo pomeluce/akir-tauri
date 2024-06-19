@@ -1,6 +1,6 @@
-import { IIconProps, Icon } from '@icon-park/react/lib/runtime';
+import { IconType, IconBaseProps } from 'react-icons/lib';
 
-const render: React.FC<{ name: Icon } & IIconProps> = ({ name: Name, ...props }) => {
+const render: React.FC<{ name: IconType } & IconBaseProps> = ({ name: Name, ...props }) => {
   return <Name {...props} />;
 };
 

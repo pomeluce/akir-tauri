@@ -8,7 +8,7 @@ export enum RoutePath {
   REGISTER = '/auth/register',
 
   /* admin */
-  ADMIN = '/admin',
+  ADMIN = '/admin/',
   WORKBENCH = '/admin/workbench',
 
   /* system */
