@@ -18,9 +18,9 @@
     "tauri"
   ],
   "scripts": {
-    "dev": "vite --mode devlopment",
+    "dev": "vite --mode development",
     "pro": "vite --mode production",
-    "build:dev": "tsc && vite build --mode devlopment",
+    "build:dev": "tsc && vite build --mode development",
     "build:pro": "tsc && vite build --mode production",
     "preview": "vite preview",
     "tauri": "cargo tauri dev"
@@ -51,7 +51,7 @@
     "@prosemirror-adapter/react": "^0.2.6",
     "@types/lodash-es": "^4.17.12",
     "ahooks": "^3.8.0",
-    "aieditor": "^1.0.9",
+    "aieditor": "^1.0.10",
     "axios": "^1.7.2",
     "classnames": "^2.5.1",
     "katex": "^0.16.10",
