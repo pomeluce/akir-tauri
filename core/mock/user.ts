@@ -15,7 +15,7 @@ export default [
           name: 'Meow',
           email: 'rapidify@gmail.com',
           gender: 1,
-          avatar: '/images/avatar.png',
+          avatar: '/src/assets/images/avatar.png',
           phone: '18888888888',
           createTime: 1604940444444,
           updateTime: 1604940444444,

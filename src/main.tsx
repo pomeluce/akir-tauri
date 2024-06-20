@@ -1,4 +1,4 @@
-import React from 'react';
+import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from '@/App.tsx';
 import '@/styles/index.scss';
@@ -8,9 +8,9 @@ const bootstrap = (): void => {
   const app = createRoot(document.querySelector('#root')!);
   // 挂载到 app 中
   app.render(
-    <React.StrictMode>
+    <StrictMode>
       <App />
-    </React.StrictMode>,
+    </StrictMode>,
   );
 };
 

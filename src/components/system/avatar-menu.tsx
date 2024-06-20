@@ -6,7 +6,7 @@ const avatarMenu: React.FC<{}> = () => {
 
   const avatar = (className: string) => (
     <ArcoAvatar className={className}>
-      <img src={`/src/assets${user.avatar}`} />
+      <img src={user.avatar} />
     </ArcoAvatar>
   );
 
