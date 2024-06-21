@@ -2,7 +2,14 @@ import Typography from '@tailwindcss/typography';
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}', './node_modules/@milkdown/prose/**/*.ts', './node_modules/@milkdown/theme-nord/**/*.ts'],
+  content: [
+    './index.html',
+    './tauri/index.html',
+    './src/**/*.{js,ts,jsx,tsx}',
+    './tauri/**/*.{js,ts,jsx,tsx}',
+    './node_modules/@milkdown/prose/**/*.ts',
+    './node_modules/@milkdown/theme-nord/**/*.ts',
+  ],
   darkMode: ['selector', '[data-theme="dark"]'],
   theme: {
     extend: {

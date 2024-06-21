@@ -16,7 +16,7 @@ const getFullPath = (raws: RouteRecord[], name: string, path: string = ''): stri
 
 const toRegex = (path: string): RegExp => {
   const regex = path.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&').replace(/:[^\s/]+/g, '[^/]+');
-  return new RegExp(`^${regex}$`);
+  return new RegExp(`^${regex}\/?$`);
 };
 
 export default () => {

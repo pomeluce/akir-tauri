@@ -16,8 +16,15 @@ export default defineConfig(({ command, mode }) => {
   const isBuild = command === 'build';
   // 设置第三个参数为 '' 来加载所有环境变量，而不管是否有 `VITE_` 前缀。
   const env = parseEnv(loadEnv(mode, root));
+
+  // 获取自定义参数
+  const args = process.argv.slice(2);
+  const moduleIndex = args.findIndex(arg => arg.startsWith('--module='));
+  const moduleName = moduleIndex !== -1 ? args[moduleIndex].split('=')[1] : null;
+  const input = pathResolve(`${moduleName || root}/index.html`);
+
   return {
-    plugins: [...autoImport, react(), arco(), mock(isBuild, env)],
+    plugins: [...autoImport(root), react(), arco(), mock(isBuild, env)],
     // 本地开发服务器配置
     // 配置路径别名
     resolve: {
@@ -27,6 +34,7 @@ export default defineConfig(({ command, mode }) => {
       alias: [
         { find: '@', replacement: pathResolve('src') },
         { find: '#', replacement: pathResolve('types') },
+        { find: '@tauri', replacement: pathResolve('tauri') },
       ],
     },
     define: {
@@ -56,11 +64,16 @@ export default defineConfig(({ command, mode }) => {
             },
           },
     },
+    root: moduleName || root,
+    publicDir: `${moduleName ? '..' : '.'}/public`,
     build: {
+      // 输出目录
+      outDir: `${root}/dist/${moduleName || 'main'}`,
       // 编译是清空输出目录
       emptyOutDir: true,
       // 代码拆包
       rollupOptions: {
+        input,
         output: {
           manualChunks(id: string) {
             if (id.includes('node_modules')) {
