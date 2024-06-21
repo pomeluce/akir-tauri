@@ -1,6 +1,6 @@
 import { MockMethod } from 'vite-plugin-mock';
 import { faker } from '@faker-js/faker/locale/zh_CN';
-import { RequestURL } from '../../src/enum/RequestURL';
+import { RequestURL } from '../src/enum/RequestURL';
 
 export default [
   {

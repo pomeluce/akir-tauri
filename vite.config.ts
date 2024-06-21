@@ -35,6 +35,7 @@ export default defineConfig(({ command, mode }) => {
         { find: '@', replacement: pathResolve('src') },
         { find: '#', replacement: pathResolve('types') },
         { find: '@tauri', replacement: pathResolve('tauri') },
+        { find: '@common', replacement: pathResolve('common') },
       ],
     },
     define: {

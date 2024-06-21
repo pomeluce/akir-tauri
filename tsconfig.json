@@ -27,11 +27,23 @@
     "paths": {
       "@/*": ["src/*"],
       "#/*": ["types/*"],
-      "@tauri/*": ["tauri/*"]
+      "@tauri/*": ["tauri/*"],
+      "@common/*": ["common/*"]
     },
     "types": ["lodash-es", "vite/client"]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "tauri/**/*.ts", "tauri/**/*.d.ts", "tauri/**/*.tsx", "types/**/*.d.ts"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "tauri/**/*.ts",
+    "tauri/**/*.d.ts",
+    "tauri/**/*.tsx",
+    "common/**/*.ts",
+    "common/**/*.d.ts",
+    "common/**/*.tsx",
+    "types/**/*.d.ts"
+  ],
   "exclude": ["node_modules", "dist"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -1,6 +1,6 @@
 import { MockMethod } from 'vite-plugin-mock';
-import { RequestURL } from '../../src/enum/RequestURL';
-import { RouteName } from '../../src/enum/RouteName';
+import { RequestURL } from '../src/enum/RequestURL';
+import { RouteName } from '../src/enum/RouteName';
 
 export default [
   {
