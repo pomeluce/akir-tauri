@@ -1,5 +1,6 @@
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react-swc';
+import UnoCSS from 'unocss/vite';
 import { resolve } from 'path';
 import { autoImport, arco, mock } from './core/plugins';
 import { parseEnv } from './core/utils';
@@ -24,7 +25,7 @@ export default defineConfig(({ command, mode }) => {
   const input = pathResolve(`${moduleName || root}/index.html`);
 
   return {
-    plugins: [...autoImport(root), react(), arco(), mock(isBuild, env)],
+    plugins: [...autoImport(root), react(), UnoCSS(), arco(), mock(isBuild, env)],
     // 本地开发服务器配置
     // 配置路径别名
     resolve: {

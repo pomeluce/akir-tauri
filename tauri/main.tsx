@@ -1,6 +1,8 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from '@tauri/App';
+import '@tauri/styles/index.scss';
+import 'virtual:uno.css';
 
 const bootstrap = (): void => {
   // 创建 react 实例
