@@ -28,13 +28,13 @@ export default async (to: RouteRecord | undefined): Promise<boolean> => {
   if (to?.meta?.auth && !isLogin()) {
     storage.set(CacheKey.REDIRECT_ROUTE_NAME, to.name);
     ArcoMessage.info({ content: '当前未登录或登录已过期' });
-    router.navigate(RoutePath.LOGIN);
+    router.root.navigate(RoutePath.LOGIN);
     return false;
   }
 
   // 如果是登录页面, 判断是否登录, 如果已经登录则跳转到首页
   if (to?.meta?.guest && isLogin()) {
-    router.navigate(RoutePath.HOME);
+    router.root.navigate(RoutePath.HOME);
     return false;
   }
 

@@ -1,9 +1,9 @@
 import { OptionType } from '@/components';
-import { http } from '@/plugins';
+import { http, router } from '@/plugins';
 
 type MenuType = OptionType & { blank: string; children: MenuType[]; order: number };
 
-const { navigator, open, matchName } = useRouter();
+const { navigator, open, matchName } = router;
 
 const getMenuOptions = (list: MenuType[], key: string) => {
   return (list || []).map((item, index) => {

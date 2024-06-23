@@ -1,6 +1,6 @@
 import { UseFormProps, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { yup } from '@/plugins';
+import { yup } from '@common/plugins';
 
 export default () => {
   /**

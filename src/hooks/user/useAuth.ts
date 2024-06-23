@@ -1,4 +1,4 @@
-import { http } from '@/plugins';
+import { http, router } from '@/plugins';
 
 const storage = useStorage();
 
@@ -21,7 +21,7 @@ export default () => {
     const { code, message, data: token } = await http.request<ResultModel<string>>({ url: RequestURL.LOGIN, method: 'POST', data }, { loading: true });
     if (code === 200) {
       storage.set(CacheKey.TOKEN_NAME, token);
-      useRouter().navigator({ name: storage.get(CacheKey.REDIRECT_ROUTE_NAME) || RouteName.HOME });
+      router.navigator({ name: storage.get(CacheKey.REDIRECT_ROUTE_NAME) || RouteName.HOME });
       storage.remove(CacheKey.REDIRECT_ROUTE_NAME);
     } else {
       ArcoMessage.error({ content: message || '登录失败,请稍后重试!' });

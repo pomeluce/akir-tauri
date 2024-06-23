@@ -6,23 +6,23 @@ export default [
   {
     path: '/admin/result',
     name: RouteName.MODULE_RESULT,
-    component: lazy(() => import('@/layouts/admin')),
+    component: () => import('@/layouts/admin'),
     meta: { auth: false, icon: RiDiscountPercentLine },
     children: [
       {
         path: 'info',
         name: RouteName.RESUALT_INFO,
-        component: lazy(() => import('@/views/result/info')),
+        component: () => import('@/views/result/info'),
       },
       {
         path: 'success',
         name: RouteName.RESUALT_SUCCESS,
-        component: lazy(() => import('@/views/result/success')),
+        component: () => import('@/views/result/success'),
       },
       {
         path: 'failed',
         name: RouteName.RESUALT_FAILED,
-        component: lazy(() => import('@/views/result/failed')),
+        component: () => import('@/views/result/failed'),
       },
     ],
   },

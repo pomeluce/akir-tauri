@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { FC, ReactElement } from 'react';
 import { IconType } from 'react-icons/lib';
 
 declare module 'react-router-dom' {
@@ -12,7 +12,7 @@ declare module 'react-router-dom' {
 
   interface RouteRecord {
     path: string;
-    component: React.LazyExoticComponent;
+    component: () => Promise<{ default: FC<{}> }>;
     name?: string;
     meta?: RouteMeta;
     children?: RouteRecord[];
@@ -21,6 +21,10 @@ declare module 'react-router-dom' {
   interface RouteLocation {
     fullPath: string;
   }
+
+  type RouterGuard = (to: RouteRecord | undefined) => Promise<boolean>;
+
+  type Router = ReturnType<typeof createBrowserRouter>;
 
   type RouteLocationRaw = string | RouteLocationNamedRaw;
 

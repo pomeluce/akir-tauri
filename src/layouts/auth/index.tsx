@@ -1,4 +1,4 @@
-import { ProtectedRouter } from '@/plugins';
+import { ProtectedRouter } from '@common/plugins';
 
 const auth: React.FC<{}> = () => {
   return (

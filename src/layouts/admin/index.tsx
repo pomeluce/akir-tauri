@@ -1,6 +1,6 @@
 import Leftbar from '@/layouts/admin/leftbar';
 import Topbar from '@/layouts/admin/topbar';
-import { ProtectedRouter } from '@/plugins';
+import { ProtectedRouter } from '@common/plugins';
 
 const admin: React.FC<{}> = () => {
   const ref = useRef<HTMLElement>(null);

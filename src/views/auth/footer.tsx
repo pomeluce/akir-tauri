@@ -1,5 +1,7 @@
+import { router } from '@/plugins';
+
 const footer: React.FC<{}> = () => {
-  const { context } = useRouter();
+  const { context } = router;
 
   return (
     <main className="flex justify-center gap-3 mt-8 text-sm text-word2">

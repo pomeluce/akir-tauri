@@ -1,11 +1,10 @@
+import Logo from '/pomeluce.svg';
 import { CSSProperties } from 'react';
 import { Menu } from '@/components';
-import Logo from '/pomeluce.svg';
-import { RouteName } from '@/enum/RouteName';
+import { router } from '@/plugins';
 
 const leftbar: React.FC<{}> = () => {
   const { isExpand, setExpand, menus } = useMenuStore();
-  const { context: router } = useRouter();
 
   const closeMenu = () => document.documentElement.clientWidth < 1024 && setExpand(false);
 
@@ -31,7 +30,7 @@ const leftbar: React.FC<{}> = () => {
             {isExpand && <span className="text-lg font-bold uppercase">rapidify-react</span>}
           </NavLink>
           <div className="flex justify-center mx-1.5" style={{ '--color-text-2': 'var(--hue-grey-10)' } as CSSProperties}>
-            <Menu collapse={!isExpand} options={menus.backend} defaultSelectedKeys={[router?.name || RouteName.ADMIN]} />
+            <Menu collapse={!isExpand} options={menus.backend} defaultSelectedKeys={[router.context?.name || RouteName.ADMIN]} />
           </div>
         </nav>
       </main>

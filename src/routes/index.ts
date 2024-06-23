@@ -7,7 +7,7 @@ import error from './error';
 const unknown: RouteRecord = {
   path: RoutePath.UNKNOWN,
   name: RouteName.UNKNOWN,
-  component: lazy(() => import('@/views/error/404')),
+  component: () => import('@/views/error/404'),
 };
 
 const resolver = (route: RouteRecord) => {
@@ -26,4 +26,4 @@ const resolver = (route: RouteRecord) => {
 
 export default [front, auth, ...admin, error, unknown].map(item => resolver(item)) as RouteRecord[];
 
-export const ErrorElement = lazy(() => import('@/views/error/500'));
+export const ErrorElement = () => import('@/views/error/500');

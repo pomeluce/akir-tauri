@@ -1,14 +1,15 @@
 import { ReactNode } from 'react';
-import { beforeEach } from '.';
-import SuspenseFallback from '@/layouts/SuspenseFallback';
+import SuspenseFallback from './SuspenseFallback';
+import { RouterContext } from './router-context';
 
 const ProtectedRouter = ({ children }: { children: ReactNode }) => {
-  const { context: to, fullPath } = useRouter();
+  const { router } = useContext(RouterContext);
+  const { context: to, fullPath, beforeEach } = router;
 
   const [guard, setGuard] = useState<boolean>(false);
 
   useAsyncEffect(async () => {
-    setGuard(await beforeEach(to));
+    setGuard((await beforeEach?.(to)) || true);
   }, [fullPath]);
 
   return guard ? children : SuspenseFallback({});

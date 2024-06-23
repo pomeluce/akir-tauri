@@ -1,6 +1,4 @@
-import { RouteLocation, RouteLocationRaw, RouteRecord } from 'react-router-dom';
-import { beforeEach, router } from '@/plugins';
-import records from '@/routes';
+import { RouteLocation, RouteLocationRaw, Router, RouteRecord, RouterGuard } from 'react-router-dom';
 
 const getFullPath = (raws: RouteRecord[], name: string, path: string = ''): string => {
   for (const raw of raws) {
@@ -8,10 +6,10 @@ const getFullPath = (raws: RouteRecord[], name: string, path: string = ''): stri
     if (raw.name === name) return currentPath;
     if (raw.children) {
       const childrenPath = getFullPath(raw.children, name, `${currentPath}`);
-      if (childrenPath && childrenPath !== RoutePath.UNKNOWN) return childrenPath;
+      if (childrenPath && childrenPath !== '*') return childrenPath;
     }
   }
-  return RoutePath.UNKNOWN;
+  return '*';
 };
 
 const toRegex = (path: string): RegExp => {
@@ -19,7 +17,7 @@ const toRegex = (path: string): RegExp => {
   return new RegExp(`^${regex}\/?$`);
 };
 
-export default () => {
+const handler = (router: Router, records: RouteRecord[], beforeEach?: RouterGuard) => {
   const url = window.location.protocol + '//' + window.location.host;
 
   /**
@@ -29,7 +27,7 @@ export default () => {
    * @returns 返回一个 (route: RouteRecord) => RouteLocation 函数对象
    */
   const resolve = (route: RouteRecord): RouteLocation => {
-    return { fullPath: getFullPath(records, route?.name ?? RouteName.UNKNOWN) };
+    return { fullPath: getFullPath(records, route?.name ?? '') };
   };
 
   /**
@@ -89,16 +87,23 @@ export default () => {
    */
   const navigator = (to: RouteLocationRaw) => {
     if (typeof to === 'string') {
-      beforeEach(matchPath(to)).then(auth => {
-        auth && router.navigate(to);
-      });
+      beforeEach
+        ? beforeEach(matchPath(to)).then(auth => {
+            auth && router.navigate(to);
+          })
+        : router.navigate(to);
     } else {
       const route = matchName(to.name);
-      beforeEach(route).then(auth => {
-        auth && router.navigate(resolve(route!).fullPath);
-      });
+      beforeEach
+        ? beforeEach(route).then(auth => {
+            auth && router.navigate(resolve(route!).fullPath);
+          })
+        : router.navigate(resolve(route!).fullPath);
     }
   };
 
-  return { context, fullPath, matchName, matchPath, open, navigator, resolve };
+  return { root: router, beforeEach, context, fullPath, matchName, matchPath, open, navigator, resolve };
 };
+
+export default handler;
+export type RouterHandlerType = ReturnType<typeof handler>;

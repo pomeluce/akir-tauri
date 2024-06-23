@@ -1,9 +1,9 @@
 import { Screen, AvatarMenu } from '@/components';
+import { router } from '@/plugins';
 
 const topbarMenu: React.FC<{}> = () => {
   const { theme, toggleTheme } = useThemeStore();
   const { isLogin } = useAuth();
-  const { navigator } = useRouter();
 
   return (
     <section className="hidden md:flex items-center gap-5">
@@ -17,10 +17,10 @@ const topbarMenu: React.FC<{}> = () => {
         <AvatarMenu />
       ) : (
         <div className="flex gap-2">
-          <ArcoButton type="primary" onClick={() => navigator({ name: RouteName.LOGIN })}>
+          <ArcoButton type="primary" onClick={() => router.navigator({ name: RouteName.LOGIN })}>
             登录
           </ArcoButton>
-          <ArcoButton onClick={() => navigator({ name: RouteName.REGISTER })}>注册</ArcoButton>
+          <ArcoButton onClick={() => router.navigator({ name: RouteName.REGISTER })}>注册</ArcoButton>
         </div>
       )}
     </section>

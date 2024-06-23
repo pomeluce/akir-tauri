@@ -1,6 +1,8 @@
-import { createBrowserRouter } from 'react-router-dom';
-import { routes } from '@/layouts';
+import { createRouter } from '@common/plugins';
+import routes, { ErrorElement as errorElement } from '@/routes';
+import beforeEach from './guard';
 
-export default createBrowserRouter(routes);
-export { default as beforeEach } from './guard';
-export { default as ProtectedRouter } from './ProtectedRouter';
+const router = createRouter({ routes, errorElement });
+
+export default router;
+router.beforeEach = beforeEach;

@@ -1,9 +1,9 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { Loading, RifyLoading } from '@/components';
+import { router } from '..';
 
 // 获取 storage 对象
 const storage = useStorage();
-const { navigator } = useRouter();
 
 export default class Axios {
   // axios 实例
@@ -113,7 +113,7 @@ export default class Axios {
         switch (status) {
           case HttpStatus.UNAUTHORIZED:
             storage.remove(CacheKey.TOKEN_NAME);
-            navigator(RoutePath.LOGIN);
+            router.navigator(RoutePath.LOGIN);
             break;
           case HttpStatus.UNPROCESSABLE_ENTITY:
             // useErrorStore().setErrors(error.response.data.errors);

@@ -1,5 +1,5 @@
 import Topbar from '@/layouts/front/topbar';
-import { ProtectedRouter } from '@/plugins';
+import { ProtectedRouter } from '@common/plugins';
 
 const front: React.FC<{}> = () => {
   return (
