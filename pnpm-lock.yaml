@@ -3588,8 +3588,8 @@ packages:
   tabbable@6.2.0:
     resolution: {integrity: sha512-Cat63mxsVJlzYvN51JmVXIgNoUokrIaT2zLclCXjRd8boZ0004U4KCs/sToJ75C6sdlByWxpYnb5Boif1VSFew==}
 
-  throttle-debounce@5.0.0:
-    resolution: {integrity: sha512-2iQTSgkkc1Zyk0MeVrt/3BvuOXYPl/R8Z0U2xxo9rjwNciaHDG3R+Lm6dh4EeUci49DanvBnuqI6jshoQQRGEg==}
+  throttle-debounce@5.0.1:
+    resolution: {integrity: sha512-mobESsRUkGlI61RMx4f3qCytoT0eDXMLkhqhI5KGOe2OVckj4+m26Wsz/30/P8A2WCV+hGoExbk0Tw1pvmhndQ==}
     engines: {node: '>=12.22'}
 
   through2@0.4.2:
@@ -4053,7 +4053,7 @@ snapshots:
       json2mq: 0.2.0
       react: 18.3.1
       resize-observer-polyfill: 1.5.1
-      throttle-debounce: 5.0.0
+      throttle-debounce: 5.0.1
 
   '@antfu/install-pkg@0.1.1':
     dependencies:
@@ -5931,7 +5931,7 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       scroll-into-view-if-needed: 3.1.0
-      throttle-debounce: 5.0.0
+      throttle-debounce: 5.0.1
     transitivePeerDependencies:
       - date-fns
       - luxon
@@ -8494,7 +8494,7 @@ snapshots:
 
   tabbable@6.2.0: {}
 
-  throttle-debounce@5.0.0: {}
+  throttle-debounce@5.0.1: {}
 
   through2@0.4.2:
     dependencies:

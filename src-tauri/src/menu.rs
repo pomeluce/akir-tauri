@@ -1,5 +1,5 @@
 use tauri::menu::{MenuBuilder, MenuItemBuilder, PredefinedMenuItem, SubmenuBuilder};
-use tauri::AppHandle;
+use tauri::{AppHandle, Manager};
 
 pub fn setup_menu(handle: &AppHandle) -> Result<(), Box<dyn std::error::Error>> {
     let file_menu = SubmenuBuilder::new(handle, "文件")
@@ -8,8 +8,14 @@ pub fn setup_menu(handle: &AppHandle) -> Result<(), Box<dyn std::error::Error>> 
                 .id("new")
                 .accelerator("Ctrl+N")
                 .build(handle)?,
-            &PredefinedMenuItem::close_window(handle, Some("关闭窗口"))?,
-            &PredefinedMenuItem::quit(handle, Some("退出"))?,
+            &MenuItemBuilder::new("关闭窗口")
+                .id("close_win")
+                .accelerator("Alt+F4")
+                .build(handle)?,
+            &MenuItemBuilder::new("退出")
+                .id("quit")
+                .accelerator("Ctrl+Q")
+                .build(handle)?,
         ])
         .build()?;
     let editor_menu = SubmenuBuilder::new(handle, "编辑")
@@ -44,10 +50,13 @@ pub fn setup_menu(handle: &AppHandle) -> Result<(), Box<dyn std::error::Error>> 
     let menu = MenuBuilder::new(handle).items(&[&file_menu, &editor_menu, &view_menu, &help_menu]);
 
     handle.set_menu(menu.build()?)?;
-    handle.on_menu_event(move |_app, event| {
-        if event.id() == "new" {
-            println!("event id: {:?}", event.id());
+    handle.on_menu_event(move |app, event| match event.id().as_ref() {
+        "new" => {
+            println!("new action")
         }
+        "close_win" => app.get_webview_window("main").unwrap().close().unwrap(),
+        "quit" => app.exit(0),
+        _ => {}
     });
     Ok(())
 }

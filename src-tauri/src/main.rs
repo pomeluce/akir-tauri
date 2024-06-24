@@ -8,11 +8,9 @@ mod menu;
 fn main() {
     tauri::Builder::default()
         .setup(|app| {
-            let handle = app.app_handle();
-            match menu::setup_menu(handle) {
-                Ok(()) => {}
-                Err(err) => println!("Failed to setup menu: {:?}", err),
-            };
+            let app_handle = app.app_handle();
+            menu::setup_menu(app_handle)?;
+
             Ok(())
         })
         .run(tauri::generate_context!())
