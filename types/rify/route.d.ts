@@ -13,7 +13,7 @@ declare module 'react-router-dom' {
   interface RouteRecord {
     path: string;
     component: () => Promise<{ default: FC<{}> }>;
-    name?: string;
+    name: RouteRecordName;
     meta?: RouteMeta;
     children?: RouteRecord[];
   }
@@ -22,20 +22,31 @@ declare module 'react-router-dom' {
     fullPath: string;
   }
 
-  type RouterGuard = (to: RouteRecord | undefined) => Promise<boolean>;
-
   type Router = ReturnType<typeof createBrowserRouter>;
 
-  type RouteLocationRaw = string | RouteLocationNamedRaw;
-
-  interface RouteLocationNamedRaw extends LocationAsRelativeRaw {}
-
-  interface LocationAsRelativeRaw {
-    name?: string;
-    params?: RouteParamsRaw;
-  }
+  type RouteParamValueRaw = string | number | null | undefined;
 
   type RouteParamsRaw = Record<string, RouteParamValueRaw>;
 
-  type RouteParamValueRaw = string | number | null | undefined;
+  type RouteRecordName = string;
+
+  interface LocationAsRelativeRaw {
+    name?: RouteRecordName;
+    params?: RouteParamsRaw;
+  }
+
+  interface RouteLocationNamedRaw extends LocationAsRelativeRaw {}
+
+  type RouteLocationRaw = string | RouteLocationNamedRaw;
+
+  type NavigationGuardReturn = void | RouteLocationRaw | Error;
+
+  interface MatcherLocation {
+    name: RouteRecordName | null | undefined;
+    path: string;
+    params: RouteParamsRaw;
+    meta: RouteMeta;
+  }
+
+  type RouterGuard = (to: MatcherLocation) => NavigationGuardReturn | Promise<NavigationGuardReturn>;
 }

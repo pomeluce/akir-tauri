@@ -3,7 +3,7 @@ import { http, router } from '@/plugins';
 
 type MenuType = OptionType & { blank: string; children: MenuType[]; order: number };
 
-const { navigator, open, matchName } = router;
+const { open } = useUtils();
 
 const getMenuOptions = (list: MenuType[], key: string) => {
   return (list || []).map((item, index) => {
@@ -13,9 +13,9 @@ const getMenuOptions = (list: MenuType[], key: string) => {
     if (option?.type === 'submenu' || option?.type === 'group') option.children = getMenuOptions(children, mergedKey);
     if ((option?.type === 'submenu' || option?.type === 'item') && _key) {
       option.key = _key;
-      const router = matchName(_key);
-      router?.meta?.icon && (option.icon = router.meta.icon({ size: 18 }));
-      option?.type === 'item' && (option.onClick = () => (item.blank && router ? open(router, item.blank) : navigator({ name: _key })));
+      const record = router.matchName(_key);
+      record?.meta?.icon && (option.icon = record.meta.icon({ size: 18 }));
+      option?.type === 'item' && (option.onClick = () => (item.blank && record ? open(router.resolve(record), item.blank) : router.navigator({ name: _key })));
     }
     if (option?.type === 'submenu') option.contentClassName = 'font-semibold';
     return option;

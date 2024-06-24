@@ -16,7 +16,7 @@ const loading: React.FC<LoadingProps> = props => {
     >
       <div className="relative w-10 h-10" role="img" aria-label="loading">
         <div className="absolute w-full h-full">
-          <div className="animate-spin [animate-duration:3s]">
+          <div className="animate-spin animate-duration-3000">
             <Load className="w-10" strokeWidth={20} />
           </div>
         </div>

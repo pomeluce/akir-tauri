@@ -1,8 +1,8 @@
 import { FC } from 'react';
-import { createBrowserRouter, RouteObject, RouteRecord, RouterGuard } from 'react-router-dom';
+import { createBrowserRouter, RouteObject, RouteRecord } from 'react-router-dom';
 import SuspenseElement from './SuspenseElement';
 import SuspenseFallback from './SuspenseFallback';
-import RouterHandler, { RouterHandlerType } from './router-handler';
+import { RouterHandler } from './router-handler';
 
 const syncRouter = (raws: RouteRecord[], errorElement: () => Promise<{ default: FC<{}> }>): RouteObject[] => {
   const routes: Array<RouteObject> = [];
@@ -18,8 +18,8 @@ const syncRouter = (raws: RouteRecord[], errorElement: () => Promise<{ default: 
   return routes;
 };
 
-const createRouter = ({ routes, errorElement, beforeEach }: { routes: RouteRecord[]; errorElement: () => Promise<{ default: FC<{}> }>; beforeEach?: RouterGuard }) => {
-  return RouterHandler(createBrowserRouter(syncRouter(routes, errorElement)), routes, beforeEach) as RouterHandlerType;
+const createRouter = ({ routes, errorElement }: { routes: RouteRecord[]; errorElement: () => Promise<{ default: FC<{}> }> }) => {
+  return new RouterHandler(createBrowserRouter(syncRouter(routes, errorElement)), routes);
 };
 export { default as RouterProvider } from './RouterProvider';
 export { default as ProtectedRouter } from './ProtectedRouter';

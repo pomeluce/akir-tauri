@@ -1,9 +1,9 @@
 import { createContext, ReactNode } from 'react';
-import createRouter from '.';
+import { RouterHandler } from './router-handler';
 
 interface RouterContextProps {
   children?: ReactNode;
-  router: ReturnType<typeof createRouter>;
+  router: RouterHandler;
 }
 
 export const RouterContext = createContext<RouterContextProps>({} as RouterContextProps);
