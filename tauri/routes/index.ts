@@ -1,3 +1,4 @@
 import { RouteRecord } from 'react-router-dom';
+import home from './home';
 
-export default [] as RouteRecord[];
+export default [home] as RouteRecord[];

@@ -25,7 +25,7 @@ export default defineConfig(({ command, mode }) => {
   const input = pathResolve(`${moduleName || root}/index.html`);
 
   return {
-    plugins: [...autoImport(root), react(), UnoCSS(), arco(), mock(isBuild, env)],
+    plugins: [...autoImport, react(), UnoCSS(), arco(), mock(isBuild, env)],
     // 本地开发服务器配置
     // 配置路径别名
     resolve: {

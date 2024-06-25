@@ -14,6 +14,11 @@ pub fn setup_menu(handle: &AppHandle) -> Result<(), Box<dyn std::error::Error>> 
                 .accelerator("CmdOrCtrl+O")
                 .build(handle)?,
             &PredefinedMenuItem::separator(handle)?,
+            &MenuItemBuilder::new("首选项")
+                .id("preferences")
+                .accelerator("CmdOrCtrl+,")
+                .build(handle)?,
+            &PredefinedMenuItem::separator(handle)?,
             &MenuItemBuilder::new("关闭窗口")
                 .id("close_win")
                 .accelerator("Alt+F4")
@@ -26,13 +31,8 @@ pub fn setup_menu(handle: &AppHandle) -> Result<(), Box<dyn std::error::Error>> 
         .build()?;
     let editor_menu = SubmenuBuilder::new(handle, "编辑")
         .items(&[
-            &PredefinedMenuItem::hide(handle, Some("隐藏"))?,
-            &PredefinedMenuItem::hide_others(handle, Some("隐藏其他"))?,
-            &PredefinedMenuItem::show_all(handle, Some("显示全部"))?,
-            &PredefinedMenuItem::undo(handle, Some("撤销"))?,
-            &PredefinedMenuItem::redo(handle, Some("重做"))?,
+            &PredefinedMenuItem::copy(handle, Some("复制"))?,
             &PredefinedMenuItem::cut(handle, Some("剪切"))?,
-            &PredefinedMenuItem::copy(handle, Some("拷贝"))?,
             &PredefinedMenuItem::paste(handle, Some("粘贴"))?,
             &PredefinedMenuItem::select_all(handle, Some("全选"))?,
         ])
@@ -47,13 +47,13 @@ pub fn setup_menu(handle: &AppHandle) -> Result<(), Box<dyn std::error::Error>> 
             &PredefinedMenuItem::separator(handle)?,
             &MenuItemBuilder::new("开发者工具")
                 .id("devtools")
-                .accelerator("CmdOrCtrl+Shift+F12")
+                .accelerator("Shift+F12")
                 .build(handle)?,
         ])
         .build()?;
 
     let help_menu = SubmenuBuilder::new(handle, "帮助")
-        .items(&[&PredefinedMenuItem::about(handle, Some("关于"), None)?])
+        .items(&[&MenuItemBuilder::new("关于").id("about").build(handle)?])
         .build()?;
 
     let menu = MenuBuilder::new(handle).items(&[&file_menu, &editor_menu, &view_menu, &help_menu]);
@@ -62,12 +62,24 @@ pub fn setup_menu(handle: &AppHandle) -> Result<(), Box<dyn std::error::Error>> 
     handle.on_menu_event(move |app, event| {
         let win = app.get_webview_window("main").unwrap();
         match event.id().as_ref() {
-            "new" => {
-                win.emit("new", "").unwrap();
-                println!("new action")
-            }
+            "new" => win.emit("new", "").unwrap(),
+            "open" => win.emit("open", "").unwrap(),
             "close_win" => app.get_webview_window("main").unwrap().close().unwrap(),
             "quit" => app.exit(0),
+            "fullscreen" => {
+                let is_full = win.is_fullscreen().unwrap();
+                win.set_fullscreen(!is_full).unwrap();
+            }
+            "devtools" => {
+                if win.is_devtools_open() {
+                    win.close_devtools();
+                } else {
+                    win.open_devtools();
+                }
+            }
+            "about" => {
+                win.emit("about", "").unwrap();
+            }
             _ => {
                 println!("event id: {:?}", event.id());
             }

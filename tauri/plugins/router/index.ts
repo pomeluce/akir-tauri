@@ -1,7 +1,8 @@
-// import { createRouter } from '@common/plugins';
-// import routes from '@tauri/routes';
+import { createRouter } from '@common/plugins';
+import routes from '@tauri/routes';
 
-// const router = createRouter({
-//   routes,
-//   // errorElement: () => {},
-// });
+const router = createRouter({
+  routes,
+});
+
+export default router;
