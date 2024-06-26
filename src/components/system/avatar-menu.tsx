@@ -14,9 +14,11 @@ const avatarMenu: React.FC<{}> = () => {
     <main className="flex flex-col bg-backdrop2 p-2 border border-rim2 shadow-xl rounded cursor-pointer">
       <div className="flex items-center gap-5 p-3 border-b border-rim2">
         {avatar('w-10 h-10')}
-        <div className="flex flex-col gap-2 text-sm">
-          <span>{user.name}</span>
-          <span>{user.email}</span>
+        <div className="flex items-center gap-2 text-sm">
+          <span className="font-bold">{user.name}</span>
+          <ArcoTag className="italic" size="small" color="arcoblue">
+            VIP
+          </ArcoTag>
         </div>
       </div>
       {Menu({
