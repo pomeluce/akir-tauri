@@ -3,11 +3,12 @@ import Logo from '/pomeluce.svg';
 
 const popupContainer: React.FC<{}> = () => {
   const [visible, setVisible] = useState(false);
-  const { showAbout } = useClientMenu();
+  const { showAbout, listenStart } = useClientMenu();
 
   const linkOpen = () => open('https://github.com/pomeluce/rapidify-react');
 
   useEffect(() => {
+    listenStart();
     showAbout(() => setVisible(true));
   }, []);
 

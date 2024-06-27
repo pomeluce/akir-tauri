@@ -16,6 +16,7 @@ export default [
     resolvers: [ArcoResolver({ prefix: 'Arco' }), IconResolver()],
     // 自定义函数导入
     dirs: [
+      relativeRoot('common/store/**/*'),
       relativeRoot('common/enum/**/*'),
       relativeRoot('common/hooks/**/*'),
       relativeRoot('src/store/**/*'),

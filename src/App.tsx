@@ -3,11 +3,8 @@ import { RouterProvider } from '@common/plugins';
 import { router } from '@/plugins';
 
 const App: React.FC = () => {
-  const { theme, setTheme } = useThemeStore();
-
-  useEffect(() => {
-    setTheme(theme);
-  }, []);
+  const { listenerColorMode, colorScheme } = useTheme();
+  useEffect(colorScheme(listenerColorMode), [listenerColorMode]);
 
   return (
     <ArcoConfigProvider>

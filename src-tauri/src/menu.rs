@@ -14,7 +14,7 @@ pub fn setup_menu(handle: &AppHandle) -> Result<(), Box<dyn std::error::Error>> 
                 .accelerator("CmdOrCtrl+O")
                 .build(handle)?,
             &PredefinedMenuItem::separator(handle)?,
-            &MenuItemBuilder::new("首选项")
+            &MenuItemBuilder::new("偏好设置")
                 .id("preferences")
                 .accelerator("CmdOrCtrl+,")
                 .build(handle)?,
@@ -52,11 +52,33 @@ pub fn setup_menu(handle: &AppHandle) -> Result<(), Box<dyn std::error::Error>> 
         ])
         .build()?;
 
+    let theme_menu = SubmenuBuilder::new(handle, "主题")
+        .items(&[
+            &MenuItemBuilder::new("系统默认")
+                .id("system_theme")
+                .build(handle)?,
+            &PredefinedMenuItem::separator(handle)?,
+            &MenuItemBuilder::new("亮色主题")
+                .id("light_theme")
+                .build(handle)?,
+            &PredefinedMenuItem::separator(handle)?,
+            &MenuItemBuilder::new("深色主题")
+                .id("dark_theme")
+                .build(handle)?,
+        ])
+        .build()?;
+
     let help_menu = SubmenuBuilder::new(handle, "帮助")
         .items(&[&MenuItemBuilder::new("关于").id("about").build(handle)?])
         .build()?;
 
-    let menu = MenuBuilder::new(handle).items(&[&file_menu, &editor_menu, &view_menu, &help_menu]);
+    let menu = MenuBuilder::new(handle).items(&[
+        &file_menu,
+        &editor_menu,
+        &view_menu,
+        &theme_menu,
+        &help_menu,
+    ]);
 
     handle.set_menu(menu.build()?)?;
     handle.on_menu_event(move |app, event| {
@@ -64,6 +86,7 @@ pub fn setup_menu(handle: &AppHandle) -> Result<(), Box<dyn std::error::Error>> 
         match event.id().as_ref() {
             "new" => win.emit("new", "").unwrap(),
             "open" => win.emit("open", "").unwrap(),
+            "preferences" => win.emit("settings", "").unwrap(),
             "close_win" => app.get_webview_window("main").unwrap().close().unwrap(),
             "quit" => app.exit(0),
             "fullscreen" => {
@@ -77,6 +100,9 @@ pub fn setup_menu(handle: &AppHandle) -> Result<(), Box<dyn std::error::Error>> 
                     win.open_devtools();
                 }
             }
+            "system_theme" => win.emit("system_theme", "").unwrap(),
+            "light_theme" => win.emit("light_theme", "").unwrap(),
+            "dark_theme" => win.emit("dark_theme", "").unwrap(),
             "about" => {
                 win.emit("about", "").unwrap();
             }

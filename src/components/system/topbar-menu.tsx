@@ -2,7 +2,7 @@ import { Screen, AvatarMenu, Menu } from '@/components';
 import { router } from '@/plugins';
 
 const topbarMenu: React.FC<{}> = () => {
-  const { theme, setTheme } = useThemeStore();
+  const { mode, setThemeMode } = useThemeStore();
   const [themePopupVisible, setThemePopupVisible] = useState<boolean>(false);
   const { isLogin } = useAuth();
 
@@ -18,7 +18,7 @@ const topbarMenu: React.FC<{}> = () => {
               label: '跟随系统',
               onClick: () => {
                 setThemePopupVisible(false);
-                setTheme('system');
+                setThemeMode('system');
               },
             },
             {
@@ -27,7 +27,7 @@ const topbarMenu: React.FC<{}> = () => {
               label: '亮色主题',
               onClick: () => {
                 setThemePopupVisible(false);
-                setTheme('light');
+                setThemeMode('light');
               },
             },
             {
@@ -36,7 +36,7 @@ const topbarMenu: React.FC<{}> = () => {
               label: '暗色主题',
               onClick: () => {
                 setThemePopupVisible(false);
-                setTheme('dark');
+                setThemeMode('dark');
               },
             },
           ]}
@@ -50,9 +50,15 @@ const topbarMenu: React.FC<{}> = () => {
       <ArcoButton className="flex justify-center items-center" size="large" shape="circle">
         <Screen />
       </ArcoButton>
-      <ArcoTrigger onClick={() => setThemePopupVisible(true)} popup={() => themePopup()} popupVisible={themePopupVisible} position="bottom">
+      <ArcoTrigger
+        onClickOutside={() => setThemePopupVisible(false)}
+        onClick={() => setThemePopupVisible(true)}
+        popup={() => themePopup()}
+        popupVisible={themePopupVisible}
+        position="bottom"
+      >
         <ArcoButton className="flex justify-center items-center" size="large" shape="circle">
-          {theme === 'system' ? <IconRiComputerFill size={20} /> : theme === 'light' ? <IconRiSunFill size={20} /> : <IconRiMoonClearFill size={20} />}
+          {mode === 'system' ? <IconRiComputerFill size={20} /> : mode === 'light' ? <IconRiSunFill size={20} /> : <IconRiMoonClearFill size={20} />}
         </ArcoButton>
       </ArcoTrigger>
       {isLogin() ? (

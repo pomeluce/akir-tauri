@@ -1,7 +1,7 @@
 import { AiEditor, AiEditorOptions, CustomMenu } from 'aieditor';
 import classNames from 'classnames';
-import './editor.scss';
 import { merge } from 'lodash-es';
+import './editor.scss';
 
 export interface EditorProps extends Omit<AiEditorOptions, 'element' | 'theme'> {
   className?: string;
