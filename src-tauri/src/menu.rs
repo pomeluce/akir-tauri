@@ -54,7 +54,7 @@ pub fn setup_menu(handle: &AppHandle) -> Result<(), Box<dyn std::error::Error>> 
 
     let theme_menu = SubmenuBuilder::new(handle, "主题")
         .items(&[
-            &MenuItemBuilder::new("系统默认")
+            &MenuItemBuilder::new("跟随系统")
                 .id("system_theme")
                 .build(handle)?,
             &PredefinedMenuItem::separator(handle)?,
