@@ -2,7 +2,7 @@ import { Screen, AvatarMenu, Menu } from '@/components';
 import { router } from '@/plugins';
 
 const topbarMenu: React.FC<{}> = () => {
-  const { mode, setThemeMode } = useThemeStore();
+  const { theme, setTheme } = useTheme();
   const [themePopupVisible, setThemePopupVisible] = useState<boolean>(false);
   const { isLogin } = useAuth();
 
@@ -18,7 +18,7 @@ const topbarMenu: React.FC<{}> = () => {
               label: '跟随系统',
               onClick: () => {
                 setThemePopupVisible(false);
-                setThemeMode('system');
+                setTheme('system');
               },
             },
             {
@@ -27,7 +27,7 @@ const topbarMenu: React.FC<{}> = () => {
               label: '亮色主题',
               onClick: () => {
                 setThemePopupVisible(false);
-                setThemeMode('light');
+                setTheme('light');
               },
             },
             {
@@ -36,7 +36,7 @@ const topbarMenu: React.FC<{}> = () => {
               label: '暗色主题',
               onClick: () => {
                 setThemePopupVisible(false);
-                setThemeMode('dark');
+                setTheme('dark');
               },
             },
           ]}
@@ -58,7 +58,7 @@ const topbarMenu: React.FC<{}> = () => {
         position="bottom"
       >
         <ArcoButton className="flex justify-center items-center" size="large" shape="circle">
-          {mode === 'system' ? <IconRiComputerFill size={20} /> : mode === 'light' ? <IconRiSunFill size={20} /> : <IconRiMoonClearFill size={20} />}
+          {theme === 'system' ? <IconRiComputerFill size={20} /> : theme === 'light' ? <IconRiSunFill size={20} /> : <IconRiMoonClearFill size={20} />}
         </ArcoButton>
       </ArcoTrigger>
       {isLogin() ? (

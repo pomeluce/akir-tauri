@@ -54,7 +54,7 @@ const Editor: React.FC<EditorProps> = props => {
     'fullscreen',
   ];
 
-  const { theme } = useThemeStore();
+  const { mode } = useTheme();
   const {
     ai,
     className,
@@ -81,7 +81,7 @@ const Editor: React.FC<EditorProps> = props => {
         element: ref.current,
         onChange: handleChange,
         placeholder,
-        theme,
+        theme: mode,
         toolbarKeys,
         ...restProps,
       });
@@ -92,7 +92,7 @@ const Editor: React.FC<EditorProps> = props => {
   }, []);
 
   return (
-    <div ref={ref} className={classNames('rify-editor', `aie-theme-${theme}`, className)}>
+    <div ref={ref} className={classNames('rify-editor', `aie-theme-${mode}`, className)}>
       <div className="aie-container">
         <div className="aie-container-header"></div>
         <div className="aie-container-main h-full overflow-scroll"></div>

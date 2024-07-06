@@ -13,10 +13,15 @@
     "image:default",
     "menu:default",
     "tray:default",
+    "theme:allow-get-theme",
+    "theme:allow-set-theme",
     "dialog:default",
     "dialog:allow-open",
     "dialog:allow-save",
     "dialog:allow-message",
-    "shell:allow-open"
+    "shell:allow-open",
+    "fs:default",
+    "fs:scope-config-index",
+    "fs:scope-home"
   ]
 }

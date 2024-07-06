@@ -1,7 +1,7 @@
 {
-  "productName": "rapidify-react",
+  "productName": "rapidify-tauri",
   "version": "0.1.0",
-  "identifier": "org.pomeluce.rapidify-react",
+  "identifier": "org.pomeluce.rapidify-tauri",
   "build": {
     "frontendDist": "../dist",
     "devUrl": "http://localhost:5173",

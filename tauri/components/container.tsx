@@ -3,12 +3,18 @@ import Logo from '/pomeluce.svg';
 
 const popupContainer: React.FC<{}> = () => {
   const [visible, setVisible] = useState(false);
-  const { showAbout, listenStart } = useClientMenu();
+  const { changeTheme, initialMenu, showAbout } = useAppMenu();
 
   const linkOpen = () => open('https://github.com/pomeluce/rapidify-react');
 
   useEffect(() => {
-    listenStart();
+    // 初始化菜单
+    initialMenu();
+    // 主题切换
+    changeTheme('system_theme', 'system');
+    changeTheme('light_theme', 'light');
+    changeTheme('dark_theme', 'dark');
+    // about 页面监听
     showAbout(() => setVisible(true));
   }, []);
 

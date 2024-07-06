@@ -1,13 +1,13 @@
 import { RouteRecord } from 'react-router-dom';
 
 export default {
-  path: '/settings',
-  component: () => import('@tauri/layouts/settings'),
+  path: '/setting',
+  component: () => import('@tauri/layouts'),
   children: [
     {
-      path: 'style',
-      name: TauriRouteName.SETTINGS_STYLE,
-      component: () => import('@tauri/views/settings/style'),
+      path: '',
+      name: TauriRouteName.SETTING,
+      component: () => import('@tauri/views/setting'),
     },
   ],
 } as RouteRecord;

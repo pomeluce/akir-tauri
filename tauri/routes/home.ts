@@ -2,7 +2,7 @@ import { RouteRecord } from 'react-router-dom';
 
 export default {
   path: '/',
-  component: () => import('@tauri/layouts/home'),
+  component: () => import('@tauri/layouts'),
   children: [
     {
       path: '',
