@@ -1,6 +1,6 @@
 {
   "productName": "rapidify-tauri",
-  "version": "0.1.0",
+  "version": "2024.1.3",
   "identifier": "org.pomeluce.rapidify-tauri",
   "build": {
     "frontendDist": "../dist",

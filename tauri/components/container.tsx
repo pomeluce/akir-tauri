@@ -38,7 +38,7 @@ const popupContainer: React.FC<{}> = () => {
             </section>
           </div>
           <footer>
-            version 0.5.3 @
+            version 2024.1.3 @
             <a className="text-link1 cursor-pointer" onClick={linkOpen}>
               rapidify-tauri
             </a>
