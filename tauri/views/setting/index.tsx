@@ -1,9 +1,11 @@
 import { debounce } from 'lodash-es';
 
 const setting: React.FC<{}> = () => {
+  const { defaultKeys, settings } = useAppSettings();
+
   const ref = useRef<HTMLElement>(null);
   const [links, setLinks] = useState<HTMLAnchorElement[]>();
-  const [selectedKeys, setSelectedKeys] = useState<string[]>(['settings.general']);
+  const [selectedKeys, setSelectedKeys] = useState<string[]>(defaultKeys);
 
   const scrollHandler = debounce(() => {
     if (links) {
@@ -49,23 +51,19 @@ const setting: React.FC<{}> = () => {
           }
         }}
       >
-        <ArcoTree.Node title="常用设置" key="settings.general" />
-        <ArcoTree.Node title="编辑器配置" key="settings.editor" />
-        <ArcoTree.Node title="界面" key="settings.styles" />
+        {settings.map(({ title, key }) => (
+          <ArcoTree.Node title={title} key={key} _key={key} />
+        ))}
       </ArcoTree>
       <main className="w-full border-l border-rim3 overflow-scroll px-10" ref={ref}>
-        <a href="#settings.general" className="h1 font-bold text-xl text-word2 !text-link2">
-          常用设置
-        </a>
-        <div className="h-2000px"></div>
-        <a href="#settings.editor" className="h1 font-bold text-xl text-word2">
-          编辑器配置
-        </a>
-        <div className="h-2000px"></div>
-        <a href="#settings.styles" className="h1 font-bold text-xl text-word2">
-          界面
-        </a>
-        <div className="h-3000px"></div>
+        {settings.map(({ title, key, content }) => (
+          <span key={key}>
+            <a href={`#${key}`} className="h1 font-bold text-xl text-primary4">
+              {title}
+            </a>
+            {content}
+          </span>
+        ))}
       </main>
     </main>
   );

@@ -1,21 +1,23 @@
 import { open } from '@tauri-apps/plugin-shell';
 import Logo from '/pomeluce.svg';
+import { app } from '@tauri-apps/api';
 
 const popupContainer: React.FC<{}> = () => {
   const [visible, setVisible] = useState(false);
-  const { changeTheme, initialMenu, showAbout } = useAppMenu();
+  const { initialMenu, showAbout } = useAppMenu();
+  const [version, setVersion] = useState<string>('unknown');
 
   const linkOpen = () => open('https://github.com/pomeluce/rapidify-react');
 
   useEffect(() => {
     // 初始化菜单
     initialMenu();
-    // 主题切换
-    changeTheme('system_theme', 'system');
-    changeTheme('light_theme', 'light');
-    changeTheme('dark_theme', 'dark');
     // about 页面监听
     showAbout(() => setVisible(true));
+  }, []);
+
+  useAsyncEffect(async () => {
+    setVersion(await app.getVersion());
   }, []);
 
   return (
@@ -38,7 +40,7 @@ const popupContainer: React.FC<{}> = () => {
             </section>
           </div>
           <footer>
-            version 2024.1.3 @
+            version {version} @
             <a className="text-link1 cursor-pointer" onClick={linkOpen}>
               rapidify-tauri
             </a>
