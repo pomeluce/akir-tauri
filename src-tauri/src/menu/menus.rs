@@ -96,11 +96,11 @@ pub fn setup_menu(handle: &AppHandle) -> Result<(), Box<dyn std::error::Error>> 
     });
 
     handle.set_menu(menu.build()?)?;
-    handle.on_menu_event(move |app, event| match event.id().as_ref() {
+    handle.on_menu_event(move |_app, event| match event.id().as_ref() {
         "new" => win.emit("new", "").unwrap(),
         "open" => win.emit("open", "").unwrap(),
-        "close_win" => app.get_webview_window("main").unwrap().close().unwrap(),
-        "quit" => app.exit(0),
+        "close_win" => win.close().unwrap(),
+        "quit" => win.hide().unwrap(),
         "fullscreen" => {
             let is_full = win.is_fullscreen().unwrap();
             win.set_fullscreen(!is_full).unwrap();
