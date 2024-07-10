@@ -35,7 +35,7 @@ const setting: React.FC<{}> = () => {
   }, [links]);
 
   return (
-    <main className="2xl:w-page overflow-scroll 2xl:mx-auto my-10 flex">
+    <main className="flex bg-backdrop2 rounded-xl border border-rim2 px-5 py-10 overflow-hidden">
       <ArcoTree
         className="w-40"
         autoExpandParent={false}

@@ -5,28 +5,20 @@ use tauri::menu::{
 use tauri::{AppHandle, Manager};
 
 pub fn setup_menu(handle: &AppHandle) -> Result<(), Box<dyn std::error::Error>> {
+    /* main window */
     let win = handle.get_webview_window("main").unwrap();
 
+    /* menu item */
     let file_submenu = SubmenuBuilder::new(handle, "文件")
         .items(&[
-            &MenuItemBuilder::new("新建")
-                .id("new")
-                .accelerator("CmdOrCtrl+N")
-                .build(handle)?,
+            &MenuItemBuilder::new("新建").id("new").build(handle)?,
             &PredefinedMenuItem::separator(handle)?,
-            &MenuItemBuilder::new("打开")
-                .id("open")
-                .accelerator("CmdOrCtrl+O")
-                .build(handle)?,
+            &MenuItemBuilder::new("打开").id("open").build(handle)?,
             &PredefinedMenuItem::separator(handle)?,
             &MenuItemBuilder::new("关闭窗口")
                 .id("close_win")
-                .accelerator("Alt+F4")
                 .build(handle)?,
-            &MenuItemBuilder::new("退出")
-                .id("quit")
-                .accelerator("CmdOrCtrl+Q")
-                .build(handle)?,
+            &MenuItemBuilder::new("退出").id("quit").build(handle)?,
         ])
         .build()?;
     let editor_submenu = SubmenuBuilder::new(handle, "编辑")
@@ -87,6 +79,7 @@ pub fn setup_menu(handle: &AppHandle) -> Result<(), Box<dyn std::error::Error>> 
         &help_menu,
     ]);
 
+    /* event listener */
     win.listen("current_theme", move |event| {
         if let Ok(payload) = serde_json::from_str::<Value>(event.payload()) {
             system_theme_menu.set_checked(payload.eq("system")).unwrap();

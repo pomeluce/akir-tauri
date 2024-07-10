@@ -4,13 +4,13 @@ const leftbar: React.FC<{}> = () => {
   const { menus } = useAppMenu();
 
   return (
-    <main className="px-2.5 py-1.5 bg-backdrop2 drop-shadow-md border-r border-rim3 flex flex-col gap-1">
+    <main className="py-5 flex flex-col gap-3">
       {menus.map((menu, index) => (
-        <nav key={`key-${index}`} className="flex flex-col gap-1">
+        <nav key={`key-${index}`} className="bg-backdrop2 flex flex-col gap-1 border border-rim2 rounded-lg">
           <ArcoTooltip content={menu.title} position="right">
             <button className="flex bg-transparent" onClick={menu.handleClick}>
               <section
-                className={classNames('hover:bg-primary4 hover:text-white rounded p-2 text-word2', {
+                className={classNames('hover:bg-primary4 hover:text-white rounded p-3 text-word2', {
                   'bg-primary4 !text-white': menu.isActive,
                 })}
               >
@@ -18,7 +18,6 @@ const leftbar: React.FC<{}> = () => {
               </section>
             </button>
           </ArcoTooltip>
-          <span className="border border-rim4 rounded"></span>
         </nav>
       ))}
     </main>

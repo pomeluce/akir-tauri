@@ -4,8 +4,10 @@ import { app } from '@tauri-apps/api';
 
 const popupContainer: React.FC<{}> = () => {
   const [visible, setVisible] = useState(false);
-  const { initialMenu, showAbout } = useAppMenu();
   const [version, setVersion] = useState<string>('unknown');
+
+  const { initialMenu, showAbout } = useAppMenu();
+  const { registerKey } = useAppKey();
 
   const linkOpen = () => open('https://github.com/pomeluce/rapidify-react');
 
@@ -14,6 +16,8 @@ const popupContainer: React.FC<{}> = () => {
     initialMenu();
     // about 页面监听
     showAbout(() => setVisible(true));
+    // 按键绑定
+    registerKey();
   }, []);
 
   useAsyncEffect(async () => {
