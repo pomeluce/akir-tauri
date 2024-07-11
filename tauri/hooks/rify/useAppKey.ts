@@ -35,6 +35,14 @@ export default () => {
         window.getCurrent().hide();
       },
     },
+    {
+      id: 'km_devtolls',
+      key: 'shift+f12',
+      label: '开发者工具',
+      event: () => {
+        // window.getCurrent().
+      },
+    },
   ];
 
   const registerKey = () => {

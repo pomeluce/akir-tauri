@@ -1,4 +1,4 @@
-import { Menu } from '../arco';
+import { Menu } from '@common/components';
 import './styles/avatar-menu.scss';
 
 const avatarMenu: React.FC<{}> = () => {

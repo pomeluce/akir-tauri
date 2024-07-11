@@ -11,11 +11,14 @@
   "app": {
     "windows": [
       {
-        "title": "rapidify-react",
+        "title": "rapidify-tauri",
         "width": 800,
         "height": 600,
+        "minWidth": 352,
+        "minHeight": 256,
         "resizable": true,
-        "fullscreen": false
+        "fullscreen": false,
+        "decorations": false
       }
     ],
     "security": {

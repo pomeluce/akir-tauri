@@ -19,6 +19,12 @@ const setting: React.FC<{}> = () => {
     }
   }, 100);
 
+  const selectedHandler = (keys: string[]) => {
+    if (links) {
+      links.find(link => link.hash === `#${keys[0]}`)?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   useEffect(() => {
     if (ref.current) {
       setLinks(Array.from(ref.current.querySelectorAll('a[href^="#"]') as NodeListOf<HTMLAnchorElement>));
@@ -45,11 +51,7 @@ const setting: React.FC<{}> = () => {
           switcherIcon: IconRiArrowDownSLine({}),
           dragIcon: IconRiArrowRightSLine({}),
         }}
-        onSelect={keys => {
-          if (links) {
-            links.find(link => link.hash === `#${keys[0]}`)?.scrollIntoView({ behavior: 'smooth' });
-          }
-        }}
+        onSelect={selectedHandler}
       >
         {settings.map(({ title, key }) => (
           <ArcoTree.Node title={title} key={key} _key={key} />

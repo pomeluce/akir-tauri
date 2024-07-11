@@ -15,7 +15,7 @@ pub fn run() {
         ))
         .setup(|app| {
             let app_handle = app.app_handle();
-            menu::menus::setup_menu(app_handle)?;
+            // menu::menus::setup_menu(app_handle)?;
             menu::tray::setup_tray(app_handle)?;
 
             Ok(())

@@ -1,11 +1,15 @@
+import Titlebar from './titlebar';
 import Leftbar from './leftbar';
 
 const app: React.FC<{}> = () => {
   return (
-    <main className="w-screen h-screen grid grid-cols-[auto_1fr] px-5 gap-5">
-      <Leftbar />
-      <main className="grid py-5 overflow-hidden">
-        <Outlet />
+    <main className="w-screen h-screen min-w-3xl min-h-xl flex flex-col">
+      <Titlebar />
+      <main className="grow-1 grid grid-cols-[auto_1fr] px-3 gap-3 overflow-hidden">
+        <Leftbar />
+        <main className="grid py-3 overflow-auto">
+          <Outlet />
+        </main>
       </main>
     </main>
   );
