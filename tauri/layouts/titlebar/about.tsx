@@ -1,24 +1,11 @@
-import { open } from '@tauri-apps/plugin-shell';
-import Logo from '/pomeluce.svg';
 import { app } from '@tauri-apps/api';
+import Logo from '/pomeluce.svg';
 
-const popupContainer: React.FC<{}> = () => {
+const about: React.FC<{}> = () => {
   const [visible, setVisible] = useState(false);
   const [version, setVersion] = useState<string>('unknown');
 
-  const { initialMenu, showAbout } = useAppMenu();
-  const { registerKey } = useAppKey();
-
   const linkOpen = () => open('https://github.com/pomeluce/rapidify-react');
-
-  useEffect(() => {
-    // 初始化菜单
-    initialMenu();
-    // about 页面监听
-    showAbout(() => setVisible(true));
-    // 按键绑定
-    registerKey();
-  }, []);
 
   useAsyncEffect(async () => {
     setVersion(await app.getVersion());
@@ -26,6 +13,10 @@ const popupContainer: React.FC<{}> = () => {
 
   return (
     <>
+      <ArcoButton className="flex justify-center items-center" size="large" shape="circle">
+        <IconRiQuestionFill onClick={() => setVisible(true)} />
+      </ArcoButton>
+
       <ArcoModal
         title={null}
         visible={visible}
@@ -37,7 +28,7 @@ const popupContainer: React.FC<{}> = () => {
       >
         <main className="p-5 px-10 flex flex-col justify-center items-center gap-10">
           <div className="py-3 flex justify-center items-center gap-5">
-            <ArcoImage className="outline-size-0 select-none focus-visible:outline-0 focus-visible:shadow-none" src={Logo} preview={false} />
+            <ArcoImage src={Logo} tabIndex={-1} preview={false} />
             <section className="flex flex-col gap-2 items-start">
               <span className="font-semibold text-2xl">Rapidify-Tauri</span>
               <span>Tauri template app for react</span>
@@ -55,4 +46,4 @@ const popupContainer: React.FC<{}> = () => {
   );
 };
 
-export default popupContainer;
+export default about;

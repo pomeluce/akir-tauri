@@ -1,8 +1,10 @@
 import { Menu } from '../arco';
 
-const themePopup: React.FC<{ iconSize?: number }> = ({ iconSize: size = 18 }) => {
+const themePopup: React.FC<{ size?: number }> = ({ size }) => {
   const { theme, setTheme } = useTheme();
   const [themePopupVisible, setThemePopupVisible] = useState<boolean>(false);
+
+  const iconProps = size ? { size } : {};
 
   const themePopup = () => {
     return (
@@ -13,7 +15,7 @@ const themePopup: React.FC<{ iconSize?: number }> = ({ iconSize: size = 18 }) =>
           options={[
             {
               key: 'theme-system',
-              icon: IconRiComputerFill({ size }),
+              icon: IconRiComputerFill(iconProps),
               label: '跟随系统',
               onClick: () => {
                 setThemePopupVisible(false);
@@ -22,7 +24,7 @@ const themePopup: React.FC<{ iconSize?: number }> = ({ iconSize: size = 18 }) =>
             },
             {
               key: 'theme-light',
-              icon: IconRiSunFill({ size }),
+              icon: IconRiSunFill(iconProps),
               label: '亮色主题',
               onClick: () => {
                 setThemePopupVisible(false);
@@ -31,7 +33,7 @@ const themePopup: React.FC<{ iconSize?: number }> = ({ iconSize: size = 18 }) =>
             },
             {
               key: 'theme-dark',
-              icon: IconRiMoonClearFill({ size }),
+              icon: IconRiMoonClearFill(iconProps),
               label: '暗色主题',
               onClick: () => {
                 setThemePopupVisible(false);
@@ -53,7 +55,7 @@ const themePopup: React.FC<{ iconSize?: number }> = ({ iconSize: size = 18 }) =>
       position="bottom"
     >
       <ArcoButton className="flex justify-center items-center" size="large" shape="circle">
-        {theme === 'system' ? <IconRiComputerFill size={size} /> : theme === 'light' ? <IconRiSunFill size={size} /> : <IconRiMoonClearFill size={size} />}
+        {(theme === 'system' ? IconRiComputerFill : theme === 'light' ? IconRiSunFill : IconRiMoonClearFill)(iconProps)}
       </ArcoButton>
     </ArcoTrigger>
   );

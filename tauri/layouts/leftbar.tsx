@@ -4,7 +4,7 @@ const leftbar: React.FC<{}> = () => {
   const { menus } = useAppMenu();
 
   return (
-    <main className="py-3 flex flex-col gap-3">
+    <main className="flex flex-col gap-3">
       {menus.map((menu, index) => (
         <nav key={`key-${index}`} className="bg-backdrop2 flex flex-col gap-1 border border-rim2 rounded-lg">
           <ArcoTooltip className="text-sm" mini content={menu.title} position="rb">

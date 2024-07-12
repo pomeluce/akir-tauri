@@ -1,13 +1,11 @@
 import { createContext, ReactNode } from 'react';
 
-const storage = useStorage();
-
 type ModeType = 'light' | 'dark';
 
 export const ThemeContext = createContext<{ mode: ModeType; theme: ThemeType; setTheme: (theme: ThemeType) => void } | undefined>(undefined);
 
-export const ThemeProvider = (props: { children: ReactNode }) => {
-  const [theme, setTheme] = useState<ThemeType>(storage.get(CacheKey.THEME_MODE) || 'system');
+export const ThemeProvider = (props: { children: ReactNode; defaultTheme?: ThemeType; handleToggle?: (theme: ThemeType) => void; handleSet?: (theme: ThemeType) => void }) => {
+  const [theme, setTheme] = useState<ThemeType>(props.defaultTheme || 'system');
   const [mode, setMode] = useState<ModeType>('light');
   useEffect(() => {
     const mode = theme === 'system' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme;
@@ -15,6 +13,7 @@ export const ThemeProvider = (props: { children: ReactNode }) => {
     document.documentElement.dataset.theme = mode;
     document.body.setAttribute('arco-theme', mode);
     setMode(mode);
+    props.handleToggle?.(theme);
   }, [theme]);
 
   const listenerSystemColorMode = useCallback(
@@ -44,7 +43,7 @@ export const ThemeProvider = (props: { children: ReactNode }) => {
         theme,
         setTheme: (theme: ThemeType) => {
           setTheme(theme);
-          storage.set(CacheKey.THEME_MODE, theme);
+          props.handleSet?.(theme);
         },
       }}
     >

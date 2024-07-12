@@ -10,7 +10,7 @@ const topbarMenu: React.FC<{}> = () => {
       <ArcoButton className="flex justify-center items-center" size="large" shape="circle">
         <Screen />
       </ArcoButton>
-      <ThemePopup iconSize={20} />
+      <ThemePopup size={20} />
       {isLogin() ? (
         <AvatarMenu />
       ) : (

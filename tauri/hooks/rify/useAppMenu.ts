@@ -1,9 +1,7 @@
+import { event } from '@tauri-apps/api';
 import { router } from '@tauri/plugins';
-import { event, core } from '@tauri-apps/api';
 
 export default () => {
-  const { theme, setTheme } = useTheme();
-
   const menus = [
     {
       title: '主页',
@@ -23,22 +21,9 @@ export default () => {
     },
   ];
 
-  const changeTheme = (theme: ThemeType) => {
-    event.emit('current_theme', theme);
-    setTheme(theme);
-    core.invoke('plugin:theme|set_theme', { theme: theme === 'system' ? 'auto' : theme });
-  };
-
-  const initialMenu = () => {
-    event.emit('current_theme', theme);
-    event.listen(`system_theme`, () => changeTheme('system'));
-    event.listen(`light_theme`, () => changeTheme('light'));
-    event.listen(`dark_theme`, () => changeTheme('dark'));
-  };
-
   const showAbout = (callback: VoidFunction) => {
     event.listen('about', () => callback());
   };
 
-  return { changeTheme, initialMenu, menus, showAbout };
+  return { menus, showAbout };
 };
