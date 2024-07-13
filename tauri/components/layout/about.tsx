@@ -13,8 +13,8 @@ const about: React.FC<{}> = () => {
 
   return (
     <>
-      <ArcoButton className="flex justify-center items-center" size="large" shape="circle">
-        <IconRiQuestionFill onClick={() => setVisible(true)} />
+      <ArcoButton className="flex justify-center items-center" size="large" shape="circle" onClick={() => setVisible(true)}>
+        <IconRiQuestionFill />
       </ArcoButton>
 
       <ArcoModal

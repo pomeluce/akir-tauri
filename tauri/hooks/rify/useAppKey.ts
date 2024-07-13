@@ -1,27 +1,14 @@
-import { window } from '@tauri-apps/api';
+import { core, window } from '@tauri-apps/api';
+import { platform } from '@tauri-apps/plugin-os';
 import hotkeys from 'hotkeys-js';
 
 export default () => {
+  const mod = platform() === 'macos' ? 'command' : 'ctrl';
+
   const keymaps = [
     {
-      id: 'km_new',
-      key: 'ctrl+n,command+n',
-      label: '新建',
-      event: () => {
-        console.log('new event run');
-      },
-    },
-    {
-      id: 'km_open',
-      key: 'ctrl+o,command+o',
-      label: '打开',
-      event: () => {
-        console.log('open event run');
-      },
-    },
-    {
       id: 'km_close_win',
-      key: 'alt+f4',
+      key: ['alt+f4'],
       label: '关闭窗口',
       event: () => {
         window.getCurrent().close();
@@ -29,7 +16,7 @@ export default () => {
     },
     {
       id: 'km_quit',
-      key: 'ctrl+q,command+q',
+      key: [`${mod}+q`],
       label: '退出',
       event: () => {
         window.getCurrent().hide();
@@ -37,19 +24,54 @@ export default () => {
     },
     {
       id: 'km_devtolls',
-      key: 'shift+f12',
+      key: ['shift+f12'],
       label: '开发者工具',
       event: () => {
-        // window.getCurrent().
+        core.invoke('toggle_devtools');
       },
     },
   ];
 
   const registerKey = () => {
     for (const keymap of keymaps) {
-      hotkeys(keymap.key, keymap.event);
+      hotkeys(keymap.key.join(','), keymap.event);
     }
   };
 
-  return { keymaps, registerKey };
+  const toggleHotKey = (id: string, key: string) => {
+    const result = keymaps.filter(key => key.id === id);
+    if (result.length) {
+      const keymap = result[0];
+      hotkeys.unbind(keymap.key.join(','));
+      keymap.key.push(key);
+      hotkeys(keymap.key.join(','), keymap.event);
+    }
+  };
+
+  const rebindHotKey = (id: string, key: string) => {
+    const result = keymaps.filter(keymap => keymap.key.includes(key));
+    if (result.length) {
+      const keymap = result[0];
+      hotkeys.unbind(keymap.key.join(','));
+      keymap.key = keymap.key.filter(k => k !== key);
+      hotkeys(keymap.key.join(','), keymap.event);
+    }
+    toggleHotKey(id, key);
+  };
+
+  const deleteHotKey = (id: string, key: string) => {
+    const result = keymaps.filter(key => key.id === id);
+    if (result.length) {
+      const keymap = result[0];
+      hotkeys.unbind(keymap.key.join(','));
+      keymap.key = keymap.key.filter(k => k !== key);
+      hotkeys(keymap.key.join(','), keymap.event);
+    }
+  };
+
+  const getAllHotkeys = () => {
+    return hotkeys.getAllKeyCodes().map(item => item.shortcut);
+  };
+
+  return { keymaps, registerKey, rebindHotKey, toggleHotKey, deleteHotKey, getAllHotkeys };
 };

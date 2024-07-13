@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { OptionType } from '@/components';
+import { OptionType } from '@common/components';
 
 export interface MenuState {
   /** 系统菜单 */

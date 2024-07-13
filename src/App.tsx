@@ -10,7 +10,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <ThemeProvider defaultTheme={themeMode} handleSet={themeHandle}>
+    <ThemeProvider defaultTheme={themeMode} handleToggle={themeHandle}>
       <ArcoConfigProvider>
         <RouterProvider router={router}></RouterProvider>
       </ArcoConfigProvider>

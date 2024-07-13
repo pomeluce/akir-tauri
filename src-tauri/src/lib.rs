@@ -1,6 +1,8 @@
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 use tauri::Manager;
 use tauri_plugin_autostart::MacosLauncher;
+
+mod command;
 mod menu;
 
 pub fn run() {
@@ -13,9 +15,10 @@ pub fn run() {
             MacosLauncher::LaunchAgent,
             Some(vec![/* 传递参数 */ ]),
         ))
+        .plugin(tauri_plugin_os::init())
+        .invoke_handler(tauri::generate_handler![command::devtools::toggle_devtools])
         .setup(|app| {
             let app_handle = app.app_handle();
-            // menu::menus::setup_menu(app_handle)?;
             menu::tray::setup_tray(app_handle)?;
 
             Ok(())

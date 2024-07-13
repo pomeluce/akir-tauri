@@ -4,7 +4,7 @@ type ModeType = 'light' | 'dark';
 
 export const ThemeContext = createContext<{ mode: ModeType; theme: ThemeType; setTheme: (theme: ThemeType) => void } | undefined>(undefined);
 
-export const ThemeProvider = (props: { children: ReactNode; defaultTheme?: ThemeType; handleToggle?: (theme: ThemeType) => void; handleSet?: (theme: ThemeType) => void }) => {
+export const ThemeProvider = (props: { children: ReactNode; defaultTheme?: ThemeType; handleToggle?: (theme: ThemeType) => void }) => {
   const [theme, setTheme] = useState<ThemeType>(props.defaultTheme || 'system');
   const [mode, setMode] = useState<ModeType>('light');
   useEffect(() => {
@@ -43,7 +43,6 @@ export const ThemeProvider = (props: { children: ReactNode; defaultTheme?: Theme
         theme,
         setTheme: (theme: ThemeType) => {
           setTheme(theme);
-          props.handleSet?.(theme);
         },
       }}
     >

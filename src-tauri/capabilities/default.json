@@ -12,6 +12,7 @@
     "window:allow-start-dragging",
     "window:allow-minimize",
     "window:allow-toggle-maximize",
+    "window:allow-set-always-on-top",
     "webview:default",
     "app:default",
     "resources:default",

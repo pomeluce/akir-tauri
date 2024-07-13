@@ -4,6 +4,21 @@ import transformerVariantGroup from '@unocss/transformer-variant-group';
 
 export default defineConfig({
   theme: {
+    animation: {
+      keyframes: {
+        blink: '{ 0%{ opacity: 0 } 100%{ opacity: 1 } }',
+      },
+      durations: {
+        blink: '.8s',
+      },
+      timingFns: {
+        blink: 'ease',
+      },
+      counts: {
+        blink: 'infinite',
+      },
+    },
+
     width: {
       page: '1450px',
     },
