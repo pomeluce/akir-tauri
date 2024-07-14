@@ -11,13 +11,30 @@ interface HotkeyInputProps {
   onAddHotkey?: (key: string) => void;
   onHotkeyVerify?: (key: string) => boolean | Promise<boolean>;
   onDeleteHotkey?: (key: string) => void;
+  onChangeHotkey?: (keys: string[]) => void;
 }
 
 const hotkeyInput: React.FC<HotkeyInputProps> = props => {
-  const { className, defaultHotkeys = [], maxCount, placeholder, range = ['NUMBER', 'NUMPAD', 'ABC', 'FN'], style, onAddHotkey, onHotkeyVerify, onDeleteHotkey } = props;
+  const {
+    className,
+    defaultHotkeys = [],
+    maxCount,
+    placeholder,
+    range = ['NUMBER', 'NUMPAD', 'ABC', 'FN'],
+    style,
+    onAddHotkey,
+    onHotkeyVerify,
+    onDeleteHotkey,
+    onChangeHotkey,
+  } = props;
   const [hotkeys, setHotkeys] = useState<string[]>(defaultHotkeys);
   const [focused, setFocused] = useState<boolean>(false);
   const [keyRange, setKeyRange] = useState<string[]>([]);
+  const [ofIndex, setOfIndex] = useState<number>(0);
+  const [visible, setVisible] = useState<boolean>(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const ofRef = useRef<HTMLDivElement>(null);
+  const hotkeysRef = useRef<(HTMLSpanElement | null)[]>([]);
 
   const CODE_NUMBER = Array.from({ length: 10 }, (_, k) => `Digit${k + 1}`);
   const CODE_NUMPAD = Array.from({ length: 10 }, (_, k) => `Numpad${k + 1}`);
@@ -31,27 +48,17 @@ const hotkeyInput: React.FC<HotkeyInputProps> = props => {
     setFocused(!hotkeys.length);
   };
 
-  const addHotkey = (key: string) => {
+  const addHotkey = async (key: string) => {
     // 如果已经存在, 则不添加
     if (hotkeys.some(hotkey => hotkey === key)) return;
     // 判断是否超过最大数量
     if (hotkeys.length && hotkeys.length === maxCount) return;
     // 快捷键添加之前的校验函数
-    if (onHotkeyVerify?.(key)) {
-      const verify = onHotkeyVerify(key);
-      if (verify instanceof Promise) {
-        verify.then(value => {
-          if (value) {
-            onAddHotkey?.(key);
-            setHotkeys([...hotkeys, key]);
-          }
-        });
-      }
-      if (verify === true) {
-        onAddHotkey?.(key);
-        setHotkeys([...hotkeys, key]);
-      }
-    }
+    const verify = onHotkeyVerify?.(key);
+    if (verify !== undefined && ((verify instanceof Promise && !(await verify)) || (typeof verify === 'boolean' && !verify))) return;
+
+    setHotkeys(preHotkeys => [...preHotkeys, key]);
+    onAddHotkey?.(key);
   };
 
   const handleKeydown = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -83,6 +90,7 @@ const hotkeyInput: React.FC<HotkeyInputProps> = props => {
   const handleDelete = (index: number) => {
     onDeleteHotkey?.(hotkeys[index]);
     setHotkeys(preHotkeys => preHotkeys.filter((_, i) => i !== index));
+    setOfIndex(0);
   };
 
   useEffect(() => {
@@ -90,11 +98,60 @@ const hotkeyInput: React.FC<HotkeyInputProps> = props => {
   }, []);
 
   useEffect(() => {
-    handleFocus();
+    if (ref.current && ref.current === document.activeElement) {
+      handleFocus();
+    }
+    onChangeHotkey?.(hotkeys);
   }, [hotkeys]);
+
+  useEffect(() => {
+    setHotkeys(defaultHotkeys);
+  }, [props]);
+
+  useLayoutEffect(() => {
+    let ofWidth = ofRef.current?.offsetWidth || 0;
+    if (ofRef.current?.classList?.contains('hidden')) {
+      ofRef.current?.classList.remove('hidden');
+      ofWidth = ofRef.current?.offsetWidth || 0;
+      ofRef.current?.classList.add('hidden');
+    }
+    const containerWidth = (ref.current?.offsetWidth || 0) - ofWidth;
+    let keysWidth = 0;
+
+    hotkeysRef.current.some((el, index) => {
+      if (el) {
+        keysWidth += el.offsetWidth + 8;
+        // 判断是否溢出
+        if (containerWidth < keysWidth) {
+          setOfIndex(index);
+          return true;
+        }
+      }
+    });
+  }, [hotkeys]);
+
+  const keyPopup = () => (
+    <div className={ofIndex ? 'hotkey-input-of' : ''}>
+      {(ofIndex ? hotkeys.slice(ofIndex) : []).map((hotkey, index) => (
+        <span key={`hotkey-${index}`} className="hotkey-input__key">
+          <span>{hotkey.toUpperCase()}</span>
+          <span
+            className="hotkey-input__key--close"
+            onClick={() => {
+              handleDelete(index + ofIndex);
+              setVisible(!!ofIndex);
+            }}
+          >
+            <IconRiCloseCircleLine />
+          </span>
+        </span>
+      ))}
+    </div>
+  );
 
   return (
     <div
+      ref={ref}
       className={classNames('hotkey-input', { cursor: focused }, className)}
       tabIndex={0}
       style={style}
@@ -103,8 +160,8 @@ const hotkeyInput: React.FC<HotkeyInputProps> = props => {
       onKeyDown={handleKeydown}
     >
       {hotkeys.length ? (
-        hotkeys.map((hotkey, index) => (
-          <span key={`hotkey-${index}`} className="hotkey-input__key">
+        (ofIndex ? hotkeys.slice(0, ofIndex) : hotkeys).map((hotkey, index) => (
+          <span ref={el => (hotkeysRef.current[index] = el)} key={`hotkey-${index}`} className="hotkey-input__key">
             <span>{hotkey.toUpperCase()}</span>
             <span className="hotkey-input__key--close" onClick={() => handleDelete(index)}>
               <IconRiCloseCircleLine />
@@ -114,6 +171,16 @@ const hotkeyInput: React.FC<HotkeyInputProps> = props => {
       ) : (
         <div className="hotkey-input__placeholder">{placeholder}</div>
       )}
+      {
+        <ArcoTrigger position="bottom" popupAlign={{ bottom: 10 }} popupVisible={visible} popup={() => keyPopup()} onClickOutside={() => setVisible(false)} trigger="click">
+          <ArcoButton ref={ofRef} type="text" className={ofIndex ? '' : 'hidden'} onClick={() => setVisible(!visible)}>
+            <span className="flex justify-center items-center">
+              <IconRiAddLine />
+              <span>More</span>
+            </span>
+          </ArcoButton>
+        </ArcoTrigger>
+      }
     </div>
   );
 };

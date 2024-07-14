@@ -5,10 +5,10 @@ import hotkeys from 'hotkeys-js';
 
 interface AppKeyState {
   keymaps: { id: string; key: string[]; label: string; event: () => void }[];
-  registerKey: (key: string, event: string) => void;
+  registerKey: () => void;
+  bindHotKey: (id: string, key: string) => void;
   rebindHotKey: (id: string, key: string) => void;
-  toggleHotKey: (id: string, key: string) => void;
-  deleteHotKey: (id: string, key: string) => void;
+  unbindHotKey: (id: string, key: string) => void;
   getAllHotkeys: () => string[];
 }
 
@@ -48,7 +48,7 @@ export default create<AppKeyState>()((set, get) => ({
     }
   },
 
-  toggleHotKey: (id: string, key: string) => {
+  bindHotKey: (id: string, key: string) => {
     const index = get().keymaps.findIndex(item => item.id === id);
     if (index !== -1) {
       const keymap = get().keymaps[index];
@@ -61,11 +61,11 @@ export default create<AppKeyState>()((set, get) => ({
 
   rebindHotKey: (id: string, key: string) => {
     const target = get().keymaps.find(item => item.key.includes(key));
-    if (target) get().deleteHotKey(target.id, key);
-    get().toggleHotKey(id, key);
+    if (target) get().unbindHotKey(target.id, key);
+    get().bindHotKey(id, key);
   },
 
-  deleteHotKey: (id: string, key: string) => {
+  unbindHotKey: (id: string, key: string) => {
     const index = get().keymaps.findIndex(item => item.id === id);
     if (index !== -1) {
       const keymap = get().keymaps[index];

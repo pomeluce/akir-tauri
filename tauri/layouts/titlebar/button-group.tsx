@@ -1,16 +1,21 @@
-import { window } from '@tauri-apps/api';
+import { window as tauriWindow } from '@tauri-apps/api';
 import { Close, Maximize, Minimize } from '@tauri/components';
 
 const buttonGroup: React.FC<{}> = () => {
+  const [isMaximized, setIsMaximized] = useState<boolean>(false);
+  const appWindow = tauriWindow.getCurrent();
+
   const closeHandle = () => {
-    window.getCurrent().hide();
+    appWindow.hide();
   };
   const minimizeHandle = () => {
-    window.getCurrent().minimize();
+    appWindow.minimize();
   };
 
   const maximizeHandle = () => {
-    window.getCurrent().toggleMaximize();
+    appWindow.toggleMaximize().then(async () => {
+      setIsMaximized(await appWindow.isMaximized());
+    });
   };
   return (
     <main className="flex gap-1 cursor-pointer select-none">
@@ -21,7 +26,7 @@ const buttonGroup: React.FC<{}> = () => {
         <Minimize className="w-4" />
       </div>
       <div onClick={maximizeHandle}>
-        <Maximize className="w-4" />
+        <Maximize className="w-4" isFull={isMaximized} />
       </div>
     </main>
   );

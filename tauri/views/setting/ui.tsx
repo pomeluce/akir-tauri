@@ -1,6 +1,5 @@
 const ui: React.FC<{}> = () => {
-  const { theme } = useTheme();
-  const { changeTheme } = useAppMenu();
+  const { theme, setTheme } = useTheme();
 
   const themeList = [
     {
@@ -21,7 +20,7 @@ const ui: React.FC<{}> = () => {
       <section className="grid grid-cols-3 gap-5">
         <h2 className="font-medium">主题</h2>
         <div className="col-span-2">
-          <ArcoRadio.Group value={theme} options={themeList} onChange={changeTheme} />
+          <ArcoRadio.Group value={theme} options={themeList} onChange={setTheme} />
         </div>
       </section>
     </main>

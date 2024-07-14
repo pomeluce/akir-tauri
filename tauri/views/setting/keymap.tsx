@@ -1,7 +1,7 @@
 import { HotkeyInput } from '@tauri/components';
 
 const keymap: React.FC<{}> = () => {
-  const { keymaps, rebindHotKey, deleteHotKey, getAllHotkeys } = useAppKeyStore();
+  const { keymaps, rebindHotKey, unbindHotKey, getAllHotkeys } = useAppKeyStore();
 
   const hotkeyHandle = (key: string): boolean | Promise<boolean> => {
     if (getAllHotkeys().includes(key)) {
@@ -31,13 +31,12 @@ const keymap: React.FC<{}> = () => {
             <HotkeyInput
               className="max-w-sm"
               defaultHotkeys={keymap.key}
-              maxCount={2}
               placeholder="请输入需要绑定的按键, 支持组合按键"
               onAddHotkey={key => {
                 rebindHotKey(keymap.id, key);
               }}
               onDeleteHotkey={key => {
-                deleteHotKey(keymap.id, key);
+                unbindHotKey(keymap.id, key);
               }}
               onHotkeyVerify={hotkeyHandle}
             />

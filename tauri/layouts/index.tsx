@@ -2,7 +2,7 @@ import Titlebar from './titlebar';
 import Leftbar from './leftbar';
 
 const app: React.FC<{}> = () => {
-  const { registerKey } = useAppKey();
+  const { registerKey } = useAppKeyStore();
 
   useEffect(() => {
     // 注册全局快捷键

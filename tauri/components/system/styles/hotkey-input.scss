@@ -12,6 +12,17 @@
     --uno: absolute left-2 text-5 animate-blink animate-delay-0;
   }
 
+  & .hotkey-input__placeholder {
+    --uno: absolute left-4 text-word4 select-none;
+  }
+}
+
+.hotkey-input-of {
+  --uno: flex gap-2 flex-wrap p-3 max-w-sm bg-backdrop2 border border-rim2 shadow-md rounded-lg box-content;
+}
+
+.hotkey-input,
+.hotkey-input-of {
   & .hotkey-input__key {
     --uno: flex items-center gap-2 px-1.5 py-1 box-border bg-fill2 text-sm rounded-sm cursor-default;
 
@@ -22,9 +33,5 @@
         --uno: cursor-pointer opacity-90;
       }
     }
-  }
-
-  & .hotkey-input__placeholder {
-    --uno: absolute left-4 text-word4 select-none;
   }
 }
