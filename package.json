@@ -63,6 +63,7 @@
     "@tauri-apps/plugin-fs": "2.0.0-beta.7",
     "@tauri-apps/plugin-os": "2.0.0-beta.7",
     "@tauri-apps/plugin-shell": "2.0.0-beta.8",
+    "@tauri-apps/plugin-sql": "2.0.0-beta.7",
     "@types/lodash-es": "^4.17.12",
     "ahooks": "^3.8.0",
     "aieditor": "^1.0.13",

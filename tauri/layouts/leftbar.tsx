@@ -6,18 +6,15 @@ const leftbar: React.FC<{}> = () => {
   return (
     <main className="flex flex-col gap-3">
       {menus.map((menu, index) => (
-        <nav key={`key-${index}`} className="bg-backdrop2 flex flex-col gap-1 border border-rim2 rounded-lg">
-          <ArcoTooltip className="text-sm" mini content={menu.title} position="rb">
-            <button className="flex bg-transparent" onClick={menu.handleClick}>
-              <section
-                className={classNames('hover:text-primary5 rounded p-2.5 text-word2', {
-                  'bg-primary4 !text-white': menu.isActive,
-                })}
-              >
-                {menu.icon}
-              </section>
-            </button>
-          </ArcoTooltip>
+        <nav key={`key-${index}`}>
+          <button
+            className={classNames('flex justify-center items-center gap-1 text-sm px-2 py-1.5 rounded-lg bg-transparent', {
+              '!bg-backdrop2 drop-shadow-sm border border-rim2 text-word1 font-semibold': menu.isActive,
+            })}
+            onClick={menu.handleClick}
+          >
+            {menu.icon} {menu.title}
+          </button>
         </nav>
       ))}
     </main>

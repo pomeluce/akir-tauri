@@ -16,9 +16,12 @@ pub fn run() {
             Some(vec![/* 传递参数 */ ]),
         ))
         .plugin(tauri_plugin_os::init())
+        .plugin(tauri_plugin_sql::Builder::default().build())
         .invoke_handler(tauri::generate_handler![command::devtools::toggle_devtools])
         .setup(|app| {
             let app_handle = app.app_handle();
+
+            #[cfg(any(target_os = "windows", target_os = "linux"))]
             menu::tray::setup_tray(app_handle)?;
 
             Ok(())

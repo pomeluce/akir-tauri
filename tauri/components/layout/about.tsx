@@ -18,11 +18,20 @@ const about: React.FC<{}> = () => {
       </ArcoButton>
 
       <ArcoModal
+        className="min-w-lg min-h-auto border border-rim2 drop-shadow-2xl"
+        simple
         title={null}
         visible={visible}
-        footer={null}
+        footer={() => (
+          <span className="w-full flex justify-end">
+            <button className="px-4 py-1.5 rounded bg-transparent text-xs hover:bg-fill2" onClick={() => setVisible(false)}>
+              关闭
+            </button>
+          </span>
+        )}
         closable={false}
         alignCenter={false}
+        maskStyle={{ backgroundColor: 'transparent' }}
         style={{ top: '15%', marginLeft: 'auto', marginRight: 'auto' }}
         onCancel={() => setVisible(false)}
       >

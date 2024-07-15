@@ -7,8 +7,10 @@ const keymap: React.FC<{}> = () => {
     if (getAllHotkeys().includes(key)) {
       return new Promise<boolean>(resolve => {
         ArcoModal.confirm({
+          className: 'border border-rim2 drop-shadow-2xl',
           title: <span className="flex justify-center items-center gap-2">{IconRiInformationFill({ className: 'text-primary6' })} 提示</span>,
           content: '当前快捷键已被绑定, 是否覆盖原有快捷键?',
+          maskStyle: { backgroundColor: 'transparent' },
           icon: null,
           onOk: () => {
             resolve(true);

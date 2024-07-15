@@ -1,6 +1,6 @@
 {
   "$schema": "../gen/schemas/desktop-schema.json",
-  "identifier": "org.pomeluce.rapidify-react",
+  "identifier": "org.pomeluce.rapidify-tauri",
   "description": "enables the default permissions",
   "windows": ["main"],
   "permissions": [

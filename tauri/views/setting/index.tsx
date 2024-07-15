@@ -57,10 +57,10 @@ const setting: React.FC<{}> = () => {
           <ArcoTree.Node title={title} key={key} _key={key} />
         ))}
       </ArcoTree>
-      <main className="w-full border-l border-rim3 overflow-scroll px-10" ref={ref}>
+      <main className="w-full border-l border-rim3 overflow-scroll px-10 text-word2" ref={ref}>
         {settings.map(({ title, key, content }) => (
           <span key={key}>
-            <a href={`#${key}`} className="h1 font-bold text-xl text-primary4">
+            <a href={`#${key}`} className="h1 font-bold text-xl text-word1">
               {title}
             </a>
             {content}
