@@ -3,9 +3,15 @@ import { About, Pushpin } from '@tauri/components';
 
 const menuGroup: React.FC<{}> = () => {
   return (
-    <main className="flex items-center ml-auto text-word2">
+    <main className="flex items-center gap-3 ml-auto text-word2">
       <Pushpin />
-      <ThemePopup />
+      <ThemePopup
+        content={theme => (
+          <button className="flex justify-center items-center bg-transparent">
+            {(theme === 'system' ? IconRiComputerFill : theme === 'light' ? IconRiSunFill : IconRiMoonClearFill)({})}
+          </button>
+        )}
+      />
       <About />
     </main>
   );

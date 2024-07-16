@@ -2,10 +2,10 @@ import { RouterProvider } from '@common/plugins';
 import { router } from '@tauri/plugins';
 
 const App: React.FC<{}> = () => {
-  const { toggleTheme } = useAppTheme();
+  const { defaultTheme, toggleTheme } = useAppTheme();
 
   return (
-    <ThemeProvider handleToggle={toggleTheme}>
+    <ThemeProvider defaultTheme={defaultTheme} handleToggle={toggleTheme}>
       <ArcoConfigProvider>
         <RouterProvider router={router} />
       </ArcoConfigProvider>

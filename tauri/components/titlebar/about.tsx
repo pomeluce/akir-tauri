@@ -13,9 +13,9 @@ const about: React.FC<{}> = () => {
 
   return (
     <>
-      <ArcoButton className="flex justify-center items-center" size="large" shape="circle" onClick={() => setVisible(true)}>
+      <button className="flex justify-center items-center bg-transparent" onClick={() => setVisible(true)}>
         <IconRiQuestionFill />
-      </ArcoButton>
+      </button>
 
       <ArcoModal
         className="min-w-lg min-h-auto border border-rim2 drop-shadow-2xl"

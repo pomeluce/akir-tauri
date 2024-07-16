@@ -1,4 +1,5 @@
 import { getCurrent } from '@tauri-apps/api/window';
+import classNames from 'classnames';
 
 const pushpin: React.FC<{}> = () => {
   const [isPined, setIsPined] = useState<boolean>(false);
@@ -10,9 +11,9 @@ const pushpin: React.FC<{}> = () => {
   };
 
   return (
-    <ArcoButton className="flex justify-center items-center" type={isPined ? 'primary' : 'default'} size="large" shape="circle" onClick={handleClick}>
-      <IconRiPushpin2Fill />
-    </ArcoButton>
+    <button className="flex justify-center items-center bg-transparent" onClick={handleClick}>
+      <IconRiPushpin2Fill className={classNames({ 'text-primary6 font-bold': isPined })} />
+    </button>
   );
 };
 

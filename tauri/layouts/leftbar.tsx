@@ -13,7 +13,7 @@ const leftbar: React.FC<{}> = () => {
             })}
             onClick={menu.handleClick}
           >
-            {menu.icon} {menu.title}
+            {menu.icon(menu.isActive ? { strokeWidth: 1 } : {})} {menu.title}
           </button>
         </nav>
       ))}

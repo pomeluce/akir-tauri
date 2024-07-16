@@ -5,7 +5,7 @@ export default () => {
   const menus = [
     {
       title: '主页',
-      icon: IconRiHome7Line({}),
+      icon: IconRiHome7Line,
       handleClick: () => {
         router.navigator({ name: TauriRouteName.HOME });
       },
@@ -13,7 +13,7 @@ export default () => {
     },
     {
       title: '设置',
-      icon: IconRiSettings6Line({}),
+      icon: IconRiSettings6Line,
       handleClick: () => {
         router.navigator({ name: TauriRouteName.SETTING });
       },

@@ -7,3 +7,4 @@ export default () => {
 };
 
 export { default as router } from './router';
+export * from './sqlx';

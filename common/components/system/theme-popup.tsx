@@ -1,6 +1,6 @@
 import { Menu } from '../arco';
 
-const themePopup: React.FC<{ size?: number }> = ({ size }) => {
+const themePopup: React.FC<{ size?: number; content: (value: ThemeType) => React.ReactNode }> = ({ size, content }) => {
   const { theme, setTheme } = useTheme();
   const [themePopupVisible, setThemePopupVisible] = useState<boolean>(false);
 
@@ -54,9 +54,7 @@ const themePopup: React.FC<{ size?: number }> = ({ size }) => {
       popupVisible={themePopupVisible}
       position="bottom"
     >
-      <ArcoButton className="flex justify-center items-center" size="large" shape="circle">
-        {(theme === 'system' ? IconRiComputerFill : theme === 'light' ? IconRiSunFill : IconRiMoonClearFill)(iconProps)}
-      </ArcoButton>
+      {content(theme)}
     </ArcoTrigger>
   );
 };

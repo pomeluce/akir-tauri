@@ -1,3 +1,5 @@
+use std::fs::create_dir_all;
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 use tauri::Manager;
 use tauri_plugin_autostart::MacosLauncher;
@@ -21,7 +23,13 @@ pub fn run() {
         .setup(|app| {
             let app_handle = app.app_handle();
 
-            #[cfg(any(target_os = "windows", target_os = "linux"))]
+            // 创建数据库文件夹
+            let app_dir = app_handle.path().app_config_dir().unwrap();
+            if let Err(e) = create_dir_all(app_dir.join("Databases")) {
+                println!("Failed to create Databases directory: {:?}", e);
+            }
+
+            // #[cfg(any(target_os = "windows", target_os = "linux"))]
             menu::tray::setup_tray(app_handle)?;
 
             Ok(())
