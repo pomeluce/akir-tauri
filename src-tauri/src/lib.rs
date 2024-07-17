@@ -1,6 +1,5 @@
-use std::fs::create_dir_all;
-
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
+use std::fs::create_dir_all;
 use tauri::Manager;
 use tauri_plugin_autostart::MacosLauncher;
 

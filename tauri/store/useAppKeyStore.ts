@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { core, window } from '@tauri-apps/api';
 import { platform } from '@tauri-apps/plugin-os';
 import hotkeys from 'hotkeys-js';
+import useDBSettings from '@tauri/hooks/db/useDBSettings';
 
 interface AppKeyState {
   keymaps: { id: string; key: string[]; label: string; event: () => void }[];
@@ -13,6 +14,18 @@ interface AppKeyState {
 }
 
 const mod = platform() === 'macos' ? 'command' : 'ctrl';
+
+const { queryByType, addOrUpdate } = useDBSettings();
+
+const KEY_TYPE = 'settings.keymap';
+
+const getKeymaps = async () => {
+  const keys = await queryByType('settings.keymap');
+  return keys.map(keymap => {
+    keymap.key = keymap.key.replace(`${keymap.type}.`, '');
+    return keymap;
+  });
+};
 
 export default create<AppKeyState>()((set, get) => ({
   keymaps: [
@@ -42,10 +55,17 @@ export default create<AppKeyState>()((set, get) => ({
     },
   ],
 
-  registerKey: () => {
-    for (const keymap of get().keymaps) {
+  registerKey: async () => {
+    const keys = await getKeymaps();
+    const keymaps = get().keymaps;
+
+    for (const keymap of keymaps) {
+      const km = keys.find(item => keymap.id === item.key);
+      if (km) keymap.key = JSON.parse(km.value);
       hotkeys(keymap.key.join(','), keymap.event);
     }
+
+    set({ keymaps });
   },
 
   bindHotKey: (id: string, key: string) => {
@@ -56,6 +76,7 @@ export default create<AppKeyState>()((set, get) => ({
       keymap.key.push(key);
       hotkeys(keymap.key.join(','), keymap.event);
       set(state => ({ keymaps: [...state.keymaps.toSpliced(index, 1, keymap)] }));
+      addOrUpdate(`${KEY_TYPE}.${keymap.id}`, KEY_TYPE, JSON.stringify(keymap.key));
     }
   },
 
@@ -73,6 +94,7 @@ export default create<AppKeyState>()((set, get) => ({
       keymap.key = keymap.key.filter(k => k !== key);
       hotkeys(keymap.key.join(','), keymap.event);
       set(state => ({ keymaps: [...state.keymaps.toSpliced(index, 1, keymap)] }));
+      addOrUpdate(`${KEY_TYPE}.${keymap.id}`, KEY_TYPE, JSON.stringify(keymap.key));
     }
   },
 

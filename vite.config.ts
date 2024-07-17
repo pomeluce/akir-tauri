@@ -95,12 +95,6 @@ export default defineConfig(({ command, mode }) => {
             else return 'assets/[name]-[hash].[ext]';
           },
         },
-        terserOptions: {
-          compress: {
-            drop_console: true,
-            drop_debugger: true,
-          },
-        },
       },
     },
   };

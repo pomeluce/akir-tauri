@@ -115,7 +115,7 @@ const hotkeyInput: React.FC<HotkeyInputProps> = props => {
       ofWidth = ofRef.current?.offsetWidth || 0;
       ofRef.current?.classList.add('hidden');
     }
-    const containerWidth = (ref.current?.offsetWidth || 0) - ofWidth;
+    const containerWidth = (ref.current?.offsetWidth || 0) - ofWidth - 20;
     let keysWidth = 0;
 
     hotkeysRef.current.some((el, index) => {
@@ -173,7 +173,7 @@ const hotkeyInput: React.FC<HotkeyInputProps> = props => {
       )}
       {
         <ArcoTrigger position="bottom" popupAlign={{ bottom: 10 }} popupVisible={visible} popup={() => keyPopup()} onClickOutside={() => setVisible(false)} trigger="click">
-          <ArcoButton ref={ofRef} type="text" className={ofIndex ? '' : 'hidden'} onClick={() => setVisible(!visible)}>
+          <ArcoButton ref={ofRef} type="text" className={ofIndex ? '' : 'hidden'} size="mini" onClick={() => setVisible(!visible)} style={{ backgroundColor: 'transparent' }}>
             <span className="flex justify-center items-center">
               <IconRiAddLine />
               <span>More</span>

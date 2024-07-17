@@ -12,13 +12,16 @@
     "windows": [
       {
         "title": "rapidify-tauri",
+        "label": "main",
         "width": 800,
         "height": 600,
-        "minWidth": 352,
-        "minHeight": 256,
+        "minWidth": 800,
+        "minHeight": 600,
         "resizable": true,
         "fullscreen": false,
-        "decorations": false
+        "titleBarStyle": "Overlay",
+        "hiddenTitle": true,
+        "transparent": true
       }
     ],
     "security": {

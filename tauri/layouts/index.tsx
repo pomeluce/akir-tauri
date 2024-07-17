@@ -10,10 +10,10 @@ const app: React.FC<{}> = () => {
   }, []);
 
   return (
-    <main className="w-screen h-screen min-w-3xl min-h-xl flex flex-col select-none">
-      <Titlebar />
-      <main className="grow-1 grid grid-cols-[auto_1fr] px-3 pb-3 gap-3 overflow-hidden">
-        <Leftbar />
+    <main className="w-screen h-screen flex select-none">
+      <Leftbar />
+      <main className="grow-1 grid grid-rows-[auto_1fr] gap-3 bg-backdrop2 overflow-hidden">
+        <Titlebar />
         <main className="grid overflow-auto">
           <Outlet />
         </main>

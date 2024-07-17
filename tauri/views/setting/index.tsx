@@ -41,7 +41,7 @@ const setting: React.FC<{}> = () => {
   }, [links]);
 
   return (
-    <main className="flex bg-backdrop2 rounded-xl border border-rim2 px-5 py-10 overflow-hidden">
+    <main className="flex p-5 overflow-hidden">
       <ArcoTree
         className="w-40"
         autoExpandParent={false}

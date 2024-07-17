@@ -19,14 +19,14 @@ const buttonGroup: React.FC<{}> = () => {
   };
   return (
     <main className="flex gap-1 cursor-pointer select-none">
-      <div onClick={closeHandle}>
-        <Close className="w-4" />
+      <div onClick={maximizeHandle}>
+        <Maximize className="w-4" isFull={isMaximized} />
       </div>
       <div onClick={minimizeHandle}>
         <Minimize className="w-4" />
       </div>
-      <div onClick={maximizeHandle}>
-        <Maximize className="w-4" isFull={isMaximized} />
+      <div onClick={closeHandle}>
+        <Close className="w-4" />
       </div>
     </main>
   );
