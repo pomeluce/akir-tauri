@@ -1,6 +1,6 @@
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 use std::fs::create_dir_all;
-use tauri::Manager;
+use tauri::{AppHandle, Manager, WindowEvent};
 use tauri_plugin_autostart::MacosLauncher;
 
 mod command;
@@ -23,16 +23,36 @@ pub fn run() {
             let app_handle = app.app_handle();
 
             // 创建数据库文件夹
-            let app_dir = app_handle.path().app_config_dir().unwrap();
-            if let Err(e) = create_dir_all(app_dir.join("Databases")) {
-                println!("Failed to create Databases directory: {:?}", e);
-            }
-
-            // #[cfg(any(target_os = "windows", target_os = "linux"))]
+            create_database(app_handle);
+            // 更改窗口关闭行为
+            window_close_event(app_handle);
+            // 添加托盘图标
             menu::tray::setup_tray(app_handle)?;
 
             Ok(())
         })
         .run(ctx)
         .expect("error while running rapidify-tauri application");
+}
+
+/* 数据库目录创建事件 */
+fn create_database(handle: &AppHandle) {
+    let app_dir = handle.path().app_config_dir().unwrap();
+    if let Err(e) = create_dir_all(app_dir.join("Databases")) {
+        println!("Failed to create Databases directory: {:?}", e);
+    }
+}
+
+fn window_close_event(handle: &AppHandle) {
+    let window = handle.get_webview_window("main").unwrap();
+    let window_clone = window.clone();
+
+    window_clone.on_window_event(move |event| {
+        if let WindowEvent::CloseRequested { api, .. } = event {
+            // 阻止窗口默认事件
+            api.prevent_close();
+            // 设置窗口隐藏
+            window.hide().unwrap();
+        }
+    });
 }

@@ -13,8 +13,8 @@ const leftbar: React.FC<{}> = () => {
 
   return (
     <main className="min-w-32 flex flex-col items-center gap-3 p-3">
-      <span className="flex justify-center items-start gap-1 select-none cursor-default">
-        <ArcoImage src={Logo} tabIndex={-1} preview={false} width={24} draggable={false} />
+      <span className="flex justify-center items-center gap-1 select-none cursor-default">
+        <ArcoImage src={Logo} tabIndex={-1} preview={false} width={20} draggable={false} />
         <span className="text-sm uppercase font-bold text-[#6b9e59]">v{name}</span>
       </span>
       {menus.map((menu, index) => (
