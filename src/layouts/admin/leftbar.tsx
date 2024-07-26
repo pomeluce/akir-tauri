@@ -30,7 +30,7 @@ const leftbar: React.FC<{}> = () => {
             {isExpand && <span className="text-lg font-bold uppercase">rapidify-react</span>}
           </NavLink>
           <div className="flex justify-center mx-1.5" style={{ '--color-text-2': 'var(--hue-grey-10)' } as CSSProperties}>
-            <Menu collapse={!isExpand} options={menus.backend} defaultSelectedKeys={[router.record.name || RouteName.ADMIN]} />
+            <Menu collapse={!isExpand} options={menus.backend} defaultSelectedKeys={[router.record.route.name || RouteName.ADMIN]} />
           </div>
         </nav>
       </main>

@@ -9,7 +9,7 @@ export default () => {
       handleClick: () => {
         router.navigator({ name: TauriRouteName.HOME });
       },
-      isActive: router.record().route.name === TauriRouteName.HOME,
+      isActive: router.record.route.name === TauriRouteName.HOME,
     },
     {
       title: '设置',
@@ -17,7 +17,7 @@ export default () => {
       handleClick: () => {
         router.navigator({ name: TauriRouteName.SETTING });
       },
-      isActive: router.record().route.name === TauriRouteName.SETTING,
+      isActive: router.record.route.name === TauriRouteName.SETTING,
     },
   ];
 
