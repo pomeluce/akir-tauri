@@ -7,10 +7,10 @@ export default () => {
     const db = await settings.db();
 
     try {
-      const result = await db.select<DBSettings[]>(`select * from ${settings.tableName} where key = $1`, [key]);
+      const result = await db.select<DBSetting[]>(`select * from ${settings.tableName} where key = $1`, [key]);
       return result.length > 0 ? result[0].value : defaultValue;
     } catch (e) {
-      console.error('error query settings value for key: ', e);
+      console.error('error for query setting by key: ', e);
       throw e;
     }
   };
@@ -19,9 +19,9 @@ export default () => {
     const db = await settings.db();
 
     try {
-      return await db.select<DBSettings[]>(`select * from ${settings.tableName} where type = $1`, [type]);
+      return await db.select<DBSetting[]>(`select * from ${settings.tableName} where type = $1`, [type]);
     } catch (e) {
-      console.error('error query settings value for type: ', e);
+      console.error('error for query setting by type: ', e);
       throw e;
     }
   };
@@ -29,9 +29,9 @@ export default () => {
   const queryAll = async () => {
     const db = await settings.db();
     try {
-      return await db.select<DBSettings[]>(`select * from ${settings.tableName}`);
+      return await db.select<DBSetting[]>(`select * from ${settings.tableName}`);
     } catch (e) {
-      console.error('error query settings value: ', e);
+      console.error('error for query all setting: ', e);
       throw e;
     }
   };
@@ -41,7 +41,7 @@ export default () => {
     try {
       await db.execute(`replace into ${settings.tableName} (key, type, value) values($1, $2, $3)`, [key, type, value]);
     } catch (e) {
-      console.error('error add settings value: ', e);
+      console.error('error for addOrUpdate setting: ', e);
       throw e;
     }
   };
@@ -51,7 +51,7 @@ export default () => {
     try {
       await db.execute(`delete from ${settings.tableName} where key = $1`, [key]);
     } catch (e) {
-      console.error('error delete settings value: ', e);
+      console.error('error for delete setting: ', e);
       throw e;
     }
   };

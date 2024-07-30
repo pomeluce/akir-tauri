@@ -1,8 +1,8 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from '@/App';
-import '@/styles/index.scss';
 import 'virtual:uno.css';
+import '@/styles/index.scss';
 
 const bootstrap = (): void => {
   // 创建 react 实例

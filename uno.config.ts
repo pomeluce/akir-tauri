@@ -1,6 +1,8 @@
 import { defineConfig, presetUno, presetAttributify, presetTypography } from 'unocss';
 import transformerDirectives from '@unocss/transformer-directives';
 import transformerVariantGroup from '@unocss/transformer-variant-group';
+import presetAnimations from 'unocss-preset-animations';
+import { presetShadcn } from 'unocss-preset-shadcn';
 
 export default defineConfig({
   theme: {
@@ -21,10 +23,6 @@ export default defineConfig({
 
     width: {
       page: '1450px',
-    },
-
-    fontFamily: {
-      STSerene: ['STSerene', 'sans-serif'],
     },
 
     colors: {
@@ -66,9 +64,18 @@ export default defineConfig({
       fill3: 'var(--hue-grey-3)',
       fill4: 'var(--hue-grey-4)',
     },
+
+    boxShadow: {
+      '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
+    },
+
+    dropShadow: {
+      '3xl': '0 35px 35px rgba(0, 0, 0, 0.25)',
+      '4xl': ['0 35px 35px rgba(0, 0, 0, 0.25)', '0 45px 65px rgba(0, 0, 0, 0.15)'],
+    },
   },
   // 添加 UnoCSS 的默认样式预设
-  presets: [presetUno(), presetAttributify(), presetTypography()],
+  presets: [presetUno(), presetAttributify(), presetTypography(), presetAnimations(), presetShadcn({ darkSelector: '[data-theme="dark"]' })],
   transformers: [
     // applay theme screen 指令支持
     transformerDirectives(),

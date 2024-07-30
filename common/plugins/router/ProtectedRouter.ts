@@ -11,7 +11,7 @@ const ProtectedRouter = ({ children }: { children: ReactNode }) => {
   const [guard, setGuard] = useState<boolean>(false);
 
   useAsyncEffect(async () => {
-    const result = routerGuard?.(omit(record().route, ['component']) as MatcherLocation);
+    const result = routerGuard?.(omit(record.route, ['component']) as MatcherLocation);
     const to = (rs: NavigationGuardReturn) => {
       if (rs instanceof Error) throw new Error(rs.message);
       if (typeof rs === 'string' || typeof rs === 'object') {
@@ -20,7 +20,7 @@ const ProtectedRouter = ({ children }: { children: ReactNode }) => {
       setGuard(true);
     };
     result instanceof Promise ? result.then(rs => to(rs)) : to(result);
-  }, [record().fullPath]);
+  }, [record.fullPath]);
 
   return guard ? children : SuspenseFallback({});
 };

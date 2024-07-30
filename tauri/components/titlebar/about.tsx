@@ -18,7 +18,7 @@ const about: React.FC<{}> = () => {
       </button>
 
       <ArcoModal
-        className="min-w-lg min-h-auto border border-rim2 drop-shadow-2xl"
+        className="min-w-lg min-h-auto border border-rim2 drop-shadow-3xl select-none rounded-lg"
         simple
         title={null}
         visible={visible}
@@ -37,7 +37,7 @@ const about: React.FC<{}> = () => {
       >
         <main className="p-5 px-10 flex flex-col justify-center items-center gap-10">
           <div className="py-3 flex justify-center items-center gap-5">
-            <ArcoImage src={Logo} tabIndex={-1} preview={false} />
+            <ArcoImage src={Logo} tabIndex={-1} preview={false} draggable={false} />
             <section className="flex flex-col gap-2 items-start">
               <span className="font-semibold text-2xl">Rapidify-Tauri</span>
               <span>Tauri template app for react</span>

@@ -1,5 +1,5 @@
 import AutoImport from 'unplugin-auto-import/vite';
-import { ArcoResolver, IconResolver } from '../resolver';
+import { ArcoResolver, IconResolver, SuiResolver } from '../resolver';
 
 const relativeRoot = (dir: string) => `${process.cwd()}/${dir}`;
 
@@ -13,7 +13,7 @@ export default [
     // 自动导入 react 相关函数
     imports: ['react', 'react-router-dom', 'react-i18next', 'ahooks'],
     // 自定义解析函数: 自动导入组件
-    resolvers: [ArcoResolver({ prefix: 'Arco' }), IconResolver()],
+    resolvers: [ArcoResolver({ prefix: 'Arco' }), SuiResolver(), IconResolver()],
     // 自定义函数导入
     dirs: [
       relativeRoot('common/store/**/*'),

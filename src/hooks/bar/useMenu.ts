@@ -1,4 +1,4 @@
-import { OptionType } from '@/components';
+import { OptionType } from '@common/components';
 import { http, router } from '@/plugins';
 
 type MenuType = OptionType & { blank: string; children: MenuType[]; order: number };

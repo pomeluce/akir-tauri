@@ -72,3 +72,5 @@ export const arcoComponents: Array<string> = [
   'VerificationCode',
   'Watermark',
 ];
+
+export const sui: Array<string> = ['Button'];

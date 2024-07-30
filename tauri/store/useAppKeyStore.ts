@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { core, window } from '@tauri-apps/api';
 import { platform } from '@tauri-apps/plugin-os';
 import hotkeys from 'hotkeys-js';
-import useDBSettings from '@tauri/hooks/db/useDBSettings';
+import useDBSetting from '@tauri/hooks/db/useDBSetting';
 
 interface AppKeyState {
   keymaps: { id: string; key: string[]; label: string; event: () => void }[];
@@ -15,7 +15,7 @@ interface AppKeyState {
 
 const mod = platform() === 'macos' ? 'command' : 'ctrl';
 
-const { queryByType, addOrUpdate } = useDBSettings();
+const { queryByType, addOrUpdate } = useDBSetting();
 
 const KEY_TYPE = 'settings.keymap';
 
