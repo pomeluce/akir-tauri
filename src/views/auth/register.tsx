@@ -20,6 +20,16 @@ const register: React.FC<{}> = () => {
   const submit = (data: RegisterFormModel) => {
     console.log(data);
   };
+
+  const tips = (value: string | undefined) => (
+    <SuiAlert className="py-2" variant="destructive">
+      <SuiAlertTitle className="flex gap-2 m-0">
+        <IconRiCloseCircleFill />
+        <span>{value}</span>
+      </SuiAlertTitle>
+    </SuiAlert>
+  );
+
   return (
     <form className="min-w-xs max-w-2/3 md:max-w-none flex-1 flex justify-center" onSubmit={handleSubmit(submit)}>
       <div className="md:w-[720px] md:grid grid-cols-2 rounded-xl shadow-md overflow-hidden bg-backdrop2 p-5">
@@ -32,43 +42,27 @@ const register: React.FC<{}> = () => {
           <div>
             <h2 className="text-center text-word2 text-lg font-bold uppercase mt-3">rapidify-react</h2>
             <div className="mt-8 flex flex-col gap-4">
+              <Controller name="username" control={control} render={({ field }) => <SuiInput placeholder="请输入用户名、邮箱或手机号" {...field} />} />
+              {errors.username && tips(errors.username.message)}
+              <Controller name="password" control={control} render={({ field }) => <SuiInput placeholder="请输入登录密码" type="password" {...field} />} />
+              {errors.password && tips(errors.password.message)}
+              <Controller name="confirm" control={control} render={({ field }) => <SuiInput placeholder="请再次输入密码" type="password" {...field} />} />
+              {errors.confirm && tips(errors.confirm.message)}
               <Controller
-                control={control}
-                name="username"
-                render={({ field }) => <ArcoInput placeholder="请输入用户名、邮箱或手机号" size="large" prefix={IconRiAccountBoxFill({ size: 18 })} {...field} />}
-              />
-              {errors.username && <ArcoAlert className="py-0.5" title={<span className="text-sm">{errors.username.message}</span>} type="error" />}
-              <Controller
-                control={control}
-                name="password"
-                render={({ field }) => <ArcoInput.Password placeholder="请输入登录密码" size="large" prefix={IconRiLockFill({ size: 18 })} {...field} />}
-              />
-              {errors.password && <ArcoAlert className="py-0.5" title={<span className="text-sm">{errors.password.message}</span>} type="error" />}
-              <Controller
-                control={control}
-                name="confirm"
-                render={({ field }) => <ArcoInput.Password placeholder="请再次输入密码" size="large" prefix={IconRiLockFill({ size: 18 })} {...field} />}
-              />
-              {errors.confirm && <ArcoAlert className="py-0.5" title={<span className="text-sm">{errors.confirm.message}</span>} type="error" />}
-              <Controller
-                control={control}
                 name="captcha"
+                control={control}
                 render={({ field }) => (
-                  <ArcoInput
-                    type="text"
-                    placeholder="请输入验证码"
-                    size="large"
-                    prefix={IconRiKeyFill({ size: 18 })}
-                    addAfter={<ArcoImage className="w-20" preview={false} src={image} onClick={() => getCaptcha()} />}
-                    {...field}
-                  />
+                  <span className="flex items-center gap-1">
+                    <SuiInput type="text" placeholder="请输入验证码" {...field} />
+                    <img className="h-8" src={image} onClick={() => getCaptcha()} />
+                  </span>
                 )}
               />
-              {errors.captcha && <ArcoAlert className="py-0.5" title={<span className="text-sm">{errors.captcha.message}</span>} type="error" />}
+              {errors.captcha && tips(errors.captcha.message)}
             </div>
-            <ArcoButton className="w-full mt-5" type="primary" size="large" htmlType="submit">
+            <SuiButton className="w-full mt-5" size="lg" type="submit">
               注册
-            </ArcoButton>
+            </SuiButton>
             <Footer />
           </div>
         </div>

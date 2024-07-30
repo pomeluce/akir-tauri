@@ -49,9 +49,9 @@ export class RouterHandler {
    * @param route - 路由对象
    * @returns 返回一个 (route: RouteRecord) => RouteLocation 函数对象
    */
-  public resolve(route: RouteRecord): RouteLocation {
+  public resolve = (route: RouteRecord): RouteLocation => {
     return { fullPath: getFullPath(this.routes, route?.name ?? '') };
-  }
+  };
 
   /**
    * 根据路由名称获取路由对象
@@ -60,7 +60,7 @@ export class RouterHandler {
    * @param routes - 路由对象集合
    * @returns 返回一个 (name: string | undefined, routes?: RouteRecord[]) => RouteRecord | undefined 函数对象
    */
-  public matchName(name: RouteRecordName | undefined, routes: RouteRecord[] = this.routes): RouteRecord {
+  public matchName = (name: RouteRecordName | undefined, routes: RouteRecord[] = this.routes): RouteRecord => {
     const match = (name: RouteRecordName | undefined, routes: RouteRecord[]): RouteRecord | undefined => {
       let route = routes.find((route: RouteRecord) => route.name === name);
       if (route) return route;
@@ -75,7 +75,7 @@ export class RouterHandler {
     if (route) return route;
 
     throw Error(`can not find route name: ${name}`);
-  }
+  };
 
   /**
    * 根据路由路径获取路由对象
@@ -84,7 +84,7 @@ export class RouterHandler {
    * @param routes - 路由对象集合
    * @returns 返回一个 (name: string | undefined, routes?: RouteRecord[]) => RouteRecord | undefined 函数对象
    */
-  public matchPath(path: string | undefined, routes: RouteRecord[] = this.routes): RouteRecord {
+  public matchPath = (path: string | undefined, routes: RouteRecord[] = this.routes): RouteRecord => {
     const match = (path: string | undefined, routes: RouteRecord[]): RouteRecord | undefined => {
       let route = routes.find((route: RouteRecord) => toRegex(this.resolve(route).fullPath).test(path || ''));
       if (route) return route;
@@ -98,14 +98,14 @@ export class RouterHandler {
     if (route) return route;
 
     throw Error(`can not find route path: ${path}`);
-  }
+  };
 
   /**
    * 路由导航函数
    *
    * @param to - 路由跳转信息
    */
-  public navigator(to: RouteLocationRaw) {
+  public navigator = (to: RouteLocationRaw) => {
     const routeTo = (to: RouteLocationRaw) => {
       if (typeof to === 'string') this.root.navigate(to);
       else {
@@ -126,5 +126,5 @@ export class RouterHandler {
       const guard = this.routerGuard(route as MatcherLocation);
       guard instanceof Promise ? guard.then(result => handle(result)) : handle(guard);
     } else routeTo(to);
-  }
+  };
 }

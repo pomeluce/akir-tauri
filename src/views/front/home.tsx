@@ -1,5 +1,14 @@
 const Home: React.FC<{}> = () => {
-  return <ArcoCard className="h-[1000px] p-3" title="首页"></ArcoCard>;
+  return (
+    <SuiCard>
+      <SuiCardHeader>
+        <SuiCardTitle className="py-3 border-b">
+          <header>首页</header>
+        </SuiCardTitle>
+      </SuiCardHeader>
+      <SuiCardContent className="h-[1000px]"></SuiCardContent>
+    </SuiCard>
+  );
 };
 
 export default Home;

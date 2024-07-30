@@ -7,24 +7,26 @@ const topbarMenu: React.FC<{}> = () => {
 
   return (
     <section className="hidden md:flex items-center gap-5">
-      <ArcoButton className="flex justify-center items-center" size="large" shape="circle">
+      <SuiButton className="rounded-full" variant="secondary" size="icon">
         <Screen />
-      </ArcoButton>
+      </SuiButton>
       <ThemePopup
         content={theme => (
-          <ArcoButton className="flex justify-center items-center" size="large" shape="circle">
+          <SuiButton className="rounded-full" variant="secondary" size="icon">
             {(theme === 'system' ? IconRiComputerFill : theme === 'light' ? IconRiSunFill : IconRiMoonClearFill)({ size: 20 })}
-          </ArcoButton>
+          </SuiButton>
         )}
       />
       {isLogin() ? (
         <AvatarMenu />
       ) : (
         <div className="flex gap-2">
-          <ArcoButton type="primary" onClick={() => router.navigator({ name: RouteName.LOGIN })}>
-            登录
-          </ArcoButton>
-          <ArcoButton onClick={() => router.navigator({ name: RouteName.REGISTER })}>注册</ArcoButton>
+          <SuiButton size="xs" onClick={() => router.navigator({ name: RouteName.LOGIN })}>
+            登 录
+          </SuiButton>
+          <SuiButton size="xs" variant="outline" onClick={() => router.navigator({ name: RouteName.REGISTER })}>
+            注 册
+          </SuiButton>
         </div>
       )}
     </section>
