@@ -11,7 +11,7 @@ const pushpin: React.FC<{}> = () => {
   };
 
   return (
-    <button className="flex justify-center items-center bg-transparent" onClick={handleClick}>
+    <button className="flex justify-center items-center" onClick={handleClick}>
       <IconRiPushpin2Fill className={classNames({ 'text-primary6 font-bold': isPined })} />
     </button>
   );

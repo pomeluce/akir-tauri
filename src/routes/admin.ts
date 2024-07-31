@@ -1,6 +1,5 @@
 import { RouteRecord } from 'react-router-dom';
 import { RiDashboard3Line, RiFlowChart, RiSettings2Line } from 'react-icons/ri';
-import result from './result';
 
 export default [
   {
@@ -68,5 +67,4 @@ export default [
       },
     ],
   },
-  ...result,
 ] as RouteRecord[];

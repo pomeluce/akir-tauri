@@ -21,11 +21,6 @@ export enum RoutePath {
   WORKFLOW_DEFINE = '/admin/workflow/define',
   WORKFLOW_DESIGN = '/admin/workflow/design',
 
-  /* result */
-  RESUALT_INFO = '/admin/result/info',
-  RESUALT_SUCCESS = '/admin/result/success',
-  RESUALT_FAILED = '/admin/result/failed',
-
   /* error */
   ERROR_403 = '/error/403',
   ERROR_404 = '/error/404',

@@ -3,17 +3,18 @@ import { router } from '@/plugins';
 
 const INTERNAL_SERVER_ERROR: React.FC<{}> = () => {
   return (
-    <main className="h-screen flex flex-col justify-center items-center">
-      <ArcoResult className="w-full" status={null} icon={<I500 className="w-56" />}>
-        <main className="flex flex-col justify-center items-center gap-7 pb-48">
-          <span className="text-base md:text-3xl font-bold ">啊哦, 网站出了点小意外</span>
-          <span>
-            <ArcoButton type="primary" status="danger" onClick={() => router.navigator({ name: RouteName.HOME })}>
-              返回首页
-            </ArcoButton>
-          </span>
-        </main>
-      </ArcoResult>
+    <main className="h-screen flex justify-center items-center">
+      <main className="flex flex-col justify-center items-center gap-7 pb-20">
+        <span>
+          <I500 className="w-56" />
+        </span>
+        <span className="text-base md:text-3xl font-bold ">啊哦, 网站出了点小意外</span>
+        <span>
+          <SuiButton variant="destructive" onClick={() => router.navigator({ name: RouteName.HOME })}>
+            返回首页
+          </SuiButton>
+        </span>
+      </main>
     </main>
   );
 };

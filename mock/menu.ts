@@ -78,29 +78,6 @@ export default [
               ],
             },
             {
-              key: RouteName.MODULE_RESULT,
-              label: '结果页面',
-              type: 'submenu',
-              order: 4,
-              children: [
-                {
-                  key: RouteName.RESUALT_INFO,
-                  label: '信息页',
-                  type: 'item',
-                },
-                {
-                  key: RouteName.RESUALT_SUCCESS,
-                  label: '成功页',
-                  type: 'item',
-                },
-                {
-                  key: RouteName.RESUALT_FAILED,
-                  label: '失败页',
-                  type: 'item',
-                },
-              ],
-            },
-            {
               key: RouteName.MODULE_ERROR,
               label: '异常页面',
               type: 'submenu',

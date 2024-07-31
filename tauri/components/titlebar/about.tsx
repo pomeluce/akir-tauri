@@ -2,7 +2,6 @@ import { app } from '@tauri-apps/api';
 import Logo from '/pomeluce.svg';
 
 const about: React.FC<{}> = () => {
-  const [visible, setVisible] = useState(false);
   const [version, setVersion] = useState<string>('unknown');
 
   const linkOpen = () => open('https://github.com/pomeluce/rapidify-react');
@@ -12,29 +11,14 @@ const about: React.FC<{}> = () => {
   }, []);
 
   return (
-    <>
-      <button className="flex justify-center items-center bg-transparent" onClick={() => setVisible(true)}>
-        <IconRiQuestionFill />
-      </button>
-
-      <ArcoModal
-        className="min-w-lg min-h-auto border border-rim2 drop-shadow-3xl select-none rounded-lg"
-        simple
-        title={null}
-        visible={visible}
-        footer={() => (
-          <span className="w-full flex justify-end">
-            <button className="px-4 py-1.5 rounded bg-transparent text-xs hover:bg-fill2" onClick={() => setVisible(false)}>
-              关闭
-            </button>
-          </span>
-        )}
-        closable={false}
-        alignCenter={false}
-        maskStyle={{ backgroundColor: 'transparent' }}
-        style={{ top: '15%', marginLeft: 'auto', marginRight: 'auto' }}
-        onCancel={() => setVisible(false)}
-      >
+    <SuiDialog modal={false}>
+      <SuiDialogTrigger asChild>
+        <button className="flex justify-center items-center">
+          <IconRiQuestionFill />
+        </button>
+      </SuiDialogTrigger>
+      <SuiDialogContent className="top-[25%] drop-shadow-3xl select-none" aria-describedby={undefined}>
+        <SuiDialogTitle />
         <main className="p-5 px-10 flex flex-col justify-center items-center gap-10">
           <div className="py-3 flex justify-center items-center gap-5">
             <ArcoImage src={Logo} tabIndex={-1} preview={false} draggable={false} />
@@ -50,8 +34,15 @@ const about: React.FC<{}> = () => {
             </a>
           </footer>
         </main>
-      </ArcoModal>
-    </>
+        <SuiDialogFooter>
+          <SuiDialogClose className="flex justify-end" asChild>
+            <SuiButton size="sm" variant="ghost">
+              关闭
+            </SuiButton>
+          </SuiDialogClose>
+        </SuiDialogFooter>
+      </SuiDialogContent>
+    </SuiDialog>
   );
 };
 

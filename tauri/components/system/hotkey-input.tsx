@@ -14,7 +14,7 @@ interface HotkeyInputProps {
   onChangeHotkey?: (keys: string[]) => void;
 }
 
-const hotkeyInput: React.FC<HotkeyInputProps> = props => {
+const hotkeyInput = forwardRef<HTMLDivElement, HotkeyInputProps>((props, ref) => {
   const {
     className,
     defaultHotkeys = [],
@@ -27,14 +27,17 @@ const hotkeyInput: React.FC<HotkeyInputProps> = props => {
     onDeleteHotkey,
     onChangeHotkey,
   } = props;
+
   const [hotkeys, setHotkeys] = useState<string[]>(defaultHotkeys);
   const [focused, setFocused] = useState<boolean>(false);
   const [keyRange, setKeyRange] = useState<string[]>([]);
   const [ofIndex, setOfIndex] = useState<number>(0);
   const [visible, setVisible] = useState<boolean>(false);
-  const ref = useRef<HTMLDivElement>(null);
-  const ofRef = useRef<HTMLDivElement>(null);
+  const internalRef = useRef<HTMLDivElement>(null);
+  const ofRef = useRef<HTMLButtonElement>(null);
   const hotkeysRef = useRef<(HTMLSpanElement | null)[]>([]);
+
+  useImperativeHandle(ref, () => internalRef.current!);
 
   const CODE_NUMBER = Array.from({ length: 10 }, (_, k) => `Digit${k + 1}`);
   const CODE_NUMPAD = Array.from({ length: 10 }, (_, k) => `Numpad${k + 1}`);
@@ -98,7 +101,7 @@ const hotkeyInput: React.FC<HotkeyInputProps> = props => {
   }, []);
 
   useEffect(() => {
-    if (ref.current && ref.current === document.activeElement) {
+    if (internalRef.current && internalRef.current === document.activeElement) {
       handleFocus();
     }
     onChangeHotkey?.(hotkeys);
@@ -115,7 +118,7 @@ const hotkeyInput: React.FC<HotkeyInputProps> = props => {
       ofWidth = ofRef.current?.offsetWidth || 0;
       ofRef.current?.classList.add('hidden');
     }
-    const containerWidth = (ref.current?.offsetWidth || 0) - ofWidth - 20;
+    const containerWidth = (internalRef.current?.offsetWidth || 0) - ofWidth - 20;
     let keysWidth = 0;
 
     hotkeysRef.current.some((el, index) => {
@@ -151,7 +154,7 @@ const hotkeyInput: React.FC<HotkeyInputProps> = props => {
 
   return (
     <div
-      ref={ref}
+      ref={internalRef}
       className={classNames('hotkey-input', { cursor: focused }, className)}
       tabIndex={0}
       style={style}
@@ -171,18 +174,21 @@ const hotkeyInput: React.FC<HotkeyInputProps> = props => {
       ) : (
         <div className="hotkey-input__placeholder">{placeholder}</div>
       )}
-      {
-        <ArcoTrigger position="bottom" popupAlign={{ bottom: 10 }} popupVisible={visible} popup={() => keyPopup()} onClickOutside={() => setVisible(false)} trigger="click">
-          <ArcoButton ref={ofRef} type="text" className={ofIndex ? '' : 'hidden'} size="mini" onClick={() => setVisible(!visible)} style={{ backgroundColor: 'transparent' }}>
+      <SuiHoverCard>
+        <SuiHoverCardTrigger asChild>
+          <SuiButton ref={ofRef} variant="link" className={ofIndex ? '' : 'hidden'} size="sm" onClick={() => setVisible(!visible)} style={{ backgroundColor: 'transparent' }}>
             <span className="flex justify-center items-center">
               <IconRiAddLine />
               <span>More</span>
             </span>
-          </ArcoButton>
-        </ArcoTrigger>
-      }
+          </SuiButton>
+        </SuiHoverCardTrigger>
+        <SuiHoverCardContent className="shadow-md w-auto p-0" sideOffset={-5}>
+          {keyPopup()}
+        </SuiHoverCardContent>
+      </SuiHoverCard>
     </div>
   );
-};
+});
 
 export default hotkeyInput;

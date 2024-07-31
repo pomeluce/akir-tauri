@@ -8,17 +8,17 @@ const themePopup: React.FC<{ size?: number; content: (value: ThemeType) => React
       <SuiDropdownMenuTrigger asChild>
         <span>{content(theme)}</span>
       </SuiDropdownMenuTrigger>
-      <SuiDropdownMenuContent className="p-2">
-        <SuiDropdownMenuGroup className="px-2">
-          <SuiDropdownMenuItem className="py-3 flex gap-4" onClick={() => setTheme('system')}>
+      <SuiDropdownMenuContent className="min-w-0">
+        <SuiDropdownMenuGroup className="flex flex-col justify-center items-center gap-3 p-1">
+          <SuiDropdownMenuItem className="py-2 flex gap-4" onClick={() => setTheme('system')}>
             {IconRiComputerFill(iconProps)}
             <span>跟随系统</span>
           </SuiDropdownMenuItem>
-          <SuiDropdownMenuItem className="py-3 flex gap-4" onClick={() => setTheme('light')}>
+          <SuiDropdownMenuItem className="py-2 flex gap-4" onClick={() => setTheme('light')}>
             {IconRiSunFill(iconProps)}
             <span>亮色主题</span>
           </SuiDropdownMenuItem>
-          <SuiDropdownMenuItem className="py-3 flex gap-4" onClick={() => setTheme('dark')}>
+          <SuiDropdownMenuItem className="py-2 flex gap-4" onClick={() => setTheme('dark')}>
             {IconRiMoonClearFill(iconProps)}
             <span>暗色主题</span>
           </SuiDropdownMenuItem>
