@@ -27,10 +27,12 @@ const info: React.FC<{}> = () => {
           </section>
         </div>
         <section className="flex justify-center gap-3 mt-5">
-          <ArcoButton type="primary" onClick={() => router.navigator({ name: RouteName.HOME })}>
+          <SuiButton size="sm" onClick={() => router.navigator({ name: RouteName.HOME })}>
             返回首页
-          </ArcoButton>
-          <ArcoButton type="outline">查看详情</ArcoButton>
+          </SuiButton>
+          <SuiButton size="sm" variant="outline">
+            查看详情
+          </SuiButton>
         </section>
       </ArcoResult>
     </ArcoCard>

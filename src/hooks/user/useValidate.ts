@@ -10,7 +10,7 @@ export default () => {
    * @returns 返回表单验证结果
    */
   const loginValidate = (defaultValues?: UseFormProps<LoginFormModel>['defaultValues']) => {
-    const { control, handleSubmit, formState } = useForm<LoginFormModel>({
+    const { handleSubmit, formState, register } = useForm<LoginFormModel>({
       defaultValues,
       resolver: yupResolver(
         yup
@@ -24,7 +24,7 @@ export default () => {
       mode: 'onBlur',
       reValidateMode: 'onBlur',
     });
-    return { control, formState, handleSubmit, errors: formState.errors };
+    return { formState, handleSubmit, errors: formState.errors, register };
   };
 
   /**
@@ -34,7 +34,7 @@ export default () => {
    * @returns 返回表单验证结果
    */
   const registerValidate = (defaultValues?: UseFormProps<RegisterFormModel>['defaultValues']) => {
-    const { control, handleSubmit, formState } = useForm<RegisterFormModel>({
+    const { handleSubmit, formState, register } = useForm<RegisterFormModel>({
       defaultValues,
       resolver: yupResolver(
         yup
@@ -53,7 +53,7 @@ export default () => {
       mode: 'onBlur',
       reValidateMode: 'onBlur',
     });
-    return { control, formState, handleSubmit, errors: formState.errors };
+    return { formState, handleSubmit, errors: formState.errors, register };
   };
 
   return { loginValidate, registerValidate };

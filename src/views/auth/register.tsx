@@ -1,7 +1,6 @@
 import RegisterBg from '@/assets/images/register-bg.svg';
 import Footer from './footer';
 import Illustration from './illustration';
-import { Controller } from 'react-hook-form';
 
 const register: React.FC<{}> = () => {
   const { captcha } = useAuth();
@@ -16,7 +15,7 @@ const register: React.FC<{}> = () => {
 
   useAsyncEffect(getCaptcha, []);
 
-  const { control, handleSubmit, errors } = registerValidate();
+  const { register, handleSubmit, errors } = registerValidate();
   const submit = (data: RegisterFormModel) => {
     console.log(data);
   };
@@ -42,22 +41,16 @@ const register: React.FC<{}> = () => {
           <div>
             <h2 className="text-center text-word2 text-lg font-bold uppercase mt-3">rapidify-react</h2>
             <div className="mt-8 flex flex-col gap-4">
-              <Controller name="username" control={control} render={({ field }) => <SuiInput placeholder="请输入用户名、邮箱或手机号" {...field} />} />
+              <SuiInput placeholder="请输入用户名、邮箱或手机号" {...register('username')} />
               {errors.username && tips(errors.username.message)}
-              <Controller name="password" control={control} render={({ field }) => <SuiInput placeholder="请输入登录密码" type="password" {...field} />} />
+              <SuiInput placeholder="请输入登录密码" type="password" {...register('password')} />
               {errors.password && tips(errors.password.message)}
-              <Controller name="confirm" control={control} render={({ field }) => <SuiInput placeholder="请再次输入密码" type="password" {...field} />} />
+              <SuiInput placeholder="请再次输入密码" type="password" {...register('confirm')} />
               {errors.confirm && tips(errors.confirm.message)}
-              <Controller
-                name="captcha"
-                control={control}
-                render={({ field }) => (
-                  <span className="flex items-center gap-1">
-                    <SuiInput type="text" placeholder="请输入验证码" {...field} />
-                    <img className="h-8" src={image} onClick={() => getCaptcha()} />
-                  </span>
-                )}
-              />
+              <span className="flex items-center gap-1">
+                <SuiInput type="text" placeholder="请输入验证码" {...register('captcha')} />
+                <img className="h-8" src={image} onClick={() => getCaptcha()} />
+              </span>
               {errors.captcha && tips(errors.captcha.message)}
             </div>
             <SuiButton className="w-full mt-5" size="lg" type="submit">

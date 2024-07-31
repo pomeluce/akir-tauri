@@ -1,7 +1,6 @@
 import LoginBg from '@/assets/images/login-bg.svg';
 import Footer from './footer';
 import Illustration from './illustration';
-import { Controller } from 'react-hook-form';
 
 const login: React.FC<{}> = () => {
   const { captcha, login } = useAuth();
@@ -18,7 +17,7 @@ const login: React.FC<{}> = () => {
 
   useAsyncEffect(getCaptcha, []);
 
-  const { control, handleSubmit, errors } = loginValidate();
+  const { register, handleSubmit, errors } = loginValidate();
   const submit = (data: LoginFormModel) => {
     data.uid = uid;
     login(data);
@@ -45,24 +44,21 @@ const login: React.FC<{}> = () => {
           <div>
             <h2 className="text-center text-word2 text-lg font-bold uppercase mt-3">rapidify-react</h2>
             <div className="mt-8 flex flex-col gap-4">
-              <Controller name="username" control={control} render={({ field }) => <SuiInput placeholder="请输入用户名、邮箱或手机号" {...field} />} />
+              <SuiInput placeholder="请输入用户名、邮箱或手机号" {...register('username')} />
               {errors.username && tips(errors.username.message)}
-              <Controller name="password" control={control} render={({ field }) => <SuiInput placeholder="请输入登录密码" type="password" {...field} />} />
+              <SuiInput placeholder="请输入登录密码" type="password" {...register('password')} />
               {errors.password && tips(errors.password.message)}
-              <Controller
-                name="captcha"
-                control={control}
-                render={({ field }) => (
-                  <span className="flex items-center gap-1">
-                    <SuiInput type="text" placeholder="请输入验证码" {...field} />
-                    <img className="h-8" src={image} onClick={() => getCaptcha()} />
-                  </span>
-                )}
-              />
+              <span className="flex items-center gap-1">
+                <SuiInput type="text" placeholder="请输入验证码" {...register('captcha')} />
+                <img className="h-8" src={image} onClick={() => getCaptcha()} />
+              </span>
               {errors.captcha && tips(errors.captcha.message)}
             </div>
             <div className="flex justify-between mt-5">
-              <ArcoCheckbox>记住我</ArcoCheckbox>
+              <span className="flex items-center gap-1">
+                <SuiCheckbox id="remember" />
+                <SuiLabel htmlFor="remember">记住我</SuiLabel>
+              </span>
               <SuiButton variant="link">忘记密码</SuiButton>
             </div>
             <SuiButton className="w-full mt-5" size="lg" type="submit">

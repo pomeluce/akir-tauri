@@ -2,7 +2,7 @@ const Home: React.FC<{}> = () => {
   return (
     <SuiCard>
       <SuiCardHeader>
-        <SuiCardTitle className="py-3 border-b">
+        <SuiCardTitle className="pb-3 border-b">
           <header>首页</header>
         </SuiCardTitle>
       </SuiCardHeader>

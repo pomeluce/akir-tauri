@@ -9,8 +9,8 @@ const topbar: React.FC<{}> = () => {
       <div className="flex justify-between items-center px-3 w-full 2xl:w-page 2xl:m-auto">
         <section className="flex items-center xl:items-stretch md:mr-6">
           <div className="flex justify-center items-center">
-            <Link to="/" className="flex justify-between items-center gap-1 font-bold mr-5 text-primary6 hover:text-link1">
-              <ArcoImage className="w-6 h-6" src={Logo} preview={false} />
+            <Link to="/" className="flex justify-between items-center gap-1 font-bold mr-5 hover:text-link1">
+              <img className="w-6 h-6" src={Logo} />
               <span className="font-bold text-xl uppercase">rapidify-react</span>
             </Link>
           </div>

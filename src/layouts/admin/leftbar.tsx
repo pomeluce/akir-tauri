@@ -26,7 +26,7 @@ const leftbar: React.FC<{}> = () => {
       <main>
         <nav className="text-word1">
           <NavLink className="flex justify-center items-start px-7 py-4 gap-1 cursor-pointer hover:text-word2" to={RoutePath.HOME}>
-            <ArcoImage className="w-6 h-6" src={Logo} preview={false} />
+            <img className="w-6 h-6" src={Logo} />
             {isExpand && <span className="text-lg font-bold uppercase">rapidify-react</span>}
           </NavLink>
           <div className="flex justify-center mx-1.5" style={{ '--color-text-2': 'var(--hue-grey-10)' } as CSSProperties}>
