@@ -21,7 +21,7 @@ export default () => {
     },
   ];
 
-  const defaultKeys = ['settings.general'];
+  const defaultKeys = 'settings.general';
 
   return { defaultKeys, settings };
 };

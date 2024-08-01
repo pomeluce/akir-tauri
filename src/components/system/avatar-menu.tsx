@@ -17,9 +17,7 @@ const avatarMenu: React.FC<{}> = () => {
             {avatar('w-10 h-10')}
             <div className="flex items-center gap-2 text-sm">
               <span className="font-bold">{user.name}</span>
-              <ArcoTag className="italic" size="small" color="arcoblue">
-                VIP
-              </ArcoTag>
+              <SuiBadge className="italic opacity-90">VIP</SuiBadge>
             </div>
           </div>
         </SuiDropdownMenuLabel>

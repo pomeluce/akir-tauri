@@ -1,6 +1,7 @@
 export * from './alert';
 export * from './alert-dialog';
 export * from './avatar';
+export * from './badge';
 export * from './button';
 export * from './card';
 export * from './checkbox';
@@ -11,4 +12,5 @@ export * from './input';
 export * from './label';
 export * from './menubar';
 export * from './navigation-menu';
+export * from './radio-group';
 export * from './tabs';

@@ -10,7 +10,10 @@ const general: React.FC<{}> = () => {
       <section className="grid grid-cols-3 gap-5">
         <h2 className="font-medium">开机选项</h2>
         <div className="col-span-2">
-          <ArcoCheckbox onChange={autoStart}>开机自启动</ArcoCheckbox>
+          <span className="flex items-center gap-2">
+            <SuiCheckbox id="auto_start" onCheckedChange={autoStart} />
+            <SuiLabel htmlFor="auto_start">开机自启动</SuiLabel>
+          </span>
         </div>
       </section>
     </main>

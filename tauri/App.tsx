@@ -6,9 +6,7 @@ const App: React.FC<{}> = () => {
 
   return (
     <ThemeProvider defaultTheme={defaultTheme} handleToggle={toggleTheme}>
-      <ArcoConfigProvider>
-        <RouterProvider router={router} />
-      </ArcoConfigProvider>
+      <RouterProvider router={router} />
     </ThemeProvider>
   );
 };

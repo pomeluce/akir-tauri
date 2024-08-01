@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { debounce } from 'lodash-es';
 
 const setting: React.FC<{}> = () => {
@@ -5,7 +6,7 @@ const setting: React.FC<{}> = () => {
 
   const ref = useRef<HTMLElement>(null);
   const [links, setLinks] = useState<HTMLAnchorElement[]>();
-  const [selectedKeys, setSelectedKeys] = useState<string[]>(defaultKeys);
+  const [selectedKey, setSelectedKey] = useState<string>(defaultKeys);
 
   const scrollHandler = debounce(() => {
     if (links) {
@@ -13,15 +14,17 @@ const setting: React.FC<{}> = () => {
       const rect = links.map(item => item.getBoundingClientRect());
       for (let i = 0; i < rect.length; i++) {
         if ((rect[i].top >= 0 && rect[i].top <= range) || (rect[i].top < 0 && ((rect[i + 1] && rect[i + 1].top > range) || rect[i + 1] === undefined))) {
-          setSelectedKeys([links[i].hash.substring(1)]);
+          setSelectedKey(links[i].hash.substring(1));
+          return;
         }
       }
     }
   }, 100);
 
-  const selectedHandler = (keys: string[]) => {
+  const selectedHandler = (key: string) => {
     if (links) {
-      links.find(link => link.hash === `#${keys[0]}`)?.scrollIntoView({ behavior: 'smooth' });
+      links.find(link => link.hash === `#${key}`)?.scrollIntoView({ behavior: 'smooth' });
+      setSelectedKey(key);
     }
   };
 
@@ -42,21 +45,20 @@ const setting: React.FC<{}> = () => {
 
   return (
     <main className="flex p-5 overflow-hidden">
-      <ArcoTree
-        className="w-40"
-        autoExpandParent={false}
-        defaultSelectedKeys={selectedKeys}
-        selectedKeys={selectedKeys}
-        icons={{
-          switcherIcon: IconRiArrowDownSLine({}),
-          dragIcon: IconRiArrowRightSLine({}),
-        }}
-        onSelect={selectedHandler}
-      >
+      <nav className="w-40 grid grid-flow-row auto-rows-max text-sm">
         {settings.map(({ title, key }) => (
-          <ArcoTree.Node title={title} key={key} _key={key} />
+          <a
+            key={key}
+            className={classNames(
+              'flex w-full items-center rounded-md border border-transparent pl-5 py-1 hover:underline cursor-pointer font-medium',
+              selectedKey === key ? 'text-primary5' : ' text-word1',
+            )}
+            onClick={() => selectedHandler(key)}
+          >
+            {title}
+          </a>
         ))}
-      </ArcoTree>
+      </nav>
       <main className="w-full border-l border-rim3 overflow-scroll px-10 text-word2" ref={ref}>
         {settings.map(({ title, key, content }) => (
           <span key={key}>

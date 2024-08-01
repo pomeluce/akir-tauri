@@ -17,11 +17,11 @@ const about: React.FC<{}> = () => {
           <IconRiQuestionFill />
         </button>
       </SuiDialogTrigger>
-      <SuiDialogContent className="top-[25%] drop-shadow-3xl select-none" aria-describedby={undefined}>
+      <SuiDialogContent className="top-[25%] drop-shadow-3xl select-none" closable={false} aria-describedby={undefined}>
         <SuiDialogTitle />
         <main className="p-5 px-10 flex flex-col justify-center items-center gap-10">
           <div className="py-3 flex justify-center items-center gap-5">
-            <ArcoImage src={Logo} tabIndex={-1} preview={false} draggable={false} />
+            <img src={Logo} tabIndex={-1} draggable={false} />
             <section className="flex flex-col gap-2 items-start">
               <span className="font-semibold text-2xl">Rapidify-Tauri</span>
               <span>Tauri template app for react</span>
