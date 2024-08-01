@@ -26,7 +26,7 @@ export const SuiResolver = (): Resolver => {
     type: 'component',
     resolve: (name: string) => {
       if (name.startsWith('Sui') && sui.includes(name.slice(3))) {
-        return { from: `${process.cwd()}/common/shadcn`, name: name.slice(3), as: name };
+        return { from: `${process.cwd().replace(/\\/g, '/')}/common/shadcn`, name: name.slice(3), as: name };
       }
     },
   };
