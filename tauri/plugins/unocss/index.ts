@@ -1,7 +1,5 @@
-import '@common/styles/themes.scss';
-import '@common/styles/uno.scss';
-import 'virtual:uno.css';
-import '@common/styles/shadcn.scss';
+import '@common/styles/index.scss';
 import '@tauri/styles/global.scss';
+import 'virtual:uno.css';
 
 export const setup = () => {};

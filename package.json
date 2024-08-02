@@ -59,7 +59,7 @@
     "@types/lodash-es": "^4.17.12",
     "ahooks": "^3.8.0",
     "aieditor": "^1.0.13",
-    "axios": "^1.7.2",
+    "axios": "^1.7.3",
     "class-variance-authority": "^0.7.0",
     "classnames": "^2.5.1",
     "clsx": "^2.1.1",

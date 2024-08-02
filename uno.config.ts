@@ -27,42 +27,42 @@ export default defineConfig({
 
     colors: {
       /* 主题色 */
-      primary1: 'var(--hue-primary-1)',
-      primary2: 'var(--hue-primary-2)',
-      primary3: 'var(--hue-primary-3)',
-      primary4: 'var(--hue-primary-4)',
-      primary5: 'var(--hue-primary-5)',
-      primary6: 'var(--hue-primary-6)',
-      primary7: 'var(--hue-primary-7)',
+      primary1: 'rgba(var(--uno-primary1))',
+      primary2: 'rgba(var(--uno-primary2))',
+      primary3: 'rgba(var(--uno-primary3))',
+      primary4: 'rgba(var(--uno-primary4))',
+      primary5: 'rgba(var(--uno-primary5))',
+      primary6: 'rgba(var(--uno-primary6))',
+      primary7: 'rgba(var(--uno-primary7))',
 
       /* 背景色 */
-      backdrop1: 'var(--hue-bg-1)',
-      backdrop2: 'var(--hue-bg-2)',
-      backdrop3: 'var(--hue-bg-3)',
-      backdrop4: 'var(--hue-bg-4)',
-      'backdrop-white': 'var(--hue-bg-white)',
+      backdrop1: 'rgba(var(--uno-backdrop1))',
+      backdrop2: 'rgba(var(--uno-backdrop2))',
+      backdrop3: 'rgba(var(--uno-backdrop3))',
+      backdrop4: 'rgba(var(--uno-backdrop4))',
+      'backdrop-white': 'rgba(var(--uno-backdrop-white))',
 
       /* link */
-      link1: 'var(--hue-link-1)',
-      link2: 'var(--hue-link-2)',
+      link1: 'rgba(var(--uno-link1))',
+      link2: 'rgba(var(--uno-link2))',
 
       /* 文字颜色 */
-      word1: 'var(--hue-grey-10)',
-      word2: 'var(--hue-grey-8)',
-      word3: 'var(--hue-grey-6)',
-      word4: 'var(--hue-grey-4)',
+      word1: 'rgba(var(--uno-word1))',
+      word2: 'rgba(var(--uno-word2))',
+      word3: 'rgba(var(--uno-word3))',
+      word4: 'rgba(var(--uno-word4))',
 
       /* 边框 */
-      rim1: 'var(--hue-grey-2)',
-      rim2: 'var(--hue-grey-3)',
-      rim3: 'var(--hue-grey-4)',
-      rim4: 'var(--hue-grey-6)',
+      rim1: 'rgba(var(--uno-rim1))',
+      rim2: 'rgba(var(--uno-rim2))',
+      rim3: 'rgba(var(--uno-rim3))',
+      rim4: 'rgba(var(--uno-rim4))',
 
       /* 填充 */
-      fill1: 'var(--hue-grey-1)',
-      fill2: 'var(--hue-grey-2)',
-      fill3: 'var(--hue-grey-3)',
-      fill4: 'var(--hue-grey-4)',
+      fill1: 'rgba(var(--uno-fill1))',
+      fill2: 'rgba(var(--uno-fill2))',
+      fill3: 'rgba(var(--uno-fill3))',
+      fill4: 'rgba(var(--uno-fill4))',
     },
 
     boxShadow: {
