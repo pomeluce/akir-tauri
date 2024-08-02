@@ -1,3 +1,4 @@
 body {
-  --uno: bg-backdrop1 text-word1 font-sans text-base;
+  background-color: rgba(var(--hue-bg-1), 0.75);
+  --uno: text-word1 font-sans text-base;
 }

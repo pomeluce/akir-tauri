@@ -1,6 +1,6 @@
 [package]
-name = "app"
-version = "0.1.0"
+name = "rapidify"
+version = "0.1.8"
 description = "rapidify-tauri"
 authors = [ "pomeluce" ]
 license = "GPL-3.0"

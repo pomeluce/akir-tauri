@@ -80,7 +80,7 @@
     "@arco-plugins/vite-react": "^1.3.3",
     "@faker-js/faker": "^8.4.1",
     "@types/mockjs": "^1.0.10",
-    "@types/node": "^22.0.2",
+    "@types/node": "^22.1.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@unocss/reset": "^0.61.9",

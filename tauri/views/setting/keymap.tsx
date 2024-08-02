@@ -10,19 +10,19 @@ const keymap: React.FC<{}> = () => {
           defaultOpen: true,
           modal: false,
           children: (
-            <SuiDialogContent className="top-[40%] drop-shadow-3xl gap-10" closable={false} aria-describedby={undefined}>
+            <SuiDialogContent className="max-w-xs top-[40%] drop-shadow-3xl gap-5" closable={false} aria-describedby={undefined}>
               <SuiDialogHeader className="items-center">
                 <SuiDialogTitle>提示</SuiDialogTitle>
               </SuiDialogHeader>
-              <span className="text-center">当前快捷键已被绑定, 是否覆盖原有快捷键?</span>
+              <span className="text-center text-sm">当前快捷键已被绑定, 是否覆盖原有快捷键?</span>
               <SuiDialogFooter>
                 <SuiDialogClose asChild>
-                  <SuiButton variant="secondary" size="sm" onClick={() => resolve(false)}>
+                  <SuiButton variant="secondary" size="xs" onClick={() => resolve(false)}>
                     取消
                   </SuiButton>
                 </SuiDialogClose>
                 <SuiDialogClose asChild>
-                  <SuiButton size="sm" onClick={() => resolve(true)}>
+                  <SuiButton size="xs" onClick={() => resolve(true)}>
                     确定
                   </SuiButton>
                 </SuiDialogClose>
