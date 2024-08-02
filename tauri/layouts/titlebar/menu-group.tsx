@@ -7,9 +7,7 @@ const menuGroup: React.FC<{}> = () => {
       <Pushpin />
       <ThemePopup
         content={theme => (
-          <button className="flex justify-center items-center bg-transparent">
-            {(theme === 'system' ? IconRiComputerFill : theme === 'light' ? IconRiSunFill : IconRiMoonClearFill)({})}
-          </button>
+          <button className="flex justify-center items-center">{(theme === 'system' ? IconRiComputerFill : theme === 'light' ? IconRiSunFill : IconRiMoonClearFill)({})}</button>
         )}
       />
       <About />
