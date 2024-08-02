@@ -1,4 +1,4 @@
-import { setup as unocss } from './unocss';
+import { unocss } from '@common/plugins';
 
 const modules = [unocss];
 

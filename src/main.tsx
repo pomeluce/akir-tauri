@@ -1,7 +1,8 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import plugins from '@tauri/plugins';
 import App from '@/App';
+import plugins from '@tauri/plugins';
+import '@/styles/global.scss';
 
 const bootstrap = (): void => {
   // 创建 react 实例

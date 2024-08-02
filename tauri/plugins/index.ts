@@ -1,5 +1,5 @@
+import { unocss } from '@common/plugins';
 import { setup as hotkeys } from './hotkeys';
-import { setup as unocss } from './unocss';
 
 const modules = [hotkeys, unocss];
 
