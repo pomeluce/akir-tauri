@@ -21,9 +21,9 @@ tauri-build = { version = "2.0.0-rc.0", features = [  ] }
 serde_json = "1.0"
 serde = { version = "1.0", features = [ "derive" ] }
 tauri = { version = "2.0.0-rc.0", features = [ 'tray-icon', 'image-ico', 'image-png', 'devtools' ] }
-tauri-plugin-shell = "2.0.0-beta.0"
-tauri-plugin-fs = "2.0.0-beta"
+tauri-plugin-autostart = "2.0.0-rc.0"
+tauri-plugin-fs = "2.0.0-rc.0"
+tauri-plugin-os = "2.0.0-rc.0"
+tauri-plugin-shell = "2.0.0-rc.0"
+tauri-plugin-sql = { version = "2.0.0-rc.0", features = [ "sqlite" ] }
 tauri-plugin-theme = "0.4.1"
-tauri-plugin-autostart = "2.0.0-beta.0"
-tauri-plugin-os = "2.0.0-beta"
-tauri-plugin-sql = { version = "2.0.0-beta", features = [ "sqlite" ] }
