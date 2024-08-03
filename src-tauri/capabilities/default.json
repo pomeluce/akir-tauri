@@ -11,6 +11,7 @@
     "core:path:default",
     "core:resources:default",
     "core:tray:default",
+    "core:webview:default",
     "core:window:default",
     "core:window:allow-close",
     "core:window:allow-hide",

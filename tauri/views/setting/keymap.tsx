@@ -6,7 +6,7 @@ const keymap: React.FC<{}> = () => {
   const hotkeyHandle = (key: string): boolean | Promise<boolean> => {
     if (getAllHotkeys().includes(key)) {
       return new Promise<boolean>(resolve => {
-        SuiConfirm({
+        useSuiDialog.confirm({
           defaultOpen: true,
           modal: false,
           children: (
