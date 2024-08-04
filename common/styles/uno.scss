@@ -1,4 +1,4 @@
-@import './themes.scss';
+@use './themes.scss';
 
 :root {
   --uno-primary1: var(--hue-primary-1);
