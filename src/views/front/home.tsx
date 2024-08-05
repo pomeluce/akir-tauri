@@ -1,3 +1,5 @@
+import { FlowView } from '@common/components';
+
 const Home: React.FC<{}> = () => {
   return (
     <SuiCard>
@@ -6,7 +8,9 @@ const Home: React.FC<{}> = () => {
           <header>首页</header>
         </SuiCardTitle>
       </SuiCardHeader>
-      <SuiCardContent className="h-[1000px]"></SuiCardContent>
+      <SuiCardContent className="h-[1000px]">
+        <FlowView />
+      </SuiCardContent>
     </SuiCard>
   );
 };
