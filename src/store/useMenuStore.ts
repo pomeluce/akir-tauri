@@ -1,5 +1,7 @@
 import { create } from 'zustand';
 import { OptionType } from '@common/components';
+import useAuth from '@/hooks/user/useAuth';
+import useMenu from '@/hooks/bar/useMenu';
 
 export interface MenuState {
   /** 系统菜单 */

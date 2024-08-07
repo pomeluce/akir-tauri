@@ -1,4 +1,4 @@
-import { FlowView } from '@common/components';
+import { FlowEditor } from '@common/components';
 
 const Home: React.FC<{}> = () => {
   return (
@@ -9,7 +9,7 @@ const Home: React.FC<{}> = () => {
         </SuiCardTitle>
       </SuiCardHeader>
       <SuiCardContent className="h-[1000px]">
-        <FlowView />
+        <FlowEditor />
       </SuiCardContent>
     </SuiCard>
   );
