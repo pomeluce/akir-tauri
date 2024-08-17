@@ -20,7 +20,7 @@ const ui: React.FC<{}> = () => {
       <section className="grid grid-cols-3 gap-5">
         <h2 className="font-medium">主题</h2>
         <div className="col-span-2">
-          <SuiRadioGroup className="flex" defaultValue={theme} onValueChange={setTheme}>
+          <SuiRadioGroup className="flex" value={theme} onValueChange={setTheme}>
             {themeList.map((item, index) => (
               <span key={`${item.value}-${index}`} className="flex items-center gap-2">
                 <SuiRadioGroupItem id={`theme-${item.value}`} value={item.value} />

@@ -11,7 +11,8 @@ const addNode: React.FC<{}> = () => {
               <IconRiAddLine />
             </span>
           </SuiDropdownMenuTrigger>
-          <SuiDropdownMenuContent className="w-64 p-5 flex flex-col gap-3">
+          <SuiDropdownMenuContent className="w-64 p-5 flex flex-col gap-3 rounded-xl">
+            <SuiDropdownMenuLabel>Actions</SuiDropdownMenuLabel>
             <SuiDropdownMenuItem asChild inset className="border border-rim3 rounded">
               <div className="flex justify-between items-center">
                 <section className="flex items-center gap-3">
@@ -27,7 +28,7 @@ const addNode: React.FC<{}> = () => {
               <div className="flex justify-between items-center">
                 <section className="flex items-center gap-3">
                   <span className="bg-primary3 text-white rounded-xl px-3 py-2">
-                    <IconRiNotification4Line />
+                    <IconRiUser3Line />
                   </span>
                   <span>人员审批</span>
                 </section>
