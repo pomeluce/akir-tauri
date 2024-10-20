@@ -11,19 +11,36 @@ export default [
       /\.md$/, // .md
     ],
     // 自动导入 react 相关函数
-    imports: ['react', 'react-router-dom', 'react-i18next', 'ahooks'],
+    imports: [
+      'react',
+      'react-i18next',
+      'ahooks',
+      {
+        '@tanstack/react-router': [
+          'createFileRoute',
+          'createLazyFileRoute',
+          'createRootRoute',
+          'createRootRouteWithContext',
+          'createRouter',
+          'useNavigate',
+          'useRouter',
+          'redirect',
+          'Link',
+          'Outlet',
+          'RouterProvider',
+        ],
+      },
+    ],
     // 自定义解析函数: 自动导入组件
     resolvers: [ArcoResolver({ prefix: 'Arco' }), SuiResolver(), IconResolver()],
     // 自定义函数导入
     dirs: [
       relativeRoot('common/store/**/*'),
-      relativeRoot('common/enum/**/*'),
+      relativeRoot('common/constants/**/*'),
       relativeRoot('common/hooks/**/*'),
       relativeRoot('src/store/**/*'),
-      relativeRoot('src/enum/**/*'),
+      relativeRoot('src/constants/**/*'),
       relativeRoot('src/hooks/**/*'),
-      relativeRoot('src/config/**/*'),
-      relativeRoot('src/request/**/*'),
       relativeRoot('tauri/store/**/*'),
       relativeRoot('tauri/enum/**/*'),
       relativeRoot('tauri/hooks/**/*'),

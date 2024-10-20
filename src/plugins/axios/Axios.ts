@@ -1,6 +1,5 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { Loading, RifyLoading } from '@/components';
-import { router } from '..';
 
 // 获取 storage 对象
 const storage = useStorage();
@@ -13,16 +12,16 @@ export default class Axios {
   // 参数对象
   private options: AxiosOptions = { loading: true, message: true };
   // axios 参数配置
-  private config: AxiosConfig;
+  private config: AxiosRequestConfig & AxiosConfig;
 
   /**
    * 构造函数, 初始化 axios 实例
    * @param defaults axios 配置
    * @param config axios 参数配置
    */
-  constructor(defaults: AxiosRequestConfig, config: AxiosConfig) {
+  constructor(defaults: AxiosRequestConfig & AxiosConfig) {
     this.instance = axios.create(defaults);
-    this.config = config;
+    this.config = defaults;
     this.initInterceptors();
   }
 
@@ -72,7 +71,7 @@ export default class Axios {
         // 设置 accept
         config.headers.Accept = 'application/json';
         // 添加自定义头部
-        config.headers['rify-header'] = this.config.header;
+        config.headers['rify-header'] = this.config.customHeader;
         return config;
       },
       (error: any) => Promise.reject(error),
@@ -113,7 +112,7 @@ export default class Axios {
         switch (status) {
           case HttpStatus.UNAUTHORIZED:
             storage.remove(CacheKey.TOKEN_NAME);
-            router.navigator(RoutePath.LOGIN);
+            router.navigate({ to: RouteTo.LOGIN });
             break;
           case HttpStatus.UNPROCESSABLE_ENTITY:
             // useErrorStore().setErrors(error.response.data.errors);

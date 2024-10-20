@@ -1,6 +1,6 @@
 import { MockMethod } from 'vite-plugin-mock';
-import { RequestURL } from '../src/enum/RequestURL';
-import { RouteName } from '../src/enum/RouteName';
+import { RequestURL } from '../src/constants/RequestURL';
+import { RouteTo } from '../src/constants/RouteTo';
 
 export default [
   {
@@ -14,92 +14,88 @@ export default [
           front: [],
           backend: [
             {
-              key: RouteName.MODULE_ADMIN,
-              label: 'Dashboard',
-              type: 'submenu',
+              key: 'module.admin',
+              title: 'Dashboard',
               order: 1,
               children: [
                 {
-                  key: RouteName.ADMIN,
-                  label: '主控台',
-                  type: 'item',
+                  key: 'admin',
+                  title: '主控台',
+                  to: RouteTo.ADMIN,
                 },
                 {
-                  key: RouteName.WORKBENCH,
-                  label: '工作台',
-                  type: 'item',
+                  key: 'workbench',
+                  title: '工作台',
+                  to: RouteTo.WORKBENCH,
                 },
               ],
             },
             {
-              key: RouteName.MODULE_SYSTEM,
-              label: '系统管理',
-              type: 'submenu',
+              key: 'module.system',
+              title: '系统管理',
               order: 2,
               children: [
                 {
-                  key: RouteName.SYSTEM_USER,
-                  label: '用户管理',
-                  type: 'item',
+                  key: 'system.user',
+                  title: '用户管理',
+                  to: RouteTo.SYSTEM_USER,
                 },
                 {
-                  key: RouteName.SYSTEM_ROLE,
-                  label: '角色管理',
-                  type: 'item',
+                  key: 'system.role',
+                  title: '角色管理',
+                  to: RouteTo.SYSTEM_ROLE,
                 },
                 {
-                  key: RouteName.SYSTEM_PERMISSION,
-                  label: '权限管理',
-                  type: 'item',
+                  key: 'system.permission',
+                  title: '权限管理',
+                  to: RouteTo.SYSTEM_PERMISSION,
                 },
                 {
-                  key: RouteName.SYSTEM_MENU,
-                  label: '菜单管理',
-                  type: 'item',
+                  key: 'system.menu',
+                  title: '菜单管理',
+                  to: RouteTo.SYSTEM_MENU,
                 },
               ],
             },
             {
-              key: RouteName.MODULE_WORKFLOW,
-              label: '流程管理',
-              type: 'submenu',
+              key: 'module.workflow',
+              title: '流程管理',
               order: 3,
               children: [
                 {
-                  key: RouteName.WORKFLOW_DEFINE,
-                  label: '流程定义',
-                  type: 'item',
+                  key: 'workflow.define',
+                  title: '流程定义',
+                  to: RouteTo.WORKFLOW_DEFINE,
                 },
                 {
-                  key: RouteName.WORKFLOW_DESIGN,
-                  label: '流程设计',
-                  type: 'item',
+                  key: 'workflow.design',
+                  title: '流程设计',
+                  to: RouteTo.WORKFLOW_DESIGN,
                 },
               ],
             },
             {
-              key: RouteName.MODULE_ERROR,
-              label: '异常页面',
-              type: 'submenu',
-              order: 5,
+              key: 'module.error',
+              title: '异常页面',
+              order: 4,
               children: [
                 {
-                  key: RouteName.ERROR_403,
-                  label: '403页面',
+                  key: 'error.403',
+                  title: '403页面',
                   blank: '_blank',
-                  type: 'item',
+                  to: RouteTo.ERROR_403,
                 },
                 {
-                  key: RouteName.ERROR_404,
-                  label: '404页面',
+                  key: 'error.404',
+                  title: '404页面',
                   blank: '_blank',
-                  type: 'item',
+                  to: RouteTo.ERROR_404,
                 },
                 {
-                  key: RouteName.ERROR_500,
-                  label: '500页面',
+                  key: 'error.500',
+                  title: '500页面',
                   blank: '_blank',
-                  type: 'item',
+                  to: RouteTo.ERROR_500,
                 },
               ],
             },

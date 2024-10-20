@@ -12,7 +12,9 @@
   "tsx": true,
   "aliases": {
     "components": "@common/shadcn",
-    "utils": "@common/lib/utils",
-    "ui": "@common/shadcn/ui"
+    "ui": "@common/shadcn/ui",
+    "hooks": "@common/shadcn/hooks",
+    "lib": "@common/lib",
+    "utils": "@common/lib/utils"
   }
 }

@@ -34,7 +34,7 @@ export default create<AppKeyState>()((set, get) => ({
       key: ['alt+f4'],
       label: '关闭窗口',
       event: () => {
-        window.getCurrent().close();
+        window.getCurrentWindow().close();
       },
     },
     {
@@ -42,7 +42,7 @@ export default create<AppKeyState>()((set, get) => ({
       key: [`${mod}+q`],
       label: '退出',
       event: () => {
-        window.getCurrent().hide();
+        window.getCurrentWindow().hide();
       },
     },
     {

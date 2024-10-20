@@ -1,9 +1,9 @@
-import { getCurrent } from '@tauri-apps/api/window';
+import { getCurrentWindow } from '@tauri-apps/api/window';
 import classNames from 'classnames';
 
 const pushpin: React.FC<{}> = () => {
   const [isPined, setIsPined] = useState<boolean>(false);
-  const appWindow = getCurrent();
+  const appWindow = getCurrentWindow();
 
   const handleClick = () => {
     appWindow.setAlwaysOnTop(!isPined);

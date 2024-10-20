@@ -2,8 +2,10 @@ import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import UnoCSS from 'unocss/vite';
 import { resolve } from 'path';
-import { autoImport, arco, mock } from './core/plugins';
+import { writeFileSync } from 'fs';
+import { autoImport, arco, mock, tanstack } from './core/plugins';
 import { parseEnv } from './core/utils';
+import { TanStackRouterVite } from '@tanstack/router-plugin/vite';
 
 /** 当前执行 node 命令时文件夹的地址（工作目录） */
 const root: string = process.cwd();
@@ -24,8 +26,11 @@ export default defineConfig(({ command, mode }) => {
   const moduleName = moduleIndex !== -1 ? args[moduleIndex].split('=')[1] : null;
   const input = pathResolve(`${moduleName || root}/index.html`);
 
+  // 生成 tsr.config.json 文件
+  writeFileSync('tsr.config.json', JSON.stringify(tanstack(moduleName), null, 2));
+
   return {
-    plugins: [...autoImport, react(), UnoCSS(), arco(), mock(isBuild, env)],
+    plugins: [...autoImport, react(), TanStackRouterVite(), UnoCSS(), arco(), mock(isBuild, env)],
     // 本地开发服务器配置
     // 配置路径别名
     resolve: {
@@ -50,6 +55,8 @@ export default defineConfig(({ command, mode }) => {
         hashPrefix: 'rify',
         localsConvention: 'camelCaseOnly',
       },
+      // 解决 scss api 提示问题
+      preprocessorOptions: { scss: { api: 'modern-compiler' } },
     },
     base: isBuild ? '/' : '/',
     // 本地开发服务器配置
@@ -57,14 +64,7 @@ export default defineConfig(({ command, mode }) => {
       // 监听本地所有 ip
       host: true,
       // 代理
-      proxy: env.VITE_MOCK_ENABLE
-        ? {}
-        : {
-            [env.VITE_BASE_PREFIX]: {
-              target: env.VITE_API_URL,
-              rewrite: path => path,
-            },
-          },
+      proxy: env.VITE_MOCK_ENABLE ? {} : { [env.VITE_BASE_PREFIX]: { target: env.VITE_API_URL, rewrite: path => path } },
     },
     root: moduleName || root,
     publicDir: `${moduleName ? '..' : '.'}/public`,
@@ -85,13 +85,13 @@ export default defineConfig(({ command, mode }) => {
           entryFileNames: 'js/[name]-[hash].js', // 主入口文件
           chunkFileNames: 'js/[name]-[hash].js', // 异步块文件
           assetFileNames(assetInfo) {
-            const extType = assetInfo.name.split('.').pop();
+            const extType = assetInfo.names?.[0].split('.').pop();
             // css 文件
             if ('css' === extType) return 'css/[name]-[hash].[ext]';
             // 图片文件
             else if (['avif', 'apng', 'bmp', 'gif', 'ico', 'jfif', 'jpg', 'jpeg', 'pjp', 'pjpeg', 'png', 'webp', 'svg'].includes(extType)) return 'images/[name]-[hash].[ext]';
             // 字体文件
-            else if (['ttf', 'woff', 'woff2', 'eot', 'otf', 'wof2']) return 'fonts/[name]-[hash].[ext]';
+            else if (['ttf', 'woff', 'woff2', 'eot', 'otf', 'wof2'].includes(extType)) return 'fonts/[name]-[hash].[ext]';
             else return 'assets/[name]-[hash].[ext]';
           },
         },

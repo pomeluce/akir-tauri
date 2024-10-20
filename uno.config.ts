@@ -73,6 +73,13 @@ export default defineConfig({
       '3xl': '0 35px 35px rgba(0, 0, 0, 0.25)',
       '4xl': ['0 35px 35px rgba(0, 0, 0, 0.25)', '0 45px 65px rgba(0, 0, 0, 0.15)'],
     },
+    spacing: {
+      '0': '0',
+      '1': '0.25rem',
+      '2': '0.5rem',
+      '3': '0.75rem',
+      '4': '1rem',
+    },
   },
   // 添加 UnoCSS 的默认样式预设
   presets: [presetUno(), presetAttributify(), presetTypography(), presetAnimations(), presetShadcn({ darkSelector: '[data-theme="dark"]' })],

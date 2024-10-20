@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { current } from '@/request/user';
 
 export interface UserState {
   user: UserModel;
@@ -8,8 +9,7 @@ export interface UserState {
   getCurrentUser: () => void;
 }
 
-const { isLogin } = useAuth();
-const { currentUser } = useUser();
+const { isAuthenticated } = useAuth();
 
 export default create<UserState>()((set, get) => ({
   user: {} as UserModel,
@@ -18,11 +18,11 @@ export default create<UserState>()((set, get) => ({
 
   setUser: value => set({ user: value }),
   getCurrentUser: async () => {
-    if (isLogin()) {
+    if (isAuthenticated()) {
       const {
         data,
         body: { role },
-      } = await currentUser();
+      } = await current();
       set({ user: data, role });
     }
   },

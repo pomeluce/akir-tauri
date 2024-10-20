@@ -3,7 +3,7 @@ import { Close, Maximize, Minimize } from '@tauri/components';
 
 const buttonGroup: React.FC<{}> = () => {
   const [isMaximized, setIsMaximized] = useState<boolean>(false);
-  const appWindow = tauriWindow.getCurrent();
+  const appWindow = tauriWindow.getCurrentWindow();
 
   const closeHandle = () => {
     appWindow.hide();

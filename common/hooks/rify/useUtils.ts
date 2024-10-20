@@ -1,16 +1,13 @@
 import { AxiosError } from 'axios';
-import { RouteLocation } from 'react-router-dom';
 
 export default () => {
   /**
    * axios 请求异常处理
    * @param error - 请求异常对象
    */
-  const throwAxiosError = (error: AxiosError) => {
-    const {
-      request: { status, statusText, responseURL },
-    } = error;
-    console.error(`Interface Anonymous Access ${status} ${statusText}: ${responseURL}`);
+  const handleAxiosError = (error: AxiosError) => {
+    const { request, message } = error;
+    console.error(`Interface Access Failed: ${message}, ${request?.status} ${request?.statusText}: ${request?.responseURL}`);
   };
 
   /**
@@ -29,10 +26,9 @@ export default () => {
    * @param route - 路由对象
    * @param target - 跳转方式, 默认为 _self
    */
-  const open = (route: RouteLocation, target: string = '_self') => {
-    const path = route.fullPath;
-    target === '_blank' ? window.open(path) : (location.href = path);
+  const open = (to: string, target: string = '_self') => {
+    target === '_blank' ? window.open(to) : (location.href = to);
   };
 
-  return { throwAxiosError, isPromise, open };
+  return { handleAxiosError, isPromise, open };
 };

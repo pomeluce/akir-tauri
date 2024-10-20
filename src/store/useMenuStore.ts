@@ -1,11 +1,11 @@
 import { create } from 'zustand';
-import { OptionType } from '@common/components';
-import useAuth from '@/hooks/user/useAuth';
-import useMenu from '@/hooks/bar/useMenu';
+import { menus } from '@/request/user';
+import { MenuType } from '@/config/menus';
+import { FileRoutesByPath } from '@tanstack/react-router';
 
 export interface MenuState {
   /** 系统菜单 */
-  menus: { front: OptionType[]; backend: OptionType[] };
+  menus: { front: MenuType<FileRoutesByPath, 'fullPath'>[]; backend: MenuType<FileRoutesByPath, 'fullPath'>[] };
   /** 是否展开 */
   isExpand: boolean;
   /** 切换菜单展开状态 */
@@ -16,8 +16,7 @@ export interface MenuState {
   getMenuList: () => void;
 }
 
-const { isLogin } = useAuth();
-const { getMenus } = useMenu();
+const { isAuthenticated } = useAuth();
 
 export default create<MenuState>()(set => ({
   menus: { front: [], backend: [] },
@@ -26,8 +25,10 @@ export default create<MenuState>()(set => ({
   switchExpand: () => set((state: MenuState) => ({ isExpand: !state.isExpand })),
   setExpand: (value: boolean) => set({ isExpand: value }),
   getMenuList: async () => {
-    if (isLogin()) {
-      const { front, backend } = await getMenus();
+    if (isAuthenticated()) {
+      const {
+        data: { front, backend },
+      } = await menus();
       set({ menus: { front, backend } });
     }
   },

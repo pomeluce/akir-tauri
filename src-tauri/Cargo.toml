@@ -1,6 +1,6 @@
 [package]
 name = "rapidify"
-version = "0.2.4"
+version = "2024.2.4"
 description = "rapidify-tauri"
 authors = [ "pomeluce" ]
 license = "GPL-3.0"
@@ -15,15 +15,15 @@ name = "app_lib"
 crate-type = [ "staticlib", "cdylib", "rlib" ]
 
 [build-dependencies]
-tauri-build = { version = "2.0.0-rc.0", features = [  ] }
+tauri-build = { version = "2.0.0", features = [  ] }
 
 [dependencies]
 serde_json = "1.0"
 serde = { version = "1.0", features = [ "derive" ] }
-tauri = { version = "2.0.0-rc.0", features = [ 'tray-icon', 'image-ico', 'image-png', 'devtools' ] }
-tauri-plugin-autostart = "2.0.0-rc.0"
-tauri-plugin-fs = "2.0.0-rc.0"
-tauri-plugin-os = "2.0.0-rc.0"
-tauri-plugin-shell = "2.0.0-rc.0"
-tauri-plugin-sql = { version = "2.0.0-rc.0", features = [ "sqlite" ] }
+tauri = { version = "2.0.0", features = [ 'tray-icon', 'image-ico', 'image-png', 'devtools' ] }
+tauri-plugin-autostart = "2.0.0"
+tauri-plugin-fs = "2.0.0"
+tauri-plugin-os = "2.0.0"
+tauri-plugin-shell = "2.0.0"
+tauri-plugin-sql = { version = "2.0.0", features = [ "sqlite" ] }
 tauri-plugin-theme = "2.1.1"

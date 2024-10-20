@@ -1,5 +1,5 @@
 import { MockMethod } from 'vite-plugin-mock';
-import { RequestURL } from '../src/enum/RequestURL';
+import { RequestURL } from '../src/constants/RequestURL';
 
 export default [
   {

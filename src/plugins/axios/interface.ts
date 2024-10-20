@@ -4,7 +4,6 @@ interface AxiosOptions {
 }
 
 interface AxiosConfig {
-  baseURL: string;
   useTokenAuthorization: boolean;
-  header: string;
+  customHeader: string;
 }
