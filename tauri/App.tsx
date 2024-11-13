@@ -1,4 +1,3 @@
-import { RouterProvider } from '@common/plugins';
 import { router } from '@tauri/plugins';
 
 const App: React.FC<{}> = () => {

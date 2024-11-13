@@ -2,10 +2,7 @@ import { WithSuspense } from '@common/components';
 import { Leftbar, TopbarMenu } from '@/components';
 
 export const Route = createFileRoute('/admin')({
-  beforeLoad: ({ context }) => {
-    const { isAuthenticated } = context.auth;
-    if (!isAuthenticated()) throw redirect({ to: RouteTo.LOGIN });
-  },
+  beforeLoad: ctx => useAppGuard(ctx, { auth: true }),
   component: () => (
     <WithSuspense>
       <SuiSidebarProvider>
@@ -15,7 +12,7 @@ export const Route = createFileRoute('/admin')({
             <SuiSidebarTrigger />
             <TopbarMenu />
           </main>
-          <div className="p-5">
+          <div className="p-5 flex-1">
             <Outlet />
           </div>
         </main>
