@@ -1,6 +1,4 @@
-import { FC } from 'react';
-
-const App: FC = () => {
+const App: React.FC<{}> = () => {
   const storage = useStorage();
   const themeMode = storage.get(CacheKey.THEME_MODE, 'system');
   const themeHandle = (theme: ThemeType) => {
@@ -11,9 +9,7 @@ const App: FC = () => {
 
   return (
     <ThemeProvider defaultTheme={themeMode} handleToggle={themeHandle}>
-      <ArcoConfigProvider>
-        <AppRouterProvider />
-      </ArcoConfigProvider>
+      <AppRouterProvider />
     </ThemeProvider>
   );
 };

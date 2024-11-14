@@ -1,8 +1,9 @@
-import { createRouter } from '@common/plugins';
-import routes from '@tauri/routes';
+import { routeTree } from '@tauri/routeTree.gen';
 
-const router = createRouter({
-  routes,
-});
+export const router = createRouter({ routeTree });
 
-export default router;
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router;
+  }
+}

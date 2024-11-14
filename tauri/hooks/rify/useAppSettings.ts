@@ -1,6 +1,6 @@
-import general from '@tauri/views/setting/general';
-import keymap from '@tauri/views/setting/keymap';
-import ui from '@tauri/views/setting/ui';
+import general from '@tauri/pages/setting/general';
+import keymap from '@tauri/pages/setting/keymap';
+import ui from '@tauri/pages/setting/ui';
 
 export default () => {
   const settings = [

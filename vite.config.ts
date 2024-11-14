@@ -66,8 +66,8 @@ export default defineConfig(({ command, mode }) => {
       // 代理
       proxy: env.VITE_MOCK_ENABLE ? {} : { [env.VITE_BASE_PREFIX]: { target: env.VITE_API_URL, rewrite: path => path } },
     },
-    root: moduleName || root,
-    publicDir: `${moduleName ? '..' : '.'}/public`,
+    // root: moduleName || root,
+    // publicDir: `${moduleName ? '..' : '.'}/public`,
     build: {
       // 输出目录
       outDir: `${root}/dist/${moduleName || 'main'}`,

@@ -7,5 +7,5 @@ export default () => {
   modules.map(module => module());
 };
 
-export { default as router } from './router';
+export { router } from './router';
 export * from './sqlx';
