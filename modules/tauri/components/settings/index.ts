@@ -1,3 +1,3 @@
-export { default as General } from './general';
-export { default as Keymap } from './keymap';
-export { default as UI } from './ui';
+export { default as general } from './general';
+export { default as keymap } from './keymap';
+export { default as ui } from './ui';

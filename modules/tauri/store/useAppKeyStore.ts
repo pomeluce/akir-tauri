@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { core, window } from '@tauri-apps/api';
 import { platform } from '@tauri-apps/plugin-os';
 import hotkeys from 'hotkeys-js';
-import { addOrUpdate, queryByType } from '@tauri/db/setting';
+import { addOrUpdate, queryByType } from '@tauri/database/setting';
 
 interface AppKeyState {
   keymaps: { id: string; key: string[]; label: string; event: () => void }[];

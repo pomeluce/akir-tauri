@@ -1,20 +1,20 @@
-import { General, Keymap, UI } from '@tauri/components';
+import { general, keymap, ui } from '@tauri/components';
 
 export const settings = [
   {
     title: '通用',
     key: 'settings.general',
-    content: General({}),
+    content: general,
   },
   {
     title: '快捷键',
     key: 'settings.keymap',
-    content: Keymap({}),
+    content: keymap,
   },
   {
     title: '界面',
     key: 'settings.ui',
-    content: UI({}),
+    content: ui,
   },
 ];
 

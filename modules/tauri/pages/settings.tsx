@@ -65,7 +65,7 @@ export const Route = createFileRoute('/settings')({
               <a href={`#${key}`} className="h1 font-bold text-xl text-word1">
                 {title}
               </a>
-              {content}
+              {content({})}
             </span>
           ))}
         </main>

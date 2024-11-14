@@ -1,6 +1,6 @@
 import { MockMethod } from 'vite-plugin-mock';
 import { RequestURL } from '@main/constants/RequestURL';
-import { RouteTo } from '@main/constants/RouteTo';
+import { RouteTo } from '@common/constants/RouteTo';
 
 export default [
   {

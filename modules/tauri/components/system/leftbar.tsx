@@ -18,14 +18,17 @@ const leftbar: React.FC<{}> = () => {
       </span>
       {menus.map((menu, index) => (
         <nav key={`key-${index}`}>
-          <button
-            className={classNames('flex justify-center items-center gap-1 text-sm px-5 py-1.5 rounded-lg', {
-              '!bg-backdrop2 drop-shadow-sm border border-rim2 text-word1 font-semibold': menu.isActive,
-            })}
-            onClick={menu.handleClick}
-          >
-            {menu.icon(menu.isActive ? { strokeWidth: 1 } : {})} {menu.title}
-          </button>
+          <Link to={menu.to} activeOptions={{ exact: true }}>
+            {({ isActive }) => (
+              <button
+                className={classNames('flex justify-center items-center gap-1 text-sm px-5 py-1.5 rounded-lg outline-width-0', {
+                  '!bg-backdrop2 drop-shadow-sm border border-rim2 text-word1 font-semibold': isActive,
+                })}
+              >
+                {menu.icon(isActive ? { strokeWidth: 1 } : {})} {menu.title}
+              </button>
+            )}
+          </Link>
         </nav>
       ))}
     </main>

@@ -1,21 +1,16 @@
 import { event } from '@tauri-apps/api';
-import { router } from '@tauri/plugins';
 
 export const menus = [
   {
     title: '主页',
     icon: IconRiHome7Line,
-    handleClick: () => {
-      router.navigate({ to: TauriRouteTo.HOME });
-    },
+    to: RouteTo.Tauri.HOME,
     isActive: true,
   },
   {
     title: '设置',
     icon: IconRiSettings6Line,
-    handleClick: () => {
-      router.navigate({ to: TauriRouteTo.SETTINGS });
-    },
+    to: RouteTo.Tauri.SETTINGS,
     isActive: false,
   },
 ];
