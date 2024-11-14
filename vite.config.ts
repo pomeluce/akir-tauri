@@ -1,79 +1,62 @@
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import UnoCSS from 'unocss/vite';
-import { resolve } from 'path';
-import { writeFileSync } from 'fs';
-import { autoImport, arco, mock, tanstack } from './core/plugins';
+import { join, resolve } from 'path';
+import { readdirSync } from 'fs';
+import { autoImport, mock } from './core/plugins';
 import { parseEnv } from './core/utils';
 import { TanStackRouterVite } from '@tanstack/router-plugin/vite';
 
-/** 当前执行 node 命令时文件夹的地址（工作目录） */
 const root: string = process.cwd();
 
-/** 路径拼接函数，简化代码 */
-const pathResolve = (path: string): string => resolve(root, path);
+const moduleInputs = {};
+const entryPath = resolve(__dirname, './modules');
+const entrys = Object.fromEntries(readdirSync(entryPath).map(dirname => [dirname, join(entryPath, dirname)]));
+Object.keys(entrys).forEach(name => (moduleInputs[name] = resolve(__dirname, `modules/${name}/index.html`)));
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
-  // 获取当前环境模式
   const isBuild = command === 'build';
-  // 设置第三个参数为 '' 来加载所有环境变量，而不管是否有 `VITE_` 前缀。
   const env = parseEnv(loadEnv(mode, root));
 
-  // 获取自定义参数
   const args = process.argv.slice(2);
   const moduleIndex = args.findIndex(arg => arg.startsWith('--module='));
   const moduleName = moduleIndex !== -1 ? args[moduleIndex].split('=')[1] : null;
-  const input = pathResolve(`${moduleName || root}/index.html`);
-
-  // 生成 tsr.config.json 文件
-  writeFileSync('tsr.config.json', JSON.stringify(tanstack(moduleName), null, 2));
+  const input = moduleInputs[moduleName];
 
   return {
-    plugins: [...autoImport, react(), TanStackRouterVite(), UnoCSS(), arco(), mock(isBuild, env)],
-    // 本地开发服务器配置
-    // 配置路径别名
+    plugins: [...autoImport, react(), TanStackRouterVite(), UnoCSS(), mock(isBuild, env)],
     resolve: {
-      // 导入组件忽略文件后缀
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
-      // 配置路径别名
-      alias: [
-        { find: '@', replacement: pathResolve('src') },
-        { find: '#', replacement: pathResolve('types') },
-        { find: '@tauri', replacement: pathResolve('tauri') },
-        { find: '@common', replacement: pathResolve('common') },
-      ],
+      alias: {
+        '#': resolve(__dirname, 'types'),
+        '@': resolve(__dirname, 'src'),
+        '@common': resolve(__dirname, 'src/common'),
+        '@main': resolve(__dirname, 'modules/main'),
+        '@tauri': resolve(__dirname, 'modules/tauri'),
+      },
     },
     define: {
-      [process.env.NODE_ENV]: `${env.NODE_ENV}`,
-      __DEV__: env.NODE_ENV !== 'production',
+      __DEV__: mode !== 'production',
     },
     css: {
-      // 开启 css 模块化
       modules: {
         generateScopedName: '[local]-[hash:8]',
         hashPrefix: 'rify',
         localsConvention: 'camelCaseOnly',
       },
-      // 解决 scss api 提示问题
       preprocessorOptions: { scss: { api: 'modern-compiler' } },
     },
     base: isBuild ? '/' : '/',
-    // 本地开发服务器配置
     server: {
-      // 监听本地所有 ip
       host: true,
-      // 代理
       proxy: env.VITE_MOCK_ENABLE ? {} : { [env.VITE_BASE_PREFIX]: { target: env.VITE_API_URL, rewrite: path => path } },
     },
-    // root: moduleName || root,
-    // publicDir: `${moduleName ? '..' : '.'}/public`,
+    root: `./modules/${moduleName}/`,
+    publicDir: `${root}/public`,
     build: {
-      // 输出目录
-      outDir: `${root}/dist/${moduleName || 'main'}`,
-      // 编译是清空输出目录
+      outDir: `${root}/dist/${moduleName}`,
       emptyOutDir: true,
-      // 代码拆包
       rollupOptions: {
         input,
         output: {

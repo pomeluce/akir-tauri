@@ -1,5 +1,5 @@
 import AutoImport from 'unplugin-auto-import/vite';
-import { ArcoResolver, IconResolver, SuiResolver } from '../resolver';
+import { IconResolver, SuiResolver } from '../resolver';
 
 const relativeRoot = (dir: string) => `${process.cwd()}/${dir}`;
 
@@ -34,21 +34,18 @@ export default [
       },
     ],
     // 自定义解析函数: 自动导入组件
-    resolvers: [ArcoResolver({ prefix: 'Arco' }), SuiResolver(), IconResolver()],
+    resolvers: [SuiResolver(), IconResolver()],
     // 自定义函数导入
     dirs: [
-      relativeRoot('common/store/**/*'),
-      relativeRoot('common/constants/**/*'),
-      relativeRoot('common/hooks/**/*'),
-      relativeRoot('src/store/**/*'),
-      relativeRoot('src/constants/**/*'),
-      relativeRoot('src/hooks/**/*'),
-      relativeRoot('tauri/store/**/*'),
-      relativeRoot('tauri/enum/**/*'),
-      relativeRoot('tauri/hooks/**/*'),
+      relativeRoot('modules/**/store/**/*'),
+      relativeRoot('modules/**/constants/**/*'),
+      relativeRoot('modules/**/hooks/**/*'),
+      relativeRoot('src/common/store/**/*'),
+      relativeRoot('src/common/constants/**/*'),
+      relativeRoot('src/common/hooks/**/*'),
     ],
     // 声明生成的位置
-    dts: relativeRoot('/types/rify/auto-imports.d.ts'),
+    dts: relativeRoot('types/rify/auto-imports.d.ts'),
     // 根据文件名称自动设置默认导出的变量名
     defaultExportByFilename: true,
   }),

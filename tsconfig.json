@@ -23,27 +23,17 @@
     "noFallthroughCasesInSwitch": true,
 
     /* Other */
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
       "#/*": ["types/*"],
-      "@tauri/*": ["tauri/*"],
-      "@common/*": ["common/*"]
+      "@/*": ["src/*"],
+      "@common/*": ["src/common/*"],
+      "@main/*": ["modules/main/*"],
+      "@tauri/*": ["modules/tauri/*"]
     },
     "types": ["lodash-es", "vite/client"]
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "tauri/**/*.ts",
-    "tauri/**/*.d.ts",
-    "tauri/**/*.tsx",
-    "common/**/*.ts",
-    "common/**/*.d.ts",
-    "common/**/*.tsx",
-    "types/**/*.d.ts"
-  ],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "modules/**/*.ts", "modules/**/*.d.ts", "modules/**/*.tsx", "types/**/*.d.ts"],
   "exclude": ["node_modules", "dist"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -24,4 +24,3 @@ dist-ssr
 *.sw?
 
 auto-imports.d.ts
-tsr.config.json

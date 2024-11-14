@@ -6,7 +6,7 @@
     "frontendDist": "../dist",
     "devUrl": "http://localhost:5173",
     "beforeDevCommand": "pnpm run tauri:dev",
-    "beforeBuildCommand": "pnpm run tauri:build:pro"
+    "beforeBuildCommand": "pnpm run build:tauri:pro"
   },
   "app": {
     "windows": [

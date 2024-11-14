@@ -1,24 +1,5 @@
 import { Resolver } from 'unplugin-auto-import/types';
-import { ResolverOptions } from './types';
-import { arcoComponents, sui } from './preset';
-import { arcoComponentMap } from './utils';
-
-/* arco 组件自动导入 */
-export const ArcoResolver = (options: ResolverOptions = {}): Resolver => {
-  const { prefix } = options;
-  const componentMap = arcoComponentMap(prefix);
-  return {
-    type: 'component',
-    resolve: (originName: string) => {
-      if (!!prefix) {
-        const name = componentMap.get(originName);
-        if (!!name) return { from: '@arco-design/web-react', name, as: originName };
-      } else {
-        if (arcoComponents.includes(originName)) return { from: '@arco-design/web-react', name: originName };
-      }
-    },
-  };
-};
+import { sui } from './preset';
 
 /* shadcn 组件自动导入 */
 export const SuiResolver = (): Resolver => {
@@ -26,7 +7,7 @@ export const SuiResolver = (): Resolver => {
     type: 'component',
     resolve: (name: string) => {
       if (name.startsWith('Sui') && sui.includes(name.slice(3))) {
-        return { from: `${process.cwd().replace(/\\/g, '/')}/common/shadcn`, name: name.slice(3), as: name };
+        return { from: `${process.cwd().replace(/\\/g, '/')}/src/common/shadcn`, name: name.slice(3), as: name };
       }
     },
   };

@@ -3,7 +3,7 @@
   "style": "new-york",
   "tailwind": {
     "config": "uno.config.ts",
-    "css": "common/styles/shadcn.scss",
+    "css": "src/common/styles/shadcn.scss",
     "baseColor": "neutral",
     "cssVariables": true,
     "prefix": ""
