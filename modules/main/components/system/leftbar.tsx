@@ -10,10 +10,16 @@ const leftbar: React.FC<{}> = () => {
     <SuiSidebar collapsible="icon">
       <SuiSidebarHeader className="bg-backdrop2 pt-4">
         <SuiSidebarMenuButton asChild>
-          <Link className="hover:text-word2" to={RouteTo.HOME}>
-            <img className={open ? 'w-6 h-6' : 'w-4 h-4'} src={Logo} />
-            {open && <span className="text-lg font-bold uppercase">rapidify-react</span>}
-          </Link>
+          {open ? (
+            <Link to={RouteTo.HOME} className="flex justify-center items-end gap-1 font-bold hover:text-word1/80">
+              <img className="w-5 h-5" src={Logo} />
+              <span className="text-lg font-bold uppercase">rapidify</span>
+            </Link>
+          ) : (
+            <Link className=" hover:text-word2" to={RouteTo.HOME}>
+              <img className="w-4 h-4" src={Logo} />
+            </Link>
+          )}
         </SuiSidebarMenuButton>
       </SuiSidebarHeader>
       <SuiSidebarContent className="bg-backdrop2">

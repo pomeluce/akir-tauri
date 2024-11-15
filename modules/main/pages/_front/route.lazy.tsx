@@ -10,9 +10,9 @@ export const Route = createLazyFileRoute('/_front')({
         <div className="flex justify-between items-center px-3 w-full 2xl:w-page 2xl:m-auto">
           <section className="flex items-center xl:items-stretch md:mr-6">
             <div className="flex justify-center items-center">
-              <Link to="/" className="flex justify-between items-center gap-1 font-bold mr-5 hover:text-link1">
-                <img className="w-6 h-6" src={Logo} />
-                <span className="font-bold text-xl uppercase">rapidify-react</span>
+              <Link to={RouteTo.HOME} className="flex justify-between items-center gap-1 font-bold mr-5 hover:text-word1/80">
+                <img className="w-5 h-5" src={Logo} />
+                <span className="font-bold uppercase">rapidify</span>
               </Link>
             </div>
             <main className="xl:flex justify-center items-center gap-3 font-bold opacity-95 hidden">
