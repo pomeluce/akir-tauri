@@ -11,7 +11,6 @@ export const ThemeProvider = (props: { children: ReactNode; defaultTheme?: Theme
     const mode = theme === 'system' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme;
 
     document.documentElement.dataset.theme = mode;
-    document.body.setAttribute('arco-theme', mode);
     setMode(mode);
     props.handleToggle?.(theme);
   }, [theme]);
@@ -21,7 +20,6 @@ export const ThemeProvider = (props: { children: ReactNode; defaultTheme?: Theme
       if (theme === 'system') {
         const mode = e.matches ? 'dark' : 'light';
         document.documentElement.dataset.theme = mode;
-        document.body.setAttribute('arco-theme', mode);
         setMode(mode);
       }
     },
