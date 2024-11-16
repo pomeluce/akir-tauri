@@ -1,17 +1,4 @@
 import { Resolver } from 'unplugin-auto-import/types';
-import { sui } from './preset';
-
-/* shadcn 组件自动导入 */
-export const SuiResolver = (): Resolver => {
-  return {
-    type: 'component',
-    resolve: (name: string) => {
-      if (name.startsWith('Sui') && sui.includes(name.slice(3))) {
-        return { from: `${process.cwd().replace(/\\/g, '/')}/src/common/shadcn`, name: name.slice(3), as: name };
-      }
-    },
-  };
-};
 
 const prefixs = [
   'Ai',

@@ -1,16 +1,6 @@
 ## 简介
 
-[rapidify-react](https://github.com/pomeluce/rapidify-react) 是一个开源的, 基于 [react](https://github.com/facebook/react)、[vite](https://github.com/vitejs/vite)、 [shadcn/ui](https://ui.shadcn.com/)、[typescript](https://www.typescriptlang.org/) 的前后台快速开发脚手架，它使用了最新的前端技术栈，并提炼了典型的业务模型，页面，包括二次封装组件、动态菜单、权限校验、粒子化权限控制、流程管理等功能, 它可以帮助你快速搭建前台后台项目。
-
-## 特性
-
-- 响应式、多主题，多配置，快速集成，开箱即用
-- 基于 `react`、`typescript`、`zustand`、`vite` 等前端前沿技术
-- 集成富文本、markdown、在线 excel
-- 采用 unocss 进行样式控制, 方便快捷
-- 强大的鉴权系统，对路由、菜单、功能点等支持`三种鉴权模式`，满足不同的业务鉴权需求
-- 移动端适配, 响应式布局
-- 持续更新，实用性页面模板功能和交互，随意搭配组合，让构建页面变得简单化
+[rapidify-react](https://github.com/pomeluce/rapidify-react) 是一个开源的, 基于 [react](https://github.com/facebook/react)、[vite](https://github.com/vitejs/vite)、 [shadcn/ui](https://ui.shadcn.com/)、[typescript](https://www.typescriptlang.org/)、[tauri](https://tauri.app) 的桌面端开发脚手架，它使用了最新的前端技术栈，并提供了常用的客户端组件和软件基本结构，提升软件开发效率。
 
 ## 文档
 
@@ -26,7 +16,7 @@
 - [typescript](https://www.typescriptlang.org/) - 熟悉`TypeScript`基本语法
 - [es6+](http://es6.ruanyifeng.com/) - 熟悉 es6 基本语法
 - [zustand](https://zustand-demo.pmnd.rs/) - 熟悉 zustand 基本使用
-- [mock.js](https://github.com/nuysoft/Mock) - mockjs 基本语法
+- [tauri](https://tauri.app) - 熟悉 tauri 框架
 
 ## 使用
 

@@ -1,28 +1,15 @@
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import UnoCSS from 'unocss/vite';
-import { join, resolve } from 'path';
-import { readdirSync } from 'fs';
+import { resolve } from 'path';
 import { autoImport, mock } from './core/plugins';
 import { parseEnv } from './core/utils';
 import { TanStackRouterVite } from '@tanstack/router-plugin/vite';
 
-const root: string = process.cwd();
-
-const moduleInputs = {};
-const entryPath = resolve(__dirname, './modules');
-const entrys = Object.fromEntries(readdirSync(entryPath).map(dirname => [dirname, join(entryPath, dirname)]));
-Object.keys(entrys).forEach(name => (moduleInputs[name] = resolve(__dirname, `modules/${name}/index.html`)));
-
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
   const isBuild = command === 'build';
-  const env = parseEnv(loadEnv(mode, root));
-
-  const args = process.argv.slice(2);
-  const moduleIndex = args.findIndex(arg => arg.startsWith('--module='));
-  const moduleName = moduleIndex !== -1 ? args[moduleIndex].split('=')[1] : null;
-  const input = moduleInputs[moduleName];
+  const env = parseEnv(loadEnv(mode, process.cwd()));
 
   return {
     plugins: [...autoImport, react(), TanStackRouterVite(), UnoCSS(), mock(isBuild, env)],
@@ -31,9 +18,6 @@ export default defineConfig(({ command, mode }) => {
       alias: {
         '#': resolve(__dirname, 'types'),
         '@': resolve(__dirname, 'src'),
-        '@common': resolve(__dirname, 'src/common'),
-        '@main': resolve(__dirname, 'modules/main'),
-        '@tauri': resolve(__dirname, 'modules/tauri'),
       },
     },
     define: {
@@ -52,13 +36,9 @@ export default defineConfig(({ command, mode }) => {
       host: true,
       proxy: env.VITE_MOCK_ENABLE ? {} : { [env.VITE_BASE_PREFIX]: { target: env.VITE_API_URL, rewrite: path => path } },
     },
-    root: `./modules/${moduleName}/`,
-    publicDir: `${root}/public`,
     build: {
-      outDir: `${root}/dist/${moduleName}`,
       emptyOutDir: true,
       rollupOptions: {
-        input,
         output: {
           manualChunks(id: string) {
             if (id.includes('node_modules')) {

@@ -1,1 +1,1 @@
-export { SuiResolver, IconResolver } from './resolver';
+export { IconResolver } from './resolver';

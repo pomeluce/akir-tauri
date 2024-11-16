@@ -1,12 +1,12 @@
 {
   "productName": "rapidify-tauri",
-  "version": "2024.1.3",
+  "version": "2024.4.2",
   "identifier": "org.pomeluce.rapidify",
   "build": {
     "frontendDist": "../dist",
     "devUrl": "http://localhost:5173",
-    "beforeDevCommand": "pnpm run tauri:dev",
-    "beforeBuildCommand": "pnpm run build:tauri:pro"
+    "beforeDevCommand": "pnpm run dev",
+    "beforeBuildCommand": "pnpm run build:pro"
   },
   "app": {
     "windows": [

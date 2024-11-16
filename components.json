@@ -3,7 +3,7 @@
   "style": "new-york",
   "tailwind": {
     "config": "uno.config.ts",
-    "css": "src/common/styles/shadcn.scss",
+    "css": "src/styles/shadcn.scss",
     "baseColor": "neutral",
     "cssVariables": true,
     "prefix": ""
@@ -11,10 +11,10 @@
   "rsc": false,
   "tsx": true,
   "aliases": {
-    "components": "@common/shadcn",
-    "ui": "@common/shadcn/ui",
-    "hooks": "@common/shadcn/hooks",
-    "lib": "@common/lib",
-    "utils": "@common/lib/utils"
+    "components": "@/shadcn",
+    "ui": "@/shadcn/ui",
+    "hooks": "@/shadcn/hooks",
+    "lib": "@/shacdn/lib",
+    "utils": "@/shacdn/lib/utils"
   }
 }

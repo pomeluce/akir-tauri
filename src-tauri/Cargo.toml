@@ -1,6 +1,6 @@
 [package]
 name = "rapidify"
-version = "2024.2.4"
+version = "2024.4.2"
 description = "rapidify-tauri"
 authors = [ "pomeluce" ]
 license = "GPL-3.0"
