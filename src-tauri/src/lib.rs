@@ -32,7 +32,7 @@ pub fn run() {
             Ok(())
         })
         .run(ctx)
-        .expect("error while running rapidify-tauri application");
+        .expect("error while running akir-tauri application");
 }
 
 /* 数据库目录创建事件 */

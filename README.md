@@ -1,6 +1,6 @@
 ## 简介
 
-[rapidify-react](https://github.com/pomeluce/rapidify-react) 是一个开源的, 基于 [react](https://github.com/facebook/react)、[vite](https://github.com/vitejs/vite)、 [shadcn/ui](https://ui.shadcn.com/)、[typescript](https://www.typescriptlang.org/)、[tauri](https://tauri.app) 的桌面端开发脚手架，它使用了最新的前端技术栈，并提供了常用的客户端组件和软件基本结构，提升软件开发效率。
+[akir-react](https://github.com/pomeluce/akir-react) 是一个开源的, 基于 [react](https://github.com/facebook/react)、[vite](https://github.com/vitejs/vite)、 [shadcn/ui](https://ui.shadcn.com/)、[typescript](https://www.typescriptlang.org/)、[tauri](https://tauri.app) 的桌面端开发脚手架，它使用了最新的前端技术栈，并提供了常用的客户端组件和软件基本结构，提升软件开发效率。
 
 ## 文档
 
@@ -25,13 +25,13 @@
 - 安装 cli 工具
 
 ```bash
-npm i rify-app -g
+npm i akir-app -g
 ```
 
 - 通过全局命令创建项目
 
 ```bash
-rify-app
+akir-app
 ```
 
 - 进入项目文件夹, 启动项目
@@ -51,13 +51,13 @@ pnpm build
 - 获取项目代码
 
 ```bash
-git clone https://github.com/pomeluce/rapidify-react.git
+git clone https://github.com/pomeluce/akir-react.git
 ```
 
 - 安装依赖
 
 ```bash
-cd rapidify-react
+cd akir-react
 
 pnpm install
 ```
@@ -76,7 +76,7 @@ pnpm build
 
 ## 如何贡献
 
-非常欢迎你的加入！[提一个 Issue](https://github.com/pomeluce/rapidify-react/issues) 或者提交一个 Pull Request。
+非常欢迎你的加入！[提一个 Issue](https://github.com/pomeluce/akir-react/issues) 或者提交一个 Pull Request。
 
 **Pull Request:**
 
@@ -88,7 +88,7 @@ pnpm build
 
 ## Git 贡献提交规范
 
-- 参考 [规范文档](https://github.com/pomeluce/rapidify-react/blob/main/COMMIT_CONVENTION.md) ([Angular](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular))
+- 参考 [规范文档](https://github.com/pomeluce/akir-react/blob/main/COMMIT_CONVENTION.md) ([Angular](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular))
 
   - `feat` 增加新功能
   - `fix` 修复问题/BUG

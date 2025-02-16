@@ -14,7 +14,6 @@ export default defineConfig(({ command, mode }) => {
   return {
     plugins: [...autoImport, react(), TanStackRouterVite(), UnoCSS(), mock(isBuild, env)],
     resolve: {
-      extensions: ['.js', '.jsx', '.ts', '.tsx'],
       alias: {
         '#': resolve(__dirname, 'types'),
         '@': resolve(__dirname, 'src'),
@@ -26,10 +25,9 @@ export default defineConfig(({ command, mode }) => {
     css: {
       modules: {
         generateScopedName: '[local]-[hash:8]',
-        hashPrefix: 'rify',
+        hashPrefix: 'akir',
         localsConvention: 'camelCaseOnly',
       },
-      preprocessorOptions: { scss: { api: 'modern-compiler' } },
     },
     base: isBuild ? '/' : '/',
     server: {

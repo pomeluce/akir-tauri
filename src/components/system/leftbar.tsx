@@ -1,4 +1,4 @@
-import Logo from '/pomeluce.svg';
+import Logo from '/akir.svg';
 import { app } from '@tauri-apps/api';
 import classNames from 'classnames';
 import { menus } from '@/configs/menus';
@@ -14,7 +14,7 @@ const leftbar: React.FC<{}> = () => {
     <main className="min-w-32 flex flex-col items-center gap-3 p-3">
       <span className="flex justify-center items-center gap-1 select-none cursor-default">
         <img src={Logo} tabIndex={-1} width={20} draggable={false} />
-        <span className="text-sm uppercase font-bold text-[#6b9e59]">v{name}</span>
+        <span className="text-sm uppercase font-bold text-indigo-700 dark:text-indigo-400">v{name}</span>
       </span>
       {menus.map((menu, index) => (
         <nav key={`key-${index}`}>

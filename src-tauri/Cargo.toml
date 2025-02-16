@@ -1,10 +1,10 @@
 [package]
-name = "rapidify"
-version = "2024.4.2"
-description = "rapidify-tauri"
+name = "akir"
+version = "3.5.1"
+description = "akir-tauri"
 authors = [ "pomeluce" ]
 license = "GPL-3.0"
-repository = "https://github.com/pomeluce/rapidify-react"
+repository = "https://github.com/pomeluce/akir-react"
 edition = "2021"
 rust-version = "1.70"
 

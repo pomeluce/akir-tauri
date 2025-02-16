@@ -1,7 +1,7 @@
 {
-  "productName": "rapidify-tauri",
-  "version": "2024.4.2",
-  "identifier": "org.pomeluce.rapidify",
+  "productName": "akir-tauri",
+  "version": "3.5.1",
+  "identifier": "org.pomeluce.akir",
   "build": {
     "frontendDist": "../dist",
     "devUrl": "http://localhost:5173",
@@ -11,7 +11,7 @@
   "app": {
     "windows": [
       {
-        "title": "rapidify-tauri",
+        "title": "akir-tauri",
         "label": "main",
         "width": 800,
         "height": 600,
