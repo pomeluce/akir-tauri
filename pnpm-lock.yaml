@@ -97,14 +97,14 @@ importers:
         version: 5.0.3(@types/react@19.0.10)(react@19.0.0)(use-sync-external-store@1.4.0(react@19.0.0))
     devDependencies:
       '@faker-js/faker':
-        specifier: ^9.5.1
-        version: 9.5.1
+        specifier: ^9.6.0
+        version: 9.6.0
       '@tanstack/router-devtools':
         specifier: ^1.112.18
         version: 1.112.18(@tanstack/react-router@1.112.18(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(csstype@3.1.3)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@tanstack/router-plugin':
-        specifier: ^1.112.18
-        version: 1.112.18(@tanstack/react-router@1.112.18(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(vite@6.2.1(@types/node@22.13.9)(jiti@2.4.2)(sass@1.85.1)(tsx@4.19.3))
+        specifier: ^1.112.19
+        version: 1.112.19(@tanstack/react-router@1.112.18(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(vite@6.2.1(@types/node@22.13.9)(jiti@2.4.2)(sass@1.85.1)(tsx@4.19.3))
       '@types/mockjs':
         specifier: ^1.0.10
         version: 1.0.10
@@ -401,8 +401,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@faker-js/faker@9.5.1':
-    resolution: {integrity: sha512-0fzMEDxkExR2cn731kpDaCCnBGBUOIXEi2S1N5l8Hltp6aPf4soTMJ+g4k8r2sI5oB+rpwIW8Uy/6jkwGpnWPg==}
+  '@faker-js/faker@9.6.0':
+    resolution: {integrity: sha512-3vm4by+B5lvsFPSyep3ELWmZfE3kicDtmemVpuwl1yH7tqtnHdsA6hG8fbXedMVdkzgtvzWoRgjSB4Q+FHnZiw==}
     engines: {node: '>=18.0.0', npm: '>=9.0.0'}
 
   '@floating-ui/core@1.6.9':
@@ -1067,8 +1067,8 @@ packages:
       csstype:
         optional: true
 
-  '@tanstack/router-generator@1.112.18':
-    resolution: {integrity: sha512-CsSnTu0NriD7XhiM4sFBiXdrnn0jTSnY7/vwrmGKIwoA6d7CUsSZSbNa8bUmxGFk221MA4yKajNWjvBWcD0gTg==}
+  '@tanstack/router-generator@1.112.19':
+    resolution: {integrity: sha512-JFYj2oAhUuho0B2oAJ37mlVvtt/18EJGE0aNpbWXKfcQihadMqFf4kz/KeYv7kHrMsCtq+n7e50oi5q1x9iYSg==}
     engines: {node: '>=12'}
     peerDependencies:
       '@tanstack/react-router': ^1.112.18
@@ -1076,8 +1076,8 @@ packages:
       '@tanstack/react-router':
         optional: true
 
-  '@tanstack/router-plugin@1.112.18':
-    resolution: {integrity: sha512-CnAJVwoj9A7ZgTGG9wjynq3FmM2HfDeiKMP7a/sYoEybuJMfMoW+A9lgZe70Dbca55QYQOWdvxfMn3wYss1MPw==}
+  '@tanstack/router-plugin@1.112.19':
+    resolution: {integrity: sha512-dT+yI/hpxyaW0It1QQfGUSVQzKt1ciVJdqQLuc/blsfqZ7tWIBpLP9fCT5v2c4PIUPkUW/LG1P6bktVukXVKVA==}
     engines: {node: '>=12'}
     peerDependencies:
       '@rsbuild/core': '>=1.0.2'
@@ -1606,8 +1606,8 @@ packages:
   ms@2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
 
-  nanoid@3.3.8:
-    resolution: {integrity: sha512-WNLf5Sd8oZxOm+TzppcYk8gVOgP+l58xNy58D0nbUnOxOWRWvlcCV4kUF7ltmI6PsrLl/BgKEyS4mqsGChFN0w==}
+  nanoid@3.3.9:
+    resolution: {integrity: sha512-SppoicMGpZvbF1l3z4x7No3OlIjP7QJvC9XR7AhZr1kL133KHnKPztkKDc+Ir4aJ/1VhTySrtKhrsycmrMQfvg==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
@@ -2215,7 +2215,7 @@ snapshots:
   '@esbuild/win32-x64@0.25.0':
     optional: true
 
-  '@faker-js/faker@9.5.1': {}
+  '@faker-js/faker@9.6.0': {}
 
   '@floating-ui/core@1.6.9':
     dependencies:
@@ -2782,7 +2782,7 @@ snapshots:
     optionalDependencies:
       csstype: 3.1.3
 
-  '@tanstack/router-generator@1.112.18(@tanstack/react-router@1.112.18(react-dom@19.0.0(react@19.0.0))(react@19.0.0))':
+  '@tanstack/router-generator@1.112.19(@tanstack/react-router@1.112.18(react-dom@19.0.0(react@19.0.0))(react@19.0.0))':
     dependencies:
       '@tanstack/virtual-file-routes': 1.99.0
       prettier: 3.5.3
@@ -2791,7 +2791,7 @@ snapshots:
     optionalDependencies:
       '@tanstack/react-router': 1.112.18(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
 
-  '@tanstack/router-plugin@1.112.18(@tanstack/react-router@1.112.18(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(vite@6.2.1(@types/node@22.13.9)(jiti@2.4.2)(sass@1.85.1)(tsx@4.19.3))':
+  '@tanstack/router-plugin@1.112.19(@tanstack/react-router@1.112.18(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(vite@6.2.1(@types/node@22.13.9)(jiti@2.4.2)(sass@1.85.1)(tsx@4.19.3))':
     dependencies:
       '@babel/core': 7.26.9
       '@babel/plugin-syntax-jsx': 7.25.9(@babel/core@7.26.9)
@@ -2800,7 +2800,7 @@ snapshots:
       '@babel/traverse': 7.26.9
       '@babel/types': 7.26.9
       '@tanstack/router-core': 1.112.18
-      '@tanstack/router-generator': 1.112.18(@tanstack/react-router@1.112.18(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
+      '@tanstack/router-generator': 1.112.19(@tanstack/react-router@1.112.18(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
       '@tanstack/router-utils': 1.112.18
       '@tanstack/virtual-file-routes': 1.99.0
       '@types/babel__core': 7.20.5
@@ -3406,7 +3406,7 @@ snapshots:
 
   ms@2.1.3: {}
 
-  nanoid@3.3.8: {}
+  nanoid@3.3.9: {}
 
   node-addon-api@7.1.1:
     optional: true
@@ -3459,7 +3459,7 @@ snapshots:
 
   postcss@8.5.3:
     dependencies:
-      nanoid: 3.3.8
+      nanoid: 3.3.9
       picocolors: 1.1.1
       source-map-js: 1.2.1
 

@@ -58,9 +58,9 @@
     "zustand": "5.0.3"
   },
   "devDependencies": {
-    "@faker-js/faker": "^9.5.1",
+    "@faker-js/faker": "^9.6.0",
     "@tanstack/router-devtools": "^1.112.18",
-    "@tanstack/router-plugin": "^1.112.18",
+    "@tanstack/router-plugin": "^1.112.19",
     "@types/mockjs": "^1.0.10",
     "@types/node": "^22.13.9",
     "@types/react": "^19.0.10",
