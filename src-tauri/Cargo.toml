@@ -4,7 +4,7 @@ version = "3.5.1"
 description = "akir-tauri"
 authors = [ "pomeluce" ]
 license = "GPL-3.0"
-repository = "https://github.com/pomeluce/akir-react"
+repository = "https://github.com/pomeluce/akir-tauri"
 edition = "2021"
 rust-version = "1.70"
 

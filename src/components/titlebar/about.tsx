@@ -5,7 +5,7 @@ import { app } from '@tauri-apps/api';
 const about: React.FC<{}> = () => {
   const [version, setVersion] = useState<string>('unknown');
 
-  const linkOpen = () => open('https://github.com/pomeluce/akir-react');
+  const linkOpen = () => open('https://github.com/pomeluce/akir-tauri');
 
   useAsyncEffect(async () => {
     setVersion(await app.getVersion());
