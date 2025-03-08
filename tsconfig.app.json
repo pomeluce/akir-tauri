@@ -22,7 +22,16 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    /* Other */
+    "baseUrl": "./",
+    "paths": {
+      "#/*": ["types/*"],
+      "@/*": ["src/*"]
+    },
+    "types": ["lodash-es", "vite/client"]
   },
-  "include": ["vite.config.ts", "core/**/*.ts", "types/**/*.d.ts"]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "types/**/*.d.ts"],
+  "exclude": ["node_modules", "dist"]
 }

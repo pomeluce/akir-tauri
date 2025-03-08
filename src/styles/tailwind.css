@@ -1,0 +1,143 @@
+@import './themes.css';
+@import './shadcn.css';
+@import 'tailwindcss';
+
+@plugin 'tailwindcss-animate';
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@theme {
+  /* 主题色 */
+  --color-primary1: var(--akir-primary-1);
+  --color-primary2: var(--akir-primary-2);
+  --color-primary3: var(--akir-primary-3);
+  --color-primary4: var(--akir-primary-4);
+  --color-primary5: var(--akir-primary-5);
+  --color-primary6: var(--akir-primary-6);
+  --color-primary7: var(--akir-primary-7);
+
+  --color-success1: var(--akir-success-1);
+  --color-success2: var(--akir-success-2);
+  --color-success3: var(--akir-success-3);
+  --color-success4: var(--akir-success-4);
+  --color-success5: var(--akir-success-5);
+  --color-success6: var(--akir-success-6);
+  --color-success7: var(--akir-success-7);
+
+  --color-warning1: var(--akir-warning-1);
+  --color-warning2: var(--akir-warning-2);
+  --color-warning3: var(--akir-warning-3);
+  --color-warning4: var(--akir-warning-4);
+  --color-warning5: var(--akir-warning-5);
+  --color-warning6: var(--akir-warning-6);
+  --color-warning7: var(--akir-warning-7);
+
+  --color-danger1: var(--akir-danger-1);
+  --color-danger2: var(--akir-danger-2);
+  --color-danger3: var(--akir-danger-3);
+  --color-danger4: var(--akir-danger-4);
+  --color-danger5: var(--akir-danger-5);
+  --color-danger6: var(--akir-danger-6);
+  --color-danger7: var(--akir-danger-7);
+
+  /* 链接 */
+  --color-link1: var(--akir-link-1);
+  --color-link2: var(--akir-link-2);
+
+  /* 背景色 */
+  --color-backdrop1: var(--akir-bg-1);
+  --color-backdrop2: var(--akir-bg-2);
+  --color-backdrop3: var(--akir-bg-3);
+  --color-backdrop4: var(--akir-bg-4);
+  --color-backdrop-white: var(--akir-bg-white);
+
+  /* 文字颜色 */
+  --color-word1: var(--akir-grey-10);
+  --color-word2: var(--akir-grey-8);
+  --color-word3: var(--akir-grey-6);
+  --color-word4: var(--akir-grey-4);
+
+  /* 边框 */
+  --color-rim1: var(--akir-grey-2);
+  --color-rim2: var(--akir-grey-3);
+  --color-rim3: var(--akir-grey-4);
+  --color-rim4: var(--akir-grey-6);
+
+  /* 填充 */
+  --color-fill1: var(--akir-grey-1);
+  --color-fill2: var(--akir-grey-2);
+  --color-fill3: var(--akir-grey-3);
+  --color-fill4: var(--akir-grey-4);
+
+  --container-page: 1450px;
+
+  --shadow-3xl: 0 35px 60px -15px rgba(0, 0, 0, 0.3);
+  --drop-shadow-3xl: 0 35px 35px rgba(0, 0, 0, 0.25);
+  --drop-shadow-4xl: 0 35px 35px rgba(0, 0, 0, 0.25), 0 45px 65px rgba(0, 0, 0, 0.15);
+
+  /* 动画 */
+  --animate-blink: blink 0.8s ease infinite;
+  @keyframes blink {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+
+    &:focus,
+    &:focus-within,
+    &:focus-visible {
+      @apply outline-none;
+    }
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}

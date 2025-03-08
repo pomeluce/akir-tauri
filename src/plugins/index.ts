@@ -1,7 +1,7 @@
-import { setup as unocss } from './unocss';
+import { setup as tailwind } from './tailwind';
 import { setup as hotkeys } from './hotkeys';
 
-const modules = [hotkeys, unocss];
+const modules = [hotkeys, tailwind];
 
 export default () => {
   modules.map(module => module());

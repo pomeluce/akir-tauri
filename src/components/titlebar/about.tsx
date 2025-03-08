@@ -1,11 +1,13 @@
 import { Button, Dialog, DialogClose, DialogContent, DialogFooter, DialogTitle, DialogTrigger } from '@/shadcn';
+import { TbHelpCircleFilled } from 'react-icons/tb';
 import Logo from '/akir.svg';
 import { app } from '@tauri-apps/api';
+import { openUrl } from '@tauri-apps/plugin-opener';
 
 const about: React.FC<{}> = () => {
   const [version, setVersion] = useState<string>('unknown');
 
-  const linkOpen = () => open('https://github.com/pomeluce/akir-tauri');
+  const linkOpen = () => openUrl('https://github.com/pomeluce/akir-tauri');
 
   useAsyncEffect(async () => {
     setVersion(await app.getVersion());
@@ -15,10 +17,14 @@ const about: React.FC<{}> = () => {
     <Dialog modal={false}>
       <DialogTrigger asChild>
         <button className="flex justify-center items-center">
-          <IconRiQuestionFill />
+          <TbHelpCircleFilled />
         </button>
       </DialogTrigger>
-      <DialogContent className="max-w-md top-[25%] drop-shadow-3xl select-none" closable={false} aria-describedby={undefined}>
+      <DialogContent
+        className="max-w-md top-1/4 drop-shadow-3xl select-none [&:focus,&:focus-within,&:focus-visible]:outline-none"
+        aria-describedby={undefined}
+        onInteractOutside={e => e.preventDefault()}
+      >
         <DialogTitle />
         <main className="p-5 px-10 flex flex-col justify-center items-center gap-5">
           <div className="py-3 flex justify-center items-center gap-5">

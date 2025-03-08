@@ -1,20 +1,13 @@
 import Logo from '/akir.svg';
-import { app } from '@tauri-apps/api';
 import classNames from 'classnames';
 import { menus } from '@/configs/menus';
 
 const leftbar: React.FC<{}> = () => {
-  const [name, setName] = useState<string>('1.0.0');
-
-  useAsyncEffect(async () => {
-    setName((await app.getVersion()).split('.')[0]);
-  }, []);
-
   return (
     <main className="min-w-32 flex flex-col items-center gap-3 p-3">
       <span className="flex justify-center items-center gap-1 select-none cursor-default">
         <img src={Logo} tabIndex={-1} width={20} draggable={false} />
-        <span className="text-sm uppercase font-bold text-indigo-700 dark:text-indigo-400">v{name}</span>
+        <span className="text-sm uppercase font-bold text-indigo-700 dark:text-indigo-400">akir</span>
       </span>
       {menus.map((menu, index) => (
         <nav key={`key-${index}`}>
@@ -25,7 +18,7 @@ const leftbar: React.FC<{}> = () => {
                   '!bg-backdrop2 drop-shadow-sm border border-rim2 text-word1 font-semibold': isActive,
                 })}
               >
-                {menu.icon(isActive ? { strokeWidth: 1 } : {})} {menu.title}
+                {menu.icon(!isActive ? { strokeWidth: 1 } : {})} {menu.title}
               </button>
             )}
           </Link>

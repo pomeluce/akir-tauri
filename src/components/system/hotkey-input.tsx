@@ -1,6 +1,7 @@
-import classNames from 'classnames';
-import './styles/hotkey-input.scss';
 import { Button, HoverCard, HoverCardContent, HoverCardTrigger } from '@/shadcn';
+import classNames from 'classnames';
+import './styles/hotkey-input.css';
+import { TbCirclePlus, TbCircleX } from 'react-icons/tb';
 
 interface HotkeyInputProps {
   className?: string;
@@ -146,7 +147,7 @@ const hotkeyInput = forwardRef<HTMLDivElement, HotkeyInputProps>((props, ref) =>
               setVisible(!!ofIndex);
             }}
           >
-            <IconRiCloseCircleLine />
+            <TbCircleX />
           </span>
         </span>
       ))}
@@ -165,10 +166,16 @@ const hotkeyInput = forwardRef<HTMLDivElement, HotkeyInputProps>((props, ref) =>
     >
       {hotkeys.length ? (
         (ofIndex ? hotkeys.slice(0, ofIndex) : hotkeys).map((hotkey, index) => (
-          <span ref={el => (hotkeysRef.current[index] = el)} key={`hotkey-${index}`} className="hotkey-input__key">
+          <span
+            ref={el => {
+              hotkeysRef.current[index] = el;
+            }}
+            key={`hotkey-${index}`}
+            className="hotkey-input__key"
+          >
             <span>{hotkey.toUpperCase()}</span>
             <span className="hotkey-input__key--close" onClick={() => handleDelete(index)}>
-              <IconRiCloseCircleLine />
+              <TbCircleX size={18} strokeWidth={1} />
             </span>
           </span>
         ))
@@ -177,9 +184,16 @@ const hotkeyInput = forwardRef<HTMLDivElement, HotkeyInputProps>((props, ref) =>
       )}
       <HoverCard>
         <HoverCardTrigger asChild>
-          <Button ref={ofRef} variant="link" className={ofIndex ? '' : 'hidden'} size="sm" onClick={() => setVisible(!visible)} style={{ backgroundColor: 'transparent' }}>
+          <Button
+            ref={ofRef}
+            variant="link"
+            className={ofIndex ? 'px-1 hover:no-underline' : 'hidden px-1 hover:no-underline'}
+            size="sm"
+            onClick={() => setVisible(!visible)}
+            style={{ backgroundColor: 'transparent' }}
+          >
             <span className="flex justify-center items-center">
-              <IconRiAddLine />
+              <TbCirclePlus />
               <span>More</span>
             </span>
           </Button>

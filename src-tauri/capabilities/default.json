@@ -25,6 +25,8 @@
     "fs:default",
     "fs:scope-config-index",
     "fs:scope-home",
+    "opener:allow-default-urls",
+    "opener:allow-open-url",
     "shell:allow-open",
     "sql:default",
     "sql:allow-load",

@@ -1,15 +1,16 @@
 import { event } from '@tauri-apps/api';
+import { TbHome, TbSettings } from 'react-icons/tb';
 
 export const menus = [
   {
     title: '主页',
-    icon: IconRiHome7Line,
+    icon: TbHome,
     to: RouteTo.HOME,
     isActive: true,
   },
   {
     title: '设置',
-    icon: IconRiSettings6Line,
+    icon: TbSettings,
     to: RouteTo.SETTINGS,
     isActive: false,
   },

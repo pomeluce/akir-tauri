@@ -1,5 +1,4 @@
 import AutoImport from 'unplugin-auto-import/vite';
-import { IconResolver } from '../resolver';
 
 /* 自动导入 */
 export default [
@@ -30,8 +29,6 @@ export default [
         ],
       },
     ],
-    // 自定义解析函数: 自动导入组件
-    resolvers: [IconResolver()],
     // 自定义函数导入
     dirs: ['src/store/**/*', 'src/constants/**/*', 'src/hooks/**/*'],
     // 声明生成的位置

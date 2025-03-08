@@ -1,22 +1,24 @@
-import { Checkbox, Label } from '@/shadcn';
-import { enable, disable } from '@tauri-apps/plugin-autostart';
+import { enable, disable, isEnabled } from '@tauri-apps/plugin-autostart';
+import SettingRow from './row';
+import { Switch } from '@/shadcn/ui/switch';
 
 const general: React.FC<{}> = () => {
-  const autoStart = async (value: boolean) => {
+  const [checked, setChecked] = useState<boolean>(false);
+
+  const handleCheckedChange = async (value: boolean) => {
+    setChecked(value);
     await (value ? enable() : disable());
   };
 
+  useAsyncEffect(async () => {
+    setChecked(await isEnabled());
+  }, []);
+
   return (
     <main className="p-5 flex flex-col gap-3">
-      <section className="grid grid-cols-3 gap-5">
-        <h2 className="font-medium">开机选项</h2>
-        <div className="col-span-2">
-          <span className="flex items-center gap-2">
-            <Checkbox id="auto_start" onCheckedChange={autoStart} />
-            <Label htmlFor="auto_start">开机自启动</Label>
-          </span>
-        </div>
-      </section>
+      <SettingRow label="开机自启">
+        <Switch checked={checked} onCheckedChange={handleCheckedChange} />
+      </SettingRow>
     </main>
   );
 };

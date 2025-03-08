@@ -1,5 +1,6 @@
 import { getCurrentWindow } from '@tauri-apps/api/window';
 import classNames from 'classnames';
+import { TbPinnedFilled } from 'react-icons/tb';
 
 const pushpin: React.FC<{}> = () => {
   const [isPined, setIsPined] = useState<boolean>(false);
@@ -12,7 +13,7 @@ const pushpin: React.FC<{}> = () => {
 
   return (
     <button className="flex justify-center items-center" onClick={handleClick}>
-      <IconRiPushpin2Fill className={classNames({ 'text-primary6 font-bold': isPined })} />
+      <TbPinnedFilled className={classNames({ 'text-primary6 font-bold': isPined })} />
     </button>
   );
 };

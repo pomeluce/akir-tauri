@@ -18,7 +18,12 @@ pub fn run() {
         ))
         .plugin(tauri_plugin_os::init())
         .plugin(tauri_plugin_sql::Builder::default().build())
-        .invoke_handler(tauri::generate_handler![command::devtools::toggle_devtools])
+        .plugin(tauri_plugin_opener::init())
+        .invoke_handler(tauri::generate_handler![
+            command::app::set_decorations,
+            command::app::get_decorations,
+            command::devtools::toggle_devtools
+        ])
         .setup(|app| {
             let app_handle = app.app_handle();
 

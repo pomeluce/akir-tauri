@@ -10,13 +10,14 @@
 
 ## 准备
 
-- [node](http://nodejs.org/) 和 [git](https://git-scm.com/) -项目开发环境
-- [vite](https://vitejs.dev/) - 熟悉 vite 特性
-- [react](https://github.com/facebook/react) - 熟悉 React 基础语法
-- [typescript](https://www.typescriptlang.org/) - 熟悉`TypeScript`基本语法
-- [es6+](http://es6.ruanyifeng.com/) - 熟悉 es6 基本语法
-- [zustand](https://zustand-demo.pmnd.rs/) - 熟悉 zustand 基本使用
-- [tauri](https://tauri.app) - 熟悉 tauri 框架
+- [Node](http://nodejs.org/) 和 [Git](https://git-scm.com/) -项目开发环境
+- [Vite](https://vitejs.dev/) - 熟悉 Vite 特性
+- [React](https://github.com/facebook/react) - 熟悉 React 基础语法
+- [Tauri](https://tauri.app) - 熟悉 tauri 框架
+- [Zustand](https://zustand-demo.pmnd.rs/) - 熟悉 zustand 基本使用
+- [TypeScript](https://www.typescriptlang.org/) - 熟悉`TypeScript`基本语法
+- [Es6+](http://es6.ruanyifeng.com/) - 熟悉 es6 基本语法
+- [Mock.js](https://github.com/nuysoft/Mock) - mockjs 基本语法
 
 ## 使用
 

@@ -1,4 +1,5 @@
 {
+  "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "akir-tauri",
   "version": "3.5.1",
   "identifier": "org.pomeluce.akir",
@@ -22,6 +23,7 @@
         "titleBarStyle": "Overlay",
         "hiddenTitle": true,
         "transparent": true,
+        "decorations": false,
         "windowEffects": {
           "effects": ["mica"]
         }

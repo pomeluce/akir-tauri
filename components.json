@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema.json",
   "style": "new-york",
   "tailwind": {
-    "config": "uno.config.ts",
-    "css": "src/styles/shadcn.scss",
+    "config": "",
+    "css": "src/styles/tailwind.css",
     "baseColor": "neutral",
     "cssVariables": true,
     "prefix": ""
@@ -14,7 +14,8 @@
     "components": "@/shadcn",
     "ui": "@/shadcn/ui",
     "hooks": "@/shadcn/hooks",
-    "lib": "@/shacdn/lib",
-    "utils": "@/shacdn/lib/utils"
-  }
+    "lib": "@/shadcn/lib",
+    "utils": "@/shadcn/lib/utils"
+  },
+  "iconLibrary": "lucide"
 }

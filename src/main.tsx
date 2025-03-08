@@ -2,7 +2,6 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from '@/App';
 import plugins from '@/plugins';
-import '@/styles/global.scss';
 
 const bootstrap = (): void => {
   // 创建 react 实例

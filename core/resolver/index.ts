@@ -1,1 +1,0 @@
-export { IconResolver } from './resolver';

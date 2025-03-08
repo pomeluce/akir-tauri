@@ -1,0 +1,39 @@
+@reference '@/styles/tailwind.css';
+
+.hotkey-input {
+  @apply w-full h-10 flex items-center gap-2 relative px-3 py-1  border-2 border-rim2 rounded bg-backdrop2 text-word3 cursor-text;
+  transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+  &:focus {
+    @apply border-primary4;
+    box-shadow: 0 0 4px theme('colors.primary4');
+  }
+
+  &.cursor::after {
+    content: '│';
+    @apply absolute left-2 text-xl animate-blink delay-0;
+  }
+
+  & .hotkey-input__placeholder {
+    @apply absolute left-4 text-word4 select-none;
+  }
+}
+
+.hotkey-input-of {
+  @apply flex flex-wrap gap-2 text-word3 max-w-sm p-3 box-content;
+}
+
+.hotkey-input,
+.hotkey-input-of {
+  & .hotkey-input__key {
+    @apply flex items-center gap-2 px-1.5 py-1 box-border bg-fill2 text-sm rounded-sm cursor-default;
+
+    & .hotkey-input__key--close {
+      @apply opacity-90;
+
+      &:hover {
+        @apply cursor-pointer opacity-90;
+      }
+    }
+  }
+}
