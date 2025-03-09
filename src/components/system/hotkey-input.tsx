@@ -16,7 +16,7 @@ interface HotkeyInputProps {
   onChangeHotkey?: (keys: string[]) => void;
 }
 
-const hotkeyInput = forwardRef<HTMLDivElement, HotkeyInputProps>((props, ref) => {
+const HotkeyInput: React.FC<HotkeyInputProps> = props => {
   const {
     className,
     defaultHotkeys = [],
@@ -35,11 +35,9 @@ const hotkeyInput = forwardRef<HTMLDivElement, HotkeyInputProps>((props, ref) =>
   const [keyRange, setKeyRange] = useState<string[]>([]);
   const [ofIndex, setOfIndex] = useState<number>(0);
   const [visible, setVisible] = useState<boolean>(false);
-  const internalRef = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
   const ofRef = useRef<HTMLButtonElement>(null);
   const hotkeysRef = useRef<(HTMLSpanElement | null)[]>([]);
-
-  useImperativeHandle(ref, () => internalRef.current!);
 
   const CODE_NUMBER = Array.from({ length: 10 }, (_, k) => `Digit${k + 1}`);
   const CODE_NUMPAD = Array.from({ length: 10 }, (_, k) => `Numpad${k + 1}`);
@@ -103,7 +101,7 @@ const hotkeyInput = forwardRef<HTMLDivElement, HotkeyInputProps>((props, ref) =>
   }, []);
 
   useEffect(() => {
-    if (internalRef.current && internalRef.current === document.activeElement) {
+    if (ref.current && ref.current === document.activeElement) {
       handleFocus();
     }
     onChangeHotkey?.(hotkeys);
@@ -120,7 +118,7 @@ const hotkeyInput = forwardRef<HTMLDivElement, HotkeyInputProps>((props, ref) =>
       ofWidth = ofRef.current?.offsetWidth || 0;
       ofRef.current?.classList.add('hidden');
     }
-    const containerWidth = (internalRef.current?.offsetWidth || 0) - ofWidth - 20;
+    const containerWidth = (ref.current?.offsetWidth || 0) - ofWidth - 20;
     let keysWidth = 0;
 
     hotkeysRef.current.some((el, index) => {
@@ -156,7 +154,7 @@ const hotkeyInput = forwardRef<HTMLDivElement, HotkeyInputProps>((props, ref) =>
 
   return (
     <div
-      ref={internalRef}
+      ref={ref}
       className={classNames('hotkey-input', { cursor: focused }, className)}
       tabIndex={0}
       style={style}
@@ -204,6 +202,6 @@ const hotkeyInput = forwardRef<HTMLDivElement, HotkeyInputProps>((props, ref) =>
       </HoverCard>
     </div>
   );
-});
+};
 
-export default hotkeyInput;
+export default HotkeyInput;

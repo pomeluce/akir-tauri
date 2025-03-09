@@ -1,3 +1,3 @@
-import { TanStackRouterDevtools } from '@tanstack/router-devtools';
+import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 
 export const RouterDevtools = __DEV__ ? TanStackRouterDevtools : () => null;

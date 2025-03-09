@@ -1,4 +1,4 @@
-const fallback: React.FC<{}> = () => {
+const fallback = () => {
   return (
     <div className="w-screen h-screen fixed inset-0 flex justify-center items-center text-4xl text-primary6 bg-backdrop2 opacity-85 z-100">
       <div className="relative leading-0 w-[1em] h-[1em]" role="img" aria-label="loading">

@@ -34,19 +34,7 @@ export const ThemeProvider = (props: { children: ReactNode; defaultTheme?: Theme
     };
   }, [listenerSystemColorMode]);
 
-  return (
-    <ThemeContext.Provider
-      value={{
-        mode,
-        theme,
-        setTheme: (theme: ThemeType) => {
-          setTheme(theme);
-        },
-      }}
-    >
-      {props.children}
-    </ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={{ mode, theme, setTheme: (theme: ThemeType) => setTheme(theme) }}>{props.children}</ThemeContext.Provider>;
 };
 
 export const useTheme = () => {

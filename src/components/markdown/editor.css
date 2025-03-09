@@ -1,0 +1,9 @@
+@import url('reactjs-tiptap-editor/style.css');
+
+.reactjs-tiptap-editor {
+  @apply w-full h-full;
+
+  & > div {
+    @apply h-full border-none rounded-none shadow-none;
+  }
+}

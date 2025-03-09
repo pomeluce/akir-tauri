@@ -1,5 +1,6 @@
 import { RouterDevtools } from '@/components';
-import { About, Leftbar, Pushpin } from '@/components';
+import { Leftbar } from './-root';
+import { About, Pushpin } from '@/components';
 
 export const Route = createRootRoute({
   component: () => {
@@ -14,7 +15,7 @@ export const Route = createRootRoute({
       <>
         <main className="w-screen h-screen flex select-none">
           <Leftbar />
-          <main className="grow-1 grid grid-rows-[auto_1fr] gap-3 bg-backdrop2 overflow-hidden">
+          <main className="grow-1 grid grid-rows-[auto_1fr] gap-3 bg-backdrop2/80 border-l border-rim2 overflow-hidden">
             <div data-tauri-drag-region className="w-full flex items-center gap-7 p-2 border-b border-rim2">
               <main className="flex items-center gap-3 ml-auto text-word2">
                 <Pushpin />

@@ -1,2 +1,2 @@
-export { default as HotkeyInput } from './hotkey-input';
-export { default as Leftbar } from './leftbar';
+export { default as SystemChecked } from './checked';
+export { default as SystemHotkeyInput } from './hotkey-input';

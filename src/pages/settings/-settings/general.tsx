@@ -1,6 +1,6 @@
 import { enable, disable, isEnabled } from '@tauri-apps/plugin-autostart';
+import { Card, CardContent, CardHeader, CardTitle, Switch } from '@/shadcn';
 import SettingRow from './row';
-import { Switch } from '@/shadcn/ui/switch';
 
 const general: React.FC<{}> = () => {
   const [checked, setChecked] = useState<boolean>(false);
@@ -15,11 +15,16 @@ const general: React.FC<{}> = () => {
   }, []);
 
   return (
-    <main className="p-5 flex flex-col gap-3">
-      <SettingRow label="开机自启">
-        <Switch checked={checked} onCheckedChange={handleCheckedChange} />
-      </SettingRow>
-    </main>
+    <Card className="shadow-none rounded-md">
+      <CardHeader>
+        <CardTitle>通用</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <SettingRow label="开启自启">
+          <Switch checked={checked} onCheckedChange={handleCheckedChange} />
+        </SettingRow>
+      </CardContent>
+    </Card>
   );
 };
 

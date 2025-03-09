@@ -14,5 +14,5 @@
 }
 
 body {
-  @apply bg-backdrop1/90 text-word1 font-sans text-base;
+  @apply bg-backdrop1/70 text-word1 font-sans text-base;
 }

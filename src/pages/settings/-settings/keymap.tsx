@@ -1,5 +1,5 @@
-import { Button, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/shadcn';
-import { HotkeyInput } from '@/components';
+import { Button, Card, CardContent, CardHeader, CardTitle, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/shadcn';
+import { SystemHotkeyInput } from '@/components';
 import SettingRow from './row';
 
 const keymap: React.FC<{}> = () => {
@@ -42,24 +42,29 @@ const keymap: React.FC<{}> = () => {
   };
 
   return (
-    <main className="p-5 flex flex-col gap-3">
-      {keymaps.map(keymap => (
-        <SettingRow key={keymap.id} label={keymap.label}>
-          <HotkeyInput
-            className="max-w-sm"
-            defaultHotkeys={keymap.key}
-            placeholder="请输入需要绑定的按键, 支持组合按键"
-            onAddHotkey={key => {
-              rebindHotKey(keymap.id, key);
-            }}
-            onDeleteHotkey={key => {
-              unbindHotKey(keymap.id, key);
-            }}
-            onHotkeyVerify={hotkeyHandle}
-          />
-        </SettingRow>
-      ))}
-    </main>
+    <Card className="shadow-none rounded-md">
+      <CardHeader>
+        <CardTitle>快捷键</CardTitle>
+      </CardHeader>
+      <CardContent>
+        {keymaps.map(keymap => (
+          <SettingRow key={keymap.id} label={keymap.label} contentClassName="flex-1 px-2">
+            <SystemHotkeyInput
+              className="ml-auto min-w-36 max-w-sm"
+              defaultHotkeys={keymap.key}
+              placeholder="请输入需要绑定的按键, 支持组合按键"
+              onAddHotkey={key => {
+                rebindHotKey(keymap.id, key);
+              }}
+              onDeleteHotkey={key => {
+                unbindHotKey(keymap.id, key);
+              }}
+              onHotkeyVerify={hotkeyHandle}
+            />
+          </SettingRow>
+        ))}
+      </CardContent>
+    </Card>
   );
 };
 
