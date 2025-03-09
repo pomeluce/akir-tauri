@@ -1,12 +1,12 @@
 @reference '@/styles/tailwind.css';
 
 .hotkey-input {
-  @apply w-full h-10 flex items-center gap-2 relative px-3 py-1  border-2 border-rim2 rounded bg-backdrop2 text-word3 cursor-text;
+  @apply w-full h-10 flex items-center gap-2 relative px-3 py-1 border border-rim2 rounded bg-backdrop2 text-word3 cursor-text;
   transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
 
   &:focus {
-    @apply border-primary4;
-    box-shadow: 0 0 4px theme('colors.primary4');
+    @apply border-primary5;
+    box-shadow: 0 0 2px theme('colors.primary4');
   }
 
   &.cursor::after {

@@ -13,7 +13,9 @@ pub fn setup_tray(app_handle: &AppHandle) -> Result<(), Box<dyn std::error::Erro
             &MenuItemBuilder::with_id("exit_app", "退出").build(app_handle)?,
         ])
         .build()?;
-    let tray = TrayIconBuilder::new().menu(&menu).build(app_handle)?;
+    let tray = TrayIconBuilder::with_id("akir-tauri")
+        .menu(&menu)
+        .build(app_handle)?;
 
     tray.set_icon(Some(Image::from_path("./icons/icon.png")?))?;
 
