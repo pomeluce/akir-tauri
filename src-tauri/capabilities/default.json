@@ -31,8 +31,6 @@
     "sql:default",
     "sql:allow-load",
     "sql:allow-select",
-    "sql:allow-execute",
-    "theme:allow-get-theme",
-    "theme:allow-set-theme"
+    "sql:allow-execute"
   ]
 }

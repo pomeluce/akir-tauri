@@ -32,6 +32,7 @@ export default defineConfig(({ command, mode }) => {
     base: isBuild ? '/' : '/',
     server: {
       host: true,
+      port: 8192,
       proxy: env.VITE_MOCK_ENABLE ? {} : { [env.VITE_BASE_PREFIX]: { target: env.VITE_API_URL, rewrite: path => path } },
     },
     build: {

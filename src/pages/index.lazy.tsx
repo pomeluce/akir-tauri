@@ -2,10 +2,6 @@
 
 export const Route = createLazyFileRoute('/')({
   component: () => {
-    return (
-      <main>
-        {/* <AkirMarkEditor /> */}
-      </main>
-    );
+    return <main>{/* <AkirMarkEditor /> */}</main>;
   },
 });

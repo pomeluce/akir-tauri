@@ -5,7 +5,7 @@
   "identifier": "org.pomeluce.akir",
   "build": {
     "frontendDist": "../dist",
-    "devUrl": "http://localhost:5173",
+    "devUrl": "http://localhost:8192",
     "beforeDevCommand": "pnpm run dev",
     "beforeBuildCommand": "pnpm run build:pro"
   },
